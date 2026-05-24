@@ -109,14 +109,14 @@ export default function App() {
       </header>
 
       <section className="flex-1">
-        <div className="mb-5 flex items-end justify-between">
-          <h2 className="remi-title">{screenTitle}</h2>
-          {activeView !== "landing" ? (
+        {activeView !== "landing" ? (
+          <div className="mb-5 flex items-end justify-between">
+            <h2 className="remi-title">{screenTitle}</h2>
             <p className="remi-kicker">
               Viewing {directorType === "executive" ? "Executive" : "Non-Executive"} data · {dataset.some((company) => company.scrape?.status === "live-metadata") ? "Live metadata" : "Seeded data"}
             </p>
-          ) : null}
-        </div>
+          </div>
+        ) : null}
         {activeView === "landing" ? (
           <LandingScreen dataset={dataset} onEnter={() => navigate("find")} />
         ) : activeView === "find" ? (
