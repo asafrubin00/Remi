@@ -66,7 +66,7 @@ export default function CompareScreen({ dataset, directorType }) {
     });
   }, [comparisonRows, metric]);
 
-  const analysisData = { directorType, metric, chartType, comparisonRows };
+  const analysisData = useMemo(() => ({ directorType, metric, chartType, comparisonRows }), [chartType, comparisonRows, directorType, metric]);
 
   return (
     <div className="space-y-4">
@@ -108,10 +108,18 @@ export default function CompareScreen({ dataset, directorType }) {
           </div>
 
           <div className="h-[470px]">
-            {chartType === "Bar" ? <BarComparison data={comparisonRows} metric={metric} /> : null}
-            {chartType === "Line/Trend" ? <LineComparison data={trendData} rows={comparisonRows} metric={metric} /> : null}
-            {chartType === "Bubble" ? <BubbleComparison data={comparisonRows} metric={metric} /> : null}
-            {chartType === "Table" ? <ComparisonTable data={comparisonRows} metric={metric} /> : null}
+            {comparisonRows.length ? (
+              <>
+                {chartType === "Bar" ? <BarComparison data={comparisonRows} metric={metric} /> : null}
+                {chartType === "Line/Trend" ? <LineComparison data={trendData} rows={comparisonRows} metric={metric} /> : null}
+                {chartType === "Bubble" ? <BubbleComparison data={comparisonRows} metric={metric} /> : null}
+                {chartType === "Table" ? <ComparisonTable data={comparisonRows} metric={metric} /> : null}
+              </>
+            ) : (
+              <div className="flex h-full items-center justify-center rounded-lg border border-remi-border bg-remi-navy text-sm text-remi-text-secondary">
+                No comparison records match the current selection.
+              </div>
+            )}
           </div>
         </Panel>
         <div className="h-[560px]">

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AnalysisPanel from "../components/AnalysisPanel.jsx";
 import { DataValue, Panel, SectionHeader } from "../components/ui.jsx";
 import { allDirectors, flattenDirectorYear, formatMoney } from "../data/mockRemuneration.js";
@@ -60,6 +60,10 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
   const pageRows = rows.slice((page - 1) * 50, page * 50);
   const pageCount = Math.max(1, Math.ceil(rows.length / 50));
 
+  useEffect(() => {
+    setPage(1);
+  }, [directorType, indexFilter, metric, sectorFilter, sortDirection, sortKey, year]);
+
   const updateSort = (key) => {
     if (sortKey === key) {
       setSortDirection(sortDirection === "desc" ? "asc" : "desc");
@@ -101,31 +105,39 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
                 </tr>
               </thead>
               <tbody>
-                {pageRows.map((row, index) => (
-                  <tr
-                    key={`${row.id}-${row.reportingYear}`}
-                    className={`${index % 2 ? "bg-remi-secondary" : "bg-remi-navy"} cursor-pointer hover:bg-remi-surface`}
-                    onClick={() => onOpenDirector(row.id)}
-                  >
-                    <td className="px-3 py-3">
-                      <DataValue className="text-remi-gold-light">{row.rank}</DataValue>
-                    </td>
-                    <td className="px-3 py-3 font-medium text-remi-text">{row.name}</td>
-                    <td className="px-3 py-3 text-remi-text-secondary">{row.role}</td>
-                    <td className="px-3 py-3 text-remi-text-secondary">{row.company}</td>
-                    <td className="px-3 py-3 text-remi-text-secondary">{row.index}</td>
-                    <td className="px-3 py-3 text-remi-text-secondary">{row.sector}</td>
-                    <td className="px-3 py-3">
-                      <DataValue className="text-remi-gold-light">{formatMetric(row.metricValue, metric, row.currency)}</DataValue>
-                    </td>
-                    <td className="px-3 py-3">
-                      <DataValue>{formatMoney(row.totalCompensation, row.currency)}</DataValue>
-                    </td>
-                    <td className="px-3 py-3">
-                      <DataValue className={row.sayOnPayPct >= 90 ? "text-remi-positive" : "text-remi-gold-light"}>{row.sayOnPayPct ? `${row.sayOnPayPct}%` : "n/a"}</DataValue>
+                {pageRows.length ? (
+                  pageRows.map((row, index) => (
+                    <tr
+                      key={`${row.id}-${row.reportingYear}`}
+                      className={`${index % 2 ? "bg-remi-secondary" : "bg-remi-navy"} cursor-pointer hover:bg-remi-surface`}
+                      onClick={() => onOpenDirector(row.id)}
+                    >
+                      <td className="px-3 py-3">
+                        <DataValue className="text-remi-gold-light">{row.rank}</DataValue>
+                      </td>
+                      <td className="px-3 py-3 font-medium text-remi-text">{row.name}</td>
+                      <td className="px-3 py-3 text-remi-text-secondary">{row.role}</td>
+                      <td className="px-3 py-3 text-remi-text-secondary">{row.company}</td>
+                      <td className="px-3 py-3 text-remi-text-secondary">{row.index}</td>
+                      <td className="px-3 py-3 text-remi-text-secondary">{row.sector}</td>
+                      <td className="px-3 py-3">
+                        <DataValue className="text-remi-gold-light">{formatMetric(row.metricValue, metric, row.currency)}</DataValue>
+                      </td>
+                      <td className="px-3 py-3">
+                        <DataValue>{formatMoney(row.totalCompensation, row.currency)}</DataValue>
+                      </td>
+                      <td className="px-3 py-3">
+                        <DataValue className={row.sayOnPayPct >= 90 ? "text-remi-positive" : "text-remi-gold-light"}>{row.sayOnPayPct ? `${row.sayOnPayPct}%` : "n/a"}</DataValue>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td className="px-3 py-12 text-center text-sm text-remi-text-secondary" colSpan={columns.length}>
+                      No league records match the current filters.
                     </td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>

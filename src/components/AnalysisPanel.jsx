@@ -38,7 +38,7 @@ export default function AnalysisPanel({ currentViewData }) {
     return () => {
       cancelled = true;
     };
-  }, [currentViewData, payload]);
+  }, [payload]);
 
   return (
     <Panel className="h-full p-6">
