@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import AnalysisPanel from "../components/AnalysisPanel.jsx";
 import { DataValue, Panel, SectionHeader } from "../components/ui.jsx";
 import { allDirectors, companies, flattenDirectorYear, formatMoney } from "../data/mockRemuneration.js";
 
@@ -175,12 +176,9 @@ export default function FindScreen({ directorType }) {
         )}
       </Panel>
 
-      <Panel className="h-[690px] p-6">
-        <SectionHeader>Remi Analysis</SectionHeader>
-        <p className="mt-4 text-[13px] italic leading-6 text-remi-text-secondary">
-          Analysis panel is queued for the next build step and will read the selected remuneration record.
-        </p>
-      </Panel>
+      <div className="h-[690px]">
+        <AnalysisPanel currentViewData={selectedYearData} />
+      </div>
     </div>
   );
 }
