@@ -1,7 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: dark;
+  --remi-navy: #0d1f35;
+  --remi-secondary: #132b45;
+  --remi-surface: #1a3a5c;
+  --remi-gold: #c8960c;
+  --remi-gold-light: #e8b84b;
+  --remi-text: #f0f4f8;
+  --remi-text-secondary: #8ca8c0;
+  --remi-muted: #4a6278;
+  --remi-border: #1e3a52;
+  --remi-positive: #2ecc71;
+  --remi-negative: #e74c3c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 1180px;
+  background: var(--remi-navy);
+}
+
 body {
   margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(26, 58, 92, 0.34), rgba(13, 31, 53, 0) 360px),
+    var(--remi-navy);
+  color: var(--remi-text);
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+a {
+  color: var(--remi-gold-light);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--remi-gold);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--remi-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--remi-gold);
+  border-radius: 999px;
+}
+
+@layer components {
+  .remi-shell {
+    @apply mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-8 py-7;
+  }
+
+  .remi-panel {
+    @apply rounded-lg border border-remi-border bg-remi-secondary;
+  }
+
+  .remi-panel-inner {
+    @apply rounded-lg border border-remi-border bg-remi-navy;
+  }
+
+  .remi-title {
+    font-family: "DM Serif Display", Georgia, serif;
+    @apply text-[32px] font-normal leading-none text-remi-text;
+  }
+
+  .remi-wordmark {
+    font-family: "DM Serif Display", Georgia, serif;
+    @apply text-[56px] font-normal leading-none text-remi-text;
+  }
+
+  .remi-kicker {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply text-[13px] font-medium uppercase tracking-[0.16em] text-remi-text-secondary;
+  }
+
+  .remi-data {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply font-medium tabular-nums;
+  }
+
+  .remi-input {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply h-11 w-full rounded-md border border-remi-border bg-remi-navy px-3 text-[13px] text-remi-text outline-none transition placeholder:text-remi-muted focus:border-remi-gold focus:ring-1 focus:ring-remi-gold;
+  }
+
+  .remi-select {
+    @apply h-10 rounded-md border border-remi-border bg-remi-navy px-3 text-[13px] text-remi-text outline-none transition focus:border-remi-gold focus:ring-1 focus:ring-remi-gold;
+  }
+
+  .remi-tab {
+    @apply rounded-md border border-remi-border bg-remi-secondary px-4 py-2 text-[13px] font-medium text-remi-text-secondary transition hover:border-remi-gold hover:text-remi-gold-light;
+  }
+
+  .remi-tab-active {
+    @apply border-remi-gold bg-remi-gold text-remi-navy hover:text-remi-navy;
+  }
+
+  .remi-icon-button {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-md border border-remi-border bg-remi-secondary text-remi-text-secondary transition hover:border-remi-gold hover:text-remi-gold-light;
+  }
+
+  .remi-value-row {
+    @apply flex items-center justify-between border-b border-remi-border px-4 py-3 last:border-b-0;
+  }
+
+  .remi-pulse {
+    animation: remi-pulse 1.2s ease-in-out infinite;
+  }
+}
+
+@keyframes remi-pulse {
+  0%,
+  100% {
+    opacity: 0.42;
+  }
+  50% {
+    opacity: 1;
+  }
 }

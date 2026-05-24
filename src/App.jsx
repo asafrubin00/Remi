@@ -1,7 +1,8 @@
 export default function App() {
   return (
-    <main className="min-h-screen bg-remi-navy text-remi-text">
-      <h1>Remi</h1>
+    <main className="remi-shell">
+      <h1 className="remi-wordmark">remi</h1>
+      <p className="remi-kicker mt-2">Remuneration Intelligence</p>
     </main>
   );
 }
