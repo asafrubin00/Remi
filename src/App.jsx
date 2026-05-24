@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { TabButton } from "./components/ui.jsx";
+import { companies as seededCompanies } from "./data/mockRemuneration.js";
 import CompareScreen from "./screens/CompareScreen.jsx";
 import FindScreen from "./screens/FindScreen.jsx";
 import LandingScreen from "./screens/LandingScreen.jsx";
@@ -20,6 +21,7 @@ function viewFromPath() {
 export default function App() {
   const [activeView, setActiveView] = useState(viewFromPath);
   const [focusedDirectorId, setFocusedDirectorId] = useState(null);
+  const [dataset, setDataset] = useState(seededCompanies);
   const [directorType, setDirectorType] = useState(() => {
     return window.localStorage.getItem("remi.directorType") || "executive";
   });
@@ -32,6 +34,34 @@ export default function App() {
     const onPopState = () => setActiveView(viewFromPath());
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function hydrateDataset() {
+      const hydrated = await Promise.all(
+        seededCompanies.map(async (company) => {
+          try {
+            const response = await fetch(`/api/scrape-company?companyId=${company.id}`);
+            if (!response.ok) throw new Error("Scrape route unavailable");
+            return await response.json();
+          } catch {
+            return {
+              ...company,
+              scrape: { status: "fallback", message: "Using seeded remuneration data." },
+              lastUpdated: new Date().toISOString()
+            };
+          }
+        }),
+      );
+      if (!cancelled) setDataset(hydrated);
+    }
+
+    hydrateDataset();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const screenTitle = useMemo(() => {
@@ -86,13 +116,13 @@ export default function App() {
           ) : null}
         </div>
         {activeView === "landing" ? (
-          <LandingScreen onEnter={() => navigate("find")} />
+          <LandingScreen dataset={dataset} onEnter={() => navigate("find")} />
         ) : activeView === "find" ? (
-          <FindScreen directorType={directorType} initialSelectedId={focusedDirectorId} />
+          <FindScreen dataset={dataset} directorType={directorType} initialSelectedId={focusedDirectorId} />
         ) : activeView === "compare" ? (
-          <CompareScreen directorType={directorType} />
+          <CompareScreen dataset={dataset} directorType={directorType} />
         ) : activeView === "league" ? (
-          <LeagueScreen directorType={directorType} onOpenDirector={openDirector} />
+          <LeagueScreen dataset={dataset} directorType={directorType} onOpenDirector={openDirector} />
         ) : (
           <div className="remi-panel p-6">
             <p className="text-sm text-remi-text-secondary">Screen scaffold ready for {screenTitle}.</p>

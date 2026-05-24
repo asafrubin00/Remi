@@ -10,9 +10,9 @@ const sectorY = {
   "Consumer Staples": 4
 };
 
-export default function LandingScreen({ onEnter }) {
+export default function LandingScreen({ dataset, onEnter }) {
   const data = useMemo(() => {
-    return allDirectors()
+    return allDirectors(dataset)
       .filter((director) => director.type === "executive")
       .map((director) => {
         const row = flattenDirectorYear(director);
@@ -26,7 +26,7 @@ export default function LandingScreen({ onEnter }) {
           y: sectorY[row.sector] ?? 2
         };
       });
-  }, []);
+  }, [dataset]);
 
   return (
     <button className="group block min-h-[680px] w-full text-left" onClick={onEnter} aria-label="Enter Remi Find screen">

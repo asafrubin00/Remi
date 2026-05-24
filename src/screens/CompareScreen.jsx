@@ -16,7 +16,7 @@ import {
 } from "recharts";
 import AnalysisPanel from "../components/AnalysisPanel.jsx";
 import { DataValue, Panel, SectionHeader, TabButton } from "../components/ui.jsx";
-import { allDirectors, companies, flattenDirectorYear, formatMoney } from "../data/mockRemuneration.js";
+import { allDirectors, flattenDirectorYear, formatMoney } from "../data/mockRemuneration.js";
 
 const components = [
   ["totalCompensation", "Total Comp"],
@@ -37,8 +37,8 @@ function toggleValue(list, value, max = 4) {
   return [...list, value];
 }
 
-export default function CompareScreen({ directorType }) {
-  const directors = useMemo(() => allDirectors().filter((director) => director.type === directorType), [directorType]);
+export default function CompareScreen({ dataset, directorType }) {
+  const directors = useMemo(() => allDirectors(dataset).filter((director) => director.type === directorType), [dataset, directorType]);
   const [selectedIndices, setSelectedIndices] = useState(["FTSE100", "SP500"]);
   const [selectedCompanies, setSelectedCompanies] = useState(["bp", "microsoft"]);
   const [selectedIndividuals, setSelectedIndividuals] = useState([]);
@@ -74,7 +74,7 @@ export default function CompareScreen({ directorType }) {
         <SelectorPanel title="Index" values={["FTSE100", "FTSE250", "SP500"]} selected={selectedIndices} onToggle={(value) => setSelectedIndices(toggleValue(selectedIndices, value, 3))} />
         <SelectorPanel
           title="Company"
-          values={companies.map((company) => [company.id, company.company])}
+          values={dataset.map((company) => [company.id, company.company])}
           selected={selectedCompanies}
           onToggle={(value) => setSelectedCompanies(toggleValue(selectedCompanies, value))}
         />

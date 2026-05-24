@@ -192,8 +192,8 @@ export const companies = [
   }
 ];
 
-export function allDirectors() {
-  return companies.flatMap((company) =>
+export function allDirectors(dataset = companies) {
+  return dataset.flatMap((company) =>
     company.directors.map((director) => ({
       ...director,
       companyId: company.id,

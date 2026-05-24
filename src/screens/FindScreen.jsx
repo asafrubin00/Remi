@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import AnalysisPanel from "../components/AnalysisPanel.jsx";
 import { DataValue, Panel, SectionHeader } from "../components/ui.jsx";
-import { allDirectors, companies, flattenDirectorYear, formatMoney } from "../data/mockRemuneration.js";
+import { allDirectors, flattenDirectorYear, formatMoney } from "../data/mockRemuneration.js";
 
 function matchesQuery(value, query) {
   return value.toLowerCase().includes(query.trim().toLowerCase());
 }
 
-export default function FindScreen({ directorType, initialSelectedId }) {
-  const directors = useMemo(() => allDirectors(), []);
+export default function FindScreen({ dataset, directorType, initialSelectedId }) {
+  const directors = useMemo(() => allDirectors(dataset), [dataset]);
   const visibleDirectors = useMemo(() => directors.filter((director) => director.type === directorType), [directors, directorType]);
   const [companyQuery, setCompanyQuery] = useState("");
   const [personQuery, setPersonQuery] = useState("");
@@ -41,7 +41,7 @@ export default function FindScreen({ directorType, initialSelectedId }) {
   }, [results, selectedId, visibleDirectors]);
 
   const selectedYearData = selectedDirector ? flattenDirectorYear(selectedDirector, year) : null;
-  const selectedCompany = companies.find((company) => company.id === selectedDirector?.companyId);
+  const selectedCompany = dataset.find((company) => company.id === selectedDirector?.companyId);
 
   useEffect(() => {
     if (results.length && !results.some((director) => director.id === selectedId)) {
@@ -74,7 +74,7 @@ export default function FindScreen({ directorType, initialSelectedId }) {
               onChange={(event) => setCompanyQuery(event.target.value)}
             />
             <datalist id="company-options">
-              {companies.map((company) => (
+              {dataset.map((company) => (
                 <option key={company.id} value={company.company} />
               ))}
             </datalist>
@@ -176,6 +176,12 @@ export default function FindScreen({ directorType, initialSelectedId }) {
               <a href={selectedYearData.sourceUrl} target="_blank" rel="noreferrer">
                 Original filing
               </a>
+              {selectedCompany?.scrape?.status ? (
+                <>
+                  {" "}
+                  · <span className="remi-data">{selectedCompany.scrape.status}</span>
+                </>
+              ) : null}
             </div>
           </div>
         ) : (

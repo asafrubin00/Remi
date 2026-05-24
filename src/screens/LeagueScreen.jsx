@@ -24,8 +24,8 @@ const columns = [
   ["sayOnPayPct", "Say-on-Pay %"]
 ];
 
-export default function LeagueScreen({ directorType, onOpenDirector }) {
-  const directors = useMemo(() => allDirectors().filter((director) => director.type === directorType).map((director) => flattenDirectorYear(director)), [directorType]);
+export default function LeagueScreen({ dataset, directorType, onOpenDirector }) {
+  const directors = useMemo(() => allDirectors(dataset).filter((director) => director.type === directorType).map((director) => flattenDirectorYear(director)), [dataset, directorType]);
   const [indexFilter, setIndexFilter] = useState("All");
   const [sectorFilter, setSectorFilter] = useState("All");
   const [metric, setMetric] = useState("totalCompensation");
