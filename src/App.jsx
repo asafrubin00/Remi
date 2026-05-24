@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { TabButton } from "./components/ui.jsx";
+import CompareScreen from "./screens/CompareScreen.jsx";
 import FindScreen from "./screens/FindScreen.jsx";
 
 const VIEWS = [
@@ -78,6 +79,8 @@ export default function App() {
         </div>
         {activeView === "find" ? (
           <FindScreen directorType={directorType} />
+        ) : activeView === "compare" ? (
+          <CompareScreen directorType={directorType} />
         ) : (
           <div className="remi-panel p-6">
             <p className="text-sm text-remi-text-secondary">Screen scaffold ready for {screenTitle}.</p>
