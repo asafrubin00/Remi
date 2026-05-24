@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { TabButton } from "./components/ui.jsx";
+import FindScreen from "./screens/FindScreen.jsx";
 
 const VIEWS = [
   { id: "landing", label: "Landing", path: "/" },
@@ -75,9 +76,13 @@ export default function App() {
             <p className="remi-kicker">Viewing {directorType === "executive" ? "Executive" : "Non-Executive"} data</p>
           ) : null}
         </div>
-        <div className="remi-panel p-6">
-          <p className="text-sm text-remi-text-secondary">Screen scaffold ready for {screenTitle}.</p>
-        </div>
+        {activeView === "find" ? (
+          <FindScreen directorType={directorType} />
+        ) : (
+          <div className="remi-panel p-6">
+            <p className="text-sm text-remi-text-secondary">Screen scaffold ready for {screenTitle}.</p>
+          </div>
+        )}
       </section>
 
       <footer className="mt-8 border-t border-remi-border pt-4 text-center text-[11px] text-remi-muted">
