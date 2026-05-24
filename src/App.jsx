@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { TabButton } from "./components/ui.jsx";
 import CompareScreen from "./screens/CompareScreen.jsx";
 import FindScreen from "./screens/FindScreen.jsx";
+import LandingScreen from "./screens/LandingScreen.jsx";
 import LeagueScreen from "./screens/LeagueScreen.jsx";
 
 const VIEWS = [
@@ -84,7 +85,9 @@ export default function App() {
             <p className="remi-kicker">Viewing {directorType === "executive" ? "Executive" : "Non-Executive"} data</p>
           ) : null}
         </div>
-        {activeView === "find" ? (
+        {activeView === "landing" ? (
+          <LandingScreen onEnter={() => navigate("find")} />
+        ) : activeView === "find" ? (
           <FindScreen directorType={directorType} initialSelectedId={focusedDirectorId} />
         ) : activeView === "compare" ? (
           <CompareScreen directorType={directorType} />
