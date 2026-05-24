@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { TabButton } from "./components/ui.jsx";
 import CompareScreen from "./screens/CompareScreen.jsx";
 import FindScreen from "./screens/FindScreen.jsx";
+import LeagueScreen from "./screens/LeagueScreen.jsx";
 
 const VIEWS = [
   { id: "landing", label: "Landing", path: "/" },
@@ -17,6 +18,7 @@ function viewFromPath() {
 
 export default function App() {
   const [activeView, setActiveView] = useState(viewFromPath);
+  const [focusedDirectorId, setFocusedDirectorId] = useState(null);
   const [directorType, setDirectorType] = useState(() => {
     return window.localStorage.getItem("remi.directorType") || "executive";
   });
@@ -41,6 +43,11 @@ export default function App() {
     if (!view) return;
     window.history.pushState({}, "", view.path);
     setActiveView(viewId);
+  };
+
+  const openDirector = (directorId) => {
+    setFocusedDirectorId(directorId);
+    navigate("find");
   };
 
   return (
@@ -78,9 +85,11 @@ export default function App() {
           ) : null}
         </div>
         {activeView === "find" ? (
-          <FindScreen directorType={directorType} />
+          <FindScreen directorType={directorType} initialSelectedId={focusedDirectorId} />
         ) : activeView === "compare" ? (
           <CompareScreen directorType={directorType} />
+        ) : activeView === "league" ? (
+          <LeagueScreen directorType={directorType} onOpenDirector={openDirector} />
         ) : (
           <div className="remi-panel p-6">
             <p className="text-sm text-remi-text-secondary">Screen scaffold ready for {screenTitle}.</p>

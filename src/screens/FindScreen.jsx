@@ -7,7 +7,7 @@ function matchesQuery(value, query) {
   return value.toLowerCase().includes(query.trim().toLowerCase());
 }
 
-export default function FindScreen({ directorType }) {
+export default function FindScreen({ directorType, initialSelectedId }) {
   const directors = useMemo(() => allDirectors(), []);
   const visibleDirectors = useMemo(() => directors.filter((director) => director.type === directorType), [directors, directorType]);
   const [companyQuery, setCompanyQuery] = useState("");
@@ -20,6 +20,13 @@ export default function FindScreen({ directorType }) {
     setSelectedId(nextVisible?.id);
     setYear(null);
   }, [directorType, selectedId, visibleDirectors]);
+
+  useEffect(() => {
+    if (initialSelectedId && visibleDirectors.some((director) => director.id === initialSelectedId)) {
+      setSelectedId(initialSelectedId);
+      setYear(null);
+    }
+  }, [initialSelectedId, visibleDirectors]);
 
   const results = useMemo(() => {
     return visibleDirectors.filter((director) => {
