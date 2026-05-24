@@ -1,0 +1,10 @@
+node_modules
+dist
+.vercel
+.env
+.env.*
+*.docx
+*.pptx
+~$*
+.DS_Store
+npm-debug.log*
