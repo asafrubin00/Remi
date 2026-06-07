@@ -8,7 +8,8 @@ export default function AnalysisPanel({ currentViewData }) {
   const payload = useMemo(() => JSON.stringify(currentViewData ?? {}), [currentViewData]);
 
   useEffect(() => {
-    let cancelled = false;
+    const controller = new AbortController();
+    let receivedText = false;
 
     async function analyse() {
       if (!currentViewData) {
@@ -21,22 +22,49 @@ export default function AnalysisPanel({ currentViewData }) {
         const response = await fetch("/api/analyze", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ currentViewData })
+          body: JSON.stringify({ currentViewData }),
+          signal: controller.signal
         });
 
         if (!response.ok) throw new Error("Analysis request failed");
-        const data = await response.json();
-        if (!cancelled) setAnalysis(data.analysis || "Analysis unavailable.");
+
+        const reader = response.body?.getReader();
+        if (!reader) throw new Error("Analysis stream unavailable");
+
+        const decoder = new TextDecoder();
+        let streamedAnalysis = "";
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+          if (!chunk) continue;
+
+          streamedAnalysis += chunk;
+          receivedText = true;
+          setLoading(false);
+          setAnalysis(streamedAnalysis);
+        }
+
+        const finalChunk = decoder.decode();
+        if (finalChunk) {
+          streamedAnalysis += finalChunk;
+          receivedText = true;
+          setAnalysis(streamedAnalysis);
+        }
+
+        if (!receivedText) setAnalysis("Analysis unavailable.");
       } catch {
-        if (!cancelled) setAnalysis("Analysis unavailable.");
+        if (!controller.signal.aborted) setAnalysis("Analysis unavailable.");
       } finally {
-        if (!cancelled) setLoading(false);
+        if (!controller.signal.aborted) setLoading(false);
       }
     }
 
     analyse();
     return () => {
-      cancelled = true;
+      controller.abort();
     };
   }, [payload]);
 

@@ -6,7 +6,7 @@ low say-on-pay approval, significant LTIP vesting, cross-index anomalies.
 Maintain a neutral, analytical tone — like a senior ISS analyst briefing 
 a fund manager.`;
 
-const model = "claude-sonnet-4-6";
+const model = "claude-haiku-4-5-20251001";
 
 export default async function handler(request, response) {
   if (request.method !== "POST") {
@@ -42,7 +42,8 @@ export default async function handler(request, response) {
       },
       body: JSON.stringify({
         model,
-        max_tokens: 1000,
+        max_tokens: 300,
+        stream: true,
         system,
         messages: [
           {
@@ -58,11 +59,59 @@ export default async function handler(request, response) {
       throw new Error(`Anthropic request failed with ${anthropicResponse.status}: ${errorText}`);
     }
 
-    const data = await anthropicResponse.json();
-    const analysis = data.content?.find((item) => item.type === "text")?.text || "Analysis unavailable.";
-    response.status(200).json({ analysis });
+    response.writeHead(200, {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-cache, no-transform",
+      "X-Content-Type-Options": "nosniff"
+    });
+
+    const decoder = new TextDecoder();
+    const reader = anthropicResponse.body?.getReader();
+    if (!reader) throw new Error("Anthropic stream unavailable");
+
+    let buffer = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const events = buffer.split("\n\n");
+      buffer = events.pop() || "";
+
+      for (const event of events) {
+        const text = extractTextDelta(event);
+        if (text) response.write(text);
+      }
+    }
+
+    buffer += decoder.decode();
+    const remainingText = extractTextDelta(buffer);
+    if (remainingText) response.write(remainingText);
+    response.end();
   } catch (error) {
     console.error("[api/analyze] Unhandled analysis failure", error);
-    response.status(500).json({ analysis: "Analysis unavailable." });
+    if (!response.headersSent) {
+      response.status(500).json({ analysis: "Analysis unavailable." });
+    } else {
+      response.end();
+    }
   }
+}
+
+function extractTextDelta(event) {
+  return event
+    .split("\n")
+    .filter((line) => line.startsWith("data: "))
+    .map((line) => line.slice(6).trim())
+    .filter((data) => data && data !== "[DONE]")
+    .map((data) => {
+      try {
+        const parsed = JSON.parse(data);
+        return parsed.type === "content_block_delta" && parsed.delta?.type === "text_delta" ? parsed.delta.text : "";
+      } catch {
+        return "";
+      }
+    })
+    .join("");
 }
