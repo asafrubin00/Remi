@@ -1,4 +1,5 @@
 import { companies } from "../src/data/mockRemuneration.js";
+import { scrapeSp500Company } from "../src/server/sp500Scraper.js";
 
 const cikMap = {
   microsoft: "0000789019",
@@ -19,6 +20,11 @@ export default async function handler(request, response) {
   }
 
   try {
+    if (company.index === "SP500") {
+      response.status(200).json(await scrapeSp500Company(company.ticker || company.company));
+      return;
+    }
+
     const scraped = company.index === "SP500" ? await scrapeUsCompany(company) : await scrapeUkCompany(company);
     response.status(200).json({
       ...company,
@@ -57,6 +63,10 @@ async function scrapeUkCompany(company) {
 }
 
 async function scrapeUsCompany(company) {
+  if (company.ticker || company.company) {
+    return scrapeSp500Company(company.ticker || company.company);
+  }
+
   const cik = cikMap[company.id];
   if (!cik) throw new Error("No CIK mapping for seeded company.");
 

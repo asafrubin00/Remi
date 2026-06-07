@@ -80,82 +80,103 @@ export const companies = [
     ]
   },
   {
+    id: "apple",
+    company: "Apple Inc.",
+    ticker: "AAPL",
+    index: "SP500",
+    sector: "Technology",
+    marketCap: 2900000,
+    currency: "USD",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
     id: "microsoft",
     company: "Microsoft Corporation",
+    ticker: "MSFT",
     index: "SP500",
     sector: "Technology",
     marketCap: 3150000,
     currency: "USD",
     fxRate: "GBP/USD 1.27",
-    directors: [
-      {
-        id: "satya-nadella",
-        name: "Satya Nadella",
-        role: "Chairman and Chief Executive Officer",
-        type: "executive",
-        sourceUrl: "https://www.sec.gov/edgar/search/",
-        years: {
-          2025: { baseSalary: 2500000, annualBonus: 6400000, ltip: 42200000, pensionBenefits: 180000, totalCompensation: 51280000, payRatio: 408, sayOnPayPct: 95 },
-          2024: { baseSalary: 2500000, annualBonus: 5200000, ltip: 35600000, pensionBenefits: 165000, totalCompensation: 43465000, payRatio: 356, sayOnPayPct: 96 },
-          2023: { baseSalary: 2500000, annualBonus: 4100000, ltip: 33000000, pensionBenefits: 150000, totalCompensation: 39750000, payRatio: 321, sayOnPayPct: 94 }
-        }
-      },
-      {
-        id: "amy-hood",
-        name: "Amy Hood",
-        role: "Chief Financial Officer",
-        type: "executive",
-        sourceUrl: "https://www.sec.gov/edgar/search/",
-        years: {
-          2025: { baseSalary: 1150000, annualBonus: 3300000, ltip: 16800000, pensionBenefits: 95000, totalCompensation: 21345000, payRatio: 170, sayOnPayPct: 95 },
-          2024: { baseSalary: 1100000, annualBonus: 2800000, ltip: 14100000, pensionBenefits: 87000, totalCompensation: 18087000, payRatio: 148, sayOnPayPct: 96 }
-        }
-      },
-      {
-        id: "sandra-peterson",
-        name: "Sandra Peterson",
-        role: "Lead Independent Director",
-        type: "non-executive",
-        sourceUrl: "https://www.sec.gov/edgar/search/",
-        years: {
-          2025: { nedFees: 420000, totalCompensation: 420000, payRatio: null, sayOnPayPct: 95 },
-          2024: { nedFees: 405000, totalCompensation: 405000, payRatio: null, sayOnPayPct: 96 }
-        }
-      }
-    ]
+    directors: []
   },
   {
     id: "jpmorgan",
     company: "JPMorgan Chase & Co.",
+    ticker: "JPM",
     index: "SP500",
     sector: "Financial Services",
     marketCap: 560000,
     currency: "USD",
     fxRate: "GBP/USD 1.27",
-    directors: [
-      {
-        id: "jamie-dimon",
-        name: "Jamie Dimon",
-        role: "Chairman and Chief Executive Officer",
-        type: "executive",
-        sourceUrl: "https://www.sec.gov/edgar/search/",
-        years: {
-          2025: { baseSalary: 1500000, annualBonus: 5200000, ltip: 29600000, pensionBenefits: 250000, totalCompensation: 36550000, payRatio: 320, sayOnPayPct: 89 },
-          2024: { baseSalary: 1500000, annualBonus: 4700000, ltip: 27400000, pensionBenefits: 240000, totalCompensation: 33840000, payRatio: 301, sayOnPayPct: 87 }
-        }
-      },
-      {
-        id: "linda-bammann",
-        name: "Linda Bammann",
-        role: "Lead Independent Director",
-        type: "non-executive",
-        sourceUrl: "https://www.sec.gov/edgar/search/",
-        years: {
-          2025: { nedFees: 430000, totalCompensation: 430000, payRatio: null, sayOnPayPct: 89 },
-          2024: { nedFees: 410000, totalCompensation: 410000, payRatio: null, sayOnPayPct: 87 }
-        }
-      }
-    ]
+    directors: []
+  },
+  {
+    id: "goldman-sachs",
+    company: "Goldman Sachs Group, Inc.",
+    ticker: "GS",
+    index: "SP500",
+    sector: "Financial Services",
+    marketCap: 160000,
+    currency: "USD",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "exxonmobil",
+    company: "Exxon Mobil Corporation",
+    ticker: "XOM",
+    index: "SP500",
+    sector: "Energy",
+    marketCap: 470000,
+    currency: "USD",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "johnson-johnson",
+    company: "Johnson & Johnson",
+    ticker: "JNJ",
+    index: "SP500",
+    sector: "Healthcare",
+    marketCap: 390000,
+    currency: "USD",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "amazon",
+    company: "Amazon.com, Inc.",
+    ticker: "AMZN",
+    index: "SP500",
+    sector: "Consumer Discretionary",
+    marketCap: 1900000,
+    currency: "USD",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "tesla",
+    company: "Tesla, Inc.",
+    ticker: "TSLA",
+    index: "SP500",
+    sector: "Consumer Discretionary",
+    marketCap: 800000,
+    currency: "USD",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "alphabet",
+    company: "Alphabet Inc.",
+    ticker: "GOOGL",
+    index: "SP500",
+    sector: "Communication Services",
+    marketCap: 2100000,
+    currency: "USD",
+    fxRate: "GBP/USD 1.27",
+    directors: []
   },
   {
     id: "tesco",

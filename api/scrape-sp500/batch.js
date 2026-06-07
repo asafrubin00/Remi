@@ -1,0 +1,18 @@
+import { scrapeSp500Batch } from "../../src/server/sp500Scraper.js";
+
+export default async function handler(request, response) {
+  if (request.method !== "POST") {
+    response.status(405).json({ error: "Method not allowed" });
+    return;
+  }
+
+  const body = typeof request.body === "string" ? JSON.parse(request.body || "{}") : request.body || {};
+  const tickers = body.tickers || body.companies || [];
+  if (!Array.isArray(tickers)) {
+    response.status(400).json({ error: "Request body must include a tickers or companies array." });
+    return;
+  }
+
+  const results = await scrapeSp500Batch(tickers);
+  response.status(200).json({ results });
+}
