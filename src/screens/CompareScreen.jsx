@@ -4,6 +4,7 @@ import {
   BarChart,
   CartesianGrid,
   Cell,
+  LabelList,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -16,7 +17,7 @@ import {
 } from "recharts";
 import AnalysisPanel from "../components/AnalysisPanel.jsx";
 import { DataValue, Panel, SectionHeader, TabButton } from "../components/ui.jsx";
-import { allDirectors, flattenDirectorYear, formatMoney } from "../data/mockRemuneration.js";
+import { allDirectors, flattenDirectorYear, formatCompactMarketCap, formatCompactMoney, formatMoney } from "../data/mockRemuneration.js";
 
 const components = [
   ["totalCompensation", "Total Comp"],
@@ -35,6 +36,18 @@ function toggleValue(list, value, max = 4) {
   if (list.includes(value)) return list.filter((item) => item !== value);
   if (list.length >= max) return list;
   return [...list, value];
+}
+
+function chartCurrency(rows) {
+  const currencies = [...new Set(rows.map((row) => row.currency).filter(Boolean))];
+  return currencies.length === 1 ? currencies[0] : "MIXED";
+}
+
+function formatChartValue(value, currency, metric) {
+  if (value == null) return "n/a";
+  if (metric === "payRatio") return `${value}:1`;
+  if (metric === "sayOnPayPct") return `${value}%`;
+  return formatCompactMoney(value, currency);
 }
 
 export default function CompareScreen({ dataset, directorType }) {
@@ -155,29 +168,40 @@ function SelectorPanel({ title, values, selected, onToggle }) {
   );
 }
 
-function ChartTooltip({ active, payload, label }) {
+function ChartTooltip({ active, payload, label, metric }) {
   if (!active || !payload?.length) return null;
   return (
     <div className="rounded-md border border-remi-border bg-remi-secondary p-3 text-xs text-remi-text">
       <div className="remi-data text-remi-gold-light">{label}</div>
-      {payload.map((entry) => (
-        <div key={entry.name} className="mt-1">
-          {entry.name}: <DataValue>{Number(entry.value || 0).toLocaleString()}</DataValue>
-        </div>
-      ))}
+      {payload.map((entry) => {
+        const currency = entry.payload?.currency || entry.payload?.[`${entry.dataKey}Currency`];
+        const value = entry.dataKey === "marketCap" ? formatCompactMarketCap(entry.value, currency) : formatChartValue(entry.value, currency, metric);
+        return (
+          <div key={entry.name} className="mt-1">
+            {entry.name}: <DataValue>{value}</DataValue>
+          </div>
+        );
+      })}
     </div>
   );
 }
 
 function BarComparison({ data, metric }) {
-  const chartData = data.map((row) => ({ name: row.name.split(" ").slice(-1)[0], value: row[metric] ?? 0, currency: row.currency }));
+  const chartData = data.map((row, index) => ({
+    name: row.name.split(" ").slice(-1)[0],
+    value: row[metric] ?? 0,
+    currency: row.currency,
+    fill: palette[index % palette.length]
+  }));
+  const axisCurrency = chartCurrency(data);
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart data={chartData} margin={{ top: 20, right: 20, left: 10, bottom: 20 }}>
         <XAxis dataKey="name" tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} />
-        <YAxis tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} />
-        <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(200,150,12,0.08)" }} />
+        <YAxis tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(value) => formatChartValue(value, axisCurrency, metric)} />
+        <Tooltip content={<ChartTooltip metric={metric} />} cursor={{ fill: "rgba(200,150,12,0.08)" }} />
         <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+          <LabelList dataKey="value" content={(props) => <BarValueLabel {...props} data={chartData} metric={metric} />} />
           {chartData.map((_, index) => (
             <Cell key={index} fill={palette[index % palette.length]} />
           ))}
@@ -187,14 +211,33 @@ function BarComparison({ data, metric }) {
   );
 }
 
+function BarValueLabel({ x, y, width, value, index, data, metric }) {
+  const row = data[index];
+  if (value == null || !row) return null;
+  return (
+    <text x={x + width / 2} y={y - 8} fill="#8CA8C0" fontSize={11} textAnchor="middle" className="remi-data">
+      {formatChartValue(value, row.currency, metric)}
+    </text>
+  );
+}
+
 function LineComparison({ data, rows, metric }) {
+  const axisCurrency = chartCurrency(rows);
+  const lineData = data.map((point) => {
+    const nextPoint = { ...point };
+    rows.forEach((row) => {
+      nextPoint[`${row.name}Currency`] = row.currency;
+    });
+    return nextPoint;
+  });
+
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={data} margin={{ top: 20, right: 20, left: 10, bottom: 20 }}>
+      <LineChart data={lineData} margin={{ top: 20, right: 20, left: 10, bottom: 20 }}>
         <CartesianGrid stroke="rgba(74,98,120,0.16)" vertical={false} />
         <XAxis dataKey="year" tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} />
-        <YAxis tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} />
-        <Tooltip content={<ChartTooltip />} />
+        <YAxis tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(value) => formatChartValue(value, axisCurrency, metric)} />
+        <Tooltip content={<ChartTooltip metric={metric} />} />
         {rows.map((row, index) => (
           <Line key={row.id} type="monotone" dataKey={row.name} stroke={palette[index % palette.length]} strokeWidth={2} dot={{ r: 3 }} connectNulls name={`${row.name} ${metric}`} />
         ))}
@@ -204,20 +247,27 @@ function LineComparison({ data, rows, metric }) {
 }
 
 function BubbleComparison({ data, metric }) {
-  const chartData = data.map((row) => ({
+  const chartData = data.map((row, index) => ({
     name: row.name,
+    currency: row.currency,
     marketCap: row.marketCap,
     pay: row[metric] ?? row.totalCompensation,
-    vote: row.sayOnPayPct ?? 50
+    vote: row.sayOnPayPct ?? 50,
+    fill: palette[index % palette.length]
   }));
+  const axisCurrency = chartCurrency(data);
   return (
     <ResponsiveContainer width="100%" height="100%">
       <ScatterChart margin={{ top: 20, right: 20, left: 10, bottom: 20 }}>
-        <XAxis dataKey="marketCap" name="Market cap" tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} />
-        <YAxis dataKey="pay" name="Pay" tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} />
+        <XAxis dataKey="marketCap" name="Market cap" tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(value) => formatCompactMarketCap(value, axisCurrency)} />
+        <YAxis dataKey="pay" name="Pay" tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(value) => formatChartValue(value, axisCurrency, metric)} />
         <ZAxis dataKey="vote" range={[120, 900]} />
-        <Tooltip cursor={{ strokeDasharray: "3 3" }} content={<ChartTooltip />} />
-        <Scatter data={chartData} fill="#C8960C" />
+        <Tooltip cursor={{ strokeDasharray: "3 3" }} content={<ChartTooltip metric={metric} />} />
+        <Scatter data={chartData}>
+          {chartData.map((row) => (
+            <Cell key={row.name} fill={row.fill} />
+          ))}
+        </Scatter>
       </ScatterChart>
     </ResponsiveContainer>
   );

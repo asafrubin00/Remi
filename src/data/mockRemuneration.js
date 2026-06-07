@@ -225,3 +225,24 @@ export function formatMoney(value, currency) {
   if (value >= 1000000) return `${symbol}${(value / 1000000).toFixed(value >= 10000000 ? 1 : 2)}m`;
   return `${symbol}${Math.round(value / 1000).toLocaleString()}k`;
 }
+
+export function formatCompactMoney(value, currency) {
+  if (value == null || Number.isNaN(Number(value))) return "n/a";
+  const symbol = currency === "USD" ? "$" : currency === "GBP" ? "£" : currency === "MIXED" ? "£/$" : "";
+  const absolute = Math.abs(value);
+  if (absolute >= 1000000) {
+    const millions = value / 1000000;
+    return `${symbol}${millions >= 10 ? millions.toFixed(1) : millions.toFixed(2)}m`;
+  }
+  if (absolute >= 1000) return `${symbol}${Math.round(value / 1000).toLocaleString()}k`;
+  return `${symbol}${value.toLocaleString()}`;
+}
+
+export function formatCompactMarketCap(value, currency) {
+  if (value == null || Number.isNaN(Number(value))) return "n/a";
+  const symbol = currency === "USD" ? "$" : currency === "GBP" ? "£" : currency === "MIXED" ? "£/$" : "";
+  const absolute = Math.abs(value);
+  if (absolute >= 1000000) return `${symbol}${(value / 1000000).toFixed(1)}tn`;
+  if (absolute >= 1000) return `${symbol}${(value / 1000).toFixed(1)}bn`;
+  return `${symbol}${value.toLocaleString()}m`;
+}

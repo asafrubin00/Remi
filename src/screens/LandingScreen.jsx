@@ -1,7 +1,8 @@
 import { ChevronDown } from "lucide-react";
 import { useMemo } from "react";
-import { Scatter, ScatterChart, ResponsiveContainer, XAxis, YAxis, ZAxis } from "recharts";
-import { allDirectors, flattenDirectorYear } from "../data/mockRemuneration.js";
+import { Scatter, ScatterChart, ResponsiveContainer, Tooltip, XAxis, YAxis, ZAxis } from "recharts";
+import { DataValue } from "../components/ui.jsx";
+import { allDirectors, flattenDirectorYear, formatCompactMarketCap, formatCompactMoney } from "../data/mockRemuneration.js";
 
 const sectorY = {
   Energy: 1,
@@ -20,6 +21,7 @@ export default function LandingScreen({ dataset, onEnter }) {
           name: row.name,
           sector: row.sector,
           company: row.company,
+          currency: row.currency,
           marketCap: row.marketCap,
           pay: row.totalCompensation,
           vote: row.sayOnPayPct,
@@ -47,9 +49,10 @@ export default function LandingScreen({ dataset, onEnter }) {
           <div className="absolute inset-0 animate-[remi-drift_8s_ease-in-out_infinite] pt-16">
             <ResponsiveContainer width="100%" height="100%">
               <ScatterChart margin={{ top: 36, right: 36, bottom: 42, left: 24 }}>
-                <XAxis dataKey="marketCap" tick={{ fill: "#4A6278", fontSize: 11 }} axisLine={false} tickLine={false} name="Market cap" />
-                <YAxis dataKey="pay" tick={{ fill: "#4A6278", fontSize: 11 }} axisLine={false} tickLine={false} name="Pay" />
+                <XAxis dataKey="marketCap" tick={{ fill: "#4A6278", fontSize: 11 }} axisLine={false} tickLine={false} name="Market cap" tickFormatter={(value) => formatCompactMarketCap(value, "MIXED")} />
+                <YAxis dataKey="pay" tick={{ fill: "#4A6278", fontSize: 11 }} axisLine={false} tickLine={false} name="Pay" tickFormatter={(value) => formatCompactMoney(value, "MIXED")} />
                 <ZAxis dataKey="vote" range={[280, 1600]} />
+                <Tooltip content={<LandingTooltip />} cursor={{ strokeDasharray: "3 3" }} />
                 <Scatter data={data} fill="#C8960C" fillOpacity={0.82} stroke="#E8B84B" strokeWidth={1} />
               </ScatterChart>
             </ResponsiveContainer>
@@ -62,5 +65,23 @@ export default function LandingScreen({ dataset, onEnter }) {
         <ChevronDown size={32} strokeWidth={1.5} />
       </div>
     </button>
+  );
+}
+
+function LandingTooltip({ active, payload }) {
+  if (!active || !payload?.length) return null;
+  const row = payload[0]?.payload;
+  if (!row) return null;
+  return (
+    <div className="rounded-md border border-remi-border bg-remi-secondary p-3 text-xs text-remi-text">
+      <div className="remi-data text-remi-gold-light">{row.name}</div>
+      <div className="mt-1 text-remi-text-secondary">{row.company}</div>
+      <div className="mt-2">
+        Pay: <DataValue>{formatCompactMoney(row.pay, row.currency)}</DataValue>
+      </div>
+      <div className="mt-1">
+        Market cap: <DataValue>{formatCompactMarketCap(row.marketCap, row.currency)}</DataValue>
+      </div>
+    </div>
   );
 }
