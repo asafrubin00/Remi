@@ -6,6 +6,8 @@ low say-on-pay approval, significant LTIP vesting, cross-index anomalies.
 Maintain a neutral, analytical tone — like a senior ISS analyst briefing 
 a fund manager.`;
 
+const defaultModel = "claude-sonnet-4-20250514";
+
 export default async function handler(request, response) {
   if (request.method !== "POST") {
     response.status(405).json({ error: "Method not allowed" });
@@ -25,8 +27,9 @@ export default async function handler(request, response) {
     }
 
     const { currentViewData } = request.body || {};
+    const model = process.env.ANTHROPIC_MODEL?.trim() || defaultModel;
     console.info("[api/analyze] Calling Anthropic messages API", {
-      model: "claude-sonnet-4-20250514",
+      model,
       vercelEnv: process.env.VERCEL_ENV,
       payloadBytes: Buffer.byteLength(JSON.stringify(currentViewData || {}), "utf8")
     });
@@ -39,7 +42,7 @@ export default async function handler(request, response) {
         "anthropic-version": "2023-06-01"
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model,
         max_tokens: 1000,
         system,
         messages: [
