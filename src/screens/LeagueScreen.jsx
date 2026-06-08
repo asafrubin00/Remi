@@ -24,6 +24,13 @@ const columns = [
   ["sayOnPayPct", "Say-on-Pay %"]
 ];
 
+function sayOnPayClass(value) {
+  if (value == null) return "text-remi-gold-light";
+  if (value >= 90) return "text-remi-positive";
+  if (value >= 70) return "text-remi-gold-light";
+  return "text-remi-negative";
+}
+
 export default function LeagueScreen({ dataset, directorType, onOpenDirector }) {
   const directors = useMemo(() => allDirectors(dataset).filter((director) => director.type === directorType).map((director) => flattenDirectorYear(director)), [dataset, directorType]);
   const [indexFilter, setIndexFilter] = useState("All");
@@ -36,6 +43,10 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
 
   const sectors = [...new Set(directors.map((director) => director.sector))].sort();
   const years = [...new Set(directors.flatMap((director) => director.yearsAvailable))].sort((a, b) => b - a);
+
+  useEffect(() => {
+    if (years.length && !years.includes(year)) setYear(years[0]);
+  }, [year, years]);
 
   const rows = useMemo(() => {
     const filtered = directors
@@ -127,7 +138,7 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
                         <DataValue>{formatMoney(row.totalCompensation, row.currency)}</DataValue>
                       </td>
                       <td className="px-3 py-3">
-                        <DataValue className={row.sayOnPayPct >= 90 ? "text-remi-positive" : "text-remi-gold-light"}>{row.sayOnPayPct ? `${row.sayOnPayPct}%` : "n/a"}</DataValue>
+                        <DataValue className={sayOnPayClass(row.sayOnPayPct)}>{row.sayOnPayPct ? `${row.sayOnPayPct}%` : "n/a"}</DataValue>
                       </td>
                     </tr>
                   ))

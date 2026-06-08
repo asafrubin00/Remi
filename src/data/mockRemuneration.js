@@ -1,3 +1,4 @@
+import { enrichGovernanceData } from "./governanceData.js";
 import { getVerifiedFtseRecord } from "./manualVerifiedFtse.js";
 
 const now = "2026-05-24T08:00:00.000Z";
@@ -254,7 +255,7 @@ const baseCompanies = [
   }
 ];
 
-export const companies = baseCompanies.map((company) => getVerifiedFtseRecord(company.id) || company);
+export const companies = baseCompanies.map((company) => enrichGovernanceData(getVerifiedFtseRecord(company.id) || company));
 
 export function allDirectors(dataset = companies) {
   return dataset.flatMap((company) =>

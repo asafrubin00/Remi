@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio";
+import { enrichGovernanceData } from "../data/governanceData.js";
 
 const SEC_USER_AGENT = process.env.SEC_USER_AGENT || "Remi remuneration dashboard contact@remi.local";
 const CACHE_TTL_SECONDS = 60 * 60 * 24;
@@ -36,7 +37,7 @@ export async function scrapeSp500Company(input, options = {}) {
   const cacheKey = `remi:sp500:${query.toLowerCase().replace(/[^a-z0-9.-]+/g, "-")}`;
   if (!options.skipCache) {
     const cached = await getCached(cacheKey);
-    if (cached) return cached;
+    if (cached) return enrichGovernanceData(cached);
   }
 
   try {
@@ -71,7 +72,7 @@ export async function scrapeSp500Company(input, options = {}) {
       lastUpdated: new Date().toISOString()
     }));
 
-    const result = {
+    const result = enrichGovernanceData({
       id: company.id,
       company: company.name,
       ticker: company.ticker,
@@ -93,7 +94,7 @@ export async function scrapeSp500Company(input, options = {}) {
       },
       cacheTtlHours: 24,
       lastUpdated: new Date().toISOString()
-    };
+    });
 
     await setCached(cacheKey, result);
     return result;

@@ -1,4 +1,5 @@
 import pdfParse from "pdf-parse/lib/pdf-parse.js";
+import { enrichGovernanceData } from "../data/governanceData.js";
 import { getVerifiedFtseRecord } from "../data/manualVerifiedFtse.js";
 
 const CACHE_TTL_SECONDS = 60 * 60 * 24;
@@ -110,12 +111,12 @@ export async function scrapeFtseCompany(input, options = {}) {
   if (!query) return errorResult(query, "Missing company query.");
 
   const verifiedRecord = getVerifiedFtseRecord(query);
-  if (verifiedRecord) return verifiedRecord;
+  if (verifiedRecord) return enrichGovernanceData(verifiedRecord);
 
   const cacheKey = `remi:ftse:${slugify(query)}`;
   if (!options.skipCache) {
     const cached = await getCached(cacheKey);
-    if (cached) return cached;
+    if (cached) return enrichGovernanceData(cached);
   }
 
   try {
@@ -163,7 +164,7 @@ export async function scrapeFtseCompany(input, options = {}) {
       ...(sayOnPayPct == null ? ["Say-on-pay vote result not parsed from annual report or AGM text."] : [])
     ];
 
-    const result = {
+    const result = enrichGovernanceData({
       id: company.id,
       company: company.company,
       companyNumber: company.companyNumber || filing.companyNumber || null,
@@ -183,7 +184,7 @@ export async function scrapeFtseCompany(input, options = {}) {
       },
       cacheTtlHours: 24,
       lastUpdated: new Date().toISOString()
-    };
+    });
 
     await setCached(cacheKey, result);
     return result;
@@ -939,7 +940,7 @@ async function kvClient() {
 
 function fallbackResult(company, message, extra = {}) {
   console.error("[scrape-ftse] " + message, { company: company.company, ...extra });
-  return {
+  return enrichGovernanceData({
     id: company.id,
     company: company.company,
     companyNumber: company.companyNumber || null,
@@ -957,7 +958,7 @@ function fallbackResult(company, message, extra = {}) {
     },
     cacheTtlHours: 24,
     lastUpdated: new Date().toISOString()
-  };
+  });
 }
 
 function errorResult(query, message) {

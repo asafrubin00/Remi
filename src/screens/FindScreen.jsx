@@ -13,6 +13,13 @@ function sourceBadge(status) {
   return { label: "Mock data", tone: "fallback" };
 }
 
+function sayOnPayClass(value) {
+  if (value == null) return "text-remi-gold-light";
+  if (value >= 90) return "text-remi-positive";
+  if (value >= 70) return "text-remi-gold-light";
+  return "text-remi-negative";
+}
+
 export default function FindScreen({ dataset, directorType, initialSelectedId }) {
   const directors = useMemo(() => allDirectors(dataset), [dataset]);
   const visibleDirectors = useMemo(() => directors.filter((director) => director.type === directorType), [directors, directorType]);
@@ -172,7 +179,7 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
               </div>
               <div className="remi-panel-inner p-4">
                 <SectionHeader>Say-on-Pay</SectionHeader>
-                <DataValue className={`mt-3 block text-3xl ${selectedYearData.sayOnPayPct >= 90 ? "text-remi-positive" : "text-remi-gold-light"}`}>
+                <DataValue className={`mt-3 block text-3xl ${sayOnPayClass(selectedYearData.sayOnPayPct)}`}>
                   {selectedYearData.sayOnPayPct ? `${selectedYearData.sayOnPayPct}%` : "n/a"}
                 </DataValue>
               </div>
