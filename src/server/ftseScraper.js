@@ -65,7 +65,7 @@ const ftseMetadata = {
     sector: "Consumer Staples",
     marketCap: 118000,
     companyNumber: "00041424",
-    annualReportUrl: "https://www.unileverusa.com/files/unilever-directors-remuneration-report-2024.pdf",
+    annualReportUrl: "https://www.sec.gov/Archives/edgar/data/217410/000021741025000015/ul-20241231.htm",
     annualReportPageUrl: "https://www.unilever.com/investors/annual-report-and-accounts/?navids=tcm%3A244-50544-4%2Ctcm%3A244-51648-4"
   },
   gsk: { id: "gsk", company: "GSK plc", index: "FTSE100", sector: "Healthcare", marketCap: 67000, companyNumber: "03888792" },
@@ -367,7 +367,7 @@ async function extractReportText(filing) {
   const buffer = Buffer.from(await res.arrayBuffer());
   if (contentType.includes("pdf") || filing.url.toLowerCase().includes(".pdf")) return extractPdfText(buffer);
 
-  return cleanText(buffer.toString("utf8"));
+  return cleanHtmlText(buffer.toString("utf8"));
 }
 
 async function extractPdfText(buffer) {
@@ -626,8 +626,19 @@ function parseUnileverCompactSingleFigure(section, company, sourceUrl) {
 }
 
 function unileverMoneyRow(text, labelPattern) {
-  const match = new RegExp(labelPattern + "[\\s\\S]*?(?:\\([a-e]\\)\\s*)?([0-9,]+)", "i").exec(text);
-  const compactValue = match?.[1] || "";
+  const label = new RegExp(labelPattern, "i").exec(text);
+  if (!label) return [];
+
+  const remainder = text.slice(label.index + label[0].length);
+  const next = /\n\s*(?:\([A-Z]\)\s+(?![a-e]\))|Fixed pay & benefits|Variable Remuneration|Total Remuneration|\(a\)\s+Hein)/i.exec(remainder);
+  const rowText = remainder
+    .slice(0, next?.index ?? 260)
+    .replace(/\([a-e]\)/gi, " ")
+    .replace(/\d+\.\d%/g, " ");
+  const looseValues = extractLooseNumbers(rowText, 3);
+  if (looseValues.length >= 3) return looseValues;
+
+  const compactValue = rowText.match(/([0-9,]{3,})/)?.[1] || "";
 
   if (/^00\d,\d{3}$/.test(compactValue)) return [0, 0, parseMoney(compactValue.slice(2))];
   if (/^\d,\d{3}\d,\d{3}\d,\d{3}$/.test(compactValue)) {
@@ -636,7 +647,7 @@ function unileverMoneyRow(text, labelPattern) {
   if (/^\d{3}\d{3}\d{3}$/.test(compactValue)) {
     return [compactValue.slice(0, 3), compactValue.slice(3, 6), compactValue.slice(6)].map(parseMoney);
   }
-  return extractLooseNumbers(compactValue, 3);
+  return looseValues;
 }
 
 function parseExecutiveColumns(lines, headerText = "") {
@@ -1004,6 +1015,23 @@ function cleanText(value) {
     .replace(/\u00a0/g, " ")
     .replace(/[’]/g, "'")
     .trim();
+}
+
+function cleanHtmlText(value) {
+  return cleanText(
+    String(value || "")
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<\/(?:div|p|tr|li|h[1-6]|table|section)>/gi, "\n")
+      .replace(/<br\s*\/?>/gi, "\n")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;/gi, " ")
+      .replace(/&amp;/gi, "&")
+      .replace(/&pound;/gi, "£")
+      .replace(/&euro;/gi, "€")
+      .replace(/&#39;|&apos;/gi, "'")
+      .replace(/&quot;/gi, '"')
+  );
 }
 
 function normalize(value) {
