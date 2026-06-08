@@ -65,7 +65,8 @@ const ftseMetadata = {
     sector: "Consumer Staples",
     marketCap: 118000,
     companyNumber: "00041424",
-    annualReportUrl: "https://www.unilever.com/files/unilever-annual-report-and-accounts-2024.pdf"
+    annualReportUrl: "https://www.unileverusa.com/files/unilever-directors-remuneration-report-2024.pdf",
+    annualReportPageUrl: "https://www.unilever.com/investors/annual-report-and-accounts/?navids=tcm%3A244-50544-4%2Ctcm%3A244-51648-4"
   },
   gsk: { id: "gsk", company: "GSK plc", index: "FTSE100", sector: "Healthcare", marketCap: 67000, companyNumber: "03888792" },
   astrazeneca: { id: "astrazeneca", company: "AstraZeneca PLC", index: "FTSE100", sector: "Healthcare", marketCap: 190000, companyNumber: "02723534" },
@@ -432,6 +433,7 @@ function scoreRemunerationSection(section, index) {
 function parseSingleFigureTable(section, company, sourceUrl) {
   const strategies = [
     ["barclays-compact-single-figure", parseBarclaysCompactSingleFigure],
+    ["unilever-compact-single-figure", parseUnileverCompactSingleFigure],
     ["named-row-single-figure", parseNamedRowSingleFigure],
     ["column-single-figure", parseColumnSingleFigure]
   ];
@@ -578,6 +580,63 @@ function parseBarclaysCompactSingleFigure(section, company, sourceUrl) {
   }
 
   return { directors };
+}
+
+function parseUnileverCompactSingleFigure(section, company, sourceUrl) {
+  if (!/Unilever/i.test(company.company) || !/Hein Schumacher CEO/i.test(section) || !/Fernando Fernandez CFO/i.test(section)) {
+    return { directors: [], warning: "Not a Unilever-style compact single-figure section." };
+  }
+
+  const tableText = section.slice(section.indexOf("Hein Schumacher CEO"), section.indexOf("Total Remuneration") + 160);
+  const fixedPay = unileverMoneyRow(tableText, "\\(A\\) Total fixed pay");
+  const benefits = unileverMoneyRow(tableText, "\\(B\\) Other benefits");
+  const bonus = unileverMoneyRow(tableText, "\\(C\\) Annual bonus");
+  const psp = unileverMoneyRow(tableText, "\\(D\\) PSP");
+  const total = unileverMoneyRow(tableText, "Total Remuneration \\(A\\+B\\+C\\+D\\)");
+
+  if (!fixedPay.length || !bonus.length || !total.length) {
+    return { directors: [], warning: "Unilever compact rows not parsed." };
+  }
+
+  const columns = [
+    { name: "Hein Schumacher", role: "Chief Executive Officer", index: 0 },
+    { name: "Fernando Fernandez", role: "Chief Financial Officer", index: 2 }
+  ];
+
+  return {
+    directors: columns.map((column) => ({
+      id: slugify(column.name),
+      name: column.name,
+      role: column.role,
+      type: "executive",
+      sourceUrl,
+      years: {
+        2024: {
+          baseSalary: valueAt(fixedPay, column.index),
+          annualBonus: valueAt(bonus, column.index),
+          ltip: valueAt(psp, column.index),
+          pensionBenefits: valueAt(benefits, column.index),
+          totalCompensation: valueAt(total, column.index),
+          payRatio: null,
+          sayOnPayPct: null
+        }
+      }
+    }))
+  };
+}
+
+function unileverMoneyRow(text, labelPattern) {
+  const match = new RegExp(labelPattern + "[\\s\\S]*?(?:\\([a-e]\\)\\s*)?([0-9,]+)", "i").exec(text);
+  const compactValue = match?.[1] || "";
+
+  if (/^00\d,\d{3}$/.test(compactValue)) return [0, 0, parseMoney(compactValue.slice(2))];
+  if (/^\d,\d{3}\d,\d{3}\d,\d{3}$/.test(compactValue)) {
+    return [compactValue.slice(0, 5), compactValue.slice(5, 10), compactValue.slice(10)].map(parseMoney);
+  }
+  if (/^\d{3}\d{3}\d{3}$/.test(compactValue)) {
+    return [compactValue.slice(0, 3), compactValue.slice(3, 6), compactValue.slice(6)].map(parseMoney);
+  }
+  return extractLooseNumbers(compactValue, 3);
 }
 
 function parseExecutiveColumns(lines, headerText = "") {
