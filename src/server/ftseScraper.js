@@ -65,7 +65,7 @@ const ftseMetadata = {
     sector: "Consumer Staples",
     marketCap: 118000,
     companyNumber: "00041424",
-    annualReportUrl: "https://www.sec.gov/Archives/edgar/data/217410/000021741025000015/ul-20241231.htm",
+    annualReportUrl: "https://r.jina.ai/https://www.unilever.com/files/unilever-directors-remuneration-report-2024.pdf",
     annualReportPageUrl: "https://www.unilever.com/investors/annual-report-and-accounts/?navids=tcm%3A244-50544-4%2Ctcm%3A244-51648-4"
   },
   gsk: { id: "gsk", company: "GSK plc", index: "FTSE100", sector: "Healthcare", marketCap: 67000, companyNumber: "03888792" },
@@ -358,14 +358,19 @@ async function discoverPdfFromInvestorPage(pageUrl) {
 }
 
 async function extractReportText(filing) {
+  const headers = filing.url.includes("sec.gov")
+    ? secHeaders("text/html,application/xhtml+xml,*/*")
+    : filing.requiresCompaniesHouseAuth
+      ? companiesHouseHeaders("application/pdf,*/*")
+      : webHeaders("application/pdf,text/html,*/*", filing.pageUrl);
   const res = await fetch(filing.url, {
-    headers: filing.requiresCompaniesHouseAuth ? companiesHouseHeaders("application/pdf,*/*") : webHeaders("application/pdf,text/html,*/*", filing.pageUrl)
+    headers
   });
   if (!res.ok) throw new Error(`Annual report request failed ${res.status} for ${filing.url}`);
 
   const contentType = res.headers.get("content-type") || "";
   const buffer = Buffer.from(await res.arrayBuffer());
-  if (contentType.includes("pdf") || filing.url.toLowerCase().includes(".pdf")) return extractPdfText(buffer);
+  if (contentType.includes("pdf") || (filing.url.toLowerCase().includes(".pdf") && !filing.url.includes("r.jina.ai/"))) return extractPdfText(buffer);
 
   return cleanHtmlText(buffer.toString("utf8"));
 }
@@ -876,6 +881,14 @@ function companiesHouseHeaders(accept) {
   }
   const token = Buffer.from(`${process.env.COMPANIES_HOUSE_API_KEY || ""}:`).toString("base64");
   return { Authorization: `Basic ${token}`, Accept: accept, "User-Agent": USER_AGENT };
+}
+
+function secHeaders(accept) {
+  return {
+    "User-Agent": process.env.SEC_USER_AGENT || USER_AGENT,
+    Accept: accept,
+    "Accept-Language": "en-US,en;q=0.9"
+  };
 }
 
 function webHeaders(accept, referer = null) {
