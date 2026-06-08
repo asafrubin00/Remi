@@ -812,6 +812,13 @@ function webHeaders(accept, referer = null) {
   return {
     "User-Agent": USER_AGENT,
     Accept: accept,
+    "Accept-Language": "en-GB,en;q=0.9",
+    "Cache-Control": "no-cache",
+    Pragma: "no-cache",
+    "Sec-Fetch-Dest": accept.includes("pdf") ? "document" : "empty",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": referer ? "same-origin" : "none",
+    "Upgrade-Insecure-Requests": "1",
     ...(referer ? { Referer: referer } : {})
   };
 }
