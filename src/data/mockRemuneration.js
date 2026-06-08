@@ -1,6 +1,8 @@
+import { getVerifiedFtseRecord } from "./manualVerifiedFtse.js";
+
 const now = "2026-05-24T08:00:00.000Z";
 
-export const companies = [
+const baseCompanies = [
   {
     id: "bp",
     company: "BP plc",
@@ -252,6 +254,8 @@ export const companies = [
   }
 ];
 
+export const companies = baseCompanies.map((company) => getVerifiedFtseRecord(company.id) || company);
+
 export function allDirectors(dataset = companies) {
   return dataset.flatMap((company) =>
     company.directors.map((director) => ({
@@ -263,7 +267,7 @@ export function allDirectors(dataset = companies) {
       currency: company.currency,
       marketCap: company.marketCap,
       fxRate: company.fxRate,
-      lastUpdated: now
+      lastUpdated: director.lastUpdated || company.lastUpdated || now
     })),
   );
 }

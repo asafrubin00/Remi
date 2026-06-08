@@ -49,7 +49,7 @@ export default function App() {
           } catch {
             return {
               ...company,
-              scrape: { status: "fallback", message: "Using seeded remuneration data." },
+              scrape: company.scrape || { status: "fallback", message: "Using seeded remuneration data." },
               lastUpdated: new Date().toISOString()
             };
           }

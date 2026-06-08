@@ -1,4 +1,5 @@
 import pdfParse from "pdf-parse/lib/pdf-parse.js";
+import { getVerifiedFtseRecord } from "../data/manualVerifiedFtse.js";
 
 const CACHE_TTL_SECONDS = 60 * 60 * 24;
 const USER_AGENT =
@@ -107,6 +108,9 @@ const companyAliases = {
 export async function scrapeFtseCompany(input, options = {}) {
   const query = String(input || "").trim();
   if (!query) return errorResult(query, "Missing company query.");
+
+  const verifiedRecord = getVerifiedFtseRecord(query);
+  if (verifiedRecord) return verifiedRecord;
 
   const cacheKey = `remi:ftse:${slugify(query)}`;
   if (!options.skipCache) {

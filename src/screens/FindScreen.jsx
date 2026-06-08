@@ -7,6 +7,12 @@ function matchesQuery(value, query) {
   return value.toLowerCase().includes(query.trim().toLowerCase());
 }
 
+function sourceBadge(status) {
+  if (status === "live") return { label: "Live data", tone: "live" };
+  if (status === "verified") return { label: "Verified", tone: "verified" };
+  return { label: "Mock data", tone: "fallback" };
+}
+
 export default function FindScreen({ dataset, directorType, initialSelectedId }) {
   const directors = useMemo(() => allDirectors(dataset), [dataset]);
   const visibleDirectors = useMemo(() => directors.filter((director) => director.type === directorType), [directors, directorType]);
@@ -42,6 +48,7 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
 
   const selectedYearData = selectedDirector ? flattenDirectorYear(selectedDirector, year) : null;
   const selectedCompany = dataset.find((company) => company.id === selectedDirector?.companyId);
+  const badge = sourceBadge(selectedCompany?.scrape?.status);
 
   useEffect(() => {
     if (results.length && !results.some((director) => director.id === selectedId)) {
@@ -173,15 +180,17 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
 
             <div className="mt-auto border-t border-remi-border pt-4 text-[11px] text-remi-muted">
               Last updated <span className="remi-data">{new Date(selectedYearData.lastUpdated).toLocaleDateString("en-GB")}</span> ·{" "}
-              <a href={selectedYearData.sourceUrl} target="_blank" rel="noreferrer">
-                Original filing
-              </a>
-              {selectedCompany?.scrape?.status ? (
-                <>
-                  {" "}
-                  · <span className="remi-data">{selectedCompany.scrape.status}</span>
-                </>
-              ) : null}
+              {selectedYearData.sourceUrl ? (
+                <a href={selectedYearData.sourceUrl} target="_blank" rel="noreferrer">
+                  Original filing
+                </a>
+              ) : (
+                <span>Manual source</span>
+              )}{" "}
+              · <span className={`remi-source-badge remi-source-badge-${badge.tone}`}>
+                <span className="remi-source-dot" />
+                {badge.label}
+              </span>
             </div>
           </div>
         ) : (

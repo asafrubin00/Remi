@@ -110,6 +110,39 @@ a:hover {
     @apply font-medium tabular-nums;
   }
 
+  .remi-source-badge {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap text-[11px] font-medium;
+  }
+
+  .remi-source-dot {
+    @apply inline-block h-2.5 w-2.5 rounded-full;
+  }
+
+  .remi-source-badge-live {
+    color: rgba(46, 204, 113, 0.78);
+  }
+
+  .remi-source-badge-live .remi-source-dot {
+    background: var(--remi-positive);
+  }
+
+  .remi-source-badge-verified {
+    color: rgba(200, 150, 12, 0.82);
+  }
+
+  .remi-source-badge-verified .remi-source-dot {
+    background: var(--remi-gold);
+  }
+
+  .remi-source-badge-fallback {
+    color: rgba(140, 168, 192, 0.68);
+  }
+
+  .remi-source-badge-fallback .remi-source-dot {
+    background: var(--remi-muted);
+  }
+
   .remi-input {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     @apply h-11 w-full rounded-md border border-remi-border bg-remi-navy px-3 text-[13px] text-remi-text outline-none transition placeholder:text-remi-muted focus:border-remi-gold focus:ring-1 focus:ring-remi-gold;
