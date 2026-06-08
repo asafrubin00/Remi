@@ -178,16 +178,19 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
               </div>
             </div>
 
-            <div className="mt-auto border-t border-remi-border pt-4 text-[11px] text-remi-muted">
-              Last updated <span className="remi-data">{new Date(selectedYearData.lastUpdated).toLocaleDateString("en-GB")}</span> ·{" "}
+            <div className="mt-auto flex items-center gap-1 border-t border-remi-border pt-4 text-[11px] text-remi-muted">
+              <span>Last updated</span>
+              <span className="remi-data">{new Date(selectedYearData.lastUpdated).toLocaleDateString("en-GB")}</span>
+              <span>·</span>
               {selectedYearData.sourceUrl ? (
                 <a href={selectedYearData.sourceUrl} target="_blank" rel="noreferrer">
                   Original filing
                 </a>
               ) : (
                 <span>Manual source</span>
-              )}{" "}
-              · <span className={`remi-source-badge remi-source-badge-${badge.tone}`}>
+              )}
+              <span>·</span>
+              <span className={`remi-source-badge remi-source-badge-${badge.tone}`}>
                 <span className="remi-source-dot" />
                 {badge.label}
               </span>
