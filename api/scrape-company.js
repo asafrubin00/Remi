@@ -1,4 +1,5 @@
 import { companies } from "../src/data/mockRemuneration.js";
+import { scrapeFtseCompany } from "../src/server/ftseScraper.js";
 import { scrapeSp500Company } from "../src/server/sp500Scraper.js";
 
 const cikMap = {
@@ -22,6 +23,11 @@ export default async function handler(request, response) {
   try {
     if (company.index === "SP500") {
       response.status(200).json(await scrapeSp500Company(company.ticker || company.company));
+      return;
+    }
+
+    if (company.index?.startsWith("FTSE")) {
+      response.status(200).json(await scrapeFtseCompany(company.company));
       return;
     }
 

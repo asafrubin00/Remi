@@ -9,42 +9,17 @@ export const companies = [
     marketCap: 76000,
     currency: "GBP",
     fxRate: "GBP/USD 1.27",
-    directors: [
-      {
-        id: "murray-auchincloss",
-        name: "Murray Auchincloss",
-        role: "Chief Executive Officer",
-        type: "executive",
-        sourceUrl: "https://www.bp.com/en/global/corporate/investors/results-and-reporting/annual-report.html",
-        years: {
-          2025: { baseSalary: 1500000, annualBonus: 1750000, ltip: 3100000, pensionBenefits: 280000, totalCompensation: 6630000, payRatio: 118, sayOnPayPct: 91 },
-          2024: { baseSalary: 1450000, annualBonus: 1200000, ltip: 2600000, pensionBenefits: 260000, totalCompensation: 5510000, payRatio: 103, sayOnPayPct: 88 },
-          2023: { baseSalary: 1350000, annualBonus: 950000, ltip: 2100000, pensionBenefits: 235000, totalCompensation: 4635000, payRatio: 91, sayOnPayPct: 93 }
-        }
-      },
-      {
-        id: "kate-thomson",
-        name: "Kate Thomson",
-        role: "Chief Financial Officer",
-        type: "executive",
-        sourceUrl: "https://www.bp.com/en/global/corporate/investors/results-and-reporting/annual-report.html",
-        years: {
-          2025: { baseSalary: 980000, annualBonus: 1020000, ltip: 1850000, pensionBenefits: 155000, totalCompensation: 4005000, payRatio: 71, sayOnPayPct: 91 },
-          2024: { baseSalary: 940000, annualBonus: 840000, ltip: 1420000, pensionBenefits: 146000, totalCompensation: 3346000, payRatio: 64, sayOnPayPct: 88 }
-        }
-      },
-      {
-        id: "helge-lund",
-        name: "Helge Lund",
-        role: "Chair",
-        type: "non-executive",
-        sourceUrl: "https://www.bp.com/en/global/corporate/investors/results-and-reporting/annual-report.html",
-        years: {
-          2025: { nedFees: 790000, totalCompensation: 790000, payRatio: null, sayOnPayPct: 91 },
-          2024: { nedFees: 755000, totalCompensation: 755000, payRatio: null, sayOnPayPct: 88 }
-        }
-      }
-    ]
+    directors: []
+  },
+  {
+    id: "shell",
+    company: "Shell plc",
+    index: "FTSE100",
+    sector: "Energy",
+    marketCap: 172000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
   },
   {
     id: "hsbc",
@@ -54,30 +29,127 @@ export const companies = [
     marketCap: 142000,
     currency: "GBP",
     fxRate: "GBP/USD 1.27",
-    directors: [
-      {
-        id: "georges-elhedery",
-        name: "Georges Elhedery",
-        role: "Group Chief Executive",
-        type: "executive",
-        sourceUrl: "https://www.hsbc.com/investors/results-and-announcements/annual-report",
-        years: {
-          2025: { baseSalary: 1600000, annualBonus: 2850000, ltip: 4200000, pensionBenefits: 310000, totalCompensation: 8960000, payRatio: 154, sayOnPayPct: 86 },
-          2024: { baseSalary: 1500000, annualBonus: 2100000, ltip: 3300000, pensionBenefits: 290000, totalCompensation: 7190000, payRatio: 132, sayOnPayPct: 84 }
-        }
-      },
-      {
-        id: "mark-tucker",
-        name: "Mark Tucker",
-        role: "Group Chair",
-        type: "non-executive",
-        sourceUrl: "https://www.hsbc.com/investors/results-and-announcements/annual-report",
-        years: {
-          2025: { nedFees: 1500000, totalCompensation: 1500000, payRatio: null, sayOnPayPct: 86 },
-          2024: { nedFees: 1450000, totalCompensation: 1450000, payRatio: null, sayOnPayPct: 84 }
-        }
-      }
-    ]
+    directors: []
+  },
+  {
+    id: "barclays",
+    company: "Barclays PLC",
+    index: "FTSE100",
+    sector: "Financial Services",
+    marketCap: 32000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "lloyds-banking-group",
+    company: "Lloyds Banking Group plc",
+    index: "FTSE100",
+    sector: "Financial Services",
+    marketCap: 41000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "tesco",
+    company: "Tesco PLC",
+    index: "FTSE100",
+    sector: "Consumer Staples",
+    marketCap: 22000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "unilever",
+    company: "Unilever PLC",
+    index: "FTSE100",
+    sector: "Consumer Staples",
+    marketCap: 118000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "gsk",
+    company: "GSK plc",
+    index: "FTSE100",
+    sector: "Healthcare",
+    marketCap: 67000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "astrazeneca",
+    company: "AstraZeneca PLC",
+    index: "FTSE100",
+    sector: "Healthcare",
+    marketCap: 190000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "rio-tinto",
+    company: "Rio Tinto plc",
+    index: "FTSE100",
+    sector: "Basic Materials",
+    marketCap: 83000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "marks-spencer",
+    company: "Marks and Spencer Group plc",
+    index: "FTSE100",
+    sector: "Consumer Discretionary",
+    marketCap: 8000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "vodafone",
+    company: "Vodafone Group Plc",
+    index: "FTSE100",
+    sector: "Telecommunications",
+    marketCap: 19000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "bt-group",
+    company: "BT Group plc",
+    index: "FTSE100",
+    sector: "Telecommunications",
+    marketCap: 18000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "rolls-royce",
+    company: "Rolls-Royce Holdings plc",
+    index: "FTSE100",
+    sector: "Industrials",
+    marketCap: 39000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
+  },
+  {
+    id: "national-grid",
+    company: "National Grid plc",
+    index: "FTSE100",
+    sector: "Utilities",
+    marketCap: 51000,
+    currency: "GBP",
+    fxRate: "GBP/USD 1.27",
+    directors: []
   },
   {
     id: "apple",
@@ -177,39 +249,6 @@ export const companies = [
     currency: "USD",
     fxRate: "GBP/USD 1.27",
     directors: []
-  },
-  {
-    id: "tesco",
-    company: "Tesco PLC",
-    index: "FTSE100",
-    sector: "Consumer Staples",
-    marketCap: 22000,
-    currency: "GBP",
-    fxRate: "GBP/USD 1.27",
-    directors: [
-      {
-        id: "ken-murphy",
-        name: "Ken Murphy",
-        role: "Group Chief Executive",
-        type: "executive",
-        sourceUrl: "https://www.tescoplc.com/investors/reports-results-and-presentations/annual-report/",
-        years: {
-          2025: { baseSalary: 1420000, annualBonus: 2100000, ltip: 2300000, pensionBenefits: 120000, totalCompensation: 5940000, payRatio: 305, sayOnPayPct: 79 },
-          2024: { baseSalary: 1360000, annualBonus: 1800000, ltip: 1900000, pensionBenefits: 115000, totalCompensation: 5175000, payRatio: 286, sayOnPayPct: 83 }
-        }
-      },
-      {
-        id: "gerry-murphy",
-        name: "Gerry Murphy",
-        role: "Chair",
-        type: "non-executive",
-        sourceUrl: "https://www.tescoplc.com/investors/reports-results-and-presentations/annual-report/",
-        years: {
-          2025: { nedFees: 695000, totalCompensation: 695000, payRatio: null, sayOnPayPct: 79 },
-          2024: { nedFees: 670000, totalCompensation: 670000, payRatio: null, sayOnPayPct: 83 }
-        }
-      }
-    ]
   }
 ];
 
