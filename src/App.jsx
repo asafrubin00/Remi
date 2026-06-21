@@ -40,8 +40,9 @@ export default function App() {
     let cancelled = false;
 
     async function hydrateDataset() {
+      const eagerCompanies = seededCompanies.filter((company) => company.eagerHydrate);
       const hydrated = await Promise.all(
-        seededCompanies.map(async (company) => {
+        eagerCompanies.map(async (company) => {
           try {
             const response = await fetch(`/api/scrape-company?companyId=${company.id}`);
             if (!response.ok) throw new Error("Scrape route unavailable");
@@ -55,7 +56,10 @@ export default function App() {
           }
         }),
       );
-      if (!cancelled) setDataset(hydrated);
+      if (!cancelled) {
+        const hydratedById = new Map(hydrated.map((company) => [company.id, company]));
+        setDataset(seededCompanies.map((company) => hydratedById.get(company.id) || company));
+      }
     }
 
     hydrateDataset();
@@ -123,7 +127,7 @@ export default function App() {
         {activeView === "landing" ? (
           <LandingScreen dataset={dataset} onEnter={() => navigate("find")} />
         ) : activeView === "find" ? (
-          <FindScreen dataset={dataset} directorType={directorType} initialSelectedId={focusedDirectorId} />
+          <FindScreen dataset={dataset} setDataset={setDataset} directorType={directorType} initialSelectedId={focusedDirectorId} />
         ) : activeView === "compare" ? (
           <CompareScreen dataset={dataset} directorType={directorType} />
         ) : activeView === "league" ? (

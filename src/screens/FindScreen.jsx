@@ -20,13 +20,14 @@ function sayOnPayClass(value) {
   return "text-remi-negative";
 }
 
-export default function FindScreen({ dataset, directorType, initialSelectedId }) {
+export default function FindScreen({ dataset, setDataset, directorType, initialSelectedId }) {
   const directors = useMemo(() => allDirectors(dataset), [dataset]);
   const visibleDirectors = useMemo(() => directors.filter((director) => director.type === directorType), [directors, directorType]);
   const [companyQuery, setCompanyQuery] = useState("");
   const [personQuery, setPersonQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const [year, setYear] = useState(null);
+  const [loadingCompanyId, setLoadingCompanyId] = useState(null);
 
   useEffect(() => {
     if (selectedId && !visibleDirectors.some((director) => director.id === selectedId)) {
@@ -78,12 +79,44 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
     setYear(null);
   };
 
-  const selectCompany = (company) => {
-    const director = visibleDirectors.find((item) => item.companyId === company.id);
-    setSelectedId(director?.id || null);
+  const selectCompany = async (company) => {
     setCompanyQuery(company.company);
     setPersonQuery("");
     setYear(null);
+
+    const director = visibleDirectors.find((item) => item.companyId === company.id);
+    if (director) {
+      setSelectedId(director.id);
+      return;
+    }
+
+    setSelectedId(null);
+    setLoadingCompanyId(company.id);
+    try {
+      const response = await fetch(`/api/scrape-company?companyId=${company.id}`);
+      if (!response.ok) throw new Error("Scrape route unavailable");
+      const hydrated = await response.json();
+      setDataset((current) => current.map((item) => (item.id === hydrated.id ? hydrated : item)));
+      const hydratedDirector = (hydrated.directors || []).find((item) => item.type === directorType);
+      setSelectedId(hydratedDirector?.id || null);
+    } catch (error) {
+      setDataset((current) =>
+        current.map((item) =>
+          item.id === company.id
+            ? {
+                ...item,
+                scrape: {
+                  ...(item.scrape || {}),
+                  status: "fallback",
+                  message: error.message || "Scrape unavailable."
+                }
+              }
+            : item,
+        ),
+      );
+    } finally {
+      setLoadingCompanyId(null);
+    }
   };
 
   const breakdownRows =
@@ -151,7 +184,9 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
           <h3 className="text-sm font-medium text-remi-text">
             Search results: <span className="text-remi-gold-light">{hasActiveSearch ? companyQuery || personQuery : "Start typing"}</span>
           </h3>
-          <p className="mt-1 text-xs text-remi-text-secondary">Select a director to see remuneration data.</p>
+          <p className="mt-1 text-xs text-remi-text-secondary">
+            {loadingCompanyId ? "Fetching live remuneration data..." : "Select a director to see remuneration data."}
+          </p>
         </div>
 
         <div className="min-h-0 flex-1 overflow-y-auto p-4">

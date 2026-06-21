@@ -1,11 +1,13 @@
 import { enrichGovernanceData } from "./governanceData.js";
 import { getVerifiedFtseRecord } from "./manualVerifiedFtse.js";
+import { ftse100Constituents, sp500Constituents } from "./constituents.generated.js";
 
 const now = "2026-05-24T08:00:00.000Z";
 
 const baseCompanies = [
   {
     id: "bp",
+    eagerHydrate: true,
     company: "BP plc",
     index: "FTSE100",
     sector: "Energy",
@@ -16,6 +18,7 @@ const baseCompanies = [
   },
   {
     id: "shell",
+    eagerHydrate: true,
     company: "Shell plc",
     index: "FTSE100",
     sector: "Energy",
@@ -26,6 +29,7 @@ const baseCompanies = [
   },
   {
     id: "hsbc",
+    eagerHydrate: true,
     company: "HSBC Holdings plc",
     index: "FTSE100",
     sector: "Financial Services",
@@ -36,6 +40,7 @@ const baseCompanies = [
   },
   {
     id: "barclays",
+    eagerHydrate: true,
     company: "Barclays PLC",
     index: "FTSE100",
     sector: "Financial Services",
@@ -46,6 +51,7 @@ const baseCompanies = [
   },
   {
     id: "lloyds-banking-group",
+    eagerHydrate: true,
     company: "Lloyds Banking Group plc",
     index: "FTSE100",
     sector: "Financial Services",
@@ -56,6 +62,7 @@ const baseCompanies = [
   },
   {
     id: "tesco",
+    eagerHydrate: true,
     company: "Tesco PLC",
     index: "FTSE100",
     sector: "Consumer Staples",
@@ -66,6 +73,7 @@ const baseCompanies = [
   },
   {
     id: "unilever",
+    eagerHydrate: true,
     company: "Unilever PLC",
     index: "FTSE100",
     sector: "Consumer Staples",
@@ -76,6 +84,7 @@ const baseCompanies = [
   },
   {
     id: "gsk",
+    eagerHydrate: true,
     company: "GSK plc",
     index: "FTSE100",
     sector: "Healthcare",
@@ -86,6 +95,7 @@ const baseCompanies = [
   },
   {
     id: "astrazeneca",
+    eagerHydrate: true,
     company: "AstraZeneca PLC",
     index: "FTSE100",
     sector: "Healthcare",
@@ -96,6 +106,7 @@ const baseCompanies = [
   },
   {
     id: "rio-tinto",
+    eagerHydrate: true,
     company: "Rio Tinto plc",
     index: "FTSE100",
     sector: "Basic Materials",
@@ -106,6 +117,7 @@ const baseCompanies = [
   },
   {
     id: "marks-spencer",
+    eagerHydrate: true,
     company: "Marks and Spencer Group plc",
     index: "FTSE100",
     sector: "Consumer Discretionary",
@@ -116,6 +128,7 @@ const baseCompanies = [
   },
   {
     id: "vodafone",
+    eagerHydrate: true,
     company: "Vodafone Group Plc",
     index: "FTSE100",
     sector: "Telecommunications",
@@ -126,6 +139,7 @@ const baseCompanies = [
   },
   {
     id: "bt-group",
+    eagerHydrate: true,
     company: "BT Group plc",
     index: "FTSE100",
     sector: "Telecommunications",
@@ -136,6 +150,7 @@ const baseCompanies = [
   },
   {
     id: "rolls-royce",
+    eagerHydrate: true,
     company: "Rolls-Royce Holdings plc",
     index: "FTSE100",
     sector: "Industrials",
@@ -146,6 +161,7 @@ const baseCompanies = [
   },
   {
     id: "national-grid",
+    eagerHydrate: true,
     company: "National Grid plc",
     index: "FTSE100",
     sector: "Utilities",
@@ -156,6 +172,7 @@ const baseCompanies = [
   },
   {
     id: "apple",
+    eagerHydrate: true,
     company: "Apple Inc.",
     ticker: "AAPL",
     index: "SP500",
@@ -167,6 +184,7 @@ const baseCompanies = [
   },
   {
     id: "microsoft",
+    eagerHydrate: true,
     company: "Microsoft Corporation",
     ticker: "MSFT",
     index: "SP500",
@@ -178,6 +196,7 @@ const baseCompanies = [
   },
   {
     id: "jpmorgan",
+    eagerHydrate: true,
     company: "JPMorgan Chase & Co.",
     ticker: "JPM",
     index: "SP500",
@@ -189,6 +208,7 @@ const baseCompanies = [
   },
   {
     id: "goldman-sachs",
+    eagerHydrate: true,
     company: "Goldman Sachs Group, Inc.",
     ticker: "GS",
     index: "SP500",
@@ -200,6 +220,7 @@ const baseCompanies = [
   },
   {
     id: "exxonmobil",
+    eagerHydrate: true,
     company: "Exxon Mobil Corporation",
     ticker: "XOM",
     index: "SP500",
@@ -211,6 +232,7 @@ const baseCompanies = [
   },
   {
     id: "johnson-johnson",
+    eagerHydrate: true,
     company: "Johnson & Johnson",
     ticker: "JNJ",
     index: "SP500",
@@ -222,6 +244,7 @@ const baseCompanies = [
   },
   {
     id: "amazon",
+    eagerHydrate: true,
     company: "Amazon.com, Inc.",
     ticker: "AMZN",
     index: "SP500",
@@ -233,6 +256,7 @@ const baseCompanies = [
   },
   {
     id: "tesla",
+    eagerHydrate: true,
     company: "Tesla, Inc.",
     ticker: "TSLA",
     index: "SP500",
@@ -244,6 +268,7 @@ const baseCompanies = [
   },
   {
     id: "alphabet",
+    eagerHydrate: true,
     company: "Alphabet Inc.",
     ticker: "GOOGL",
     index: "SP500",
@@ -255,7 +280,72 @@ const baseCompanies = [
   }
 ];
 
-export const companies = baseCompanies.map((company) => enrichGovernanceData(getVerifiedFtseRecord(company.id) || company));
+function normaliseConstituentId(item) {
+  const ftseTickerIds = {
+    AZN: "astrazeneca",
+    BARC: "barclays",
+    BP: "bp",
+    BTA: "bt-group",
+    GSK: "gsk",
+    HSBA: "hsbc",
+    LLOY: "lloyds-banking-group",
+    MKS: "marks-spencer",
+    NG: "national-grid",
+    RIO: "rio-tinto",
+    RR: "rolls-royce",
+    SHEL: "shell",
+    TSCO: "tesco",
+    ULVR: "unilever",
+    VOD: "vodafone"
+  };
+  const spTickerIds = {
+    AAPL: "apple",
+    AMZN: "amazon",
+    GOOGL: "alphabet",
+    GS: "goldman-sachs",
+    JNJ: "johnson-johnson",
+    JPM: "jpmorgan",
+    MSFT: "microsoft",
+    TSLA: "tesla",
+    XOM: "exxonmobil"
+  };
+  if (item.index === "FTSE100" && ftseTickerIds[item.ticker]) return ftseTickerIds[item.ticker];
+  if (item.index === "SP500" && spTickerIds[item.ticker]) return spTickerIds[item.ticker];
+  if (item.ticker === "GOOGL") return "alphabet";
+  if (item.ticker === "BRK-B") return "berkshire-hathaway";
+  return item.id;
+}
+
+function constituentToCompany(item) {
+  return {
+    id: normaliseConstituentId(item),
+    company: item.company,
+    ticker: item.ticker,
+    cik: item.cik || null,
+    index: item.index,
+    sector: item.sector || "Unknown",
+    marketCap: null,
+    currency: item.currency,
+    fxRate: "GBP/USD 1.27",
+    eagerHydrate: false,
+    directors: [],
+    scrape: {
+      status: "placeholder",
+      source: item.source,
+      message: "Constituent placeholder; scrape on demand."
+    }
+  };
+}
+
+const constituentCompanies = [...ftse100Constituents, ...sp500Constituents].map(constituentToCompany);
+const companiesById = new Map();
+for (const company of constituentCompanies) companiesById.set(company.id, company);
+for (const company of baseCompanies) companiesById.set(company.id, { ...companiesById.get(company.id), ...company });
+
+export const companies = [...companiesById.values()].map((company) => {
+  const verified = getVerifiedFtseRecord(company.id);
+  return enrichGovernanceData(verified ? { ...company, ...verified, ticker: company.ticker } : company);
+});
 
 export function allDirectors(dataset = companies) {
   return dataset.flatMap((company) =>

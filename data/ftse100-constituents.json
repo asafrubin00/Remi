@@ -1,0 +1,907 @@
+{
+  "source": "https://en.wikipedia.org/wiki/FTSE_100_Index",
+  "fetchedAt": "2026-06-21T17:40:53.990Z",
+  "count": 100,
+  "constituents": [
+    {
+      "id": "3i",
+      "company": "3i",
+      "ticker": "III",
+      "index": "FTSE100",
+      "sector": "Financial services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "aberdeen-group",
+      "company": "Aberdeen Group",
+      "ticker": "ABDN",
+      "index": "FTSE100",
+      "sector": "Financial Services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "admiral-group",
+      "company": "Admiral Group",
+      "ticker": "ADM",
+      "index": "FTSE100",
+      "sector": "Insurance",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "airtel-africa",
+      "company": "Airtel Africa",
+      "ticker": "AAF",
+      "index": "FTSE100",
+      "sector": "Telecommunications services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "alliance-witan",
+      "company": "Alliance Witan",
+      "ticker": "ALW",
+      "index": "FTSE100",
+      "sector": "Investment Trusts",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "anglo-american-plc",
+      "company": "Anglo American plc",
+      "ticker": "AAL",
+      "index": "FTSE100",
+      "sector": "Mining",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "antofagasta-plc",
+      "company": "Antofagasta plc",
+      "ticker": "ANTO",
+      "index": "FTSE100",
+      "sector": "Mining",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "associated-british-foods",
+      "company": "Associated British Foods",
+      "ticker": "ABF",
+      "index": "FTSE100",
+      "sector": "Food & tobacco",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "astrazeneca",
+      "company": "AstraZeneca",
+      "ticker": "AZN",
+      "index": "FTSE100",
+      "sector": "Pharmaceuticals & biotechnology",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "autotrader-group",
+      "company": "Autotrader Group",
+      "ticker": "AUTO",
+      "index": "FTSE100",
+      "sector": "Media",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "aviva",
+      "company": "Aviva",
+      "ticker": "AV",
+      "index": "FTSE100",
+      "sector": "Life insurance",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "babcock-international",
+      "company": "Babcock International",
+      "ticker": "BAB",
+      "index": "FTSE100",
+      "sector": "Aerospace & defence",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "bae-systems",
+      "company": "BAE Systems",
+      "ticker": "BA",
+      "index": "FTSE100",
+      "sector": "Aerospace & defence",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "barclays",
+      "company": "Barclays",
+      "ticker": "BARC",
+      "index": "FTSE100",
+      "sector": "Banks",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "barratt-redrow",
+      "company": "Barratt Redrow",
+      "ticker": "BTRW",
+      "index": "FTSE100",
+      "sector": "Household goods & home construction",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "beazley",
+      "company": "Beazley",
+      "ticker": "BEZ",
+      "index": "FTSE100",
+      "sector": "Insurance",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "bp",
+      "company": "BP",
+      "ticker": "BP",
+      "index": "FTSE100",
+      "sector": "Oil & gas producers",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "british-american-tobacco",
+      "company": "British American Tobacco",
+      "ticker": "BATS",
+      "index": "FTSE100",
+      "sector": "Tobacco",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "british-land",
+      "company": "British Land",
+      "ticker": "BLND",
+      "index": "FTSE100",
+      "sector": "Real estate",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "bt-group",
+      "company": "BT Group",
+      "ticker": "BTA",
+      "index": "FTSE100",
+      "sector": "Telecommunications services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "bunzl",
+      "company": "Bunzl",
+      "ticker": "BNZL",
+      "index": "FTSE100",
+      "sector": "Support services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "burberry-group",
+      "company": "Burberry Group",
+      "ticker": "BRBY",
+      "index": "FTSE100",
+      "sector": "Personal goods",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "centrica",
+      "company": "Centrica",
+      "ticker": "CNA",
+      "index": "FTSE100",
+      "sector": "Multiline utilities",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "coca-cola-europacific-partners",
+      "company": "Coca-Cola Europacific Partners",
+      "ticker": "CCEP",
+      "index": "FTSE100",
+      "sector": "Beverages",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "coca-cola-hbc",
+      "company": "Coca-Cola HBC",
+      "ticker": "CCH",
+      "index": "FTSE100",
+      "sector": "Beverages",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "compass-group",
+      "company": "Compass Group",
+      "ticker": "CPG",
+      "index": "FTSE100",
+      "sector": "Support services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "computacenter",
+      "company": "Computacenter",
+      "ticker": "CCC",
+      "index": "FTSE100",
+      "sector": "Software & Computer Services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "convatec",
+      "company": "Convatec",
+      "ticker": "CTEC",
+      "index": "FTSE100",
+      "sector": "Health care equipment & supplies",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "croda-international",
+      "company": "Croda International",
+      "ticker": "CRDA",
+      "index": "FTSE100",
+      "sector": "Chemicals",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "dcc-plc",
+      "company": "DCC plc",
+      "ticker": "DCC",
+      "index": "FTSE100",
+      "sector": "Support services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "diageo",
+      "company": "Diageo",
+      "ticker": "DGE",
+      "index": "FTSE100",
+      "sector": "Beverages",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "diploma",
+      "company": "Diploma",
+      "ticker": "DPLM",
+      "index": "FTSE100",
+      "sector": "Industrial Support services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "endeavour-mining",
+      "company": "Endeavour Mining",
+      "ticker": "EDV",
+      "index": "FTSE100",
+      "sector": "Mining",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "entain",
+      "company": "Entain",
+      "ticker": "ENT",
+      "index": "FTSE100",
+      "sector": "Travel & leisure",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "experian",
+      "company": "Experian",
+      "ticker": "EXPN",
+      "index": "FTSE100",
+      "sector": "Support services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "f-and-c-investment-trust",
+      "company": "F & C Investment Trust",
+      "ticker": "FCIT",
+      "index": "FTSE100",
+      "sector": "Collective investments",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "fresnillo-plc",
+      "company": "Fresnillo plc",
+      "ticker": "FRES",
+      "index": "FTSE100",
+      "sector": "Mining",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "games-workshop",
+      "company": "Games Workshop",
+      "ticker": "GAW",
+      "index": "FTSE100",
+      "sector": "Leisure Goods",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "glencore",
+      "company": "Glencore",
+      "ticker": "GLEN",
+      "index": "FTSE100",
+      "sector": "Mining",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "gsk-plc",
+      "company": "GSK plc",
+      "ticker": "GSK",
+      "index": "FTSE100",
+      "sector": "Pharmaceuticals & biotechnology",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "haleon",
+      "company": "Haleon",
+      "ticker": "HLN",
+      "index": "FTSE100",
+      "sector": "Pharmaceuticals & biotechnology",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "halma-plc",
+      "company": "Halma plc",
+      "ticker": "HLMA",
+      "index": "FTSE100",
+      "sector": "Electronic equipment & parts",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "hiscox",
+      "company": "Hiscox",
+      "ticker": "HSX",
+      "index": "FTSE100",
+      "sector": "Non-life Insurance",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "howdens-joinery",
+      "company": "Howdens Joinery",
+      "ticker": "HWDN",
+      "index": "FTSE100",
+      "sector": "Homebuilding & construction supplies",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "hsbc",
+      "company": "HSBC",
+      "ticker": "HSBA",
+      "index": "FTSE100",
+      "sector": "Banks",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "icg",
+      "company": "ICG",
+      "ticker": "ICG",
+      "index": "FTSE100",
+      "sector": "Financial services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "ig-group",
+      "company": "IG Group",
+      "ticker": "IGG",
+      "index": "FTSE100",
+      "sector": "Financial services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "ihg-hotels-and-resorts",
+      "company": "IHG Hotels & Resorts",
+      "ticker": "IHG",
+      "index": "FTSE100",
+      "sector": "Travel & leisure",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "imi",
+      "company": "IMI",
+      "ticker": "IMI",
+      "index": "FTSE100",
+      "sector": "Industrial engineering",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "imperial-brands",
+      "company": "Imperial Brands",
+      "ticker": "IMB",
+      "index": "FTSE100",
+      "sector": "Tobacco",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "informa",
+      "company": "Informa",
+      "ticker": "INF",
+      "index": "FTSE100",
+      "sector": "Media",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "international-airlines-group",
+      "company": "International Airlines Group",
+      "ticker": "IAG",
+      "index": "FTSE100",
+      "sector": "Travel & leisure",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "intertek",
+      "company": "Intertek",
+      "ticker": "ITRK",
+      "index": "FTSE100",
+      "sector": "Support services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "investec",
+      "company": "Investec",
+      "ticker": "INVP",
+      "index": "FTSE100",
+      "sector": "Financial Services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "jd-sports",
+      "company": "JD Sports",
+      "ticker": "JD",
+      "index": "FTSE100",
+      "sector": "General retailers",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "kingfisher-plc",
+      "company": "Kingfisher plc",
+      "ticker": "KGF",
+      "index": "FTSE100",
+      "sector": "Retailers",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "land-securities",
+      "company": "Land Securities",
+      "ticker": "LAND",
+      "index": "FTSE100",
+      "sector": "Real estate investment trusts",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "legal-and-general",
+      "company": "Legal & General",
+      "ticker": "LGEN",
+      "index": "FTSE100",
+      "sector": "Life insurance",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "lion-finance-group",
+      "company": "Lion Finance Group",
+      "ticker": "BGEO",
+      "index": "FTSE100",
+      "sector": "Banking Services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "lloyds-banking-group",
+      "company": "Lloyds Banking Group",
+      "ticker": "LLOY",
+      "index": "FTSE100",
+      "sector": "Banks",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "london-stock-exchange-group",
+      "company": "London Stock Exchange Group",
+      "ticker": "LSEG",
+      "index": "FTSE100",
+      "sector": "Financial services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "londonmetric-property",
+      "company": "LondonMetric Property",
+      "ticker": "LMP",
+      "index": "FTSE100",
+      "sector": "Real Estate Investment Trusts",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "mandg",
+      "company": "M&G",
+      "ticker": "MNG",
+      "index": "FTSE100",
+      "sector": "Financial services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "marks-and-spencer",
+      "company": "Marks & Spencer",
+      "ticker": "MKS",
+      "index": "FTSE100",
+      "sector": "Food & drug retailing",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "melrose-industries",
+      "company": "Melrose Industries",
+      "ticker": "MRO",
+      "index": "FTSE100",
+      "sector": "Aerospace & defence",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "metlen-energy-and-metals",
+      "company": "Metlen Energy & Metals",
+      "ticker": "MTLN",
+      "index": "FTSE100",
+      "sector": "Multiline utilities",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "national-grid-plc",
+      "company": "National Grid plc",
+      "ticker": "NG",
+      "index": "FTSE100",
+      "sector": "Multiline utilities",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "natwest-group",
+      "company": "NatWest Group",
+      "ticker": "NWG",
+      "index": "FTSE100",
+      "sector": "Banks",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "next-plc",
+      "company": "Next plc",
+      "ticker": "NXT",
+      "index": "FTSE100",
+      "sector": "General retailers",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "pearson-plc",
+      "company": "Pearson plc",
+      "ticker": "PSON",
+      "index": "FTSE100",
+      "sector": "Media",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "pershing-square-holdings",
+      "company": "Pershing Square Holdings",
+      "ticker": "PSH",
+      "index": "FTSE100",
+      "sector": "Financial services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "persimmon",
+      "company": "Persimmon",
+      "ticker": "PSN",
+      "index": "FTSE100",
+      "sector": "Household goods & home construction",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "polar-capital-technology-trust",
+      "company": "Polar Capital Technology Trust",
+      "ticker": "PCT",
+      "index": "FTSE100",
+      "sector": "Investment trusts",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "prudential-plc",
+      "company": "Prudential plc",
+      "ticker": "PRU",
+      "index": "FTSE100",
+      "sector": "Life insurance",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "reckitt",
+      "company": "Reckitt",
+      "ticker": "RKT",
+      "index": "FTSE100",
+      "sector": "Household goods & home construction",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "relx",
+      "company": "RELX",
+      "ticker": "REL",
+      "index": "FTSE100",
+      "sector": "Media",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "rentokil-initial",
+      "company": "Rentokil Initial",
+      "ticker": "RTO",
+      "index": "FTSE100",
+      "sector": "Support services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "rio-tinto",
+      "company": "Rio Tinto",
+      "ticker": "RIO",
+      "index": "FTSE100",
+      "sector": "Mining",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "rolls-royce-holdings",
+      "company": "Rolls-Royce Holdings",
+      "ticker": "RR",
+      "index": "FTSE100",
+      "sector": "Aerospace & defence",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "sage-group",
+      "company": "Sage Group",
+      "ticker": "SGE",
+      "index": "FTSE100",
+      "sector": "Software & computer services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "sainsbury-s",
+      "company": "Sainsbury's",
+      "ticker": "SBRY",
+      "index": "FTSE100",
+      "sector": "Food & drug retailing",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "schroders",
+      "company": "Schroders",
+      "ticker": "SDR",
+      "index": "FTSE100",
+      "sector": "Financial services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "scottish-mortgage-investment-trust",
+      "company": "Scottish Mortgage Investment Trust",
+      "ticker": "SMT",
+      "index": "FTSE100",
+      "sector": "Collective investments",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "segro",
+      "company": "Segro",
+      "ticker": "SGRO",
+      "index": "FTSE100",
+      "sector": "Real estate investment trusts",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "severn-trent",
+      "company": "Severn Trent",
+      "ticker": "SVT",
+      "index": "FTSE100",
+      "sector": "Multiline utilities",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "shell-plc",
+      "company": "Shell plc",
+      "ticker": "SHEL",
+      "index": "FTSE100",
+      "sector": "Oil & gas producers",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "smith-and-nephew",
+      "company": "Smith & Nephew",
+      "ticker": "SN",
+      "index": "FTSE100",
+      "sector": "Health care equipment & supplies",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "smiths-group",
+      "company": "Smiths Group",
+      "ticker": "SMIN",
+      "index": "FTSE100",
+      "sector": "General industrials",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "spirax-group",
+      "company": "Spirax Group",
+      "ticker": "SPX",
+      "index": "FTSE100",
+      "sector": "Industrial engineering",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "sse-plc",
+      "company": "SSE plc",
+      "ticker": "SSE",
+      "index": "FTSE100",
+      "sector": "Electrical utilities & independent power producers",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "st-james-s-place",
+      "company": "St. James's Place",
+      "ticker": "STJ",
+      "index": "FTSE100",
+      "sector": "Financial services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "standard-chartered",
+      "company": "Standard Chartered",
+      "ticker": "STAN",
+      "index": "FTSE100",
+      "sector": "Banks",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "standard-life",
+      "company": "Standard Life",
+      "ticker": "SDLF",
+      "index": "FTSE100",
+      "sector": "Life insurance",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "tesco",
+      "company": "Tesco",
+      "ticker": "TSCO",
+      "index": "FTSE100",
+      "sector": "Food & drug retailing",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "tritax-big-box-reit",
+      "company": "Tritax Big Box REIT",
+      "ticker": "BBOX",
+      "index": "FTSE100",
+      "sector": "Real Estate Investment Trusts",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "unilever",
+      "company": "Unilever",
+      "ticker": "ULVR",
+      "index": "FTSE100",
+      "sector": "Personal goods",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "united-utilities",
+      "company": "United Utilities",
+      "ticker": "UU",
+      "index": "FTSE100",
+      "sector": "Multiline utilities",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "vodafone-group",
+      "company": "Vodafone Group",
+      "ticker": "VOD",
+      "index": "FTSE100",
+      "sector": "Mobile telecommunications",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "weir-group",
+      "company": "Weir Group",
+      "ticker": "WEIR",
+      "index": "FTSE100",
+      "sector": "Industrial goods and services",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "whitbread",
+      "company": "Whitbread",
+      "ticker": "WTB",
+      "index": "FTSE100",
+      "sector": "Retail hospitality",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    }
+  ]
+}
