@@ -1,0 +1,58 @@
+{
+  "source": "manual annual report review",
+  "startedAt": "2026-06-21T00:00:00.000Z",
+  "batches": [
+    {
+      "batch": 1,
+      "committedIn": "171b965",
+      "companiesReviewed": [
+        "3i",
+        "Admiral Group",
+        "Aberdeen Group",
+        "Airtel Africa",
+        "Alliance Witan",
+        "Associated British Foods",
+        "Anglo American plc",
+        "Antofagasta plc",
+        "Autotrader Group",
+        "Babcock International"
+      ],
+      "verifiedExecutiveSeeds": [
+        "3i",
+        "Admiral Group",
+        "Aberdeen Group",
+        "Airtel Africa",
+        "Associated British Foods",
+        "Anglo American plc",
+        "Autotrader Group",
+        "Babcock International"
+      ],
+      "verifiedNedOnlySeeds": [
+        {
+          "company": "Alliance Witan",
+          "reason": "Investment trust annual report includes audited non-executive director fee data but no executive director single figure remuneration table.",
+          "sourceUrl": "https://www.alliancewitan.com/api/document/nouk0hpg/3510-alliance-witan-annual-report_interactive_opens-full-screen.pdf"
+        },
+        {
+          "company": "Antofagasta plc",
+          "reason": "Annual report audited directors' single figure table covers the Chair and non-executive directors; CEO/CFO single figure remuneration was not disclosed in the table.",
+          "sourceUrl": "https://www.antofagasta.co.uk/media/4803/antofagasta-annual-report-2024-web-version-26-march-compressed_1.pdf"
+        }
+      ],
+      "manualSeedAlsoFailed": [
+        {
+          "company": "Airtel Africa",
+          "field": "sayOnPayPct",
+          "reason": "The annual report extract provided audited executive remuneration and Chair fee data, but no reliable 2024 AGM remuneration vote percentage was located during this batch.",
+          "sourceUrl": "https://airtelafricaara2024.com/media/eayp4j5w/printall_2024-05-13_081026-8c40b57f-5b54-4283-ab1e-693330d055ed.pdf"
+        }
+      ]
+    }
+  ],
+  "runningTotals": {
+    "companiesReviewed": 10,
+    "verifiedExecutiveSeeds": 8,
+    "verifiedNedOnlySeeds": 2,
+    "manualSeedAlsoFailed": 1
+  }
+}
