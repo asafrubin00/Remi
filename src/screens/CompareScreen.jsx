@@ -58,10 +58,12 @@ function metricLabel(metric) {
 }
 
 function identityLabel(row) {
+  if (row.type === "average") return `${row.company} — Average (${row.averageCount ?? 0} ${row.directorType === "non-executive" ? "NEDs" : "executives"})`;
   return `${row.name} (${row.role}, ${row.company})`;
 }
 
 function shortName(row) {
+  if (row.type === "average") return `${row.company} avg`;
   return row.name.split(" ").slice(-1)[0];
 }
 
@@ -69,6 +71,57 @@ function numericMetricValue(row, metric) {
   if (row[metric] == null) return null;
   const value = Number(row[metric]);
   return Number.isFinite(value) ? value : null;
+}
+
+function averageResult(company) {
+  return { type: "average", id: company.id, label: `${company.company} — Average`, company: company.company, companyId: company.id, index: company.index };
+}
+
+function buildAverageRow(company, companyDirectors, directorType, metric) {
+  const flattened = companyDirectors.map((director) => flattenDirectorYear(director));
+  const years = [...new Set(flattened.flatMap((director) => director.yearsAvailable))].sort((a, b) => Number(b) - Number(a));
+  const averagedYears = {};
+  const averageCounts = {};
+
+  for (const year of years) {
+    const yearKey = String(year);
+    const record = { payRatio: null, sayOnPayPct: null };
+    const counts = {};
+    for (const [component] of components) {
+      const values = companyDirectors
+        .map((director) => director.years?.[yearKey]?.[component])
+        .filter((value) => value != null && Number.isFinite(Number(value)))
+        .map(Number);
+      record[component] = values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
+      counts[component] = values.length;
+    }
+    averageCounts[yearKey] = counts;
+    averagedYears[yearKey] = record;
+  }
+
+  const selectedYear = years[0] ? String(years[0]) : "2024";
+  const selectedRecord = averagedYears[selectedYear] || {};
+  return {
+    id: `average-${company.id}`,
+    name: `${company.company} — Average`,
+    role: "Average",
+    type: "average",
+    directorType,
+    companyId: company.id,
+    company: company.company,
+    index: company.index,
+    sector: company.sector,
+    currency: company.currency,
+    marketCap: company.marketCap,
+    fxRate: company.fxRate,
+    reportingYear: Number(selectedYear),
+    yearsAvailable: years.map(Number),
+    years: averagedYears,
+    averageCounts,
+    averageCount: averageCounts[selectedYear]?.[metric] ?? 0,
+    note: (averageCounts[selectedYear]?.[metric] ?? 0) ? null : `No ${directorType === "non-executive" ? "NED" : "executive"} data for ${metricLabel(metric)}.`,
+    ...selectedRecord
+  };
 }
 
 export default function CompareScreen({ dataset, directorType }) {
@@ -84,9 +137,9 @@ export default function CompareScreen({ dataset, directorType }) {
     if (trimmed.length < 2 || chips.length >= maxChips) return [];
 
     const selectedIds = new Set(chips.map(chipId));
-    const companyMatches = dataset
+    const averageMatches = dataset
       .filter((company) => matchesQuery(company.company, trimmed))
-      .map((company) => ({ type: "company", id: company.id, label: company.company, company: company.company, index: company.index }))
+      .map(averageResult)
       .filter((item) => !selectedIds.has(chipId(item)));
 
     const individualMatches = directors
@@ -94,7 +147,7 @@ export default function CompareScreen({ dataset, directorType }) {
       .map((director) => ({ type: "individual", id: director.id, label: director.name, company: director.company, companyId: director.companyId, role: director.role }))
       .filter((item) => !selectedIds.has(chipId(item)));
 
-    return [...companyMatches, ...individualMatches].slice(0, 8);
+    return [...averageMatches, ...individualMatches].slice(0, 8);
   }, [chips, dataset, directors, query]);
 
   const comparisonRows = useMemo(() => {
@@ -108,11 +161,17 @@ export default function CompareScreen({ dataset, directorType }) {
         const companyDirectors = directors.filter((director) => director.companyId === chip.id).map((director) => flattenDirectorYear(director));
         rows.push(...companyDirectors);
       }
+      if (chip.type === "average") {
+        const company = dataset.find((item) => item.id === chip.id);
+        const companyDirectors = directors.filter((director) => director.companyId === chip.id);
+        if (company) rows.push(buildAverageRow(company, companyDirectors, directorType, metric));
+      }
     }
     return rows.slice(0, maxChips);
-  }, [chips, directors]);
+  }, [chips, dataset, directorType, directors, metric]);
 
   const canCompare = comparisonRows.length >= 2;
+  const averageNotes = comparisonRows.filter((row) => row.type === "average" && row.note);
 
   const trendData = useMemo(() => {
     const years = [...new Set(comparisonRows.flatMap((director) => director.yearsAvailable))].sort();
@@ -121,7 +180,7 @@ export default function CompareScreen({ dataset, directorType }) {
       comparisonRows.forEach((director) => {
         point[director.id] = director.years[String(year)]?.[metric] ?? null;
         point[`${director.id}Currency`] = director.currency;
-        point[`${director.id}Label`] = identityLabel(director);
+        point[`${director.id}Label`] = director.type === "average" ? `${director.company} — Average (${director.averageCounts?.[String(year)]?.[metric] ?? 0} ${director.directorType === "non-executive" ? "NEDs" : "executives"})` : identityLabel(director);
       });
       return point;
     });
@@ -159,7 +218,7 @@ export default function CompareScreen({ dataset, directorType }) {
                 {searchResults.map((item) => (
                   <button key={chipId(item)} className="remi-autocomplete-item" onClick={() => addChip(item)}>
                     <span>{item.label}</span>
-                    <span className="remi-result-tag">{item.type === "company" ? "Company" : "Individual"}</span>
+                    <span className="remi-result-tag">{item.type === "average" ? "Average" : item.type === "company" ? "Company" : "Individual"}</span>
                   </button>
                 ))}
               </div>
@@ -173,8 +232,8 @@ export default function CompareScreen({ dataset, directorType }) {
 
       <div className="flex flex-wrap items-center gap-2">
         {chips.map((chip) => (
-          <span key={chipId(chip)} className="remi-chip">
-            {chip.type === "individual" ? `${chip.label} · ${chip.company}` : chip.label}
+          <span key={chipId(chip)} className={`remi-chip ${chip.type === "average" ? "remi-chip-average" : ""}`}>
+            {chip.type === "average" ? `Ø ${chip.label}` : chip.type === "individual" ? `${chip.label} · ${chip.company}` : chip.label}
             <button aria-label={`Remove ${chip.label}`} onClick={() => removeChip(chip)}>
               ×
             </button>
@@ -210,10 +269,19 @@ export default function CompareScreen({ dataset, directorType }) {
           <div className="h-[460px]">
             {canCompare ? (
               <>
-                {chartType === "Bar" ? <BarComparison data={comparisonRows} metric={metric} /> : null}
-                {chartType === "Line/Trend" ? <LineComparison data={trendData} rows={comparisonRows} metric={metric} /> : null}
-                {chartType === "Bubble" ? <BubbleComparison data={comparisonRows} metric={metric} logScale={logScale} /> : null}
-                {chartType === "Table" ? <ComparisonTable data={comparisonRows} metric={metric} /> : null}
+                <div className={chartType !== "Table" && averageNotes.length ? "h-[430px]" : "h-full"}>
+                  {chartType === "Bar" ? <BarComparison data={comparisonRows} metric={metric} /> : null}
+                  {chartType === "Line/Trend" ? <LineComparison data={trendData} rows={comparisonRows} metric={metric} /> : null}
+                  {chartType === "Bubble" ? <BubbleComparison data={comparisonRows} metric={metric} logScale={logScale} /> : null}
+                  {chartType === "Table" ? <ComparisonTable data={comparisonRows} metric={metric} /> : null}
+                </div>
+                {chartType !== "Table" && averageNotes.length ? (
+                  <div className="mt-2 space-y-1 text-[11px] text-remi-muted">
+                    {averageNotes.map((row) => (
+                      <p key={`${row.id}-${metric}`}>{row.company} — Average: n/a. {row.note}</p>
+                    ))}
+                  </div>
+                ) : null}
               </>
             ) : (
               <div className="flex h-full items-center justify-center rounded-lg border border-remi-border bg-remi-navy text-sm text-remi-text-secondary">
@@ -247,8 +315,9 @@ function ValueTooltip({ active, payload, metric, mode = "block" }) {
     .filter((entry) => entry.value != null)
     .map((entry) => ({
       label: entry.payload?.fullLabel || entry.payload?.[`${entry.dataKey}Label`] || entry.name,
-      value: entry.value,
-      currency: entry.payload?.currency || entry.payload?.[`${entry.dataKey}Currency`]
+      value: Object.prototype.hasOwnProperty.call(entry.payload || {}, "displayValue") ? entry.payload.displayValue : entry.value,
+      currency: entry.payload?.currency || entry.payload?.[`${entry.dataKey}Currency`],
+      note: entry.payload?.note
     }));
   if (!rows.length) return null;
 
@@ -258,11 +327,13 @@ function ValueTooltip({ active, payload, metric, mode = "block" }) {
         mode === "line" ? (
           <div key={`${row.label}-${index}`} className={index ? "mt-1" : ""}>
             {row.label}: <DataValue>{formatChartValue(row.value, row.currency, metric)}</DataValue>
+            {row.note ? <div className="mt-1 text-[11px] text-remi-muted">{row.note}</div> : null}
           </div>
         ) : (
           <div key={`${row.label}-${index}`} className={index ? "mt-2" : ""}>
             <div className="remi-data text-remi-gold-light">{row.label}</div>
             <DataValue className="mt-1 block">{formatChartValue(row.value, row.currency, metric)}</DataValue>
+            {row.note ? <div className="mt-1 text-[11px] text-remi-muted">{row.note}</div> : null}
           </div>
         ),
       )}
@@ -277,6 +348,7 @@ function BubbleTooltip({ active, payload, metric }) {
   return (
     <div className="rounded-md border border-remi-border bg-remi-secondary p-3 text-xs text-remi-text">
       {row.fullLabel}: <DataValue>{formatChartValue(row.value, row.currency, metric)}</DataValue>
+      {row.note ? <div className="mt-1 text-[11px] text-remi-muted">{row.note}</div> : null}
     </div>
   );
 }
@@ -285,8 +357,10 @@ function BarComparison({ data, metric }) {
   const chartData = data.map((row, index) => ({
     name: shortName(row),
     fullLabel: identityLabel(row),
-    value: numericMetricValue(row, metric),
+    value: numericMetricValue(row, metric) ?? 0,
+    displayValue: numericMetricValue(row, metric),
     currency: row.currency,
+    note: row.note,
     fill: palette[index % palette.length]
   }));
   const axisCurrency = chartCurrency(data);
@@ -309,10 +383,10 @@ function BarComparison({ data, metric }) {
 
 function BarValueLabel({ x, y, width, value, index, data, metric }) {
   const row = data[index];
-  if (value == null || !row) return null;
+  if (!row) return null;
   return (
     <text x={x + width / 2} y={y - 8} fill="#8CA8C0" fontSize={11} textAnchor="middle" className="remi-data">
-      {formatChartValue(value, row.currency, metric)}
+      {formatChartValue(row.displayValue, row.currency, metric)}
     </text>
   );
 }
@@ -344,6 +418,7 @@ function BubbleComparison({ data, metric, logScale }) {
       value,
       yValue: Math.max(value ?? 0, 1),
       bubbleSize: Number.isFinite(Number(row.sayOnPayPct)) ? Number(row.sayOnPayPct) : 45,
+      note: row.note,
       fill: palette[index % palette.length]
     };
   });
@@ -387,6 +462,7 @@ function ComparisonTable({ data, metric }) {
               <td className="px-3 py-3 text-remi-text-secondary">{row.sector}</td>
               <td className="px-3 py-3">
                 <DataValue className="text-remi-gold-light">{metric.includes("Pct") || metric === "payRatio" ? row[metric] ?? "n/a" : formatMoney(row[metric], row.currency)}</DataValue>
+                {row.note ? <div className="mt-1 text-[11px] text-remi-muted">{row.note}</div> : null}
               </td>
               <td className="px-3 py-3">
                 <DataValue>{formatMoney(row.totalCompensation, row.currency)}</DataValue>
