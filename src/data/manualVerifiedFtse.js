@@ -1145,6 +1145,343 @@ export const manualVerifiedFtse = {
       }
     ]
   },
+  "endeavour-mining": {
+    id: "endeavour-mining",
+    company: "Endeavour Mining plc",
+    index: "FTSE100",
+    sector: "Mining",
+    marketCap: null,
+    currency: "USD",
+    sayOnPayPct: 96.1,
+    sourceUrl: "https://edv-14806-s3.s3.eu-west-2.amazonaws.com/files/7617/4124/4823/EDV_AnnualReport2024_Website.pdf",
+    directors: [
+      {
+        name: "Ian Cockerill",
+        role: "Chief Executive Officer",
+        baseSalary: 1192000,
+        annualBonus: 960000,
+        ltip: 0,
+        pensionBenefits: 475000,
+        totalCompensation: 2627000,
+        payRatio: 139
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Srinivasan Venkatakrishnan",
+        role: "Chair",
+        totalFees: 530000
+      }
+    ]
+  },
+  experian: {
+    id: "experian",
+    company: "Experian plc",
+    index: "FTSE100",
+    sector: "Support Services",
+    marketCap: null,
+    year: 2023,
+    sayOnPayPct: 95.7,
+    sourceUrl: "https://www.annualreports.com/HostedData/AnnualReportArchive/E/LSE_EXPN_2023.pdf",
+    directors: [
+      {
+        name: "Brian Cassin",
+        role: "Chief Executive Officer",
+        baseSalary: 1016000,
+        annualBonus: 1199000,
+        ltip: 4951000,
+        pensionBenefits: 205000,
+        totalCompensation: 7371000,
+        payRatio: 97
+      },
+      {
+        name: "Lloyd Pitchford",
+        role: "Chief Financial Officer",
+        baseSalary: 628000,
+        annualBonus: 740000,
+        ltip: 3055000,
+        pensionBenefits: 131000,
+        totalCompensation: 4554000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [],
+    manualNote: "Seeded from the accessible 2023 audited remuneration report because the 2024 Experian PDF endpoint returned an Imperva/Incapsula block page. Chair/NED fees were disclosed in euros and are omitted until Remi supports per-director currency."
+  },
+  "fresnillo-plc": {
+    id: "fresnillo-plc",
+    company: "Fresnillo plc",
+    index: "FTSE100",
+    sector: "Mining",
+    marketCap: null,
+    currency: "USD",
+    sayOnPayPct: null,
+    sourceUrl: "https://www.fresnilloplc.com/media/m4tmb1li/fres-directors-remuneration-report-ar24.pdf",
+    directors: [
+      {
+        name: "Octavio Alvidrez",
+        role: "Chief Executive Officer",
+        baseSalary: 1277000,
+        annualBonus: 458000,
+        ltip: 0,
+        pensionBenefits: 308000,
+        totalCompensation: 2043000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Alejandro Bailleres",
+        role: "Chairman",
+        totalFees: 54000
+      }
+    ],
+    manualNote: "The 2024 Directors' Remuneration Report states the 2024 AGM vote details would be announced to market; no exact say-on-pay percentage was disclosed in the extracted report."
+  },
+  "games-workshop": {
+    id: "games-workshop",
+    company: "Games Workshop Group plc",
+    index: "FTSE100",
+    sector: "Leisure Goods",
+    marketCap: null,
+    sayOnPayPct: 89.1,
+    sourceUrl: "https://assets.ctfassets.net/ost7hseic9hc/6nhjgj1BVPlaTocG6L4IbS/e42b72a50979ca58769b9e85e04ae79a/2023-24_accounts_-_final.pdf",
+    directors: [
+      {
+        name: "Kevin Rountree",
+        role: "Chief Executive Officer",
+        baseSalary: 739000,
+        annualBonus: 1044000,
+        ltip: 7000,
+        pensionBenefits: 10000,
+        totalCompensation: 1800000,
+        payRatio: 43
+      },
+      {
+        name: "Rachel Tongue",
+        role: "Chief Financial Officer",
+        baseSalary: 490000,
+        annualBonus: 696000,
+        ltip: 7000,
+        pensionBenefits: 10000,
+        totalCompensation: 1203000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "John Brewis",
+        role: "Non-Executive Chair",
+        totalFees: 175000
+      }
+    ]
+  },
+  glencore: {
+    id: "glencore",
+    company: "Glencore plc",
+    index: "FTSE100",
+    sector: "Mining",
+    marketCap: null,
+    currency: "USD",
+    sayOnPayPct: 96.36,
+    sourceUrl: "https://www.glencore.com/.rest/api/v1/documents/static/7a4295e4-3674-45e9-94c4-7d7fb285faff/GLEN-2024-Annual-Report.pdf",
+    directors: [
+      {
+        name: "Gary Nagle",
+        role: "Chief Executive Officer",
+        baseSalary: 2000000,
+        annualBonus: 0,
+        ltip: 3116000,
+        pensionBenefits: 149000,
+        totalCompensation: 5265000,
+        payRatio: 139
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Kalidas Madhavpeddi",
+        role: "Non-Executive Chairman",
+        totalFees: 1150000
+      }
+    ]
+  },
+  haleon: {
+    id: "haleon",
+    company: "Haleon plc",
+    index: "FTSE100",
+    sector: "Pharmaceuticals & Biotechnology",
+    marketCap: null,
+    sayOnPayPct: 95.74,
+    sourceUrl: "https://www.haleon.com/content/dam/haleon/corporate/documents/investors/oar-2024/haleon-annual-report-and-form-20F-2024.pdf.downloadasset.pdf",
+    directors: [
+      {
+        name: "Brian McNamara",
+        role: "Chief Executive Officer",
+        baseSalary: 1292000,
+        annualBonus: 1520000,
+        ltip: 6038000,
+        pensionBenefits: 212000,
+        totalCompensation: 9062000,
+        payRatio: 82
+      },
+      {
+        name: "Tobias Hestler",
+        role: "Former Chief Financial Officer",
+        baseSalary: 604000,
+        annualBonus: 701000,
+        ltip: 0,
+        pensionBenefits: 76000,
+        totalCompensation: 1381000,
+        payRatio: null
+      },
+      {
+        name: "Dawn Allen",
+        role: "Chief Financial Officer",
+        baseSalary: 133000,
+        annualBonus: 150000,
+        ltip: 2127000,
+        pensionBenefits: 24000,
+        totalCompensation: 2434000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sir Dave Lewis",
+        role: "Chair",
+        totalFees: 741000
+      }
+    ]
+  },
+  "halma-plc": {
+    id: "halma-plc",
+    company: "Halma plc",
+    index: "FTSE100",
+    sector: "Electronic Equipment & Parts",
+    marketCap: null,
+    sayOnPayPct: 96.56,
+    sourceUrl: "https://www.halma.com/~/media/Files/H/Halma/Corp-V2/reports-and-presentations/reports/2024/ara/halma-annual-report-and-accounts-2024.pdf",
+    directors: [
+      {
+        name: "Marc Ronchetti",
+        role: "Group Chief Executive",
+        baseSalary: 900000,
+        annualBonus: 1710000,
+        ltip: 871000,
+        pensionBenefits: 124000,
+        totalCompensation: 3605000,
+        payRatio: 99
+      },
+      {
+        name: "Steve Gunning",
+        role: "Chief Financial Officer",
+        baseSalary: 600000,
+        annualBonus: 1026000,
+        ltip: 4000,
+        pensionBenefits: 90000,
+        totalCompensation: 1720000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Dame Louise Makin",
+        role: "Chair",
+        totalFees: 423000
+      }
+    ]
+  },
+  hiscox: {
+    id: "hiscox",
+    company: "Hiscox Ltd",
+    index: "FTSE100",
+    sector: "Non-Life Insurance",
+    marketCap: null,
+    sayOnPayPct: 95.39,
+    sourceUrl: "https://www.annualreports.com/Click/12581",
+    directors: [
+      {
+        name: "Aki Hussain",
+        role: "Group Chief Executive Officer",
+        baseSalary: 813000,
+        annualBonus: 2325000,
+        ltip: 1350897,
+        pensionBenefits: 85055,
+        totalCompensation: 4573952,
+        payRatio: 56
+      },
+      {
+        name: "Paul Cooper",
+        role: "Group Chief Financial Officer",
+        baseSalary: 561563,
+        annualBonus: 1600000,
+        ltip: 1534463,
+        pensionBenefits: 48483,
+        totalCompensation: 3744509,
+        payRatio: null
+      },
+      {
+        name: "Joanne Musselle",
+        role: "Group Chief Underwriting Officer",
+        baseSalary: 561563,
+        annualBonus: 2000000,
+        ltip: 942362,
+        pensionBenefits: 61883,
+        totalCompensation: 3565808,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Jonathan Bloomer",
+        role: "Chair",
+        totalFees: 335000
+      },
+      {
+        name: "Colin Keogh",
+        role: "Interim Chair",
+        totalFees: 278923
+      }
+    ]
+  },
+  "howdens-joinery": {
+    id: "howdens-joinery",
+    company: "Howden Joinery Group plc",
+    index: "FTSE100",
+    sector: "Homebuilding & Construction Supplies",
+    marketCap: null,
+    sayOnPayPct: 98.93,
+    sourceUrl: "https://www.howdenjoinerygroupplc.com/docs/librariesprovider25/archives/annual-reports/2024-annual-report.pdf",
+    directors: [
+      {
+        name: "Andrew Livingston",
+        role: "Chief Executive Officer",
+        baseSalary: 726000,
+        annualBonus: 841000,
+        ltip: 1478000,
+        pensionBenefits: 110000,
+        totalCompensation: 3155000,
+        payRatio: 79
+      },
+      {
+        name: "Paul Hayes",
+        role: "Chief Financial Officer",
+        baseSalary: 474000,
+        annualBonus: 550000,
+        ltip: 788000,
+        pensionBenefits: 82000,
+        totalCompensation: 1894000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Peter Ventress",
+        role: "Chairman",
+        totalFees: 332000
+      }
+    ]
+  },
   tesco: {
     id: "tesco",
     company: "Tesco PLC",

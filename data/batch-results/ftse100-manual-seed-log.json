@@ -132,12 +132,79 @@
           "note": "DCC reports audited director remuneration in euros; Remi preserves the source currency and now formats EUR values with the euro symbol."
         }
       ]
+    },
+    {
+      "batch": 4,
+      "committedIn": null,
+      "companiesReviewed": [
+        "Endeavour Mining",
+        "Experian",
+        "F & C Investment Trust",
+        "Fresnillo plc",
+        "Games Workshop",
+        "Glencore",
+        "Haleon",
+        "Halma plc",
+        "Hiscox",
+        "Howdens Joinery"
+      ],
+      "verifiedExecutiveSeeds": [
+        "Endeavour Mining",
+        "Experian",
+        "Fresnillo plc",
+        "Games Workshop",
+        "Glencore",
+        "Haleon",
+        "Halma plc",
+        "Hiscox",
+        "Howdens Joinery"
+      ],
+      "verifiedNedOnlySeeds": [],
+      "manualSeedAlsoFailed": [
+        {
+          "company": "F & C Investment Trust",
+          "field": "all manual remuneration fields",
+          "reason": "No accessible audited Directors' Remuneration table or PDF was located during this batch. Public announcement mirrors exposed performance and Chair statement text but not verifiable director fee rows.",
+          "sourceUrl": "https://www.publicnow.com/view/929D32F98D206D39F3E8D5E7513F7D325CEFA135",
+          "fallbackUrl": "https://www.jamessharp.co.uk/market-news/fc-investment-trust-annual-financial-report-2/"
+        },
+        {
+          "company": "Fresnillo plc",
+          "field": "sayOnPayPct",
+          "reason": "The extracted 2024 Directors' Remuneration Report states that 2024 AGM vote details would be announced to market, but does not disclose an exact percentage for the 2024 Annual Report on Remuneration.",
+          "sourceUrl": "https://www.fresnilloplc.com/media/m4tmb1li/fres-directors-remuneration-report-ar24.pdf"
+        },
+        {
+          "company": "Experian",
+          "field": "Chair/NED fee",
+          "reason": "The 2023 report discloses executive remuneration in GBP and Chair/NED fees in EUR. Remi currently stores currency at company level, so the EUR Chair fee was not seeded to avoid mislabelling it as GBP.",
+          "sourceUrl": "https://www.annualreports.com/HostedData/AnnualReportArchive/E/LSE_EXPN_2023.pdf"
+        }
+      ],
+      "notes": [
+        {
+          "company": "Experian",
+          "note": "Seeded from the accessible 2023 audited annual report because the 2024 and 2025 Experian PDF endpoints returned Imperva/Incapsula block pages."
+        },
+        {
+          "company": "Endeavour Mining",
+          "note": "Preserved USD source figures from the audited 2024 report."
+        },
+        {
+          "company": "Fresnillo plc",
+          "note": "Preserved USD source figures from the audited 2024 remuneration report."
+        },
+        {
+          "company": "Glencore",
+          "note": "Preserved USD source figures from the audited 2024 report."
+        }
+      ]
     }
   ],
   "runningTotals": {
-    "companiesReviewed": 30,
-    "verifiedExecutiveSeeds": 27,
+    "companiesReviewed": 40,
+    "verifiedExecutiveSeeds": 36,
     "verifiedNedOnlySeeds": 2,
-    "manualSeedAlsoFailed": 3
+    "manualSeedAlsoFailed": 6
   }
 }
