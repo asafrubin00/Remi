@@ -22,7 +22,8 @@ export default async function handler(request, response) {
 
   try {
     if (company.index === "SP500") {
-      response.status(200).json(await scrapeSp500Company(company.ticker || company.company));
+      const skipCache = request.query.fresh === "1" || request.query.skipCache === "1";
+      response.status(200).json(await scrapeSp500Company(company.ticker || company.company, { skipCache }));
       return;
     }
 

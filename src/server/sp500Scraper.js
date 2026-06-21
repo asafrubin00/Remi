@@ -314,10 +314,14 @@ function tableRows($, table) {
         .find("td,th")
         .map((__, cell) => cleanText($(cell).text()))
         .get()
-        .filter((cell) => cell && cell !== "$");
+        .filter((cell) => cell && cell !== "$" && !isFootnoteOnlyCell(cell));
       if (cells.length) rows.push(cells);
     });
   return rows;
+}
+
+function isFootnoteOnlyCell(value) {
+  return /^(?:\(\d+\)|\*+)+$/.test(cleanText(value));
 }
 
 function parsePayRatio(html, company) {
@@ -438,6 +442,7 @@ function parseMoney(value) {
   if (!value || /—|-|n\/a/i.test(value)) return null;
   const negative = /^\(.*\)$/.test(value.trim());
   const withoutFootnotes = value.replace(/\(\d+\)/g, "");
+  if (!/\d/.test(withoutFootnotes)) return null;
   const parsed = Number(withoutFootnotes.replace(/[$,()\s]/g, ""));
   if (!Number.isFinite(parsed)) return null;
   return negative ? -parsed : parsed;
