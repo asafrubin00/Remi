@@ -77,6 +77,14 @@ function averageResult(company) {
   return { type: "average", id: company.id, label: `${company.company} — Average`, company: company.company, companyId: company.id, index: company.index };
 }
 
+function allIndividualsResult(company, count) {
+  return { type: "all", id: company.id, label: `${company.company} — All Individuals`, company: company.company, companyId: company.id, index: company.index, count };
+}
+
+function directorChip(director) {
+  return { type: "individual", id: director.id, label: director.name, company: director.company, companyId: director.companyId, role: director.role };
+}
+
 function buildAverageRow(company, companyDirectors, directorType, metric) {
   const flattened = companyDirectors.map((director) => flattenDirectorYear(director));
   const years = [...new Set(flattened.flatMap((director) => director.yearsAvailable))].sort((a, b) => Number(b) - Number(a));
@@ -137,17 +145,24 @@ export default function CompareScreen({ dataset, directorType }) {
     if (trimmed.length < 2 || chips.length >= maxChips) return [];
 
     const selectedIds = new Set(chips.map(chipId));
-    const averageMatches = dataset
-      .filter((company) => matchesQuery(company.company, trimmed))
-      .map(averageResult)
-      .filter((item) => !selectedIds.has(chipId(item)));
+    const matchingCompanies = dataset.filter((company) => matchesQuery(company.company, trimmed));
+    const companyActionMatches = matchingCompanies
+      .flatMap((company) => {
+        const actions = [];
+        const average = averageResult(company);
+        if (!selectedIds.has(chipId(average))) actions.push(average);
+
+        const unselectedDirectors = directors.filter((director) => director.companyId === company.id && !selectedIds.has(chipId(directorChip(director))));
+        if (unselectedDirectors.length) actions.push(allIndividualsResult(company, unselectedDirectors.length));
+        return actions;
+      });
 
     const individualMatches = directors
       .filter((director) => matchesQuery(director.name, trimmed) || matchesQuery(director.company, trimmed))
-      .map((director) => ({ type: "individual", id: director.id, label: director.name, company: director.company, companyId: director.companyId, role: director.role }))
+      .map(directorChip)
       .filter((item) => !selectedIds.has(chipId(item)));
 
-    return [...averageMatches, ...individualMatches].slice(0, 8);
+    return [...companyActionMatches, ...individualMatches].slice(0, 8);
   }, [chips, dataset, directors, query]);
 
   const comparisonRows = useMemo(() => {
@@ -190,10 +205,23 @@ export default function CompareScreen({ dataset, directorType }) {
 
   const addChip = (item) => {
     if (chips.length >= maxChips) return;
+    if (item.type === "all") {
+      setChips((current) => {
+        const selectedIds = new Set(current.map(chipId));
+        const remainingSlots = maxChips - current.length;
+        const additions = directors
+          .filter((director) => director.companyId === item.id)
+          .map(directorChip)
+          .filter((director) => !selectedIds.has(chipId(director)))
+          .slice(0, remainingSlots);
+        return additions.length ? [...current, ...additions] : current;
+      });
+      return;
+    }
+
     const id = chipId(item);
     if (chips.some((chip) => chipId(chip) === id)) return;
     setChips((current) => [...current, item]);
-    setQuery("");
   };
 
   const removeChip = (item) => {
@@ -218,7 +246,7 @@ export default function CompareScreen({ dataset, directorType }) {
                 {searchResults.map((item) => (
                   <button key={chipId(item)} className="remi-autocomplete-item" onClick={() => addChip(item)}>
                     <span>{item.label}</span>
-                    <span className="remi-result-tag">{item.type === "average" ? "Average" : item.type === "company" ? "Company" : "Individual"}</span>
+                    <span className="remi-result-tag">{item.type === "average" ? "Average" : item.type === "all" ? "All" : item.type === "company" ? "Company" : "Individual"}</span>
                   </button>
                 ))}
               </div>
