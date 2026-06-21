@@ -168,6 +168,36 @@ a:hover {
     @apply truncate text-[11px] text-remi-muted;
   }
 
+  .remi-result-tag {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply rounded border border-remi-border px-1.5 py-0.5 text-[10px] uppercase tracking-[0.12em] text-remi-gold-light;
+  }
+
+  .remi-chip {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply inline-flex items-center gap-2 rounded-full border border-remi-border bg-remi-navy px-3 py-1.5 text-[12px] text-remi-text-secondary;
+  }
+
+  .remi-chip button {
+    @apply flex h-4 w-4 items-center justify-center rounded-full text-remi-muted transition hover:bg-remi-surface hover:text-remi-gold-light;
+  }
+
+  .remi-toggle {
+    @apply relative h-5 w-9 rounded-full border border-remi-border bg-remi-navy transition;
+  }
+
+  .remi-toggle span {
+    @apply absolute left-1 top-1 h-3 w-3 rounded-full bg-remi-muted transition;
+  }
+
+  .remi-toggle-active {
+    @apply border-remi-gold bg-remi-secondary;
+  }
+
+  .remi-toggle-active span {
+    @apply translate-x-4 bg-remi-gold;
+  }
+
   .remi-select {
     @apply h-10 rounded-md border border-remi-border bg-remi-navy px-3 text-[13px] text-remi-text outline-none transition focus:border-remi-gold focus:ring-1 focus:ring-remi-gold;
   }

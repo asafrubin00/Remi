@@ -20,7 +20,7 @@ import { DataValue, Panel, SectionHeader, TabButton } from "../components/ui.jsx
 import { allDirectors, flattenDirectorYear, formatCompactMarketCap, formatCompactMoney, formatMoney } from "../data/mockRemuneration.js";
 
 const components = [
-  ["totalCompensation", "Total Comp"],
+  ["totalCompensation", "Total Compensation"],
   ["baseSalary", "Salary"],
   ["annualBonus", "Bonus"],
   ["ltip", "LTIP"],
@@ -30,12 +30,11 @@ const components = [
 ];
 
 const chartTypes = ["Bar", "Line/Trend", "Bubble", "Table"];
-const palette = ["#C8960C", "#3498DB", "#2ECC71", "#E74C3C", "#9B59B6"];
+const palette = ["#C8960C", "#3498DB", "#2ECC71", "#E74C3C", "#9B59B6", "#8CA8C0"];
+const maxChips = 6;
 
-function toggleValue(list, value, max = 4) {
-  if (list.includes(value)) return list.filter((item) => item !== value);
-  if (list.length >= max) return list;
-  return [...list, value];
+function matchesQuery(value, query) {
+  return value.toLowerCase().includes(query.trim().toLowerCase());
 }
 
 function chartCurrency(rows) {
@@ -50,23 +49,56 @@ function formatChartValue(value, currency, metric) {
   return formatCompactMoney(value, currency);
 }
 
+function chipId(item) {
+  return `${item.type}:${item.id}`;
+}
+
+function metricLabel(metric) {
+  return components.find(([key]) => key === metric)?.[1] || metric;
+}
+
 export default function CompareScreen({ dataset, directorType }) {
   const directors = useMemo(() => allDirectors(dataset).filter((director) => director.type === directorType), [dataset, directorType]);
-  const [selectedIndices, setSelectedIndices] = useState(["FTSE100", "SP500"]);
-  const [selectedCompanies, setSelectedCompanies] = useState(["bp", "microsoft"]);
-  const [selectedIndividuals, setSelectedIndividuals] = useState([]);
+  const [query, setQuery] = useState("");
+  const [chips, setChips] = useState([]);
   const [metric, setMetric] = useState("totalCompensation");
   const [chartType, setChartType] = useState("Bar");
+  const [logScale, setLogScale] = useState(false);
+
+  const searchResults = useMemo(() => {
+    const trimmed = query.trim();
+    if (trimmed.length < 2 || chips.length >= maxChips) return [];
+
+    const selectedIds = new Set(chips.map(chipId));
+    const companyMatches = dataset
+      .filter((company) => matchesQuery(company.company, trimmed))
+      .map((company) => ({ type: "company", id: company.id, label: company.company, company: company.company, index: company.index }))
+      .filter((item) => !selectedIds.has(chipId(item)));
+
+    const individualMatches = directors
+      .filter((director) => matchesQuery(director.name, trimmed) || matchesQuery(director.company, trimmed))
+      .map((director) => ({ type: "individual", id: director.id, label: director.name, company: director.company, companyId: director.companyId, role: director.role }))
+      .filter((item) => !selectedIds.has(chipId(item)));
+
+    return [...companyMatches, ...individualMatches].slice(0, 8);
+  }, [chips, dataset, directors, query]);
 
   const comparisonRows = useMemo(() => {
-    const scoped = directors.filter((director) => {
-      const indexMatch = selectedIndices.length === 0 || selectedIndices.includes(director.index);
-      const companyMatch = selectedCompanies.length === 0 || selectedCompanies.includes(director.companyId);
-      const individualMatch = selectedIndividuals.length === 0 || selectedIndividuals.includes(director.id);
-      return indexMatch && (companyMatch || individualMatch);
-    });
-    return scoped.slice(0, 4).map((director) => flattenDirectorYear(director));
-  }, [directors, selectedCompanies, selectedIndividuals, selectedIndices]);
+    const rows = [];
+    for (const chip of chips) {
+      if (chip.type === "individual") {
+        const director = directors.find((item) => item.id === chip.id);
+        if (director) rows.push(flattenDirectorYear(director));
+      }
+      if (chip.type === "company") {
+        const companyDirectors = directors.filter((director) => director.companyId === chip.id).map((director) => flattenDirectorYear(director));
+        rows.push(...companyDirectors);
+      }
+    }
+    return rows.slice(0, maxChips);
+  }, [chips, directors]);
+
+  const canCompare = comparisonRows.length >= 2;
 
   const trendData = useMemo(() => {
     const years = [...new Set(comparisonRows.flatMap((director) => director.yearsAvailable))].sort();
@@ -79,25 +111,63 @@ export default function CompareScreen({ dataset, directorType }) {
     });
   }, [comparisonRows, metric]);
 
-  const analysisData = useMemo(() => ({ directorType, metric, chartType, comparisonRows }), [chartType, comparisonRows, directorType, metric]);
+  const orientingText = useMemo(() => {
+    if (!comparisonRows.length) return "Add at least two companies or individuals to begin comparing.";
+    const names = comparisonRows.map((row) => `${row.name} (${row.company})`).join(" vs ");
+    return `Comparing ${metricLabel(metric)} · ${names}`;
+  }, [comparisonRows, metric]);
+
+  const analysisData = useMemo(() => (canCompare ? { directorType, metric, chartType, logScale, comparisonRows } : null), [canCompare, chartType, comparisonRows, directorType, logScale, metric]);
+
+  const addChip = (item) => {
+    if (chips.length >= maxChips) return;
+    const id = chipId(item);
+    if (chips.some((chip) => chipId(chip) === id)) return;
+    setChips((current) => [...current, item]);
+    setQuery("");
+  };
+
+  const removeChip = (item) => {
+    setChips((current) => current.filter((chip) => chipId(chip) !== chipId(item)));
+  };
 
   return (
     <div className="space-y-4">
-      <Panel className="grid grid-cols-3 gap-4 p-5">
-        <SelectorPanel title="Index" values={["FTSE100", "FTSE250", "SP500"]} selected={selectedIndices} onToggle={(value) => setSelectedIndices(toggleValue(selectedIndices, value, 3))} />
-        <SelectorPanel
-          title="Company"
-          values={dataset.map((company) => [company.id, company.company])}
-          selected={selectedCompanies}
-          onToggle={(value) => setSelectedCompanies(toggleValue(selectedCompanies, value))}
-        />
-        <SelectorPanel
-          title="Individual"
-          values={directors.map((director) => [director.id, director.name])}
-          selected={selectedIndividuals}
-          onToggle={(value) => setSelectedIndividuals(toggleValue(selectedIndividuals, value))}
-        />
+      <Panel className="p-5">
+        <SectionHeader>Add Comparison</SectionHeader>
+        <div className="relative mt-3 max-w-[520px]">
+          <input
+            className="remi-input"
+            placeholder="Add a company or individual to compare"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            disabled={chips.length >= maxChips}
+          />
+          {searchResults.length ? (
+            <div className="remi-autocomplete-list">
+              {searchResults.map((item) => (
+                <button key={chipId(item)} className="remi-autocomplete-item" onClick={() => addChip(item)}>
+                  <span>{item.label}</span>
+                  <span className="remi-result-tag">{item.type === "company" ? "Company" : "Individual"}</span>
+                </button>
+              ))}
+            </div>
+          ) : null}
+        </div>
+        {chips.length >= maxChips ? <p className="mt-2 text-xs text-remi-gold-light">Maximum 6 — remove one to add another</p> : null}
       </Panel>
+
+      <div className="flex flex-wrap items-center gap-2">
+        {chips.map((chip) => (
+          <span key={chipId(chip)} className="remi-chip">
+            {chip.type === "individual" ? `${chip.label} · ${chip.company}` : chip.label}
+            <button aria-label={`Remove ${chip.label}`} onClick={() => removeChip(chip)}>
+              ×
+            </button>
+          </span>
+        ))}
+        {!chips.length ? <span className="text-sm text-remi-text-secondary">No comparison chips selected.</span> : null}
+      </div>
 
       <div className="flex items-center gap-2">
         {components.map(([key, label]) => (
@@ -109,28 +179,32 @@ export default function CompareScreen({ dataset, directorType }) {
 
       <div className="grid grid-cols-[calc(80%-8px)_20%] gap-4">
         <Panel className="h-[560px] p-6">
-          <div className="mb-5 flex items-center justify-between">
-            <SectionHeader>{components.find(([key]) => key === metric)?.[1]} Comparison</SectionHeader>
-            <div className="flex gap-1 rounded-lg border border-remi-border bg-remi-navy p-1">
-              {chartTypes.map((type) => (
-                <TabButton key={type} active={chartType === type} className="px-3 py-1.5 text-[12px]" onClick={() => setChartType(type)}>
-                  {type}
-                </TabButton>
-              ))}
+          <div className="mb-3 flex items-center justify-between gap-4">
+            <SectionHeader>{metricLabel(metric)} Comparison</SectionHeader>
+            <div className="flex items-center gap-3">
+              {chartType === "Bubble" ? <LogScaleToggle checked={logScale} onChange={setLogScale} /> : null}
+              <div className="flex gap-1 rounded-lg border border-remi-border bg-remi-navy p-1">
+                {chartTypes.map((type) => (
+                  <TabButton key={type} active={chartType === type} className="px-3 py-1.5 text-[12px]" onClick={() => setChartType(type)}>
+                    {type}
+                  </TabButton>
+                ))}
+              </div>
             </div>
           </div>
+          <p className="mb-4 text-sm text-remi-text-secondary">{orientingText}</p>
 
-          <div className="h-[470px]">
-            {comparisonRows.length ? (
+          <div className="h-[440px]">
+            {canCompare ? (
               <>
                 {chartType === "Bar" ? <BarComparison data={comparisonRows} metric={metric} /> : null}
                 {chartType === "Line/Trend" ? <LineComparison data={trendData} rows={comparisonRows} metric={metric} /> : null}
-                {chartType === "Bubble" ? <BubbleComparison data={comparisonRows} metric={metric} /> : null}
+                {chartType === "Bubble" ? <BubbleComparison data={comparisonRows} metric={metric} logScale={logScale} /> : null}
                 {chartType === "Table" ? <ComparisonTable data={comparisonRows} metric={metric} /> : null}
               </>
             ) : (
               <div className="flex h-full items-center justify-center rounded-lg border border-remi-border bg-remi-navy text-sm text-remi-text-secondary">
-                No comparison records match the current selection.
+                Add at least 2 comparison chips to render a chart.
               </div>
             )}
           </div>
@@ -143,28 +217,14 @@ export default function CompareScreen({ dataset, directorType }) {
   );
 }
 
-function SelectorPanel({ title, values, selected, onToggle }) {
+function LogScaleToggle({ checked, onChange }) {
   return (
-    <div className="remi-panel-inner p-4">
-      <SectionHeader>{title} ↓</SectionHeader>
-      <div className="mt-3 grid max-h-32 gap-2 overflow-y-auto pr-1">
-        {values.map((value) => {
-          const id = Array.isArray(value) ? value[0] : value;
-          const label = Array.isArray(value) ? value[1] : value;
-          return (
-            <button
-              key={id}
-              className={`rounded-md border px-3 py-2 text-left text-xs transition ${
-                selected.includes(id) ? "border-remi-gold bg-remi-gold text-remi-navy" : "border-remi-border bg-remi-secondary text-remi-text-secondary hover:border-remi-gold"
-              }`}
-              onClick={() => onToggle(id)}
-            >
-              {label}
-            </button>
-          );
-        })}
-      </div>
-    </div>
+    <label className="flex items-center gap-2 text-xs text-remi-text-secondary">
+      <span>Log scale</span>
+      <button className={`remi-toggle ${checked ? "remi-toggle-active" : ""}`} type="button" role="switch" aria-checked={checked} onClick={() => onChange(!checked)}>
+        <span />
+      </button>
+    </label>
   );
 }
 
@@ -246,12 +306,12 @@ function LineComparison({ data, rows, metric }) {
   );
 }
 
-function BubbleComparison({ data, metric }) {
+function BubbleComparison({ data, metric, logScale }) {
   const chartData = data.map((row, index) => ({
     name: row.name,
     currency: row.currency,
     marketCap: row.marketCap,
-    pay: row[metric] ?? row.totalCompensation,
+    pay: Math.max(Number(row[metric] ?? row.totalCompensation ?? 0), 1),
     vote: row.sayOnPayPct ?? 50,
     fill: palette[index % palette.length]
   }));
@@ -260,7 +320,7 @@ function BubbleComparison({ data, metric }) {
     <ResponsiveContainer width="100%" height="100%">
       <ScatterChart margin={{ top: 20, right: 20, left: 10, bottom: 20 }}>
         <XAxis dataKey="marketCap" name="Market cap" tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(value) => formatCompactMarketCap(value, axisCurrency)} />
-        <YAxis dataKey="pay" name="Pay" tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(value) => formatChartValue(value, axisCurrency, metric)} />
+        <YAxis dataKey="pay" name="Pay" scale={logScale ? "log" : "auto"} domain={logScale ? [1, "dataMax"] : [0, "auto"]} tick={{ fill: "#4A6278", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(value) => formatChartValue(value, axisCurrency, metric)} />
         <ZAxis dataKey="vote" range={[120, 900]} />
         <Tooltip cursor={{ strokeDasharray: "3 3" }} content={<ChartTooltip metric={metric} />} />
         <Scatter data={chartData}>

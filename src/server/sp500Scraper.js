@@ -244,6 +244,7 @@ function parseSummaryCompensationTable(html, company) {
       payRatio: null,
       sayOnPayPct: null
     };
+    normalizeCompensationScale(record, company, row);
 
     const id = slugify(currentPerson.name);
     const existing = directors.get(id) || {
@@ -265,6 +266,21 @@ function parseSummaryCompensationTable(html, company) {
   }
 
   return { directors: [...directors.values()], warnings };
+}
+
+function normalizeCompensationScale(record, company, row) {
+  const fields = ["baseSalary", "annualBonus", "ltip", "pensionBenefits", "totalCompensation"];
+  for (const field of fields) {
+    const value = record[field];
+    if (value == null) continue;
+    if (value > 1000000000 && value % 1000000 === 0) {
+      record[field] = Math.round(value / 1000000);
+      console.error("[scrape-sp500] Corrected million-scale compensation parse", { company: company.name, field, original: value, corrected: record[field], row });
+    } else if (value > 1000000000) {
+      record[field] = null;
+      console.error("[scrape-sp500] Removed implausible compensation parse", { company: company.name, field, original: value, row });
+    }
+  }
 }
 
 function findSummaryCompensationTable($) {

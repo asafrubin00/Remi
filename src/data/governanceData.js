@@ -33,7 +33,7 @@ export function enrichGovernanceData(company) {
   if (!company?.id) return company;
 
   const sayOnPayPct = ftseSayOnPayPct[company.id] ?? null;
-  const directors = (company.directors || []).map((director) => applySayOnPay(director, sayOnPayPct));
+  const directors = (company.directors || []).map((director) => sanitizeDirectorCompensation(applySayOnPay(director, sayOnPayPct)));
   const existingIds = new Set(directors.map((director) => director.id));
 
   for (const feeRecord of nonExecutiveFees[company.id] || []) {
@@ -46,6 +46,32 @@ export function enrichGovernanceData(company) {
     directors,
     sayOnPayPct: sayOnPayPct ?? company.sayOnPayPct ?? null
   };
+}
+
+function sanitizeDirectorCompensation(director) {
+  return {
+    ...director,
+    years: Object.fromEntries(
+      Object.entries(director.years || {}).map(([year, record]) => [
+        year,
+        {
+          ...record,
+          baseSalary: normalizeCompensationValue(record.baseSalary),
+          annualBonus: normalizeCompensationValue(record.annualBonus),
+          ltip: normalizeCompensationValue(record.ltip),
+          pensionBenefits: normalizeCompensationValue(record.pensionBenefits),
+          totalCompensation: normalizeCompensationValue(record.totalCompensation)
+        }
+      ]),
+    )
+  };
+}
+
+function normalizeCompensationValue(value) {
+  if (value == null || !Number.isFinite(Number(value))) return value;
+  if (value > 1000000000 && value % 1000000 === 0) return Math.round(value / 1000000);
+  if (value > 1000000000) return null;
+  return value;
 }
 
 function applySayOnPay(director, sayOnPayPct) {
