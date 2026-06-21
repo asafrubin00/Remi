@@ -365,6 +365,416 @@ export const manualVerifiedFtse = {
       }
     ]
   },
+  aviva: {
+    id: "aviva",
+    company: "Aviva plc",
+    index: "FTSE100",
+    sector: "Life Insurance",
+    marketCap: null,
+    sayOnPayPct: 97.59,
+    sourceUrl: "https://www.annualreports.com/HostedData/AnnualReportArchive/A/LSE_AV_2024.pdf",
+    directors: [
+      {
+        name: "Amanda Blanc",
+        role: "Group Chief Executive Officer",
+        baseSalary: 1110000,
+        annualBonus: 2194000,
+        ltip: 3682000,
+        pensionBenefits: 208000,
+        totalCompensation: 7193000,
+        payRatio: 149
+      },
+      {
+        name: "Charlotte Jones",
+        role: "Group Chief Financial Officer",
+        baseSalary: 728000,
+        annualBonus: 1014000,
+        ltip: 1508000,
+        pensionBenefits: 105000,
+        totalCompensation: 3355000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "George Culmer",
+        role: "Chair",
+        totalFees: 576000
+      }
+    ]
+  },
+  "bae-systems": {
+    id: "bae-systems",
+    company: "BAE Systems plc",
+    index: "FTSE100",
+    sector: "Aerospace & Defence",
+    marketCap: null,
+    sayOnPayPct: 97.33,
+    sourceUrl: "https://www.annualreports.com/HostedData/AnnualReportArchive/b/LSE_BA_2024.pdf",
+    directors: [
+      {
+        name: "Charles Woodburn",
+        role: "Group Chief Executive",
+        baseSalary: 1234000,
+        annualBonus: 2734000,
+        ltip: 7497000,
+        pensionBenefits: 215000,
+        totalCompensation: 11681000,
+        payRatio: 183
+      },
+      {
+        name: "Brad Greve",
+        role: "Group Finance Director",
+        baseSalary: 784000,
+        annualBonus: 1544000,
+        ltip: 3814000,
+        pensionBenefits: 101000,
+        totalCompensation: 6244000,
+        payRatio: null
+      },
+      {
+        name: "Tom Arseneault",
+        role: "President and CEO, BAE Systems, Inc.",
+        baseSalary: 895000,
+        annualBonus: 1977000,
+        ltip: 5489000,
+        pensionBenefits: 65000,
+        totalCompensation: 8426000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Cressida Hogg",
+        role: "Chair",
+        totalFees: 700000
+      }
+    ]
+  },
+  barclays: {
+    id: "barclays",
+    company: "Barclays PLC",
+    index: "FTSE100",
+    sector: "Banks",
+    marketCap: null,
+    sayOnPayPct: 97.54,
+    sourceUrl: "https://www.annualreports.com/HostedData/AnnualReportArchive/b/LSE_BARC_2024.pdf",
+    directors: [
+      {
+        name: "C.S. Venkatakrishnan",
+        role: "Group Chief Executive",
+        baseSalary: 2935000,
+        annualBonus: 2219000,
+        ltip: 5137000,
+        pensionBenefits: 242000,
+        totalCompensation: 10533000,
+        payRatio: 182
+      },
+      {
+        name: "Anna Cross",
+        role: "Group Finance Director",
+        baseSalary: 1837000,
+        annualBonus: 1336000,
+        ltip: 0,
+        pensionBenefits: 107000,
+        totalCompensation: 3280000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Nigel Higgins",
+        role: "Chairman",
+        totalFees: 866000
+      }
+    ]
+  },
+  beazley: {
+    id: "beazley",
+    company: "Beazley plc",
+    index: "FTSE100",
+    sector: "Insurance",
+    marketCap: null,
+    sayOnPayPct: 98.18,
+    sourceUrl: "https://www.annualreports.com/HostedData/AnnualReportArchive/b/LSE_BEZ_2024.pdf",
+    directors: [
+      {
+        name: "Adrian Cox",
+        role: "Group Chief Executive Officer",
+        baseSalary: 650000,
+        annualBonus: 1852500,
+        ltip: 1232208,
+        pensionBenefits: 93525,
+        totalCompensation: 3828233,
+        payRatio: 31
+      },
+      {
+        name: "Barbara Plucnar Jensen",
+        role: "Group Chief Financial Officer",
+        baseSalary: 313333,
+        annualBonus: 916500,
+        ltip: 0,
+        pensionBenefits: 125917,
+        totalCompensation: 1355750,
+        payRatio: null
+      },
+      {
+        name: "Sally Lake",
+        role: "Former Group Finance Director",
+        baseSalary: 275897,
+        annualBonus: 667241,
+        ltip: 749740,
+        pensionBenefits: 34365,
+        totalCompensation: 1727243,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Clive Bannister",
+        role: "Chair",
+        totalFees: 325000
+      }
+    ]
+  },
+  "barratt-redrow": {
+    id: "barratt-redrow",
+    company: "Barratt Redrow plc",
+    index: "FTSE100",
+    sector: "Household Goods & Home Construction",
+    marketCap: null,
+    sayOnPayPct: 97.68,
+    sourceUrl: "https://www.annualreports.com/HostedData/AnnualReportArchive/b/LSE_BDEV_2024.pdf",
+    directors: [
+      {
+        name: "David Thomas",
+        role: "Group Chief Executive",
+        baseSalary: 836000,
+        annualBonus: 1126000,
+        ltip: 194000,
+        pensionBenefits: 113000,
+        totalCompensation: 2268000,
+        payRatio: 42
+      },
+      {
+        name: "Steven Boyes",
+        role: "Deputy Chief Executive",
+        baseSalary: 674000,
+        annualBonus: 909000,
+        ltip: 159000,
+        pensionBenefits: 82000,
+        totalCompensation: 1824000,
+        payRatio: null
+      },
+      {
+        name: "Mike Scott",
+        role: "Chief Financial Officer",
+        baseSalary: 514000,
+        annualBonus: 693000,
+        ltip: 102000,
+        pensionBenefits: 74000,
+        totalCompensation: 1384000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Caroline Silver",
+        role: "Chair",
+        totalFees: 364000
+      }
+    ]
+  },
+  "british-american-tobacco": {
+    id: "british-american-tobacco",
+    company: "British American Tobacco plc",
+    index: "FTSE100",
+    sector: "Tobacco",
+    marketCap: null,
+    sayOnPayPct: 96.58,
+    sourceUrl: "https://www.annualreports.com/Click/12189",
+    directors: [
+      {
+        name: "Tadeu Marroco",
+        role: "Chief Executive",
+        baseSalary: 1374000,
+        annualBonus: 2700000,
+        ltip: 1478000,
+        pensionBenefits: 412000,
+        totalCompensation: 5964000,
+        payRatio: 56
+      },
+      {
+        name: "Soraya Benchikh",
+        role: "Chief Financial Officer",
+        baseSalary: 533000,
+        annualBonus: 796000,
+        ltip: 2969000,
+        pensionBenefits: 481000,
+        totalCompensation: 4781000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Luc Jobin",
+        role: "Chair",
+        totalFees: 728000
+      }
+    ]
+  },
+  "british-land": {
+    id: "british-land",
+    company: "British Land Company plc",
+    index: "FTSE100",
+    sector: "Real Estate",
+    marketCap: null,
+    sayOnPayPct: 92.51,
+    sourceUrl: "https://www.annualreports.com/Click/10326",
+    directors: [
+      {
+        name: "Simon Carter",
+        role: "Chief Executive",
+        baseSalary: 773000,
+        annualBonus: 919000,
+        ltip: 671000,
+        pensionBenefits: 150000,
+        totalCompensation: 2512000,
+        payRatio: 30
+      },
+      {
+        name: "Bhavesh Mistry",
+        role: "Chief Financial Officer",
+        baseSalary: 505000,
+        annualBonus: 631000,
+        ltip: 424000,
+        pensionBenefits: 107000,
+        totalCompensation: 1668000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Tim Score",
+        role: "Chair",
+        totalFees: 375000
+      }
+    ]
+  },
+  bunzl: {
+    id: "bunzl",
+    company: "Bunzl plc",
+    index: "FTSE100",
+    sector: "Support Services",
+    marketCap: null,
+    sayOnPayPct: 95.19,
+    sourceUrl: "https://www.annualreports.com/Click/16996",
+    directors: [
+      {
+        name: "Frank van Zanten",
+        role: "Chief Executive Officer",
+        baseSalary: 1034900,
+        annualBonus: 1825500,
+        ltip: 1582400,
+        pensionBenefits: 302100,
+        totalCompensation: 4744900,
+        payRatio: 152
+      },
+      {
+        name: "Richard Howes",
+        role: "Chief Financial Officer",
+        baseSalary: 673000,
+        annualBonus: 1055300,
+        ltip: 830200,
+        pensionBenefits: 50900,
+        totalCompensation: 2609400,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Peter Ventress",
+        role: "Chairman",
+        totalFees: 419300
+      }
+    ]
+  },
+  centrica: {
+    id: "centrica",
+    company: "Centrica plc",
+    index: "FTSE100",
+    sector: "Multiline Utilities",
+    marketCap: null,
+    sayOnPayPct: 90.08,
+    sourceUrl: "https://www.annualreports.com/Click/12297",
+    directors: [
+      {
+        name: "Chris O'Shea",
+        role: "Group Chief Executive",
+        baseSalary: 845000,
+        annualBonus: 1390000,
+        ltip: 1986000,
+        pensionBenefits: 101000,
+        totalCompensation: 4322000,
+        payRatio: 78
+      },
+      {
+        name: "Russell O'Brien",
+        role: "Group Chief Financial Officer",
+        baseSalary: 578000,
+        annualBonus: 720000,
+        ltip: 0,
+        pensionBenefits: 74000,
+        totalCompensation: 1372000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Scott Wheway",
+        role: "Chair",
+        totalFees: 402000
+      }
+    ]
+  },
+  "burberry-group": {
+    id: "burberry-group",
+    company: "Burberry Group plc",
+    index: "FTSE100",
+    sector: "Personal Goods",
+    marketCap: null,
+    sayOnPayPct: 95.6,
+    sourceUrl: "https://www.annualreports.com/Click/25231",
+    directors: [
+      {
+        name: "Jonathan Akeroyd",
+        role: "Chief Executive Officer",
+        baseSalary: 1129000,
+        annualBonus: 0,
+        ltip: 0,
+        pensionBenefits: 218000,
+        totalCompensation: 1347000,
+        payRatio: 33
+      },
+      {
+        name: "Kate Ferry",
+        role: "Chief Financial Officer",
+        baseSalary: 479000,
+        annualBonus: 122000,
+        ltip: 1278000,
+        pensionBenefits: 84000,
+        totalCompensation: 1963000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Gerry Murphy",
+        role: "Chair",
+        totalFees: 445000
+      }
+    ]
+  },
   tesco: {
     id: "tesco",
     company: "Tesco PLC",

@@ -47,11 +47,47 @@
           "sourceUrl": "https://airtelafricaara2024.com/media/eayp4j5w/printall_2024-05-13_081026-8c40b57f-5b54-4283-ab1e-693330d055ed.pdf"
         }
       ]
+    },
+    {
+      "batch": 2,
+      "committedIn": "30ed480",
+      "companiesReviewed": [
+        "Aviva",
+        "BAE Systems",
+        "Barclays PLC",
+        "Beazley",
+        "Barratt Redrow",
+        "British American Tobacco",
+        "British Land",
+        "Bunzl",
+        "Centrica",
+        "Burberry Group"
+      ],
+      "verifiedExecutiveSeeds": [
+        "Aviva",
+        "BAE Systems",
+        "Barclays PLC",
+        "Beazley",
+        "Barratt Redrow",
+        "British American Tobacco",
+        "British Land",
+        "Bunzl",
+        "Centrica",
+        "Burberry Group"
+      ],
+      "verifiedNedOnlySeeds": [],
+      "manualSeedAlsoFailed": [],
+      "notes": [
+        {
+          "company": "Barratt Redrow",
+          "note": "Seeded from Barratt Developments PLC Annual Report and Accounts 2024, the latest pre-combination audited remuneration report available for the failed scrape entry."
+        }
+      ]
     }
   ],
   "runningTotals": {
-    "companiesReviewed": 10,
-    "verifiedExecutiveSeeds": 8,
+    "companiesReviewed": 20,
+    "verifiedExecutiveSeeds": 18,
     "verifiedNedOnlySeeds": 2,
     "manualSeedAlsoFailed": 1
   }
