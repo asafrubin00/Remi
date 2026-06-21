@@ -86,7 +86,7 @@
     },
     {
       "batch": 3,
-      "committedIn": null,
+      "committedIn": "00ee6b0",
       "companiesReviewed": [
         "Coca-Cola Europacific Partners",
         "Coca-Cola HBC",
