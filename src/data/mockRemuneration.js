@@ -376,14 +376,14 @@ export function flattenDirectorYear(director, year = null) {
 
 export function formatMoney(value, currency) {
   if (value == null) return "n/a";
-  const symbol = currency === "USD" ? "$" : "£";
+  const symbol = currency === "USD" ? "$" : currency === "EUR" ? "€" : "£";
   if (value >= 1000000) return `${symbol}${(value / 1000000).toFixed(value >= 10000000 ? 1 : 2)}m`;
   return `${symbol}${Math.round(value / 1000).toLocaleString()}k`;
 }
 
 export function formatCompactMoney(value, currency) {
   if (value == null || Number.isNaN(Number(value))) return "n/a";
-  const symbol = currency === "USD" ? "$" : currency === "GBP" ? "£" : currency === "MIXED" ? "£/$" : "";
+  const symbol = currency === "USD" ? "$" : currency === "GBP" ? "£" : currency === "EUR" ? "€" : currency === "MIXED" ? "£/$" : "";
   const absolute = Math.abs(value);
   if (absolute >= 1000000) {
     const millions = value / 1000000;
@@ -395,7 +395,7 @@ export function formatCompactMoney(value, currency) {
 
 export function formatCompactMarketCap(value, currency) {
   if (value == null || Number.isNaN(Number(value))) return "n/a";
-  const symbol = currency === "USD" ? "$" : currency === "GBP" ? "£" : currency === "MIXED" ? "£/$" : "";
+  const symbol = currency === "USD" ? "$" : currency === "GBP" ? "£" : currency === "EUR" ? "€" : currency === "MIXED" ? "£/$" : "";
   const absolute = Math.abs(value);
   if (absolute >= 1000000) return `${symbol}${(value / 1000000).toFixed(1)}tn`;
   if (absolute >= 1000) return `${symbol}${(value / 1000).toFixed(1)}bn`;

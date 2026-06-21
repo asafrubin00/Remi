@@ -775,6 +775,376 @@ export const manualVerifiedFtse = {
       }
     ]
   },
+  "coca-cola-europacific-partners": {
+    id: "coca-cola-europacific-partners",
+    company: "Coca-Cola Europacific Partners plc",
+    index: "FTSE100",
+    sector: "Beverages",
+    marketCap: null,
+    sayOnPayPct: 97.69,
+    sourceUrl: "https://www.cocacolaep.com/assets/Global/Investors/2024-Annual-Report/2024-CCEP-Annual-Report-and-Form-20-F-print-version.pdf",
+    directors: [
+      {
+        name: "Damian Gammell",
+        role: "Chief Executive Officer",
+        baseSalary: 1260000,
+        annualBonus: 2343000,
+        ltip: 10196000,
+        pensionBenefits: 103000,
+        totalCompensation: 13902000,
+        payRatio: 224
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sol Daurella",
+        role: "Chairman",
+        totalFees: 631000
+      }
+    ],
+    manualNote: "The 2024 audited single figure table disclosed Damian Gammell as the Executive Director; no CFO row was disclosed in that table."
+  },
+  "compass-group": {
+    id: "compass-group",
+    company: "Compass Group plc",
+    index: "FTSE100",
+    sector: "Support Services",
+    marketCap: null,
+    sayOnPayPct: 95.69,
+    sourceUrl: "https://www.annualreports.com/Click/12311",
+    directors: [
+      {
+        name: "Dominic Blakemore",
+        role: "Group Chief Executive Officer",
+        baseSalary: 1144000,
+        annualBonus: 2320000,
+        ltip: 5943000,
+        pensionBenefits: 92000,
+        totalCompensation: 9499000,
+        payRatio: 330
+      },
+      {
+        name: "Petros Parras",
+        role: "Group Chief Financial Officer",
+        baseSalary: 617000,
+        annualBonus: 925000,
+        ltip: 0,
+        pensionBenefits: 103000,
+        totalCompensation: 1645000,
+        payRatio: null
+      },
+      {
+        name: "Palmer Brown",
+        role: "Group Chief Operating Officer",
+        baseSalary: 1043000,
+        annualBonus: 1654000,
+        ltip: 3571000,
+        pensionBenefits: 173000,
+        totalCompensation: 6441000,
+        payRatio: null
+      },
+      {
+        name: "Gary Green",
+        role: "Former Group Chief Operating Officer",
+        baseSalary: 214000,
+        annualBonus: 320000,
+        ltip: 4764000,
+        pensionBenefits: 19000,
+        totalCompensation: 5317000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Ian Meakins",
+        role: "Chair of the Board",
+        totalFees: 596000
+      }
+    ]
+  },
+  computacenter: {
+    id: "computacenter",
+    company: "Computacenter plc",
+    index: "FTSE100",
+    sector: "Software & Computer Services",
+    marketCap: null,
+    sayOnPayPct: 97.95,
+    sourceUrl: "https://www.annualreports.com/Click/23255",
+    directors: [
+      {
+        name: "Mike Norris",
+        role: "Chief Executive Officer",
+        baseSalary: 707000,
+        annualBonus: 210500,
+        ltip: 0,
+        pensionBenefits: 46410,
+        totalCompensation: 963900,
+        payRatio: 17
+      },
+      {
+        name: "Chris Jehle",
+        role: "Chief Financial Officer",
+        baseSalary: 467000,
+        annualBonus: 139100,
+        ltip: 0,
+        pensionBenefits: 35610,
+        totalCompensation: 641700,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Pauline Campbell",
+        role: "Chair",
+        totalFees: 182200
+      }
+    ]
+  },
+  "croda-international": {
+    id: "croda-international",
+    company: "Croda International plc",
+    index: "FTSE100",
+    sector: "Chemicals",
+    marketCap: null,
+    sayOnPayPct: 95.12,
+    sourceUrl: "https://www.annualreports.com/Click/12321",
+    directors: [
+      {
+        name: "Steve Foots",
+        role: "Group Chief Executive",
+        baseSalary: 767469,
+        annualBonus: 0,
+        ltip: 74107,
+        pensionBenefits: 183746,
+        totalCompensation: 1025322,
+        payRatio: 20
+      },
+      {
+        name: "Louisa Burdett",
+        role: "Former Chief Financial Officer",
+        baseSalary: 245827,
+        annualBonus: 0,
+        ltip: 0,
+        pensionBenefits: 71456,
+        totalCompensation: 317283,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Danuta Gray",
+        role: "Chair",
+        totalFees: 320150
+      }
+    ]
+  },
+  "dcc-plc": {
+    id: "dcc-plc",
+    company: "DCC plc",
+    index: "FTSE100",
+    sector: "Support Services",
+    marketCap: null,
+    currency: "EUR",
+    sayOnPayPct: 90,
+    sourceUrl: "https://www.annualreports.com/Click/30500",
+    directors: [
+      {
+        name: "Donal Murphy",
+        role: "Chief Executive",
+        baseSalary: 946000,
+        annualBonus: 1260000,
+        ltip: 891000,
+        pensionBenefits: 222000,
+        totalCompensation: 3319000,
+        payRatio: 78
+      },
+      {
+        name: "Kevin Lucey",
+        role: "Chief Financial Officer",
+        baseSalary: 556000,
+        annualBonus: 593000,
+        ltip: 477000,
+        pensionBenefits: 115000,
+        totalCompensation: 1741000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Mark Breuer",
+        role: "Chair",
+        totalFees: 363900
+      }
+    ],
+    manualNote: "DCC reports audited director remuneration in euros; values are preserved in EUR from the annual report."
+  },
+  convatec: {
+    id: "convatec",
+    company: "Convatec Group plc",
+    index: "FTSE100",
+    sector: "Health Care Equipment & Supplies",
+    marketCap: null,
+    sayOnPayPct: 98.24,
+    sourceUrl: "https://www.convatecgroup.com/siteassets/convatec-ara-2024.pdf",
+    directors: [
+      {
+        name: "Karim Bitar",
+        role: "Chief Executive Officer",
+        baseSalary: 972000,
+        annualBonus: 1937000,
+        ltip: 1991000,
+        pensionBenefits: 159000,
+        totalCompensation: 5059000,
+        payRatio: 87
+      },
+      {
+        name: "Jonny Mason",
+        role: "Chief Financial Officer",
+        baseSalary: 528000,
+        annualBonus: 1052000,
+        ltip: 1109000,
+        pensionBenefits: 61000,
+        totalCompensation: 2750000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "John McAdam",
+        role: "Chair",
+        totalFees: 376000
+      }
+    ]
+  },
+  diploma: {
+    id: "diploma",
+    company: "Diploma plc",
+    index: "FTSE100",
+    sector: "Industrial Support Services",
+    marketCap: null,
+    sayOnPayPct: 94.22,
+    sourceUrl: "https://www.diplomaplc.com/media/vdyeuqza/diploma-2024-annual-report.pdf",
+    directors: [
+      {
+        name: "Johnny Thomson",
+        role: "Chief Executive Officer",
+        baseSalary: 820000,
+        annualBonus: 1025000,
+        ltip: 2551000,
+        pensionBenefits: 63000,
+        totalCompensation: 4459000,
+        payRatio: 127
+      },
+      {
+        name: "Chris Davies",
+        role: "Chief Financial Officer",
+        baseSalary: 510000,
+        annualBonus: 638000,
+        ltip: 344000,
+        pensionBenefits: 40000,
+        totalCompensation: 1532000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "David Lowden",
+        role: "Chair",
+        totalFees: 307000
+      }
+    ]
+  },
+  diageo: {
+    id: "diageo",
+    company: "Diageo plc",
+    index: "FTSE100",
+    sector: "Beverages",
+    marketCap: null,
+    sayOnPayPct: 95.51,
+    sourceUrl: "https://www.annualreports.com/Click/12438",
+    directors: [
+      {
+        name: "Debra Crew",
+        role: "Chief Executive",
+        baseSalary: 1392000,
+        annualBonus: 690000,
+        ltip: 678000,
+        pensionBenefits: 305000,
+        totalCompensation: 3067000,
+        payRatio: 51
+      },
+      {
+        name: "Lavanya Chandrashekar",
+        role: "Chief Financial Officer",
+        baseSalary: 823000,
+        annualBonus: 379000,
+        ltip: 1350000,
+        pensionBenefits: 149000,
+        totalCompensation: 2704000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Javier Ferran",
+        role: "Chair",
+        totalFees: 696000
+      }
+    ]
+  },
+  entain: {
+    id: "entain",
+    company: "Entain plc",
+    index: "FTSE100",
+    sector: "Travel & Leisure",
+    marketCap: null,
+    sayOnPayPct: 94.73,
+    sourceUrl: "https://www.annualreports.com/Click/31109",
+    directors: [
+      {
+        name: "Gavin Isaacs",
+        role: "Chief Executive Officer",
+        baseSalary: 292000,
+        annualBonus: 633000,
+        ltip: 0,
+        pensionBenefits: 76000,
+        totalCompensation: 1000000,
+        payRatio: 79
+      },
+      {
+        name: "Stella David",
+        role: "Interim Chief Executive Officer",
+        baseSalary: 874000,
+        annualBonus: 1456000,
+        ltip: 0,
+        pensionBenefits: 77000,
+        totalCompensation: 2407000,
+        payRatio: null
+      },
+      {
+        name: "Rob Wood",
+        role: "Chief Financial Officer & Deputy CEO",
+        baseSalary: 574000,
+        annualBonus: 1019000,
+        ltip: 0,
+        pensionBenefits: 51000,
+        totalCompensation: 1644000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Barry Gibson",
+        role: "Former Chair",
+        totalFees: 394000
+      },
+      {
+        name: "Stella David",
+        role: "Chair",
+        totalFees: 131000
+      }
+    ]
+  },
   tesco: {
     id: "tesco",
     company: "Tesco PLC",
@@ -927,7 +1297,7 @@ export function buildVerifiedFtseRecord(seed) {
   const currency = seed.currency || "GBP";
   const sayOnPayPct = seed.sayOnPayPct ?? null;
   const executiveDirectors = (seed.directors || []).map((director) => ({
-    id: `${seed.id}-${slugify(director.name)}`,
+    id: `${seed.id}-exec-${slugify(director.name)}`,
     name: director.name,
     role: director.role,
     type: "executive",
@@ -955,7 +1325,7 @@ export function buildVerifiedFtseRecord(seed) {
   const nonExecutiveDirectors = (seed.nonExecutiveDirectors || []).map((director) => {
     const totalFees = director.totalFees ?? director.totalCompensation ?? null;
     return {
-      id: `${seed.id}-${slugify(director.name)}`,
+      id: `${seed.id}-ned-${slugify(director.name)}`,
       name: director.name,
       role: director.role,
       type: "non-executive",

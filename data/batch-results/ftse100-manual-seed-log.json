@@ -83,12 +83,61 @@
           "note": "Seeded from Barratt Developments PLC Annual Report and Accounts 2024, the latest pre-combination audited remuneration report available for the failed scrape entry."
         }
       ]
+    },
+    {
+      "batch": 3,
+      "committedIn": null,
+      "companiesReviewed": [
+        "Coca-Cola Europacific Partners",
+        "Coca-Cola HBC",
+        "Compass Group",
+        "Computacenter",
+        "Croda International",
+        "DCC plc",
+        "Convatec",
+        "Diploma",
+        "Diageo",
+        "Entain"
+      ],
+      "verifiedExecutiveSeeds": [
+        "Coca-Cola Europacific Partners",
+        "Compass Group",
+        "Computacenter",
+        "Croda International",
+        "DCC plc",
+        "Convatec",
+        "Diploma",
+        "Diageo",
+        "Entain"
+      ],
+      "verifiedNedOnlySeeds": [],
+      "manualSeedAlsoFailed": [
+        {
+          "company": "Coca-Cola HBC",
+          "field": "all manual remuneration fields",
+          "reason": "The official 2024 integrated annual report PDF endpoint returned HTTP 403, and the accessible annual-report HTML page did not expose the audited single total figure remuneration table text. No verifiable remuneration figures were captured during this batch.",
+          "sourceUrl": "https://www.coca-colahellenic.com/content/dam/cch/us/documents/oar2024/cchbc-iar-2024.pdf.downloadasset.pdf",
+          "fallbackUrl": "https://www.coca-colahellenic.com/en/investor-relations/2024-integrated-annual-report"
+        },
+        {
+          "company": "Coca-Cola Europacific Partners",
+          "field": "CFO remuneration",
+          "reason": "The audited 2024 single total figure table disclosed Damian Gammell as the Executive Director; no CFO row was disclosed in that table.",
+          "sourceUrl": "https://www.cocacolaep.com/assets/Global/Investors/2024-Annual-Report/2024-CCEP-Annual-Report-and-Form-20-F-print-version.pdf"
+        }
+      ],
+      "notes": [
+        {
+          "company": "DCC plc",
+          "note": "DCC reports audited director remuneration in euros; Remi preserves the source currency and now formats EUR values with the euro symbol."
+        }
+      ]
     }
   ],
   "runningTotals": {
-    "companiesReviewed": 20,
-    "verifiedExecutiveSeeds": 18,
+    "companiesReviewed": 30,
+    "verifiedExecutiveSeeds": 27,
     "verifiedNedOnlySeeds": 2,
-    "manualSeedAlsoFailed": 1
+    "manualSeedAlsoFailed": 3
   }
 }
