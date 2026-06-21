@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { companies as appCompanies } from "../src/data/mockRemuneration.js";
 
 const DEFAULT_BASE_URL = process.env.REMI_BASE_URL || "https://remi-ashen.vercel.app";
 const ROOT = new URL("../", import.meta.url);
@@ -173,7 +174,13 @@ async function main() {
   const source = await readJson(sourceFile);
   if (!source?.constituents?.length) throw new Error(`No constituents found in ${sourceFile.pathname}`);
 
-  const allItems = source.constituents.slice(args.offset, args.limit == null ? undefined : args.offset + args.limit);
+  const allItems = source.constituents.slice(args.offset, args.limit == null ? undefined : args.offset + args.limit).map((item) => {
+    const appCompany =
+      appCompanies.find((company) => company.index === item.index && item.ticker && company.ticker === item.ticker) ||
+      appCompanies.find((company) => company.index === item.index && company.company === item.company) ||
+      appCompanies.find((company) => company.index === item.index && company.id === item.id);
+    return appCompany ? { ...item, id: appCompany.id, company: appCompany.company, ticker: appCompany.ticker || item.ticker } : item;
+  });
   const checkpointFile = new URL(`${args.index}-scrape-results.json`, RESULTS_DIR);
   const checkpoint = (await readJson(checkpointFile, null)) || {
     index: args.index,

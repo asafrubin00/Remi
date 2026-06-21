@@ -1,0 +1,2322 @@
+{
+  "index": "ftse100",
+  "source": "https://en.wikipedia.org/wiki/FTSE_100_Index",
+  "baseUrl": "https://remi-ashen.vercel.app",
+  "startedAt": "2026-06-21T17:50:42.345Z",
+  "results": {
+    "3i": {
+      "id": "3i",
+      "company": "3i",
+      "ticker": "III",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/OdAbJ_HAjFt6-Oaoy8aI8dSm5JnP0mlRH6xZL3-zsQk/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2223,
+      "scrapedAt": "2026-06-21T17:50:44.569Z"
+    },
+    "admiral-group": {
+      "id": "admiral-group",
+      "company": "Admiral Group",
+      "ticker": "ADM",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/GTXrdj-hoEMpa6WBHHoO2Hk4DZIrx9Nm-tMApCPjaeA/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1895,
+      "scrapedAt": "2026-06-21T17:50:45.241Z"
+    },
+    "aberdeen-group": {
+      "id": "aberdeen-group",
+      "company": "Aberdeen Group",
+      "ticker": "ABDN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/YqfDxn6npg6l_NBKYmf1rpZujJp9avzc4BsQYARLSAY/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3045,
+      "scrapedAt": "2026-06-21T17:50:45.892Z"
+    },
+    "astrazeneca": {
+      "id": "astrazeneca",
+      "company": "AstraZeneca PLC",
+      "ticker": "AZN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "verified",
+      "success": true,
+      "failureReason": null,
+      "directorCounts": {
+        "total": 2,
+        "executives": 2,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [
+        {
+          "name": "Pascal Soriot",
+          "role": "CEO",
+          "type": "executive"
+        },
+        {
+          "name": "Aradhana Sarin",
+          "role": "CFO",
+          "type": "executive"
+        }
+      ],
+      "message": "Manual verified remuneration data from the 2024 published annual report.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 214,
+      "scrapedAt": "2026-06-21T17:50:46.561Z"
+    },
+    "airtel-africa": {
+      "id": "airtel-africa",
+      "company": "Airtel Africa",
+      "ticker": "AAF",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/Q0VqtlJ2hk2tWbbWVSeK_cxo6w2i8PhSiSJWN03ra1I/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2978,
+      "scrapedAt": "2026-06-21T17:50:46.825Z"
+    },
+    "alliance-witan": {
+      "id": "alliance-witan",
+      "company": "Alliance Witan",
+      "ticker": "ALW",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/swgqNdeaATRQ35gzZXQ2yxl048iZtS26T1xft5FelQc/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2596,
+      "scrapedAt": "2026-06-21T17:50:46.942Z"
+    },
+    "associated-british-foods": {
+      "id": "associated-british-foods",
+      "company": "Associated British Foods",
+      "ticker": "ABF",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/_kkVHznA65paLasGR_nNGeHKJ9Zwh_FrECSlq_jfJ9s/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1118,
+      "scrapedAt": "2026-06-21T17:50:46.965Z"
+    },
+    "anglo-american-plc": {
+      "id": "anglo-american-plc",
+      "company": "Anglo American plc",
+      "ticker": "AAL",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/Mw-3CKTfeSTVnI8Eo6iTraXl-5XVGiFidGKH6_EMq4w/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3046,
+      "scrapedAt": "2026-06-21T17:50:47.893Z"
+    },
+    "antofagasta-plc": {
+      "id": "antofagasta-plc",
+      "company": "Antofagasta plc",
+      "ticker": "ANTO",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/lZ1jjtiodQf7X58f6EAAuhmonY3iVhzK_RfT0ugjaQ4/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2903,
+      "scrapedAt": "2026-06-21T17:50:48.249Z"
+    },
+    "autotrader-group": {
+      "id": "autotrader-group",
+      "company": "Autotrader Group",
+      "ticker": "AUTO",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/1HYBpwcAbQ7SYnwHNjXXExRZ6MBz00RQwH0YmNOxRkY/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2044,
+      "scrapedAt": "2026-06-21T17:50:48.891Z"
+    },
+    "babcock-international": {
+      "id": "babcock-international",
+      "company": "Babcock International",
+      "ticker": "BAB",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/_zyHI3hDd3NgjTgKYqQ4zDk8QSGStxOePx7zVU7uXj0/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1716,
+      "scrapedAt": "2026-06-21T17:50:49.563Z"
+    },
+    "aviva": {
+      "id": "aviva",
+      "company": "Aviva",
+      "ticker": "AV",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/P13Gm_8REEfHVXHXIFmh7nP1t2GkUEqqSSZqdXOpDlo/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2624,
+      "scrapedAt": "2026-06-21T17:50:49.971Z"
+    },
+    "bae-systems": {
+      "id": "bae-systems",
+      "company": "BAE Systems",
+      "ticker": "BA",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/zXGaF0VdWgKg7eqofXxR8_iMfj7rMDt7D6iICm4RXpc/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1779,
+      "scrapedAt": "2026-06-21T17:50:50.125Z"
+    },
+    "bt-group": {
+      "id": "bt-group",
+      "company": "BT Group PLC",
+      "ticker": "BTA",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "verified",
+      "success": true,
+      "failureReason": null,
+      "directorCounts": {
+        "total": 2,
+        "executives": 2,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [
+        {
+          "name": "Allison Kirkby",
+          "role": "CEO",
+          "type": "executive"
+        },
+        {
+          "name": "Simon Lowth",
+          "role": "CFO",
+          "type": "executive"
+        }
+      ],
+      "message": "Manual verified remuneration data from the 2024 published annual report.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 134,
+      "scrapedAt": "2026-06-21T17:50:51.980Z"
+    },
+    "barclays": {
+      "id": "barclays",
+      "company": "Barclays PLC",
+      "ticker": "BARC",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/BL6jicFHKKMX69hlgR5mk0oVZ_43LKesJuAjvU-tewE/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3174,
+      "scrapedAt": "2026-06-21T17:50:52.021Z"
+    },
+    "beazley": {
+      "id": "beazley",
+      "company": "Beazley",
+      "ticker": "BEZ",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/1o7jqYR4p0fdkYObjo9R3GrzfZ5-wUgJHGwWoOiYAr8/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3054,
+      "scrapedAt": "2026-06-21T17:50:52.901Z"
+    },
+    "bp": {
+      "id": "bp",
+      "company": "BP plc",
+      "ticker": "BP",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "live",
+      "success": true,
+      "failureReason": null,
+      "directorCounts": {
+        "total": 3,
+        "executives": 2,
+        "nonExecutives": 1
+      },
+      "sampleDirectors": [
+        {
+          "name": "Murray Auchincloss",
+          "role": "Chief Executive Officer",
+          "type": "executive"
+        },
+        {
+          "name": "Kate Thomson",
+          "role": "Chief Financial Officer",
+          "type": "executive"
+        },
+        {
+          "name": "Helge Lund",
+          "role": "Chair",
+          "type": "non-executive"
+        }
+      ],
+      "message": null,
+      "parseWarnings": [
+        "Say-on-pay vote result not parsed from annual report or AGM text."
+      ],
+      "filingUrl": "https://www.bp.com/content/dam/bp/business-sites/en/global/corporate/pdfs/investors/bp-annual-report-and-form-20f-2024.pdf?dm_i=1PGC%2C8VK6J%2C46ED6U%2C10Z50K%2C1",
+      "durationMs": 2936,
+      "scrapedAt": "2026-06-21T17:50:53.283Z"
+    },
+    "barratt-redrow": {
+      "id": "barratt-redrow",
+      "company": "Barratt Redrow",
+      "ticker": "BTRW",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/Y6mTxV-ZN5tuYKry_mlCMIsiz09Nlpzo_bQwxwV8uGE/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 4408,
+      "scrapedAt": "2026-06-21T17:50:53.755Z"
+    },
+    "british-american-tobacco": {
+      "id": "british-american-tobacco",
+      "company": "British American Tobacco",
+      "ticker": "BATS",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/Ryd2iPzB80W0pcqZoCZ0z5kDAqaVDm27hpauFn7SQ0k/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3151,
+      "scrapedAt": "2026-06-21T17:50:53.998Z"
+    },
+    "british-land": {
+      "id": "british-land",
+      "company": "British Land",
+      "ticker": "BLND",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/e7zLIPispLxe8SQNryctbWSGCUqvj_Em-Gdmfwa0H0Y/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2730,
+      "scrapedAt": "2026-06-21T17:50:54.077Z"
+    },
+    "bunzl": {
+      "id": "bunzl",
+      "company": "Bunzl",
+      "ticker": "BNZL",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/Tl3FR-ZG3BBom_b-mu37NosqyBmN6Mcu3LRu8mLnhiA/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2159,
+      "scrapedAt": "2026-06-21T17:50:54.506Z"
+    },
+    "centrica": {
+      "id": "centrica",
+      "company": "Centrica",
+      "ticker": "CNA",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/9VuPDZhquSI1fTsLsaTGg9EM7thvPbLZmEH873Q8t50/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1818,
+      "scrapedAt": "2026-06-21T17:50:55.165Z"
+    },
+    "burberry-group": {
+      "id": "burberry-group",
+      "company": "Burberry Group",
+      "ticker": "BRBY",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/TwjAFyVPrZGIlluVOw1HbxpFgjMkEJSbi5hClxNzc-w/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2482,
+      "scrapedAt": "2026-06-21T17:50:55.329Z"
+    },
+    "coca-cola-europacific-partners": {
+      "id": "coca-cola-europacific-partners",
+      "company": "Coca-Cola Europacific Partners",
+      "ticker": "CCEP",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/evrf-J5_zc63HW7ZYHh5eWSA-8REfKhzbSoIP3VKsrg/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1482,
+      "scrapedAt": "2026-06-21T17:50:55.329Z"
+    },
+    "coca-cola-hbc": {
+      "id": "coca-cola-hbc",
+      "company": "Coca-Cola HBC",
+      "ticker": "CCH",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/LxUhTki7b6EGR8mUYUdlJWwnBUUYk2hXLTQqW9rNFTo/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1601,
+      "scrapedAt": "2026-06-21T17:50:55.949Z"
+    },
+    "compass-group": {
+      "id": "compass-group",
+      "company": "Compass Group",
+      "ticker": "CPG",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/HyEg4mPL8QtVpJBiRkz0L4yEdQ-LNgqjsBYgvl_QSoc/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1545,
+      "scrapedAt": "2026-06-21T17:50:56.392Z"
+    },
+    "computacenter": {
+      "id": "computacenter",
+      "company": "Computacenter",
+      "ticker": "CCC",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/3NtDwxJ7R1jy15WOfAKKLRdc8MZm38Im3E5-0yn_6Rk/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1559,
+      "scrapedAt": "2026-06-21T17:50:56.906Z"
+    },
+    "croda-international": {
+      "id": "croda-international",
+      "company": "Croda International",
+      "ticker": "CRDA",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/la9x0am7HmYv1TfNWmktW4sPWgPctfwUozIBvPhZkFc/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1351,
+      "scrapedAt": "2026-06-21T17:50:57.699Z"
+    },
+    "dcc-plc": {
+      "id": "dcc-plc",
+      "company": "DCC plc",
+      "ticker": "DCC",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/jh35XzT2AXGFWlH7al5WUjBUXj__omHPz9o0NWxypOI/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 883,
+      "scrapedAt": "2026-06-21T17:50:57.730Z"
+    },
+    "convatec": {
+      "id": "convatec",
+      "company": "Convatec",
+      "ticker": "CTEC",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/LEdchfobBh03FyOwqFJypr7py4vq9o4cdvURZgLwU-0/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1993,
+      "scrapedAt": "2026-06-21T17:50:57.840Z"
+    },
+    "diploma": {
+      "id": "diploma",
+      "company": "Diploma",
+      "ticker": "DPLM",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/zaSQY3nZsHGLJlU5HJHKmF3lPAyjpO4bv6PTQI1DBeo/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1234,
+      "scrapedAt": "2026-06-21T17:50:59.081Z"
+    },
+    "diageo": {
+      "id": "diageo",
+      "company": "Diageo",
+      "ticker": "DGE",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/l8zpcXnDhU8GuLuksbut1FCqh6nOi8zv51De7y7HAqg/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1793,
+      "scrapedAt": "2026-06-21T17:50:59.141Z"
+    },
+    "entain": {
+      "id": "entain",
+      "company": "Entain",
+      "ticker": "ENT",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "company not found",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report PDF not found through Companies House or configured investor relations fallback.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 806,
+      "scrapedAt": "2026-06-21T17:50:59.653Z"
+    },
+    "endeavour-mining": {
+      "id": "endeavour-mining",
+      "company": "Endeavour Mining",
+      "ticker": "EDV",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/cTV2iXg4sQPpBoP3fC0Yv3CIaDiicWLVoCKJno5lkX0/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1703,
+      "scrapedAt": "2026-06-21T17:51:00.050Z"
+    },
+    "experian": {
+      "id": "experian",
+      "company": "Experian",
+      "ticker": "EXPN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/gnlxhQDk_BTT008lz2MXwDiLuA6wwLaeedsOWzZBMPI/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1448,
+      "scrapedAt": "2026-06-21T17:51:00.796Z"
+    },
+    "games-workshop": {
+      "id": "games-workshop",
+      "company": "Games Workshop",
+      "ticker": "GAW",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/J_zfJzBb5fjGTzuEOzmTf6Jdl-8bAdxFjIQWcSt7MmU/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 960,
+      "scrapedAt": "2026-06-21T17:51:01.807Z"
+    },
+    "glencore": {
+      "id": "glencore",
+      "company": "Glencore",
+      "ticker": "GLEN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/OlTmlXbt98MRUMdt56rkOmq81Upyha4uP76FPBdgqbQ/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 623,
+      "scrapedAt": "2026-06-21T17:51:01.970Z"
+    },
+    "f-and-c-investment-trust": {
+      "id": "f-and-c-investment-trust",
+      "company": "F & C Investment Trust",
+      "ticker": "FCIT",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/wlgPMy2za4LCzELsjHDYbX-jzSUOOmE0Jxr5NUWN5KQ/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2389,
+      "scrapedAt": "2026-06-21T17:51:02.236Z"
+    },
+    "fresnillo-plc": {
+      "id": "fresnillo-plc",
+      "company": "Fresnillo plc",
+      "ticker": "FRES",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/ds39B5giCcXhVN6bxXVoU0V6YYkPniCTqzocAQSEzWY/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2895,
+      "scrapedAt": "2026-06-21T17:51:03.243Z"
+    },
+    "halma-plc": {
+      "id": "halma-plc",
+      "company": "Halma plc",
+      "ticker": "HLMA",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/4rC-XkZWpwRfpvMxN4BPFDuQYSGN09aHH4IJbmy68jg/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1400,
+      "scrapedAt": "2026-06-21T17:51:04.247Z"
+    },
+    "gsk": {
+      "id": "gsk",
+      "company": "GSK plc",
+      "ticker": "GSK",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/gqqOTHbh3AdzCdmscslKABqbyisS5d3bfXQqBv3uKbw/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2523,
+      "scrapedAt": "2026-06-21T17:51:04.370Z"
+    },
+    "howdens-joinery": {
+      "id": "howdens-joinery",
+      "company": "Howdens Joinery",
+      "ticker": "HWDN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "company not found",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report PDF not found through Companies House or configured investor relations fallback.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 605,
+      "scrapedAt": "2026-06-21T17:51:04.452Z"
+    },
+    "haleon": {
+      "id": "haleon",
+      "company": "Haleon",
+      "ticker": "HLN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/jFDcWdBxBv3GCiTjIuIbOt-aNVAfdcV03PirkkTvlhw/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2486,
+      "scrapedAt": "2026-06-21T17:51:04.835Z"
+    },
+    "hiscox": {
+      "id": "hiscox",
+      "company": "Hiscox",
+      "ticker": "HSX",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/VHw128G3emEU9rm92IS7PcS_xMNlN8F9pAKFthP6FAs/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1614,
+      "scrapedAt": "2026-06-21T17:51:04.961Z"
+    },
+    "hsbc": {
+      "id": "hsbc",
+      "company": "HSBC Holdings plc",
+      "ticker": "HSBA",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/8Zs7VXtgzgRFuu59rzYGCToQoHcm7wkbE_5g3yMymno/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2090,
+      "scrapedAt": "2026-06-21T17:51:06.437Z"
+    },
+    "ihg-hotels-and-resorts": {
+      "id": "ihg-hotels-and-resorts",
+      "company": "IHG Hotels & Resorts",
+      "ticker": "IHG",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/bjlgOzGVzKNi5ZwKiNbPbAbWkB4aRPOxN4WTjgCPbMk/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 663,
+      "scrapedAt": "2026-06-21T17:51:06.511Z"
+    },
+    "icg": {
+      "id": "icg",
+      "company": "ICG",
+      "ticker": "ICG",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/4rm7Kntyr2iY-RjVltk3s9zrhhs1d3DehGpFZl24fIM/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2165,
+      "scrapedAt": "2026-06-21T17:51:07.013Z"
+    },
+    "ig-group": {
+      "id": "ig-group",
+      "company": "IG Group",
+      "ticker": "IGG",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/_wwCB4CRUFjSc_IDZwq15F4Yf6MtFAe0Q24OmFk-57Y/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2045,
+      "scrapedAt": "2026-06-21T17:51:07.392Z"
+    },
+    "imi": {
+      "id": "imi",
+      "company": "IMI",
+      "ticker": "IMI",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/NktzBo_Uil2wsVm1qyYe_mIKp27TvSEZrNK9sJCHAzM/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1315,
+      "scrapedAt": "2026-06-21T17:51:07.662Z"
+    },
+    "international-airlines-group": {
+      "id": "international-airlines-group",
+      "company": "International Airlines Group",
+      "ticker": "IAG",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "company not found",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report PDF not found through Companies House or configured investor relations fallback.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 405,
+      "scrapedAt": "2026-06-21T17:51:08.253Z"
+    },
+    "imperial-brands": {
+      "id": "imperial-brands",
+      "company": "Imperial Brands",
+      "ticker": "IMB",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/9OhaG_IS2PtOQOwqWEL6UaBPJ5_n5xGizB5rSZ84JZ0/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1465,
+      "scrapedAt": "2026-06-21T17:51:08.314Z"
+    },
+    "informa": {
+      "id": "informa",
+      "company": "Informa",
+      "ticker": "INF",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/GylEmgxhTagY08Qk6yruIbg2jZsQv9gAC9ZXsb7rtvk/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1494,
+      "scrapedAt": "2026-06-21T17:51:08.840Z"
+    },
+    "intertek": {
+      "id": "intertek",
+      "company": "Intertek",
+      "ticker": "ITRK",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/ghcr01MdAUK9IWX8RruMY0o-QcyUfIx_W52cQXUrM_U/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 748,
+      "scrapedAt": "2026-06-21T17:51:09.095Z"
+    },
+    "investec": {
+      "id": "investec",
+      "company": "Investec",
+      "ticker": "INVP",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/jIasfXXYItjWG08or9wSvPkx4EcBAePOSvX5LuHVGrY/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1049,
+      "scrapedAt": "2026-06-21T17:51:09.895Z"
+    },
+    "jd-sports": {
+      "id": "jd-sports",
+      "company": "JD Sports",
+      "ticker": "JD",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/W3cQ2_d9p5U5sADqhGjy6AZVwHzEOIqn-wSpTn0ryoM/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1129,
+      "scrapedAt": "2026-06-21T17:51:10.476Z"
+    },
+    "kingfisher-plc": {
+      "id": "kingfisher-plc",
+      "company": "Kingfisher plc",
+      "ticker": "KGF",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": null,
+      "parseWarnings": [
+        "No single figure parser strategy matched.",
+        "CEO pay ratio not parsed from annual report.",
+        "Say-on-pay vote result not parsed from annual report or AGM text."
+      ],
+      "filingUrl": "https://document-api.company-information.service.gov.uk/document/_U30woQLKfXh6NGIfQLSE1N8D9reNdlYujM5rND5MXE/content",
+      "durationMs": 1052,
+      "scrapedAt": "2026-06-21T17:51:10.899Z"
+    },
+    "land-securities": {
+      "id": "land-securities",
+      "company": "Land Securities",
+      "ticker": "LAND",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/MFvX5qlL7kzlSl-pBHbijXQZFx9C46dU4rvQ0agJMHM/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 878,
+      "scrapedAt": "2026-06-21T17:51:11.225Z"
+    },
+    "legal-and-general": {
+      "id": "legal-and-general",
+      "company": "Legal & General",
+      "ticker": "LGEN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "company not found",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report PDF not found through Companies House or configured investor relations fallback.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 581,
+      "scrapedAt": "2026-06-21T17:51:11.428Z"
+    },
+    "lion-finance-group": {
+      "id": "lion-finance-group",
+      "company": "Lion Finance Group",
+      "ticker": "BGEO",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/lhjyjgwLiVSER9wKA2bFlU23NAuGaX2u8xf-Iiy7sTY/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1833,
+      "scrapedAt": "2026-06-21T17:51:13.180Z"
+    },
+    "london-stock-exchange-group": {
+      "id": "london-stock-exchange-group",
+      "company": "London Stock Exchange Group",
+      "ticker": "LSEG",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/_S5qt-mxt5VB8coE03FV-bE_oh0BIMzAB2f6mR1w8GI/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1860,
+      "scrapedAt": "2026-06-21T17:51:14.207Z"
+    },
+    "marks-spencer": {
+      "id": "marks-spencer",
+      "company": "Marks & Spencer Group PLC",
+      "ticker": "MKS",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "verified",
+      "success": true,
+      "failureReason": null,
+      "directorCounts": {
+        "total": 2,
+        "executives": 2,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [
+        {
+          "name": "Stuart Machin",
+          "role": "CEO",
+          "type": "executive"
+        },
+        {
+          "name": "Jeremy Townsend",
+          "role": "CFO",
+          "type": "executive"
+        }
+      ],
+      "message": "Manual verified remuneration data from the 2024 published annual report.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 371,
+      "scrapedAt": "2026-06-21T17:51:14.218Z"
+    },
+    "londonmetric-property": {
+      "id": "londonmetric-property",
+      "company": "LondonMetric Property",
+      "ticker": "LMP",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/hLtowfHtHeJeO5fyd9DoBkC5gFHbrhB35AoFWaw_jes/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1450,
+      "scrapedAt": "2026-06-21T17:51:14.312Z"
+    },
+    "lloyds-banking-group": {
+      "id": "lloyds-banking-group",
+      "company": "Lloyds Banking Group plc",
+      "ticker": "LLOY",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/xllZk09Yz0aMKE0Rt1zTiSJcaMGEDGH9LOaWWle_Xas/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3147,
+      "scrapedAt": "2026-06-21T17:51:14.995Z"
+    },
+    "mandg": {
+      "id": "mandg",
+      "company": "M&G",
+      "ticker": "MNG",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/pTVJwbFtQyWckKc2xbM-_EbeYYeocV2sLX0LFDZWbp8/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2359,
+      "scrapedAt": "2026-06-21T17:51:15.706Z"
+    },
+    "melrose-industries": {
+      "id": "melrose-industries",
+      "company": "Melrose Industries",
+      "ticker": "MRO",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/W06bOk1EkvupJKniuImGCUs7LxODirZvS5ZUQ0uIA3E/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3011,
+      "scrapedAt": "2026-06-21T17:51:17.359Z"
+    },
+    "metlen-energy-and-metals": {
+      "id": "metlen-energy-and-metals",
+      "company": "Metlen Energy & Metals",
+      "ticker": "MTLN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/rdXiJSDfKKFD5zfnS-sddVsTMJdSmxETl46HRTfss7k/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3000,
+      "scrapedAt": "2026-06-21T17:51:17.846Z"
+    },
+    "national-grid": {
+      "id": "national-grid",
+      "company": "National Grid plc",
+      "ticker": "NG",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/XVc3FklwP5GHewozU-MAVLVSilEUD3KRaYtHtBI3DpY/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2776,
+      "scrapedAt": "2026-06-21T17:51:18.123Z"
+    },
+    "pershing-square-holdings": {
+      "id": "pershing-square-holdings",
+      "company": "Pershing Square Holdings",
+      "ticker": "PSH",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "company not found",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report PDF not found through Companies House or configured investor relations fallback.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 896,
+      "scrapedAt": "2026-06-21T17:51:18.243Z"
+    },
+    "next-plc": {
+      "id": "next-plc",
+      "company": "Next plc",
+      "ticker": "NXT",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/shIq_Qe4XVTjoR4hRoGFptadjP4ivHXSp-hpnrtLuik/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2235,
+      "scrapedAt": "2026-06-21T17:51:18.582Z"
+    },
+    "natwest-group": {
+      "id": "natwest-group",
+      "company": "NatWest Group",
+      "ticker": "NWG",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/gOhupf1_j7JWSFDUuJqhF58okHTUA9-DOh_JFmBmmnQ/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3572,
+      "scrapedAt": "2026-06-21T17:51:19.419Z"
+    },
+    "pearson-plc": {
+      "id": "pearson-plc",
+      "company": "Pearson plc",
+      "ticker": "PSON",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/2d44_ncPlOFSiCQPaCNesZrwVCoM1PDvV9rwjiVyM1c/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2859,
+      "scrapedAt": "2026-06-21T17:51:19.706Z"
+    },
+    "polar-capital-technology-trust": {
+      "id": "polar-capital-technology-trust",
+      "company": "Polar Capital Technology Trust",
+      "ticker": "PCT",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/0figLl4eh1xwgXvDm_tpCJkPNOp0Ci6qv5JLGeoFh4c/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1736,
+      "scrapedAt": "2026-06-21T17:51:20.084Z"
+    },
+    "persimmon": {
+      "id": "persimmon",
+      "company": "Persimmon",
+      "ticker": "PSN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/Gi0Ib7QdkV06nSF8iWncHuKqCmfil34AMT4rI6ieKXU/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2534,
+      "scrapedAt": "2026-06-21T17:51:20.380Z"
+    },
+    "reckitt": {
+      "id": "reckitt",
+      "company": "Reckitt",
+      "ticker": "RKT",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/qdj_1ydMrld4KyFSZ4dROgJteG9c6cYELzny3EtsNyo/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1164,
+      "scrapedAt": "2026-06-21T17:51:20.511Z"
+    },
+    "prudential-plc": {
+      "id": "prudential-plc",
+      "company": "Prudential plc",
+      "ticker": "PRU",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/jlv4E1wT0aV7430hTdXkraechhbmAHcxXfk72DkNfVE/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2671,
+      "scrapedAt": "2026-06-21T17:51:21.519Z"
+    },
+    "relx": {
+      "id": "relx",
+      "company": "RELX",
+      "ticker": "REL",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/rnobWSzWUWk3e4tJr7HLTjWnsIpNPlVuuOseTCkHUCM/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1772,
+      "scrapedAt": "2026-06-21T17:51:21.620Z"
+    },
+    "rentokil-initial": {
+      "id": "rentokil-initial",
+      "company": "Rentokil Initial",
+      "ticker": "RTO",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/dq70SHgvEJFczMVedjzdAdLlJ5Y8DSdGGM2dm6a4SlI/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1778,
+      "scrapedAt": "2026-06-21T17:51:22.124Z"
+    },
+    "rolls-royce": {
+      "id": "rolls-royce",
+      "company": "Rolls-Royce Holdings plc",
+      "ticker": "RR",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/290Q5B-syFwHjOrC0QjgmMAAfVgDHxEfsIuWAOXgjqU/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1506,
+      "scrapedAt": "2026-06-21T17:51:22.854Z"
+    },
+    "rio-tinto": {
+      "id": "rio-tinto",
+      "company": "Rio Tinto plc",
+      "ticker": "RIO",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/LCR5strZ5kbHFGTq5xF-G2M-1I9_UGfgegnAvUIbfzc/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2430,
+      "scrapedAt": "2026-06-21T17:51:23.277Z"
+    },
+    "sage-group": {
+      "id": "sage-group",
+      "company": "Sage Group",
+      "ticker": "SGE",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/bpvkAXh-FEOfv857X4BK5omvpxNaOgEgZKlvvIf6l0g/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1677,
+      "scrapedAt": "2026-06-21T17:51:23.525Z"
+    },
+    "sainsbury-s": {
+      "id": "sainsbury-s",
+      "company": "Sainsbury's",
+      "ticker": "SBRY",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/Cz082rZVXmq7K2IaWX_oxPycR7EzBuvN27j57zEhFiY/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1450,
+      "scrapedAt": "2026-06-21T17:51:23.797Z"
+    },
+    "scottish-mortgage-investment-trust": {
+      "id": "scottish-mortgage-investment-trust",
+      "company": "Scottish Mortgage Investment Trust",
+      "ticker": "SMT",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/Xp5RkXa4Yjj-0KUrBjEa_Y9eDWjXM93ibp8YbA1hk7E/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1451,
+      "scrapedAt": "2026-06-21T17:51:24.799Z"
+    },
+    "smith-and-nephew": {
+      "id": "smith-and-nephew",
+      "company": "Smith & Nephew",
+      "ticker": "SN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/DAkHZioGodu2T_Wzl1FIUV8pQkkJb-4IIBeTrGxSmWQ/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1617,
+      "scrapedAt": "2026-06-21T17:51:26.963Z"
+    },
+    "spirax-group": {
+      "id": "spirax-group",
+      "company": "Spirax Group",
+      "ticker": "SPX",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": null,
+      "parseWarnings": [
+        "No single figure parser strategy matched.",
+        "CEO pay ratio not parsed from annual report.",
+        "Say-on-pay vote result not parsed from annual report or AGM text."
+      ],
+      "filingUrl": "https://document-api.company-information.service.gov.uk/document/EnOzo17tDv46c19zVAykcx0z-X4-sANr6A85lClam8E/content",
+      "durationMs": 1580,
+      "scrapedAt": "2026-06-21T17:51:27.928Z"
+    },
+    "shell": {
+      "id": "shell",
+      "company": "Shell plc",
+      "ticker": "SHEL",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "live",
+      "success": true,
+      "failureReason": null,
+      "directorCounts": {
+        "total": 3,
+        "executives": 2,
+        "nonExecutives": 1
+      },
+      "sampleDirectors": [
+        {
+          "name": "Wael Sawan",
+          "role": "Chief Executive Officer",
+          "type": "executive"
+        },
+        {
+          "name": "Sinead Gorman",
+          "role": "Executive Director",
+          "type": "executive"
+        },
+        {
+          "name": "Sir Andrew Mackenzie",
+          "role": "Chair",
+          "type": "non-executive"
+        }
+      ],
+      "message": null,
+      "parseWarnings": [
+        "CEO pay ratio not parsed from annual report.",
+        "Say-on-pay vote result not parsed from annual report or AGM text."
+      ],
+      "filingUrl": "https://www.shell.com/investors/results-and-reporting/annual-report-archive/_jcr_content/root/main/section_812377294/tabs/tab_copy/text.multi.stream/1752580693041/6c20b8111738b9a590ba145f0d1c4fa0e530dae0/shell-annual-report-2024.pdf",
+      "durationMs": 3442,
+      "scrapedAt": "2026-06-21T17:51:28.290Z"
+    },
+    "smiths-group": {
+      "id": "smiths-group",
+      "company": "Smiths Group",
+      "ticker": "SMIN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/CRYhGnVOVBt7MuZr0tRFPa1hY9AyIr3ZWwUgyDguLh4/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2558,
+      "scrapedAt": "2026-06-21T17:51:28.405Z"
+    },
+    "segro": {
+      "id": "segro",
+      "company": "Segro",
+      "ticker": "SGRO",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/qFFRkcVkOnAIkNTolxxvjIfPMKjXzKJ0Fo5370ztYwM/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 4884,
+      "scrapedAt": "2026-06-21T17:51:28.731Z"
+    },
+    "severn-trent": {
+      "id": "severn-trent",
+      "company": "Severn Trent",
+      "ticker": "SVT",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/OBDCAf7tcfgO89e15KW5H-ccR9ZhJyQHwcU91OjEn6M/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 4596,
+      "scrapedAt": "2026-06-21T17:51:28.943Z"
+    },
+    "tesco": {
+      "id": "tesco",
+      "company": "Tesco PLC",
+      "ticker": "TSCO",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "verified",
+      "success": true,
+      "failureReason": null,
+      "directorCounts": {
+        "total": 2,
+        "executives": 2,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [
+        {
+          "name": "Ken Murphy",
+          "role": "Group Chief Executive",
+          "type": "executive"
+        },
+        {
+          "name": "Imran Nawaz",
+          "role": "CFO",
+          "type": "executive"
+        }
+      ],
+      "message": "Manual verified remuneration data from the 2024 published annual report.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 115,
+      "scrapedAt": "2026-06-21T17:51:28.962Z"
+    },
+    "st-james-s-place": {
+      "id": "st-james-s-place",
+      "company": "St. James's Place",
+      "ticker": "STJ",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/msIs9nHg1JR590l6I6QpQYQqk1Upqkcqq7GTntAdAno/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1762,
+      "scrapedAt": "2026-06-21T17:51:29.109Z"
+    },
+    "schroders": {
+      "id": "schroders",
+      "company": "Schroders",
+      "ticker": "SDR",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/JXqXzT5pZtSpeohSFtkGSMCM3wYh10DBD16r-G7xebw/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 7142,
+      "scrapedAt": "2026-06-21T17:51:29.990Z"
+    },
+    "sse-plc": {
+      "id": "sse-plc",
+      "company": "SSE plc",
+      "ticker": "SSE",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/3GUJ3sEzX1sh3eCvScniT8kMKv3VzKk1kfcPm5rR_As/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3192,
+      "scrapedAt": "2026-06-21T17:51:30.039Z"
+    },
+    "vodafone": {
+      "id": "vodafone",
+      "company": "Vodafone Group PLC",
+      "ticker": "VOD",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "verified",
+      "success": true,
+      "failureReason": null,
+      "directorCounts": {
+        "total": 2,
+        "executives": 2,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [
+        {
+          "name": "Margherita Della Valle",
+          "role": "CEO",
+          "type": "executive"
+        },
+        {
+          "name": "Luka Mucic",
+          "role": "CFO",
+          "type": "executive"
+        }
+      ],
+      "message": "Manual verified remuneration data from the 2024 published annual report.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 109,
+      "scrapedAt": "2026-06-21T17:51:30.956Z"
+    },
+    "standard-life": {
+      "id": "standard-life",
+      "company": "Standard Life",
+      "ticker": "SDLF",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/D4th1OT8nzEJ6BgkzrgEwM_ooQkrZh8mJGpm1b3k6_8/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3001,
+      "scrapedAt": "2026-06-21T17:51:31.348Z"
+    },
+    "united-utilities": {
+      "id": "united-utilities",
+      "company": "United Utilities",
+      "ticker": "UU",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/oZitGph58i5XGiJbFEuBJNDIAvP7AbnwWLOsViCeUD8/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 1073,
+      "scrapedAt": "2026-06-21T17:51:31.420Z"
+    },
+    "standard-chartered": {
+      "id": "standard-chartered",
+      "company": "Standard Chartered",
+      "ticker": "STAN",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/l5garotbmUIoFV0A2FhcIHIzHMtdb_YUOSqvqQ7j46g/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 4261,
+      "scrapedAt": "2026-06-21T17:51:32.108Z"
+    },
+    "unilever": {
+      "id": "unilever",
+      "company": "Unilever PLC",
+      "ticker": "ULVR",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/C9c-1thOrOV7hAUGJGQRSx1aW9gv9-Nl11JXTa8E4PU/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2332,
+      "scrapedAt": "2026-06-21T17:51:32.180Z"
+    },
+    "tritax-big-box-reit": {
+      "id": "tritax-big-box-reit",
+      "company": "Tritax Big Box REIT",
+      "ticker": "BBOX",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/qQE89z0CfNbmTIXrrQ8uZS3G-T9iBqJhymtNVUOlS5A/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3051,
+      "scrapedAt": "2026-06-21T17:51:32.398Z"
+    },
+    "whitbread": {
+      "id": "whitbread",
+      "company": "Whitbread",
+      "ticker": "WTB",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/NFQDK14baMlfnOxX1b_pcnX9TnjyUNVb_Eg3BCveXOQ/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 2716,
+      "scrapedAt": "2026-06-21T17:51:34.564Z"
+    },
+    "weir-group": {
+      "id": "weir-group",
+      "company": "Weir Group",
+      "ticker": "WEIR",
+      "index": "FTSE100",
+      "httpStatus": 200,
+      "scrapeStatus": "fallback",
+      "success": false,
+      "failureReason": "no parseable table",
+      "directorCounts": {
+        "total": 0,
+        "executives": 0,
+        "nonExecutives": 0
+      },
+      "sampleDirectors": [],
+      "message": "Annual report text extraction returned insufficient text from https://document-api.company-information.service.gov.uk/document/R8aVQu4dJ6xyY5l8u7QlI4xec_K3A7_LtjHoIxKj5zE/content.",
+      "parseWarnings": [],
+      "filingUrl": null,
+      "durationMs": 3452,
+      "scrapedAt": "2026-06-21T17:51:34.799Z"
+    }
+  },
+  "updatedAt": "2026-06-21T17:51:34.799Z",
+  "summary": {
+    "attempted": 100,
+    "successfulWithExecutive": 7,
+    "successfulWithNed": 2,
+    "failed": 93,
+    "groupedFailures": {
+      "no parseable table": 88,
+      "company not found": 5
+    },
+    "sampleSuccesses": [
+      {
+        "company": "AstraZeneca PLC",
+        "ticker": "AZN",
+        "executives": 2,
+        "nonExecutives": 0,
+        "sampleDirectors": [
+          {
+            "name": "Pascal Soriot",
+            "role": "CEO",
+            "type": "executive"
+          },
+          {
+            "name": "Aradhana Sarin",
+            "role": "CFO",
+            "type": "executive"
+          }
+        ]
+      },
+      {
+        "company": "BT Group PLC",
+        "ticker": "BTA",
+        "executives": 2,
+        "nonExecutives": 0,
+        "sampleDirectors": [
+          {
+            "name": "Allison Kirkby",
+            "role": "CEO",
+            "type": "executive"
+          },
+          {
+            "name": "Simon Lowth",
+            "role": "CFO",
+            "type": "executive"
+          }
+        ]
+      },
+      {
+        "company": "BP plc",
+        "ticker": "BP",
+        "executives": 2,
+        "nonExecutives": 1,
+        "sampleDirectors": [
+          {
+            "name": "Murray Auchincloss",
+            "role": "Chief Executive Officer",
+            "type": "executive"
+          },
+          {
+            "name": "Kate Thomson",
+            "role": "Chief Financial Officer",
+            "type": "executive"
+          },
+          {
+            "name": "Helge Lund",
+            "role": "Chair",
+            "type": "non-executive"
+          }
+        ]
+      },
+      {
+        "company": "Marks & Spencer Group PLC",
+        "ticker": "MKS",
+        "executives": 2,
+        "nonExecutives": 0,
+        "sampleDirectors": [
+          {
+            "name": "Stuart Machin",
+            "role": "CEO",
+            "type": "executive"
+          },
+          {
+            "name": "Jeremy Townsend",
+            "role": "CFO",
+            "type": "executive"
+          }
+        ]
+      },
+      {
+        "company": "Shell plc",
+        "ticker": "SHEL",
+        "executives": 2,
+        "nonExecutives": 1,
+        "sampleDirectors": [
+          {
+            "name": "Wael Sawan",
+            "role": "Chief Executive Officer",
+            "type": "executive"
+          },
+          {
+            "name": "Sinead Gorman",
+            "role": "Executive Director",
+            "type": "executive"
+          },
+          {
+            "name": "Sir Andrew Mackenzie",
+            "role": "Chair",
+            "type": "non-executive"
+          }
+        ]
+      }
+    ]
+  },
+  "completedAt": "2026-06-21T17:51:34.801Z"
+}
