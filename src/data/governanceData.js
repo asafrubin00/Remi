@@ -49,8 +49,11 @@ export function enrichGovernanceData(company) {
 }
 
 function sanitizeDirectorCompensation(director) {
+  const identity = normalizeDirectorIdentity(director);
   return {
     ...director,
+    name: identity.name,
+    role: identity.role,
     years: Object.fromEntries(
       Object.entries(director.years || {}).map(([year, record]) => [
         year,
@@ -65,6 +68,31 @@ function sanitizeDirectorCompensation(director) {
       ]),
     )
   };
+}
+
+function normalizeDirectorIdentity(director) {
+  let name = String(director.name || "").replace(/\s+/g, " ").trim();
+  let role = String(director.role || "").replace(/\s+/g, " ").trim();
+
+  if (/\bFormer$/i.test(name)) {
+    name = name.replace(/\s+\bFormer$/i, "").trim();
+    if (role && !/^Former\b/i.test(role)) role = `Former ${role}`;
+  }
+
+  if (/\bTechnoking of Tesla and$/i.test(name)) {
+    name = name.replace(/\s+\bTechnoking of Tesla and$/i, "").trim();
+    role = `Technoking of Tesla and ${role}`.trim();
+  }
+
+  if (/\d+Co-$/i.test(name)) {
+    name = name.replace(/\d+Co-$/i, "").trim();
+    if (/^CEO\b/i.test(role)) role = `Co-${role}`;
+  }
+
+  name = name.replace(/\d+$/g, "").trim();
+  role = role.replace(/\band(?=Chief)/g, "and ").replace(/\s+/g, " ").trim();
+
+  return { name, role };
 }
 
 function normalizeCompensationValue(value) {

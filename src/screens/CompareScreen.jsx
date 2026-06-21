@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -60,6 +60,17 @@ function metricLabel(metric) {
 function identityLabel(row) {
   if (row.type === "average") return `${row.company} — Average (${row.averageCount ?? 0} ${row.directorType === "non-executive" ? "NEDs" : "executives"})`;
   return `${row.name} (${row.role}, ${row.company})`;
+}
+
+function identityParts(row) {
+  if (row.type === "average") {
+    return {
+      name: `${row.company} — Average`,
+      role: `${row.averageCount ?? 0} ${row.directorType === "non-executive" ? "NEDs" : "executives"}`,
+      company: row.company
+    };
+  }
+  return { name: row.name, role: row.role, company: row.company };
 }
 
 function shortName(row) {
@@ -133,8 +144,10 @@ function buildAverageRow(company, companyDirectors, directorType, metric) {
 }
 
 export default function CompareScreen({ dataset, directorType }) {
+  const searchRef = useRef(null);
   const directors = useMemo(() => allDirectors(dataset).filter((director) => director.type === directorType), [dataset, directorType]);
   const [query, setQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
   const [chips, setChips] = useState([]);
   const [metric, setMetric] = useState("totalCompensation");
   const [chartType, setChartType] = useState("Bar");
@@ -203,6 +216,14 @@ export default function CompareScreen({ dataset, directorType }) {
 
   const analysisData = useMemo(() => (canCompare ? { directorType, metric, chartType, logScale, comparisonRows } : null), [canCompare, chartType, comparisonRows, directorType, logScale, metric]);
 
+  useEffect(() => {
+    const closeOnOutsideClick = (event) => {
+      if (!searchRef.current?.contains(event.target)) setSearchOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
+  }, []);
+
   const addChip = (item) => {
     if (chips.length >= maxChips) return;
     if (item.type === "all") {
@@ -233,18 +254,38 @@ export default function CompareScreen({ dataset, directorType }) {
       <Panel className="p-5">
         <SectionHeader>Add Comparison</SectionHeader>
         <div className="mt-3 flex items-center gap-4">
-          <div className="relative w-full max-w-[520px]">
+          <div ref={searchRef} className="relative w-full max-w-[520px]">
             <input
-              className="remi-input"
+              className={`remi-input ${query ? "pr-16" : ""}`}
               placeholder="Add a company or individual to compare"
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setSearchOpen(true);
+              }}
+              onFocus={() => setSearchOpen(true)}
+              onKeyDown={(event) => {
+                if (event.key === "Escape") setSearchOpen(false);
+              }}
               disabled={chips.length >= maxChips}
             />
-            {searchResults.length ? (
+            {query ? (
+              <button
+                type="button"
+                className="absolute right-3 top-1/2 z-40 -translate-y-1/2 text-[12px] text-remi-muted transition hover:text-remi-gold-light"
+                aria-label="Clear comparison search"
+                onClick={() => {
+                  setQuery("");
+                  setSearchOpen(false);
+                }}
+              >
+                Clear
+              </button>
+            ) : null}
+            {searchOpen && searchResults.length ? (
               <div className="remi-autocomplete-list">
                 {searchResults.map((item) => (
-                  <button key={chipId(item)} className="remi-autocomplete-item" onClick={() => addChip(item)}>
+                  <button key={chipId(item)} className="remi-autocomplete-item" onClick={() => addChip(item)} onMouseDown={(event) => event.preventDefault()}>
                     <span>{item.label}</span>
                     <span className="remi-result-tag">{item.type === "average" ? "Average" : item.type === "all" ? "All" : item.type === "company" ? "Company" : "Individual"}</span>
                   </button>
@@ -343,6 +384,9 @@ function ValueTooltip({ active, payload, metric, mode = "block" }) {
     .filter((entry) => entry.value != null)
     .map((entry) => ({
       label: entry.payload?.fullLabel || entry.payload?.[`${entry.dataKey}Label`] || entry.name,
+      name: entry.payload?.personName,
+      role: entry.payload?.role,
+      company: entry.payload?.company,
       value: Object.prototype.hasOwnProperty.call(entry.payload || {}, "displayValue") ? entry.payload.displayValue : entry.value,
       currency: entry.payload?.currency || entry.payload?.[`${entry.dataKey}Currency`],
       note: entry.payload?.note
@@ -359,7 +403,7 @@ function ValueTooltip({ active, payload, metric, mode = "block" }) {
           </div>
         ) : (
           <div key={`${row.label}-${index}`} className={index ? "mt-2" : ""}>
-            <div className="remi-data text-remi-gold-light">{row.label}</div>
+            <TooltipIdentity row={row} />
             <DataValue className="mt-1 block">{formatChartValue(row.value, row.currency, metric)}</DataValue>
             {row.note ? <div className="mt-1 text-[11px] text-remi-muted">{row.note}</div> : null}
           </div>
@@ -375,22 +419,40 @@ function BubbleTooltip({ active, payload, metric }) {
   if (!row) return null;
   return (
     <div className="rounded-md border border-remi-border bg-remi-secondary p-3 text-xs text-remi-text">
-      {row.fullLabel}: <DataValue>{formatChartValue(row.value, row.currency, metric)}</DataValue>
+      <TooltipIdentity row={row} />
+      <DataValue className="mt-1 block">{formatChartValue(row.value, row.currency, metric)}</DataValue>
       {row.note ? <div className="mt-1 text-[11px] text-remi-muted">{row.note}</div> : null}
     </div>
   );
 }
 
+function TooltipIdentity({ row }) {
+  if (!row.name || !row.role || !row.company) return <div className="remi-data text-remi-gold-light">{row.label || row.fullLabel}</div>;
+  return (
+    <div className="space-y-0.5">
+      <div className="remi-data text-remi-gold-light">{row.name}</div>
+      <div className="max-w-[280px] text-remi-text-secondary">{row.role}</div>
+      <div className="text-remi-muted">{row.company}</div>
+    </div>
+  );
+}
+
 function BarComparison({ data, metric }) {
-  const chartData = data.map((row, index) => ({
-    name: shortName(row),
-    fullLabel: identityLabel(row),
-    value: numericMetricValue(row, metric) ?? 0,
-    displayValue: numericMetricValue(row, metric),
-    currency: row.currency,
-    note: row.note,
-    fill: palette[index % palette.length]
-  }));
+  const chartData = data.map((row, index) => {
+    const parts = identityParts(row);
+    return {
+      name: shortName(row),
+      fullLabel: identityLabel(row),
+      personName: parts.name,
+      role: parts.role,
+      company: parts.company,
+      value: numericMetricValue(row, metric) ?? 0,
+      displayValue: numericMetricValue(row, metric),
+      currency: row.currency,
+      note: row.note,
+      fill: palette[index % palette.length]
+    };
+  });
   const axisCurrency = chartCurrency(data);
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -439,9 +501,13 @@ function LineComparison({ data, rows, metric }) {
 function BubbleComparison({ data, metric, logScale }) {
   const chartData = data.map((row, index) => {
     const value = numericMetricValue(row, metric);
+    const parts = identityParts(row);
     return {
       name: shortName(row),
       fullLabel: identityLabel(row),
+      personName: parts.name,
+      role: parts.role,
+      company: parts.company,
       currency: row.currency,
       value,
       yValue: Math.max(value ?? 0, 1),
@@ -484,7 +550,14 @@ function ComparisonTable({ data, metric }) {
         <tbody>
           {data.map((row, index) => (
             <tr key={row.id} className={index % 2 ? "bg-remi-secondary" : "bg-remi-navy"}>
-              <td className="px-3 py-3">{row.name}</td>
+              <td className="px-3 py-3">
+                <span className="remi-name-popover-trigger">
+                  {row.name}
+                  <span className="remi-name-popover">
+                    <TooltipIdentity row={{ ...identityParts(row), label: identityLabel(row) }} />
+                  </span>
+                </span>
+              </td>
               <td className="px-3 py-3 text-remi-text-secondary">{row.company}</td>
               <td className="px-3 py-3 text-remi-text-secondary">{row.index}</td>
               <td className="px-3 py-3 text-remi-text-secondary">{row.sector}</td>

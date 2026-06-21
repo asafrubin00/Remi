@@ -186,6 +186,18 @@ a:hover {
     @apply flex h-4 w-4 items-center justify-center rounded-full text-remi-muted transition hover:bg-remi-surface hover:text-remi-gold-light;
   }
 
+  .remi-name-popover-trigger {
+    @apply relative inline-block cursor-default border-b border-dotted border-remi-muted/50;
+  }
+
+  .remi-name-popover {
+    @apply pointer-events-none invisible absolute bottom-[calc(100%+8px)] left-0 z-40 min-w-[240px] max-w-[320px] rounded-md border border-remi-border bg-remi-secondary p-3 text-xs text-remi-text opacity-0 shadow-xl shadow-black/30 transition;
+  }
+
+  .remi-name-popover-trigger:hover .remi-name-popover {
+    @apply visible opacity-100;
+  }
+
   .remi-toggle {
     @apply relative h-5 w-9 rounded-full border border-remi-border bg-remi-navy transition;
   }
