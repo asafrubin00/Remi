@@ -197,6 +197,8 @@ function parseSummaryCompensationTable(html, company) {
   const warnings = [];
   const candidate = findSummaryCompensationTable($);
   if (!candidate) {
+    const fallback = parseTextSummaryCompensationTable(html, company);
+    if (fallback.directors.length) return fallback;
     const warning = `Summary Compensation Table not found for ${company.name}.`;
     console.error("[scrape-sp500] " + warning);
     return { directors: [], warnings: [warning] };
@@ -205,6 +207,8 @@ function parseSummaryCompensationTable(html, company) {
   const rows = candidate.rows;
   const headerIndex = rows.findIndex((row) => row.some((cell) => /salary/i.test(cell)) && row.some((cell) => /total/i.test(cell)) && row.some((cell) => /year/i.test(cell)));
   if (headerIndex < 0) {
+    const fallback = parseTextSummaryCompensationTable(html, company);
+    if (fallback.directors.length) return fallback;
     const warning = `Summary Compensation Table header not parsed for ${company.name}.`;
     console.error("[scrape-sp500] " + warning, { rows: rows.slice(0, 5) });
     return { directors: [], warnings: [warning] };
@@ -224,39 +228,66 @@ function parseSummaryCompensationTable(html, company) {
 
   const directors = new Map();
   let currentPerson = null;
+  let currentMaxYear = null;
+  const pendingRowsForNextPerson = [];
+  const diagnostics = {
+    detected: [],
+    parsed: [],
+    dropped: []
+  };
 
-  for (const row of rows.slice(headerIndex + 1)) {
+  const dataRows = rows.slice(headerIndex + 1);
+  for (let index = 0; index < dataRows.length; index += 1) {
+    const row = dataRows[index];
     if (!row.length) continue;
     const firstYear = parseYear(row[0]);
-    const startsWithPerson = firstYear == null && row.some((cell) => parseYear(cell) != null);
-    if (startsWithPerson) currentPerson = splitNameAndRole(row[0]);
+    const nextRow = dataRows[index + 1] || [];
+    const nextStartsWithPerson = !/^20\d{2}$/.test(cleanText(nextRow[0])) && nextRow.some((cell) => parseYear(cell) != null) && isLikelySecPersonName(nextRow[0]);
+    if (firstYear != null && nextStartsWithPerson && (!currentPerson || currentMaxYear == null || firstYear >= currentMaxYear)) {
+      pendingRowsForNextPerson.push(row);
+      continue;
+    }
 
-    const shift = firstYear != null ? 1 : 0;
-    const year = firstYear || parseYear(row[headerMap.year] || row[0]);
-    if (!year || !currentPerson) continue;
+    const startsWithPerson = !/^20\d{2}$/.test(cleanText(row[0])) && row.some((cell) => parseYear(cell) != null) && isLikelySecPersonName(row[0]);
+    if (startsWithPerson) {
+      currentPerson = splitNameAndRole(row[0]);
+      currentMaxYear = null;
+      diagnostics.detected.push({ name: currentPerson.name, role: currentPerson.role, row });
+      while (pendingRowsForNextPerson.length) {
+        parseStructuredCompensationRow(pendingRowsForNextPerson.shift(), currentPerson);
+      }
+    }
 
-    const record = {
-      baseSalary: getMoney(row, headerMap.salary, shift),
-      annualBonus: sumNullable(getMoney(row, headerMap.bonus, shift), getMoney(row, headerMap.nonEquity, shift)),
-      ltip: sumNullable(getMoney(row, headerMap.stockAwards, shift), getMoney(row, headerMap.optionAwards, shift)),
-      pensionBenefits: getMoney(row, headerMap.allOther, shift),
-      totalCompensation: getMoney(row, headerMap.total, shift),
-      payRatio: null,
-      sayOnPayPct: null
-    };
+    parseStructuredCompensationRow(row, currentPerson);
+  }
+
+  function parseStructuredCompensationRow(row, person) {
+    const year = detectRowYear(row, headerMap.year);
+    if (!year || !person) {
+      diagnostics.dropped.push({ row, reason: !year ? "No reporting year found." : "No current NEO name attached to row." });
+      return;
+    }
+
+    const record = parseStructuredCompensationValues(row, headerMap, year, company);
     normalizeCompensationScale(record, company, row);
+    if (Object.values(record).every((value) => value == null)) {
+      diagnostics.dropped.push({ name: person.name, year, row, reason: "Matched name/year but no compensation values parsed." });
+    } else {
+      diagnostics.parsed.push({ name: person.name, year, row });
+    }
 
-    const id = slugify(currentPerson.name);
+    const id = slugify(person.name);
     const existing = directors.get(id) || {
       id,
-      name: currentPerson.name,
-      role: currentPerson.role,
+      name: person.name,
+      role: person.role,
       type: "executive",
       sourceUrl: null,
       years: {}
     };
     existing.years[year] = record;
     directors.set(id, existing);
+    currentMaxYear = currentMaxYear == null ? year : Math.max(currentMaxYear, year);
   }
 
   if (!directors.size) {
@@ -264,8 +295,86 @@ function parseSummaryCompensationTable(html, company) {
     console.error("[scrape-sp500] " + warning, { tableText: candidate.text.slice(0, 1000) });
     warnings.push(warning);
   }
+  logDirectorExtractionDiagnostics("scrape-sp500", company.name, diagnostics, directors.size);
 
   return { directors: [...directors.values()], warnings };
+}
+
+function parseTextSummaryCompensationTable(html, company) {
+  const warnings = [];
+  const text = bodyText(html);
+  const start =
+    text.search(/SUMMARY COMPENSATION TABLE FOR\s+20\d{2}/i) >= 0
+      ? text.search(/SUMMARY COMPENSATION TABLE FOR\s+20\d{2}/i)
+      : text.search(/Summary Compensation Table/i);
+  if (start < 0) return { directors: [], warnings };
+
+  const section = text.slice(start, start + 18000);
+  if (/Compensation Actually Paid|Pay Versus Performance/i.test(section.slice(0, 1200))) return { directors: [], warnings };
+  const end = section.search(/COMPENSATION ADJUSTED FOR|TOTAL DIRECT COMPENSATION|GRANTS OF PLAN-BASED AWARDS|Outstanding Equity/i);
+  const tableText = end > 0 ? section.slice(0, end) : section;
+  const namePattern = /\b((?:[A-Z]\.\s*){1,3}[A-Z][A-Za-z]+(?:,\s*Jr\.)?)\b/g;
+  const nameMatches = [...tableText.matchAll(namePattern)].filter((match) => /20\d{2}/.test(tableText.slice(match.index, match.index + 700)));
+  const directors = new Map();
+  const diagnostics = { detected: [], parsed: [], dropped: [] };
+
+  for (let index = 0; index < nameMatches.length; index += 1) {
+    const match = nameMatches[index];
+    const name = cleanText(match[1]);
+    const blockEnd = nameMatches[index + 1]?.index ?? tableText.length;
+    const block = tableText.slice(match.index, blockEnd);
+    diagnostics.detected.push({ name, role: "Named Executive Officer", row: [block.slice(0, 500)] });
+    const rows = [...block.matchAll(/\b(20\d{2})\s+([\d,]+|0|—)\s+([\d,]+|0|—)\s+([\d,]+|0|—)\s+([\d,]+|0|—)\s+([\d,]+|0|—)\s+([\d,]+|0|—)\s+([\d,]+|0|—)\s+([\d,]+|0|—)/g)];
+    if (!rows.length) {
+      diagnostics.dropped.push({ name, reason: "Matched name but no text compensation rows found.", row: [block.slice(0, 500)] });
+      continue;
+    }
+
+    const roleText = block.slice(rows[0].index + rows[0][0].length, rows[1]?.index ?? rows[0].index + rows[0][0].length + 120);
+    const role = cleanText(roleText.replace(/\b20\d{2}[\s\S]*$/g, "")) || "Named Executive Officer";
+    const id = slugify(name);
+    const director = directors.get(id) || { id, name, role, type: "executive", sourceUrl: null, years: {} };
+    for (const row of rows) {
+      const year = Number(row[1]);
+      const record = {
+        baseSalary: parseMoney(row[2]),
+        annualBonus: sumNullable(parseMoney(row[3]), parseMoney(row[6])),
+        ltip: sumNullable(parseMoney(row[4]), parseMoney(row[5])),
+        pensionBenefits: parseMoney(row[7]),
+        totalCompensation: parseMoney(row[9]),
+        payRatio: null,
+        sayOnPayPct: null
+      };
+      normalizeCompensationScale(record, company, row.slice(0, 10));
+      director.years[year] = record;
+      diagnostics.parsed.push({ name, year, row: row.slice(0, 10) });
+    }
+    directors.set(id, director);
+  }
+
+  logDirectorExtractionDiagnostics("scrape-sp500", company.name, diagnostics, directors.size);
+  return { directors: [...directors.values()], warnings };
+}
+
+function logDirectorExtractionDiagnostics(scope, companyName, diagnostics, structuredCount) {
+  const detectedNames = [...new Set(diagnostics.detected.map((item) => item.name).filter(Boolean))];
+  const parsedNames = [...new Set(diagnostics.parsed.map((item) => item.name).filter(Boolean))];
+  const dropped = diagnostics.dropped.filter((item) => item.name || item.reason).slice(0, 12);
+  console.error(`[${scope}] Director extraction diagnostics`, {
+    company: companyName,
+    detectedNamePatterns: detectedNames.length,
+    structuredRecords: structuredCount,
+    detectedNames,
+    parsedNames,
+    dropped
+  });
+  if (structuredCount <= 1 && detectedNames.length > 1) {
+    console.error(`[${scope}] Likely incomplete director extraction`, {
+      company: companyName,
+      detectedNamePatterns: detectedNames.length,
+      structuredRecords: structuredCount
+    });
+  }
 }
 
 function normalizeCompensationScale(record, company, row) {
@@ -299,6 +408,7 @@ function findSummaryCompensationTable($) {
     if (/stock\s*awards?/i.test(text)) score += 2;
     if (/total/i.test(text)) score += 1;
     if (/named executive|principal position/i.test(text)) score += 1;
+    if (/compensation actually paid|pay versus performance|\bPEO\b|\bCAP\b/i.test(text)) score -= 20;
     if (rows.length < 3) score -= 2;
     if (!best || score > best.score) best = { index, rows, text, score };
   });
@@ -438,6 +548,64 @@ function getMoney(row, headerIndex, shift) {
   return parseMoney(row[headerIndex - shift]);
 }
 
+function detectRowYear(row, headerYearIndex) {
+  const exactIndex = row.findIndex((cell) => /^20\d{2}$/.test(cleanText(cell)));
+  if (exactIndex >= 0) return Number(cleanText(row[exactIndex]));
+  return parseYear(row[headerYearIndex]) || row.map(parseYear).find((year) => year != null) || null;
+}
+
+function parseStructuredCompensationValues(row, headerMap, year, company) {
+  const yearIndex = row.findIndex((cell) => cleanText(cell) === String(year));
+  const valueCells = row.slice(yearIndex >= 0 ? yearIndex + 1 : 0);
+  const moneyCells = valueCells.map(parseMoney).filter((value) => value != null);
+  const expectedMoneyColumns = [
+    headerMap.salary,
+    headerMap.bonus,
+    headerMap.stockAwards,
+    headerMap.optionAwards,
+    headerMap.nonEquity,
+    headerMap.allOther,
+    headerMap.total
+  ].filter((index) => index >= 0).length;
+
+  if (moneyCells.length >= 5 && moneyCells.length > expectedMoneyColumns) {
+    const hasNonEquity = headerMap.nonEquity >= 0;
+    const hasOptions = headerMap.optionAwards >= 0;
+    const totalCompensation = moneyCells.at(-1) ?? null;
+    const pensionBenefits = moneyCells.length >= 2 ? moneyCells.at(-2) : null;
+    const nonEquity = hasNonEquity && moneyCells.length >= 4 ? moneyCells.at(-3) : null;
+    let ltip = moneyCells[2] ?? null;
+
+    if (!hasNonEquity && !hasOptions && moneyCells.length >= 8) {
+      ltip = moneyCells[4] ?? moneyCells[2] ?? null;
+    } else if (hasOptions && moneyCells.length >= 4) {
+      ltip = sumNullable(moneyCells[2], moneyCells[3]);
+    }
+
+    return {
+      baseSalary: moneyCells[0] ?? null,
+      annualBonus: sumNullable(moneyCells[1] ?? null, nonEquity),
+      ltip,
+      pensionBenefits,
+      totalCompensation,
+      payRatio: null,
+      sayOnPayPct: null
+    };
+  }
+
+  const offset = yearIndex >= 0 && headerMap.year >= 0 ? yearIndex - headerMap.year : parseYear(row[0]) != null ? -1 : 0;
+  const moneyAtHeader = (headerIndex) => (headerIndex < 0 ? null : parseMoney(row[headerIndex + offset]));
+  return {
+    baseSalary: moneyAtHeader(headerMap.salary),
+    annualBonus: sumNullable(moneyAtHeader(headerMap.bonus), moneyAtHeader(headerMap.nonEquity)),
+    ltip: sumNullable(moneyAtHeader(headerMap.stockAwards), moneyAtHeader(headerMap.optionAwards)),
+    pensionBenefits: moneyAtHeader(headerMap.allOther),
+    totalCompensation: moneyAtHeader(headerMap.total),
+    payRatio: null,
+    sayOnPayPct: null
+  };
+}
+
 function parseMoney(value) {
   if (!value || /—|-|n\/a/i.test(value)) return null;
   const negative = /^\(.*\)$/.test(value.trim());
@@ -472,6 +640,21 @@ function splitNameAndRole(value) {
     name: cleanText(text.slice(0, match.index)),
     role: cleanText(text.slice(match.index))
   };
+}
+
+function isLikelySecPersonName(value) {
+  const text = cleanText(value);
+  if (!text || !/^[A-Z]/.test(text)) return false;
+  if ((text.match(/\b[A-Z][A-Za-z'.-]+\b/g) || []).length < 2 && !/^(?:[A-Z]\.\s*){1,3}[A-Z][A-Za-z]+/.test(text)) return false;
+  if (
+    /^(?:Chairman|President|CFO|CEO|CLO|Chief|Executive|Senior|Vice|General Counsel|Named Executive Officer|Former|Total|Year|Salary|Bonus|Stock|Option|All Other|Change in Pension)\b/i.test(
+      text,
+    )
+  ) {
+    return false;
+  }
+  if (/\b(?:and|of|to)$/i.test(text)) return false;
+  return true;
 }
 
 function findPrimaryCeoId(directors) {

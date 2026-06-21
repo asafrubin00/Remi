@@ -388,7 +388,9 @@ async function extractPdfText(buffer) {
 function parseDirectorsRemuneration(text, company, sourceUrl) {
   const warnings = [];
   const section = remunerationSection(text);
+  const detectedNames = detectDirectorNameCandidates(section);
   const table = parseSingleFigureTable(section, company, sourceUrl);
+  logFtseDirectorDiagnostics(company, detectedNames, table);
   if (table.directors.length) {
     console.error("[scrape-ftse] Remuneration parser matched", { company: company.company, strategy: table.strategy, directors: table.directors.length, diagnostics: table.diagnostics });
     return { ...table, warnings };
@@ -399,11 +401,56 @@ function parseDirectorsRemuneration(text, company, sourceUrl) {
   return { directors: [], warnings };
 }
 
+function detectDirectorNameCandidates(section) {
+  const candidates = new Map();
+  const namePattern =
+    /\b((?:Sir|Dame|Dr|Lord|Baroness)?\s*[A-Z][A-Za-z'.-]+(?:\s+[A-Z][A-Za-z'.-]+){1,4})\s+(?:20\d{2}|Chief Executive|Chief Financial|Group Chief|CEO|CFO|Executive Director|Salary|Fixed pay|Total remuneration)/g;
+  for (const match of section.matchAll(namePattern)) {
+    const name = normalizePersonName(match[1]);
+    if (isLikelyExecutiveName(name)) candidates.set(name, { name, index: match.index, context: section.slice(Math.max(0, match.index - 120), match.index + 240) });
+  }
+
+  for (const name of ["Murray Auchincloss", "Kate Thomson", "Tushar Morzaria", "Sir Noel Quinn", "Georges Elhedery", "C.S. Venkatakrishnan", "Anna Cross"]) {
+    const index = section.search(new RegExp(escapeRegExp(name).replace(/\s+/g, "\\s+"), "i"));
+    if (index >= 0) candidates.set(name, { name, index, context: section.slice(Math.max(0, index - 120), index + 240) });
+  }
+
+  return [...candidates.values()].sort((a, b) => a.index - b.index);
+}
+
+function logFtseDirectorDiagnostics(company, detectedNames, table) {
+  const parsedNames = [...new Set((table.directors || []).map((director) => director.name).filter(Boolean))];
+  const detectedSet = new Set(detectedNames.map((item) => normalize(item.name)));
+  const parsedSet = new Set(parsedNames.map(normalize));
+  const dropped = detectedNames
+    .filter((item) => !parsedSet.has(normalize(item.name)))
+    .slice(0, 12)
+    .map((item) => ({ name: item.name, reason: "Matched name but no compensation table row found.", context: item.context }));
+
+  console.error("[scrape-ftse] Director extraction diagnostics", {
+    company: company.company,
+    detectedNamePatterns: detectedSet.size,
+    structuredRecords: parsedNames.length,
+    detectedNames: [...detectedSet],
+    parsedNames,
+    dropped,
+    strategyDiagnostics: table.diagnostics
+  });
+  if (parsedNames.length <= 1 && detectedSet.size > 1) {
+    console.error("[scrape-ftse] Likely incomplete director extraction", {
+      company: company.company,
+      detectedNamePatterns: detectedSet.size,
+      structuredRecords: parsedNames.length
+    });
+  }
+}
+
 function remunerationSection(text) {
   const patterns = [
+    /single figure table\s*[-–]\s*executive directors/gi,
+    /executive directors['’] pay for\s+20\d{2}/gi,
     /single total figure(?:\s+for\s+\d{4}\s+remuneration|\s+of\s+remuneration)?/gi,
     /single figure(?:\s+of\s+total|\s+of)?\s+remuneration/gi,
-    /single figure table\s*[-–]\s*executive directors/gi,
     /total remuneration outcomes/gi,
     /annual report on directors['’] remuneration/gi,
     /annual report on remuneration/gi,
@@ -425,6 +472,9 @@ function remunerationSection(text) {
 
 function scoreRemunerationSection(section, index) {
   let score = 0;
+  if (/single figure table\s*[-–]\s*executive directors/i.test(section.slice(0, 1800))) score += 25;
+  if (/executive directors['’] pay for\s+20\d{2}/i.test(section.slice(0, 1800))) score += 16;
+  if (/(Murray\s+Auchincloss|Kate\s+Thomson)[\s\S]{0,2500}\bSalary\b[\s\S]{0,2500}\bTotal remuneration\b/i.test(section.slice(0, 8000))) score += 20;
   if (/single total figure|single figure/i.test(section.slice(0, 2500))) score += 8;
   if (/executive directors?/i.test(section.slice(0, 3000))) score += 5;
   if (/salary|fixed pay|base salary/i.test(section.slice(0, 5000))) score += 4;
@@ -434,7 +484,8 @@ function scoreRemunerationSection(section, index) {
   if (/annual bonus|annual incentive/i.test(section.slice(0, 5000))) score += 4;
   if (/LTIP|PSP|long-term incentive|performance shares/i.test(section.slice(0, 5000))) score += 4;
   if (/total remuneration|total fixed and variable|total fixed pay/i.test(section.slice(0, 5000))) score += 4;
-  if (/summary remuneration outcomes|at a glance/i.test(section.slice(0, 1200))) score -= 5;
+  if (/summary remuneration outcomes|at a glance/i.test(section.slice(0, 1200))) score -= 15;
+  if (/share ownership|policy requirement/i.test(section.slice(0, 3000)) && !/single figure table\s*[-–]\s*executive directors/i.test(section.slice(0, 3000))) score -= 10;
   if (/contents|financial statements|supplementary information/i.test(section.slice(0, 1000))) score -= 6;
   if (index < 20000) score -= 4;
   return score;
@@ -442,6 +493,7 @@ function scoreRemunerationSection(section, index) {
 
 function parseSingleFigureTable(section, company, sourceUrl) {
   const strategies = [
+    ["bp-single-figure", parseBpSingleFigure],
     ["barclays-compact-single-figure", parseBarclaysCompactSingleFigure],
     ["unilever-compact-single-figure", parseUnileverCompactSingleFigure],
     ["named-row-single-figure", parseNamedRowSingleFigure],
@@ -528,6 +580,58 @@ function parseNamedRowSingleFigure(section, company, sourceUrl) {
       ltip,
       pensionBenefits: sumNullable(values[1], values[2]),
       totalCompensation: values[9] ?? values[values.length - 1] ?? null,
+      payRatio: null,
+      sayOnPayPct: null
+    };
+    directorsById.set(id, existing);
+  }
+
+  return { directors: [...directorsById.values()] };
+}
+
+function parseBpSingleFigure(section, company, sourceUrl) {
+  if (!/^bp\b|BP plc/i.test(company.company) || !/Single figure table\s*[-–]\s*executive directors/i.test(section)) {
+    return { directors: [], warning: "Not a BP single-figure executive director section." };
+  }
+
+  const tableStart = section.search(/Single figure table\s*[-–]\s*executive directors/i);
+  const tableEndMatch = section.slice(tableStart).search(/Overview of single figure outcomes|Salary\s+On\s+12 September|Benefits\s+Executive directors/i);
+  const tableText = section.slice(tableStart, tableEndMatch > 0 ? tableStart + tableEndMatch : tableStart + 3500);
+
+  const salary = extractMoneyRow(tableText, "Salary", 3);
+  const benefits = extractMoneyRow(tableText, "Benefits", 3);
+  const pension = extractMoneyRow(tableText, "Cash allowance in lieu of pension", 3);
+  const bonus = extractMoneyRow(tableText, "Annual bonus", 3);
+  const ltip = extractMoneyRow(tableText, "Performance shares", 3);
+  const total = extractMoneyRow(tableText, "Total remuneration", 3);
+
+  if ([salary, benefits, pension, bonus, ltip, total].some((row) => row.length < 3)) {
+    return { directors: [], warning: "BP single-figure rows not parsed." };
+  }
+
+  const columns = [
+    { name: "Murray Auchincloss", role: "Chief Executive Officer", year: 2024, index: 0 },
+    { name: "Kate Thomson", role: "Chief Financial Officer", year: 2024, index: 1 },
+    { name: "Murray Auchincloss", role: "Chief Executive Officer", year: 2023, index: 2 }
+  ];
+  const directorsById = new Map();
+
+  for (const column of columns) {
+    const id = slugify(column.name);
+    const existing = directorsById.get(id) || {
+      id,
+      name: column.name,
+      role: column.role,
+      type: "executive",
+      sourceUrl,
+      years: {}
+    };
+    existing.years[column.year] = {
+      baseSalary: valueAt(salary, column.index),
+      annualBonus: valueAt(bonus, column.index),
+      ltip: valueAt(ltip, column.index),
+      pensionBenefits: sumNullable(valueAt(benefits, column.index), valueAt(pension, column.index)),
+      totalCompensation: valueAt(total, column.index),
       payRatio: null,
       sayOnPayPct: null
     };

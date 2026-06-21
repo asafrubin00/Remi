@@ -28,7 +28,8 @@ export default async function handler(request, response) {
     }
 
     if (company.index?.startsWith("FTSE")) {
-      response.status(200).json(await scrapeFtseCompany(company.company));
+      const skipCache = request.query.fresh === "1" || request.query.skipCache === "1";
+      response.status(200).json(await scrapeFtseCompany(company.company, { skipCache }));
       return;
     }
 
