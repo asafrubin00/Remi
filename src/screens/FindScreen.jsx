@@ -25,14 +25,15 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
   const visibleDirectors = useMemo(() => directors.filter((director) => director.type === directorType), [directors, directorType]);
   const [companyQuery, setCompanyQuery] = useState("");
   const [personQuery, setPersonQuery] = useState("");
-  const [selectedId, setSelectedId] = useState(visibleDirectors[0]?.id);
+  const [selectedId, setSelectedId] = useState(null);
   const [year, setYear] = useState(null);
 
   useEffect(() => {
-    const nextVisible = visibleDirectors.find((director) => director.id === selectedId) || visibleDirectors[0];
-    setSelectedId(nextVisible?.id);
-    setYear(null);
-  }, [directorType, selectedId, visibleDirectors]);
+    if (selectedId && !visibleDirectors.some((director) => director.id === selectedId)) {
+      setSelectedId(null);
+      setYear(null);
+    }
+  }, [selectedId, visibleDirectors]);
 
   useEffect(() => {
     if (initialSelectedId && visibleDirectors.some((director) => director.id === initialSelectedId)) {
@@ -41,28 +42,49 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
     }
   }, [initialSelectedId, visibleDirectors]);
 
+  const hasActiveSearch = companyQuery.trim().length >= 2 || personQuery.trim().length >= 2;
+
   const results = useMemo(() => {
+    if (!hasActiveSearch && !selectedId) return [];
     return visibleDirectors.filter((director) => {
       const companyMatch = !companyQuery || matchesQuery(director.company, companyQuery);
       const personMatch = !personQuery || matchesQuery(director.name, personQuery);
       return companyMatch && personMatch;
     });
-  }, [companyQuery, personQuery, visibleDirectors]);
+  }, [companyQuery, hasActiveSearch, personQuery, selectedId, visibleDirectors]);
+
+  const companySuggestions = useMemo(() => {
+    if (companyQuery.trim().length < 2) return [];
+    return dataset.filter((company) => matchesQuery(company.company, companyQuery)).slice(0, 6);
+  }, [companyQuery, dataset]);
+
+  const personSuggestions = useMemo(() => {
+    if (personQuery.trim().length < 2) return [];
+    return visibleDirectors.filter((director) => matchesQuery(director.name, personQuery)).slice(0, 6);
+  }, [personQuery, visibleDirectors]);
 
   const selectedDirector = useMemo(() => {
-    return visibleDirectors.find((director) => director.id === selectedId) || results[0] || visibleDirectors[0];
-  }, [results, selectedId, visibleDirectors]);
+    return visibleDirectors.find((director) => director.id === selectedId) || null;
+  }, [selectedId, visibleDirectors]);
 
   const selectedYearData = selectedDirector ? flattenDirectorYear(selectedDirector, year) : null;
   const selectedCompany = dataset.find((company) => company.id === selectedDirector?.companyId);
   const badge = sourceBadge(selectedCompany?.scrape?.status);
 
-  useEffect(() => {
-    if (results.length && !results.some((director) => director.id === selectedId)) {
-      setSelectedId(results[0].id);
-      setYear(null);
-    }
-  }, [results, selectedId]);
+  const selectDirector = (director) => {
+    setSelectedId(director.id);
+    setCompanyQuery(director.company);
+    setPersonQuery(director.name);
+    setYear(null);
+  };
+
+  const selectCompany = (company) => {
+    const director = visibleDirectors.find((item) => item.companyId === company.id);
+    setSelectedId(director?.id || null);
+    setCompanyQuery(company.company);
+    setPersonQuery("");
+    setYear(null);
+  };
 
   const breakdownRows =
     selectedYearData?.type === "non-executive"
@@ -80,36 +102,54 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
       <Panel className="flex h-[690px] flex-col overflow-hidden">
         <div className="border-b border-remi-border p-6">
           <div className="grid gap-3">
-            <input
-              className="remi-input"
-              list="company-options"
-              placeholder="Search company"
-              value={companyQuery}
-              onChange={(event) => setCompanyQuery(event.target.value)}
-            />
-            <datalist id="company-options">
-              {dataset.map((company) => (
-                <option key={company.id} value={company.company} />
-              ))}
-            </datalist>
-            <input
-              className="remi-input"
-              list="director-options"
-              placeholder="Search individual"
-              value={personQuery}
-              onChange={(event) => setPersonQuery(event.target.value)}
-            />
-            <datalist id="director-options">
-              {visibleDirectors.map((director) => (
-                <option key={director.id} value={director.name} />
-              ))}
-            </datalist>
+            <div className="relative">
+              <input
+                className="remi-input"
+                placeholder="Search company"
+                value={companyQuery}
+                onChange={(event) => {
+                  setCompanyQuery(event.target.value);
+                  setSelectedId(null);
+                }}
+              />
+              {!dataset.some((company) => company.company === companyQuery) && companySuggestions.length ? (
+                <div className="remi-autocomplete-list">
+                  {companySuggestions.map((company) => (
+                    <button key={company.id} className="remi-autocomplete-item" onClick={() => selectCompany(company)}>
+                      <span>{company.company}</span>
+                      <span>{company.index}</span>
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+            <div className="relative">
+              <input
+                className="remi-input"
+                placeholder="Search individual"
+                value={personQuery}
+                onChange={(event) => {
+                  setPersonQuery(event.target.value);
+                  setSelectedId(null);
+                }}
+              />
+              {!visibleDirectors.some((director) => director.name === personQuery) && personSuggestions.length ? (
+                <div className="remi-autocomplete-list">
+                  {personSuggestions.map((director) => (
+                    <button key={director.id} className="remi-autocomplete-item" onClick={() => selectDirector(director)}>
+                      <span>{director.name}</span>
+                      <span>{director.company}</span>
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
 
         <div className="border-b border-remi-border px-6 py-4">
           <h3 className="text-sm font-medium text-remi-text">
-            Search results: <span className="text-remi-gold-light">{companyQuery || selectedCompany?.company}</span>
+            Search results: <span className="text-remi-gold-light">{hasActiveSearch ? companyQuery || personQuery : "Start typing"}</span>
           </h3>
           <p className="mt-1 text-xs text-remi-text-secondary">Select a director to see remuneration data.</p>
         </div>
@@ -126,8 +166,7 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
                     : `border-transparent ${index % 2 ? "bg-remi-secondary" : "bg-remi-navy"} hover:border-remi-gold hover:bg-remi-surface`
                 }`}
                 onClick={() => {
-                  setSelectedId(director.id);
-                  setYear(null);
+                  selectDirector(director);
                 }}
               >
                 <div className="text-sm font-medium text-remi-text">{director.name}</div>
@@ -135,6 +174,7 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
                 <div className="mt-1 text-[11px] text-remi-muted">{director.company}</div>
               </button>
             ))}
+            {!results.length ? <p className="px-3 py-8 text-center text-sm text-remi-text-secondary">Search for a company or individual to begin.</p> : null}
           </div>
         </div>
       </Panel>
@@ -204,7 +244,9 @@ export default function FindScreen({ dataset, directorType, initialSelectedId })
             </div>
           </div>
         ) : (
-          <p className="text-sm text-remi-text-secondary">No matching director records.</p>
+          <div className="flex h-full items-center justify-center text-center text-sm text-remi-text-secondary">
+            Search for a company or individual to begin
+          </div>
         )}
       </Panel>
 

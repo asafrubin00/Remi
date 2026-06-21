@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Panel, SectionHeader } from "./ui.jsx";
 
 export default function AnalysisPanel({ currentViewData }) {
-  const [analysis, setAnalysis] = useState("Analysis unavailable.");
+  const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(false);
 
   const payload = useMemo(() => JSON.stringify(currentViewData ?? {}), [currentViewData]);
@@ -13,7 +13,8 @@ export default function AnalysisPanel({ currentViewData }) {
 
     async function analyse() {
       if (!currentViewData) {
-        setAnalysis("Analysis unavailable.");
+        setAnalysis("");
+        setLoading(false);
         return;
       }
 
@@ -69,14 +70,18 @@ export default function AnalysisPanel({ currentViewData }) {
   }, [payload]);
 
   return (
-    <Panel className="h-full p-6">
-      <div className="flex items-center justify-between gap-3">
+    <Panel className="flex h-full max-h-full flex-col overflow-hidden p-6">
+      <div className="flex shrink-0 items-center justify-between gap-3">
         <SectionHeader>Remi Analysis</SectionHeader>
         {loading ? <span className="h-2 w-2 rounded-full bg-remi-gold remi-pulse" aria-label="Generating analysis" /> : null}
       </div>
-      <p className={`mt-4 text-[13px] italic leading-6 transition-opacity duration-300 ${loading ? "opacity-40" : "opacity-100"} text-remi-text-secondary`}>
-        {analysis}
-      </p>
+      <div className="mt-4 min-h-0 flex-1 overflow-y-auto pr-1">
+        {analysis ? (
+          <p className={`text-[13px] italic leading-6 transition-opacity duration-300 ${loading ? "opacity-40" : "opacity-100"} text-remi-text-secondary`}>
+            {analysis}
+          </p>
+        ) : null}
+      </div>
     </Panel>
   );
 }

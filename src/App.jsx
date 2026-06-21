@@ -83,9 +83,12 @@ export default function App() {
 
   return (
     <main className="remi-shell">
-      <header className="mb-8 flex items-start justify-between border-b border-remi-border pb-6">
+      <header className="remi-global-header">
         <button className="text-left" onClick={() => navigate("landing")} aria-label="Go to landing screen">
-          <h1 className="remi-wordmark">remi</h1>
+          <div className="flex items-center gap-3">
+            <img src="/icons/remi-mark.svg" alt="" className="h-9 w-9" />
+            <h1 className="remi-wordmark">remi</h1>
+          </div>
           <p className="remi-kicker mt-2">Remuneration Intelligence</p>
         </button>
 
@@ -110,7 +113,7 @@ export default function App() {
 
       <section className="flex-1">
         {activeView !== "landing" ? (
-          <div className="mb-5 flex items-end justify-between">
+          <div className="mb-4 flex items-end justify-between">
             <h2 className="remi-title">{screenTitle}</h2>
             <p className="remi-kicker">
               Viewing {directorType === "executive" ? "Executive" : "Non-Executive"} data · {dataset.some((company) => company.scrape?.status === "live-metadata") ? "Live metadata" : "Seeded data"}

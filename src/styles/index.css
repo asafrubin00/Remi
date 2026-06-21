@@ -79,7 +79,14 @@ a:hover {
 
 @layer components {
   .remi-shell {
-    @apply mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-8 py-7;
+    @apply mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-8 py-5;
+  }
+
+  .remi-global-header {
+    background:
+      linear-gradient(180deg, rgba(13, 31, 53, 0.98), rgba(13, 31, 53, 0.92)),
+      var(--remi-navy);
+    @apply sticky top-0 z-50 -mx-8 mb-5 flex items-start justify-between border-b border-remi-border px-8 py-3 backdrop-blur;
   }
 
   .remi-panel {
@@ -97,7 +104,7 @@ a:hover {
 
   .remi-wordmark {
     font-family: "DM Serif Display", Georgia, serif;
-    @apply text-[56px] font-normal leading-none text-remi-text;
+    @apply text-[48px] font-normal leading-none text-remi-text;
   }
 
   .remi-kicker {
@@ -146,6 +153,19 @@ a:hover {
   .remi-input {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     @apply h-11 w-full rounded-md border border-remi-border bg-remi-navy px-3 text-[13px] text-remi-text outline-none transition placeholder:text-remi-muted focus:border-remi-gold focus:ring-1 focus:ring-remi-gold;
+  }
+
+  .remi-autocomplete-list {
+    @apply absolute left-0 right-0 top-[calc(100%+4px)] z-30 overflow-hidden rounded-md border border-remi-border bg-remi-navy shadow-xl shadow-black/20;
+  }
+
+  .remi-autocomplete-item {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply flex w-full items-center justify-between gap-3 border-b border-remi-border px-3 py-2 text-left text-[12px] text-remi-text-secondary last:border-b-0 hover:bg-remi-surface hover:text-remi-text;
+  }
+
+  .remi-autocomplete-item span:last-child {
+    @apply truncate text-[11px] text-remi-muted;
   }
 
   .remi-select {
