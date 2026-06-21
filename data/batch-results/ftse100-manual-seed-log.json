@@ -135,7 +135,7 @@
     },
     {
       "batch": 4,
-      "committedIn": null,
+      "committedIn": "2b05899",
       "companiesReviewed": [
         "Endeavour Mining",
         "Experian",
