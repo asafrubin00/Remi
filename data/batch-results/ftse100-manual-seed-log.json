@@ -337,12 +337,95 @@
           "note": "Fixed pay includes Fixed Share Award value; Remi places salary in baseSalary and includes Fixed Share Award, benefits and pension in pensionBenefits to preserve audited total compensation."
         }
       ]
+    },
+    {
+      "batch": 7,
+      "committedIn": null,
+      "companiesReviewed": [
+        "Melrose Industries",
+        "Metlen Energy & Metals",
+        "National Grid plc",
+        "Pershing Square Holdings",
+        "Next plc",
+        "NatWest Group",
+        "Pearson plc",
+        "Polar Capital Technology Trust",
+        "Persimmon",
+        "Reckitt"
+      ],
+      "verifiedExecutiveSeeds": [
+        "Melrose Industries",
+        "National Grid plc",
+        "Next plc",
+        "NatWest Group",
+        "Pearson plc",
+        "Persimmon",
+        "Reckitt"
+      ],
+      "verifiedNedOnlySeeds": [
+        {
+          "company": "Pershing Square Holdings",
+          "reason": "Investment company annual report includes audited non-executive director fee data but no executive director single figure remuneration table.",
+          "sourceUrl": "https://assets.pershingsquareholdings.com/2025/03/14183709/Pershing-Square-Holdings-Ltd.-2024-Annual-Report-1.pdf"
+        },
+        {
+          "company": "Polar Capital Technology Trust",
+          "reason": "Investment trust annual report states the company has no executive directors or employees; audited remuneration consists of non-executive director fees.",
+          "sourceUrl": "https://www.pctannualhighlights.co.uk/static/literature/PCTT_Annual_Report_2024.pdf"
+        }
+      ],
+      "manualSeedAlsoFailed": [
+        {
+          "company": "Metlen Energy & Metals",
+          "field": "all manual executive remuneration fields",
+          "reason": "The accessible 2024 integrated annual report discussed Board remuneration governance and disclosed prior remuneration vote support, but no verifiable UK-style CEO/CFO single total figure table with salary, bonus, LTIP, pension/benefits and total compensation was located during this batch.",
+          "sourceUrl": "https://www.metlen.com/media/pooiu4em/iar_2024_metlen_en.pdf"
+        },
+        {
+          "company": "Melrose Industries",
+          "field": "sayOnPayPct",
+          "reason": "The 2024 annual report extract provided audited remuneration and pay-ratio data, but no exact AGM remuneration vote percentage was located during this batch.",
+          "sourceUrl": "https://www.melroseplc.net/media/i32ndact/melrose_ar24.pdf"
+        },
+        {
+          "company": "NatWest Group",
+          "field": "sayOnPayPct",
+          "reason": "The 2024 annual report extract provided audited remuneration and pay-ratio data, but no exact AGM remuneration vote percentage was located during this batch.",
+          "sourceUrl": "https://investors.natwestgroup.com/~/media/Files/R/RBS-IR-V2/results-center/14022025/nwg-annual-report-and-accounts-accessible-11032025.pdf"
+        }
+      ],
+      "notes": [
+        {
+          "company": "Melrose Industries",
+          "note": "The audited 2024 table includes 2020 MESP crystallisation values in LTIP, materially elevating CEO and former executive director single figures."
+        },
+        {
+          "company": "National Grid plc",
+          "note": "Seeded from the latest 2024/25 annual report because the official National Grid reports page currently exposes that report. The record uses year 2025 in Remi."
+        },
+        {
+          "company": "NatWest Group",
+          "note": "Fixed share allowance and other fixed-pay elements are mapped into pensionBenefits to preserve the audited single total figure within Remi's current schema."
+        },
+        {
+          "company": "Pearson plc",
+          "note": "Omar Abbosh's LTIP field includes the statutory buy-out award disclosed in the 2024 single figure; Pearson separately disclosed a lower supplementary figure excluding future buy-out tranches."
+        },
+        {
+          "company": "Persimmon",
+          "note": "Andrew Duxbury's LTIP field includes audited buy-out awards because Remi does not yet have a separate buy-out column."
+        },
+        {
+          "company": "Reckitt",
+          "note": "Shannon Eisenhardt's LTIP field includes buy-out awards because Remi does not yet have a separate buy-out column."
+        }
+      ]
     }
   ],
   "runningTotals": {
-    "companiesReviewed": 60,
-    "verifiedExecutiveSeeds": 55,
-    "verifiedNedOnlySeeds": 2,
-    "manualSeedAlsoFailed": 12
+    "companiesReviewed": 70,
+    "verifiedExecutiveSeeds": 62,
+    "verifiedNedOnlySeeds": 4,
+    "manualSeedAlsoFailed": 15
   }
 }

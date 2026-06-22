@@ -2229,6 +2229,367 @@ export const manualVerifiedFtse = {
       }
     ]
   },
+  "melrose-industries": {
+    id: "melrose-industries",
+    company: "Melrose Industries plc",
+    index: "FTSE100",
+    sector: "Aerospace & Defence",
+    marketCap: null,
+    sayOnPayPct: null,
+    sourceUrl: "https://www.melroseplc.net/media/i32ndact/melrose_ar24.pdf",
+    directors: [
+      {
+        name: "Peter Dilnot",
+        role: "Chief Executive Officer",
+        baseSalary: 890000,
+        annualBonus: 1467000,
+        ltip: 42963000,
+        pensionBenefits: 97000,
+        totalCompensation: 45416000,
+        payRatio: 1112
+      },
+      {
+        name: "Matthew Gregory",
+        role: "Chief Financial Officer",
+        baseSalary: 567000,
+        annualBonus: 740000,
+        ltip: 0,
+        pensionBenefits: 59000,
+        totalCompensation: 1365000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Justin Dowley",
+        role: "Chairman",
+        totalFees: 422000
+      }
+    ],
+    manualNote: "The audited 2024 table includes 2020 MESP crystallisation values in LTIP; Melrose also disclosed an excluding-MESP median CEO pay ratio of 47:1."
+  },
+  "national-grid-plc": {
+    id: "national-grid-plc",
+    company: "National Grid plc",
+    index: "FTSE100",
+    sector: "Utilities",
+    marketCap: null,
+    year: 2025,
+    sayOnPayPct: 89.7,
+    sourceUrl: "https://www.nationalgrid.com/document/560311/download",
+    directors: [
+      {
+        name: "John Pettigrew",
+        role: "Chief Executive",
+        baseSalary: 1174525,
+        annualBonus: 1349000,
+        ltip: 3573563,
+        pensionBenefits: 0,
+        totalCompensation: 6097088,
+        payRatio: 85
+      },
+      {
+        name: "Andy Agg",
+        role: "Chief Financial Officer",
+        baseSalary: 773688,
+        annualBonus: 874000,
+        ltip: 1937000,
+        pensionBenefits: 93000,
+        totalCompensation: 3678000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Paula Rosput Reynolds",
+        role: "Chair",
+        totalFees: 725000
+      }
+    ],
+    manualNote: "Seeded from National Grid's latest 2024/25 annual report. APP is mapped to annualBonus and LTPP is mapped to LTIP; for John Pettigrew, LTIP is the balancing amount after exact salary and APP because the extracted chart snippet did not separately expose benefits and pension."
+  },
+  "pershing-square-holdings": {
+    id: "pershing-square-holdings",
+    company: "Pershing Square Holdings, Ltd.",
+    index: "FTSE100",
+    sector: "Investment Trusts",
+    marketCap: null,
+    sayOnPayPct: null,
+    sourceUrl: "https://assets.pershingsquareholdings.com/2025/03/14183709/Pershing-Square-Holdings-Ltd.-2024-Annual-Report-1.pdf",
+    directors: [],
+    nonExecutiveDirectors: [
+      {
+        name: "Rupert Morley",
+        role: "Chairman",
+        totalFees: 113273
+      }
+    ],
+    manualNote: "Investment company with no executive director single total figure table; audited remuneration consists of fixed annual director fees."
+  },
+  "next-plc": {
+    id: "next-plc",
+    company: "Next plc",
+    index: "FTSE100",
+    sector: "General Retailers",
+    marketCap: null,
+    year: 2025,
+    sayOnPayPct: 88,
+    sourceUrl: "https://www.nextplc.co.uk/~/media/Files/N/next-plc-v4/about-next/annual-report-and-accounts-jan-2025.pdf",
+    directors: [
+      {
+        name: "Lord Wolfson",
+        role: "Chief Executive",
+        baseSalary: 944000,
+        annualBonus: 1020000,
+        ltip: 2546000,
+        pensionBenefits: 217000,
+        totalCompensation: 4727000,
+        payRatio: 200
+      },
+      {
+        name: "Jonathan Blanchard",
+        role: "Chief Financial Officer",
+        baseSalary: 310000,
+        annualBonus: 335000,
+        ltip: 0,
+        pensionBenefits: 281000,
+        totalCompensation: 926000,
+        payRatio: null
+      },
+      {
+        name: "Amanda James",
+        role: "Former Chief Financial Officer",
+        baseSalary: 339000,
+        annualBonus: 366000,
+        ltip: 762000,
+        pensionBenefits: 32000,
+        totalCompensation: 1499000,
+        payRatio: null
+      },
+      {
+        name: "Richard Papp",
+        role: "Group Merchandise and Operations Director",
+        baseSalary: 700000,
+        annualBonus: 756000,
+        ltip: 1503000,
+        pensionBenefits: 67000,
+        totalCompensation: 3026000,
+        payRatio: null
+      },
+      {
+        name: "Jane Shields",
+        role: "Group Sales, Marketing and HR Director",
+        baseSalary: 700000,
+        annualBonus: 756000,
+        ltip: 1503000,
+        pensionBenefits: 116000,
+        totalCompensation: 3075000,
+        payRatio: null
+      },
+      {
+        name: "Jeremy Stakol",
+        role: "Chief Executive, NEXT International",
+        baseSalary: 600000,
+        annualBonus: 648000,
+        ltip: 577000,
+        pensionBenefits: 30000,
+        totalCompensation: 1855000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Michael Roney",
+        role: "Chairman",
+        totalFees: 402000
+      }
+    ],
+    manualNote: "Seeded from the year to January 2025 annual report; NED benefits are included in total fees where disclosed."
+  },
+  "natwest-group": {
+    id: "natwest-group",
+    company: "NatWest Group plc",
+    index: "FTSE100",
+    sector: "Banks",
+    marketCap: null,
+    sayOnPayPct: null,
+    sourceUrl: "https://investors.natwestgroup.com/~/media/Files/R/RBS-IR-V2/results-center/14022025/nwg-annual-report-and-accounts-accessible-11032025.pdf",
+    directors: [
+      {
+        name: "Paul Thwaite",
+        role: "Group Chief Executive Officer",
+        baseSalary: 1142000,
+        annualBonus: 890000,
+        ltip: 1572000,
+        pensionBenefits: 1333000,
+        totalCompensation: 4936000,
+        payRatio: 93
+      },
+      {
+        name: "Katie Murray",
+        role: "Group Chief Financial Officer",
+        baseSalary: 788000,
+        annualBonus: 599000,
+        ltip: 2224000,
+        pensionBenefits: 909000,
+        totalCompensation: 4520000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Rick Haythornthwaite",
+        role: "Chair",
+        totalFees: 664000
+      }
+    ],
+    manualNote: "Fixed share allowance and other fixed-pay elements are mapped into pensionBenefits to preserve the audited single total figure within Remi's schema."
+  },
+  "pearson-plc": {
+    id: "pearson-plc",
+    company: "Pearson plc",
+    index: "FTSE100",
+    sector: "Media",
+    marketCap: null,
+    sayOnPayPct: 69.83,
+    sourceUrl: "https://plc.pearson.com/sites/pearson-corp/files/pearson/annual-report-2024/remuneration-report-2024.pdf",
+    directors: [
+      {
+        name: "Omar Abbosh",
+        role: "Chief Executive",
+        baseSalary: 982000,
+        annualBonus: 1878000,
+        ltip: 13276000,
+        pensionBenefits: 194000,
+        totalCompensation: 16330000,
+        payRatio: 354.9
+      },
+      {
+        name: "Sally Johnson",
+        role: "Chief Financial Officer",
+        baseSalary: 570000,
+        annualBonus: 735000,
+        ltip: 1565000,
+        pensionBenefits: 107000,
+        totalCompensation: 2977000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Omid Kordestani",
+        role: "Chair",
+        totalFees: 522000
+      }
+    ],
+    manualNote: "Omar Abbosh's LTIP field includes the statutory GBP13.276m buy-out award required in the 2024 single figure; Pearson also disclosed a GBP7.645m supplementary total excluding buy-out portions receivable in 2025 and 2026."
+  },
+  "polar-capital-technology-trust": {
+    id: "polar-capital-technology-trust",
+    company: "Polar Capital Technology Trust plc",
+    index: "FTSE100",
+    sector: "Investment Trusts",
+    marketCap: null,
+    sayOnPayPct: 99.89,
+    sourceUrl: "https://www.pctannualhighlights.co.uk/static/literature/PCTT_Annual_Report_2024.pdf",
+    directors: [],
+    nonExecutiveDirectors: [
+      {
+        name: "Catherine Cripps",
+        role: "Chair",
+        totalFees: 63600
+      }
+    ],
+    manualNote: "Investment trust with no executive directors or employees; audited remuneration consists of non-executive director fees."
+  },
+  persimmon: {
+    id: "persimmon",
+    company: "Persimmon Plc",
+    index: "FTSE100",
+    sector: "Household Goods & Home Construction",
+    marketCap: null,
+    sayOnPayPct: 97.24,
+    sourceUrl: "https://www.persimmonhomes.com/corporate/media/pg0jl11j/persimmon-plc-annual-report-2024.pdf",
+    directors: [
+      {
+        name: "Dean Finch",
+        role: "Group Chief Executive",
+        baseSalary: 795850,
+        annualBonus: 1412544,
+        ltip: 229011,
+        pensionBenefits: 112961,
+        totalCompensation: 2550366,
+        payRatio: 59.1
+      },
+      {
+        name: "Andrew Duxbury",
+        role: "Chief Financial Officer",
+        baseSalary: 285382,
+        annualBonus: 381673,
+        ltip: 1611521,
+        pensionBenefits: 304737,
+        totalCompensation: 2309313,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Roger Devlin",
+        role: "Chairman",
+        totalFees: 351698
+      }
+    ],
+    manualNote: "Andrew Duxbury's LTIP field includes audited buy-out awards to preserve the statutory total compensation figure."
+  },
+  reckitt: {
+    id: "reckitt",
+    company: "Reckitt Benckiser Group plc",
+    index: "FTSE100",
+    sector: "Household Goods & Home Construction",
+    marketCap: null,
+    sayOnPayPct: 94,
+    sourceUrl: "https://eu-assets.contentstack.com/v3/assets/blt93c8bc7a598af9f0/blt7b173e83eabcb6bd/6913485f58959bd748220d90/reckitt-annual-report-and-accounts-2024.pdf",
+    directors: [
+      {
+        name: "Kris Licht",
+        role: "Chief Executive Officer",
+        baseSalary: 1100000,
+        annualBonus: 3049200,
+        ltip: 1415272,
+        pensionBenefits: 242620,
+        totalCompensation: 5807092,
+        payRatio: 104
+      },
+      {
+        name: "Shannon Eisenhardt",
+        role: "Chief Financial Officer",
+        baseSalary: 760000,
+        annualBonus: 1755600,
+        ltip: 178092,
+        pensionBenefits: 315157,
+        totalCompensation: 3008849,
+        payRatio: null
+      },
+      {
+        name: "Jeff Carr",
+        role: "Former Chief Financial Officer",
+        baseSalary: 190000,
+        annualBonus: 438900,
+        ltip: 1061478,
+        pensionBenefits: 23263,
+        totalCompensation: 1713641,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sir Jeremy Darroch",
+        role: "Chair",
+        totalFees: 508333
+      }
+    ],
+    manualNote: "Shannon Eisenhardt's LTIP field includes buy-out awards because Remi does not yet have a separate buy-out column."
+  },
   tesco: {
     id: "tesco",
     company: "Tesco PLC",
