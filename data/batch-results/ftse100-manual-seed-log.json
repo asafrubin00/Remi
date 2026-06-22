@@ -202,7 +202,7 @@
     },
     {
       "batch": 5,
-      "committedIn": null,
+      "committedIn": "0c41c0e",
       "companiesReviewed": [
         "GSK plc",
         "HSBC Holdings plc",
