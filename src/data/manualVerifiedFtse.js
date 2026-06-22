@@ -2967,34 +2967,454 @@ export const manualVerifiedFtse = {
       }
     ]
   },
+  "shell-plc": {
+    id: "shell-plc",
+    company: "Shell plc",
+    index: "FTSE100",
+    sector: "Oil & Gas",
+    marketCap: null,
+    sayOnPayPct: 94.83,
+    sourceUrl: "https://www.shell.com/who-we-are/our-values/_jcr_content/root/main/section_874829968/list/list_item_copy.multi.stream/1752580693041/6c20b8111738b9a590ba145f0d1c4fa0e530dae0/shell-annual-report-2024.pdf",
+    directors: [
+      {
+        name: "Wael Sawan",
+        role: "Chief Executive Officer",
+        baseSalary: 1455000,
+        annualBonus: 2925000,
+        ltip: 3899000,
+        pensionBenefits: 336000,
+        totalCompensation: 8615000,
+        payRatio: 61
+      },
+      {
+        name: "Sinead Gorman",
+        role: "Chief Financial Officer",
+        baseSalary: 961000,
+        annualBonus: 1930000,
+        ltip: 4136000,
+        pensionBenefits: 224000,
+        totalCompensation: 7251000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sir Andrew Mackenzie",
+        role: "Chair",
+        totalFees: 851000
+      }
+    ]
+  },
+  "smith-and-nephew": {
+    id: "smith-and-nephew",
+    company: "Smith & Nephew plc",
+    index: "FTSE100",
+    sector: "Healthcare",
+    marketCap: null,
+    currency: "USD",
+    sayOnPayPct: 97.43,
+    sourceUrl: "https://www.annualreports.com/Click/12507",
+    directors: [
+      {
+        name: "Deepak Nath",
+        role: "Chief Executive Officer",
+        baseSalary: 1560000,
+        annualBonus: 2034000,
+        ltip: 4060000,
+        pensionBenefits: 159000,
+        totalCompensation: 7813000,
+        payRatio: 110
+      },
+      {
+        name: "John Rogers",
+        role: "Chief Financial Officer",
+        baseSalary: 695000,
+        annualBonus: 1210000,
+        ltip: 0,
+        pensionBenefits: 95000,
+        totalCompensation: 2000000,
+        payRatio: null
+      },
+      {
+        name: "Anne-Francoise Nesmes",
+        role: "Former Chief Financial Officer",
+        baseSalary: 204000,
+        annualBonus: 0,
+        ltip: 546000,
+        pensionBenefits: 28000,
+        totalCompensation: 778000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Rupert Soames",
+        role: "Chair",
+        totalFees: 579000
+      }
+    ],
+    manualNote: "Smith & Nephew reports audited director remuneration in USD; values are preserved in USD from the annual report."
+  },
+  "smiths-group": {
+    id: "smiths-group",
+    company: "Smiths Group plc",
+    index: "FTSE100",
+    sector: "Industrials",
+    marketCap: null,
+    sayOnPayPct: 97.53,
+    sourceUrl: "https://www.smiths.com/media/35hdqmol/smiths-annual-report-2024.pdf",
+    directors: [
+      {
+        name: "Roland Carter",
+        role: "Chief Executive Officer",
+        baseSalary: 320000,
+        annualBonus: 400000,
+        ltip: 886000,
+        pensionBenefits: 50000,
+        totalCompensation: 1656000,
+        payRatio: 46
+      },
+      {
+        name: "Clare Scherrer",
+        role: "Chief Financial Officer",
+        baseSalary: 600000,
+        annualBonus: 649000,
+        ltip: 0,
+        pensionBenefits: 104000,
+        totalCompensation: 1353000,
+        payRatio: null
+      },
+      {
+        name: "Paul Keel",
+        role: "Former Chief Executive Officer",
+        baseSalary: 620000,
+        annualBonus: 0,
+        ltip: 0,
+        pensionBenefits: 194000,
+        totalCompensation: 814000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Steve Williams",
+        role: "Chair",
+        totalFees: 354000
+      }
+    ],
+    manualNote: "Roland Carter's 2024 single figure is pro-rated from his Board appointment date in March 2024."
+  },
+  "spirax-group": {
+    id: "spirax-group",
+    company: "Spirax Group plc",
+    index: "FTSE100",
+    sector: "Industrial Engineering",
+    marketCap: null,
+    sayOnPayPct: 96.69,
+    sourceUrl: "https://www.annualreports.com/Click/24068",
+    directors: [
+      {
+        name: "Nimesh Patel",
+        role: "Group Chief Executive Officer",
+        baseSalary: 711000,
+        annualBonus: 432000,
+        ltip: 104000,
+        pensionBenefits: 100000,
+        totalCompensation: 1347000,
+        payRatio: 31
+      },
+      {
+        name: "Louisa Burdett",
+        role: "Chief Financial Officer",
+        baseSalary: 265000,
+        annualBonus: 137000,
+        ltip: 0,
+        pensionBenefits: 40000,
+        totalCompensation: 442000,
+        payRatio: null
+      },
+      {
+        name: "Nick Anderson",
+        role: "Former Group Chief Executive Officer",
+        baseSalary: 32000,
+        annualBonus: 0,
+        ltip: 0,
+        pensionBenefits: 4000,
+        totalCompensation: 36000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Jamie Pike",
+        role: "Chair",
+        totalFees: 350000
+      }
+    ],
+    manualNote: "Nimesh Patel's LTIP field includes the small ESOP value disclosed in the audited single figure to preserve the statutory total."
+  },
+  "sse-plc": {
+    id: "sse-plc",
+    company: "SSE plc",
+    index: "FTSE100",
+    sector: "Utilities",
+    marketCap: null,
+    sayOnPayPct: 94.93,
+    sourceUrl: "https://www.sse.com/media/0aibgke4/sse_ar24_interactive.pdf",
+    directors: [
+      {
+        name: "Alistair Phillips-Davies",
+        role: "Chief Executive",
+        baseSalary: 999000,
+        annualBonus: 1034000,
+        ltip: 1472000,
+        pensionBenefits: 20000,
+        totalCompensation: 3525000,
+        payRatio: 65
+      },
+      {
+        name: "Martin Pibworth",
+        role: "Chief Commercial Officer",
+        baseSalary: 688000,
+        annualBonus: 617000,
+        ltip: 887000,
+        pensionBenefits: 122000,
+        totalCompensation: 2314000,
+        payRatio: null
+      },
+      {
+        name: "Gregor Alexander",
+        role: "Former Finance Director",
+        baseSalary: 515000,
+        annualBonus: 462000,
+        ltip: 995000,
+        pensionBenefits: 18000,
+        totalCompensation: 1990000,
+        payRatio: null
+      },
+      {
+        name: "Barry O'Regan",
+        role: "Chief Financial Officer",
+        baseSalary: 203000,
+        annualBonus: 179000,
+        ltip: 0,
+        pensionBenefits: 31000,
+        totalCompensation: 413000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "John Manzoni",
+        role: "Chair",
+        totalFees: 433000
+      }
+    ],
+    manualNote: "SSE's annual report covers the financial year ended 31 March 2024; Barry O'Regan's remuneration is pro-rated from his Board appointment."
+  },
+  "st-james-s-place": {
+    id: "st-james-s-place",
+    company: "St. James's Place plc",
+    index: "FTSE100",
+    sector: "Financial Services",
+    marketCap: null,
+    sayOnPayPct: 93.58,
+    sourceUrl: "https://www.sjp.co.uk/sites/sjp-corp/files/SJP/shareholders/reports-presentations-webcasts/2025/SJP_AR_2024.pdf",
+    directors: [
+      {
+        name: "Mark FitzPatrick",
+        role: "Chief Executive Officer",
+        baseSalary: 861455,
+        annualBonus: 1661054,
+        ltip: 0,
+        pensionBenefits: 867449,
+        totalCompensation: 3389958,
+        payRatio: 53
+      },
+      {
+        name: "Caroline Waddington",
+        role: "Chief Financial Officer",
+        baseSalary: 182692,
+        annualBonus: 979375,
+        ltip: 0,
+        pensionBenefits: 99277,
+        totalCompensation: 1261344,
+        payRatio: null
+      },
+      {
+        name: "Craig Gentle",
+        role: "Former Chief Financial Officer",
+        baseSalary: 371975,
+        annualBonus: 646687,
+        ltip: 0,
+        pensionBenefits: 130838,
+        totalCompensation: 1149500,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Paul Manduca",
+        role: "Chair",
+        totalFees: 408810
+      }
+    ],
+    manualNote: "PensionBenefits includes benefits, pension and the audited 'Other' column, which included buyout/transition awards, to preserve the statutory total."
+  },
+  "standard-chartered": {
+    id: "standard-chartered",
+    company: "Standard Chartered PLC",
+    index: "FTSE100",
+    sector: "Banks",
+    marketCap: null,
+    sayOnPayPct: 95.3,
+    sourceUrl: "https://www.banktrack.org/download/2024_annual_report/250221_standardcharteredplcfullyear2024report.pdf",
+    directors: [
+      {
+        name: "Bill Winters",
+        role: "Group Chief Executive",
+        baseSalary: 2517000,
+        annualBonus: 1462000,
+        ltip: 6126000,
+        pensionBenefits: 551000,
+        totalCompensation: 10656000,
+        payRatio: null
+      },
+      {
+        name: "Diego De Giorgi",
+        role: "Group Chief Financial Officer",
+        baseSalary: 1641000,
+        annualBonus: 958000,
+        ltip: 0,
+        pensionBenefits: 170000,
+        totalCompensation: 2769000,
+        payRatio: null
+      },
+      {
+        name: "Andy Halford",
+        role: "Former Group Chief Financial Officer",
+        baseSalary: 9000,
+        annualBonus: 0,
+        ltip: 0,
+        pensionBenefits: 1000,
+        totalCompensation: 10000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Jose Vinals",
+        role: "Group Chairman",
+        totalFees: 1350000
+      }
+    ],
+    manualNote: "Bill Winters' LTIP combines the performance-value and share-price-growth LTIP columns."
+  },
+  "standard-life": {
+    id: "standard-life",
+    company: "Standard Life plc",
+    index: "FTSE100",
+    sector: "Life Insurance",
+    marketCap: null,
+    sayOnPayPct: 99,
+    sourceUrl: "https://library.standardlife.co.uk/phoenix_group_annual_report_and_accounts_2024.pdf",
+    directors: [
+      {
+        name: "Andy Briggs",
+        role: "Group Chief Executive Officer",
+        baseSalary: 844000,
+        annualBonus: 1323000,
+        ltip: 1181000,
+        pensionBenefits: 100000,
+        totalCompensation: 3448000,
+        payRatio: 52
+      },
+      {
+        name: "Rakesh Thakrar",
+        role: "Former Chief Financial Officer",
+        baseSalary: 347000,
+        annualBonus: 516000,
+        ltip: 0,
+        pensionBenefits: 46000,
+        totalCompensation: 909000,
+        payRatio: null
+      },
+      {
+        name: "Nicolaos Nicandrou",
+        role: "Chief Financial Officer",
+        baseSalary: 61000,
+        annualBonus: 100000,
+        ltip: 0,
+        pensionBenefits: 7000,
+        totalCompensation: 168000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sir Nicholas Lyons",
+        role: "Non-Executive Chair",
+        totalFees: 465000
+      }
+    ],
+    manualNote: "Standard Life was Phoenix Group Holdings during the 2024 reporting year; the seed uses the Phoenix 2024 audited annual report."
+  },
   tesco: {
     id: "tesco",
     company: "Tesco PLC",
     index: "FTSE100",
     sector: "Consumer Staples",
     marketCap: 22000,
+    sayOnPayPct: 79.4,
+    sourceUrl: "https://www.tescoplc.com/media/zgvhd0dn/tescos_ar24.pdf",
     directors: [
       {
         name: "Ken Murphy",
         role: "Group Chief Executive",
-        baseSalary: 1430000,
-        annualBonus: 1872180,
-        ltip: 2630000,
-        pensionBenefits: 143000,
-        totalCompensation: 6075180,
-        payRatio: 148
+        baseSalary: 1411000,
+        annualBonus: 3377000,
+        ltip: 4912000,
+        pensionBenefits: 225000,
+        totalCompensation: 9925000,
+        payRatio: 431
       },
       {
         name: "Imran Nawaz",
         role: "CFO",
-        baseSalary: 850000,
-        annualBonus: 1037750,
-        ltip: 1240000,
-        pensionBenefits: 85000,
-        totalCompensation: 3212750,
+        baseSalary: 752000,
+        annualBonus: 1708000,
+        ltip: 2740000,
+        pensionBenefits: 154000,
+        totalCompensation: 5354000,
         payRatio: null
       }
-    ]
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Gerry Murphy",
+        role: "Chair",
+        totalFees: 705000
+      }
+    ],
+    manualNote: "Imran Nawaz's LTIP field includes the audited PSP value plus compensation for forfeited income to preserve the statutory total."
+  },
+  "tritax-big-box-reit": {
+    id: "tritax-big-box-reit",
+    company: "Tritax Big Box REIT plc",
+    index: "FTSE100",
+    sector: "Real Estate Investment Trusts",
+    marketCap: null,
+    sayOnPayPct: 99.98,
+    sourceUrl: "https://www.tritaxbigbox.co.uk/media/cv0lcio0/tritax-big-box-reit-plc-annual-report-2024.pdf",
+    directors: [],
+    nonExecutiveDirectors: [
+      {
+        name: "Aubrey Adams",
+        role: "Chair",
+        totalFees: 135500
+      }
+    ],
+    manualNote: "Investment trust with a wholly non-executive board; audited remuneration consists of director fees and expenses only."
   },
   astrazeneca: {
     id: "astrazeneca",

@@ -500,12 +500,88 @@
           "note": "PensionBenefits includes benefits, pension and SIP/Sharesave value to preserve the audited single total figure."
         }
       ]
+    },
+    {
+      "batch": 9,
+      "committedIn": null,
+      "companiesReviewed": [
+        "Shell plc",
+        "Smith & Nephew plc",
+        "Smiths Group plc",
+        "Spirax Group plc",
+        "SSE plc",
+        "St. James's Place plc",
+        "Standard Chartered PLC",
+        "Standard Life plc",
+        "Tesco PLC",
+        "Tritax Big Box REIT plc"
+      ],
+      "verifiedExecutiveSeeds": [
+        "Shell plc",
+        "Smith & Nephew plc",
+        "Smiths Group plc",
+        "Spirax Group plc",
+        "SSE plc",
+        "St. James's Place plc",
+        "Standard Chartered PLC",
+        "Standard Life plc",
+        "Tesco PLC"
+      ],
+      "verifiedNedOnlySeeds": [
+        {
+          "company": "Tritax Big Box REIT plc",
+          "reason": "Investment trust annual report states the company only has independent non-executive directors; audited remuneration consists of director fees and expenses.",
+          "sourceUrl": "https://www.tritaxbigbox.co.uk/media/cv0lcio0/tritax-big-box-reit-plc-annual-report-2024.pdf"
+        }
+      ],
+      "manualSeedAlsoFailed": [
+        {
+          "company": "Standard Chartered PLC",
+          "field": "CEO pay ratio",
+          "reason": "The 2024 annual report text extract provided audited executive remuneration, Chair fee data and remuneration vote outcome, but no parseable CEO pay-ratio table values were located during this batch.",
+          "sourceUrl": "https://www.banktrack.org/download/2024_annual_report/250221_standardcharteredplcfullyear2024report.pdf"
+        }
+      ],
+      "notes": [
+        {
+          "company": "Smith & Nephew plc",
+          "note": "Smith & Nephew reports audited director remuneration in USD; values are preserved in USD from the annual report."
+        },
+        {
+          "company": "Smiths Group plc",
+          "note": "Roland Carter's 2024 single figure is pro-rated from his Board appointment date in March 2024."
+        },
+        {
+          "company": "Spirax Group plc",
+          "note": "Nimesh Patel's LTIP field includes the small ESOP value disclosed in the audited single figure to preserve the statutory total."
+        },
+        {
+          "company": "SSE plc",
+          "note": "SSE's annual report covers the financial year ended 31 March 2024; Barry O'Regan's remuneration is pro-rated from his Board appointment."
+        },
+        {
+          "company": "St. James's Place plc",
+          "note": "PensionBenefits includes benefits, pension and the audited 'Other' column, which included buyout/transition awards, to preserve the statutory total."
+        },
+        {
+          "company": "Standard Chartered PLC",
+          "note": "Bill Winters' LTIP combines the performance-value and share-price-growth LTIP columns."
+        },
+        {
+          "company": "Standard Life plc",
+          "note": "Standard Life was Phoenix Group Holdings during the 2024 reporting year; the seed uses the Phoenix 2024 audited annual report."
+        },
+        {
+          "company": "Tesco PLC",
+          "note": "Updated the earlier Tesco seed to the audited 2023/24 single total figure table; Imran Nawaz's LTIP field includes the PSP value plus compensation for forfeited income to preserve the statutory total."
+        }
+      ]
     }
   ],
   "runningTotals": {
-    "companiesReviewed": 80,
-    "verifiedExecutiveSeeds": 71,
-    "verifiedNedOnlySeeds": 5,
-    "manualSeedAlsoFailed": 18
+    "companiesReviewed": 90,
+    "verifiedExecutiveSeeds": 80,
+    "verifiedNedOnlySeeds": 6,
+    "manualSeedAlsoFailed": 19
   }
 }
