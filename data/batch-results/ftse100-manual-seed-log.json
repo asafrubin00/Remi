@@ -272,12 +272,77 @@
           "note": "The 2024 IAG remuneration report states Luis Gallego was the only executive director during 2024."
         }
       ]
+    },
+    {
+      "batch": 6,
+      "committedIn": null,
+      "companiesReviewed": [
+        "Investec",
+        "JD Sports",
+        "Kingfisher plc",
+        "Land Securities",
+        "Legal & General",
+        "Lion Finance Group",
+        "London Stock Exchange Group",
+        "LondonMetric Property",
+        "Lloyds Banking Group plc",
+        "M&G"
+      ],
+      "verifiedExecutiveSeeds": [
+        "JD Sports",
+        "Kingfisher plc",
+        "Land Securities",
+        "Legal & General",
+        "Lion Finance Group",
+        "London Stock Exchange Group",
+        "LondonMetric Property",
+        "Lloyds Banking Group plc",
+        "M&G"
+      ],
+      "verifiedNedOnlySeeds": [],
+      "manualSeedAlsoFailed": [
+        {
+          "company": "Investec",
+          "field": "all manual remuneration fields",
+          "reason": "The located 2024 remuneration report mirror returned HTTP 403 from the local fetch environment, and the accessible Investec governance page exposed an outdated 2022 remuneration PDF link rather than a verifiable 2024 report table. No reliable 2024 remuneration figures were captured during this batch.",
+          "sourceUrl": "https://docs.publicnow.com/viewDoc.aspx?filename=37878%5CEXT%5CDA43050CAB8C9F4082763AAD584F5486DEBD642C_42F0A1FEC98A1D5570CC342A411D3D5F3A9D0B31.PDF",
+          "fallbackUrl": "https://www.investec.com/en_us/welcome-to-investec/about-us/corporate-governance.html"
+        },
+        {
+          "company": "Legal & General",
+          "field": "sayOnPayPct",
+          "reason": "The 2024 annual report extract provided audited executive remuneration and Chair fee data, but no exact AGM remuneration vote percentage was located during this batch.",
+          "sourceUrl": "https://group.legalandgeneral.com/asset/492cb6/globalassets/group/about-us/our-purpose/l-g-annual-report-and-accounts-2024.pdf"
+        }
+      ],
+      "notes": [
+        {
+          "company": "JD Sports",
+          "note": "Dominic Platt's audited total includes a GBP674k buy-out award in the 'Other' column; Remi preserves the statutory total while leaving LTIP at zero because the award is not an LTIP."
+        },
+        {
+          "company": "Kingfisher plc",
+          "note": "LTIP combines the audited Alignment Share and Delivering Value Incentive vesting values."
+        },
+        {
+          "company": "Legal & General",
+          "note": "Antonio Simoes' audited total includes a GBP7.421m replacement award mapped into LTIP to preserve the statutory total within Remi's current schema."
+        },
+        {
+          "company": "Lion Finance Group",
+          "note": "Preserved USD source figures from the audited 2024 report. Base salary combines cash salary and deferred share salary; pensionBenefits includes taxable benefits, pension benefits and dividend equivalents within audited fixed pay."
+        },
+        {
+          "company": "Lloyds Banking Group plc",
+          "note": "Fixed pay includes Fixed Share Award value; Remi places salary in baseSalary and includes Fixed Share Award, benefits and pension in pensionBenefits to preserve audited total compensation."
+        }
+      ]
     }
   ],
   "runningTotals": {
-    "companiesReviewed": 50,
-    "verifiedExecutiveSeeds": 46,
+    "companiesReviewed": 60,
+    "verifiedExecutiveSeeds": 55,
     "verifiedNedOnlySeeds": 2,
-    "manualSeedAlsoFailed": 10
+    "manualSeedAlsoFailed": 12
   }
 }

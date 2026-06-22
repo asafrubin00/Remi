@@ -1870,6 +1870,365 @@ export const manualVerifiedFtse = {
     ],
     manualNote: "Intertek's 2024 annual report exposed audited remuneration and pay-ratio data, but no exact AGM remuneration vote percentage was located during this batch."
   },
+  "jd-sports": {
+    id: "jd-sports",
+    company: "JD Sports Fashion plc",
+    index: "FTSE100",
+    sector: "Retailers",
+    marketCap: null,
+    sayOnPayPct: 98.06,
+    sourceUrl: "https://s204.q4cdn.com/980191062/files/doc_financials/2024/ar/jd-sports-fashion-annual-report-and-accounts-2024.pdf",
+    directors: [
+      {
+        name: "Regis Schultz",
+        role: "Chief Executive Officer",
+        baseSalary: 1040000,
+        annualBonus: 395000,
+        ltip: 0,
+        pensionBenefits: 151000,
+        totalCompensation: 1586000,
+        payRatio: 70
+      },
+      {
+        name: "Dominic Platt",
+        role: "Chief Financial Officer",
+        baseSalary: 180000,
+        annualBonus: 42000,
+        ltip: 0,
+        pensionBenefits: 28000,
+        totalCompensation: 924000,
+        payRatio: null
+      },
+      {
+        name: "Neil Greenhalgh",
+        role: "Former Chief Financial Officer",
+        baseSalary: 300000,
+        annualBonus: 114000,
+        ltip: 477000,
+        pensionBenefits: 22000,
+        totalCompensation: 913000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Andrew Higginson",
+        role: "Chair",
+        totalFees: 480000
+      }
+    ],
+    manualNote: "Dominic Platt's audited total includes a GBP674k buy-out award in the 'Other' column; Remi preserves the statutory total while leaving LTIP at zero because the award is not an LTIP."
+  },
+  "kingfisher-plc": {
+    id: "kingfisher-plc",
+    company: "Kingfisher plc",
+    index: "FTSE100",
+    sector: "Retailers",
+    marketCap: null,
+    sayOnPayPct: 95.18,
+    sourceUrl: "https://www.kingfisher.com/~/media/Files/K/Kingfisher-Plc/Universal/investors/result-reports-presentation/2024/kingfisher-annual-report-202324-pdf.pdf",
+    directors: [
+      {
+        name: "Thierry Garnier",
+        role: "Chief Executive Officer",
+        baseSalary: 875500,
+        annualBonus: 364900,
+        ltip: 3660000,
+        pensionBenefits: 172700,
+        totalCompensation: 5073100,
+        payRatio: 212
+      },
+      {
+        name: "Bernard Bot",
+        role: "Chief Financial Officer",
+        baseSalary: 618300,
+        annualBonus: 244800,
+        ltip: 2075300,
+        pensionBenefits: 111100,
+        totalCompensation: 3049600,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Andrew Cosslett",
+        role: "Chair",
+        totalFees: 531500
+      }
+    ],
+    manualNote: "Kingfisher's LTIP field combines the audited Alignment Share and Delivering Value Incentive vesting values."
+  },
+  "land-securities": {
+    id: "land-securities",
+    company: "Land Securities Group PLC",
+    index: "FTSE100",
+    sector: "Real Estate Investment Trusts",
+    marketCap: null,
+    sayOnPayPct: 92.2,
+    sourceUrl: "https://www.annualreports.com/HostedData/AnnualReportArchive/l/LSE_LAND_2024.pdf",
+    directors: [
+      {
+        name: "Mark Allan",
+        role: "Chief Executive Officer",
+        baseSalary: 851000,
+        annualBonus: 600000,
+        ltip: 1345000,
+        pensionBenefits: 104000,
+        totalCompensation: 2900000,
+        payRatio: 32
+      },
+      {
+        name: "Vanessa Simms",
+        role: "Chief Financial Officer",
+        baseSalary: 522000,
+        annualBonus: 383000,
+        ltip: 824000,
+        pensionBenefits: 137000,
+        totalCompensation: 1866000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sir Ian Cheshire",
+        role: "Chair",
+        totalFees: 375000
+      }
+    ]
+  },
+  "legal-and-general": {
+    id: "legal-and-general",
+    company: "Legal & General Group Plc",
+    index: "FTSE100",
+    sector: "Life Insurance",
+    marketCap: null,
+    sayOnPayPct: null,
+    sourceUrl: "https://group.legalandgeneral.com/asset/492cb6/globalassets/group/about-us/our-purpose/l-g-annual-report-and-accounts-2024.pdf",
+    directors: [
+      {
+        name: "Antonio Simoes",
+        role: "Group Chief Executive Officer",
+        baseSalary: 1171000,
+        annualBonus: 1419000,
+        ltip: 7421000,
+        pensionBenefits: 556000,
+        totalCompensation: 10567000,
+        payRatio: 161
+      },
+      {
+        name: "Jeff Davies",
+        role: "Group Chief Financial Officer",
+        baseSalary: 684000,
+        annualBonus: 583000,
+        ltip: 0,
+        pensionBenefits: 92000,
+        totalCompensation: 1359000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sir John Kingman",
+        role: "Chair",
+        totalFees: 611544
+      }
+    ],
+    manualNote: "Antonio Simoes' audited total includes a GBP7.421m replacement award. Remi maps that value into LTIP to preserve the statutory total within the existing schema."
+  },
+  "lion-finance-group": {
+    id: "lion-finance-group",
+    company: "Lion Finance Group PLC",
+    index: "FTSE100",
+    sector: "Banks",
+    marketCap: null,
+    currency: "USD",
+    sayOnPayPct: 92.61,
+    sourceUrl: "https://ramad.bog.ge/s3/BogGroup/Lion-Finance-Group-PLC-Annual-Report-2024.pdf",
+    directors: [
+      {
+        name: "Archil Gachechiladze",
+        role: "Chief Executive Officer",
+        baseSalary: 2570000,
+        annualBonus: 2418353,
+        ltip: 0,
+        pensionBenefits: 1029967,
+        totalCompensation: 6014320,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Mel Carvill",
+        role: "Chair",
+        totalFees: 332734
+      }
+    ],
+    manualNote: "Lion Finance reports director remuneration in USD. Base salary combines cash salary and deferred share salary; pensionBenefits includes taxable benefits, pension benefits and dividend equivalents within audited fixed pay."
+  },
+  "london-stock-exchange-group": {
+    id: "london-stock-exchange-group",
+    company: "London Stock Exchange Group plc",
+    index: "FTSE100",
+    sector: "Financial Services",
+    marketCap: null,
+    sayOnPayPct: 97.48,
+    sourceUrl: "https://www.lseg.com/content/dam/lseg/en_us/documents/investor-relations/annual-reports/lseg-annual-report-2024.pdf",
+    directors: [
+      {
+        name: "David Schwimmer",
+        role: "Chief Executive Officer",
+        baseSalary: 1375000,
+        annualBonus: 3000000,
+        ltip: 3194000,
+        pensionBenefits: 295000,
+        totalCompensation: 7864000,
+        payRatio: 64
+      },
+      {
+        name: "Anna Manz",
+        role: "Former Chief Financial Officer",
+        baseSalary: 125000,
+        annualBonus: 0,
+        ltip: 0,
+        pensionBenefits: 100000,
+        totalCompensation: 149000,
+        payRatio: null
+      },
+      {
+        name: "Michel-Alain Proch",
+        role: "Chief Financial Officer",
+        baseSalary: 721000,
+        annualBonus: 1245000,
+        ltip: 2034000,
+        pensionBenefits: 339000,
+        totalCompensation: 4339000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Don Robert",
+        role: "Group Chair",
+        totalFees: 637000
+      }
+    ],
+    manualNote: "LSEG's CFO transition rows reflect Anna Manz to 29 February 2024 and Michel-Alain Proch from 1 March 2024. Michel-Alain Proch's audited total includes a GBP2.034m buy-out award mapped into LTIP to preserve the statutory total."
+  },
+  "londonmetric-property": {
+    id: "londonmetric-property",
+    company: "LondonMetric Property Plc",
+    index: "FTSE100",
+    sector: "Real Estate Investment Trusts",
+    marketCap: null,
+    sayOnPayPct: 96.86,
+    sourceUrl: "https://www.londonmetric.com/sites/london-metric/files/2024-06/london-metric-annual-report-2024.pdf",
+    directors: [
+      {
+        name: "Andrew Jones",
+        role: "Chief Executive Officer",
+        baseSalary: 638000,
+        annualBonus: 1020000,
+        ltip: 948000,
+        pensionBenefits: 90000,
+        totalCompensation: 2696000,
+        payRatio: 22
+      },
+      {
+        name: "Martin McGann",
+        role: "Finance Director",
+        baseSalary: 427000,
+        annualBonus: 579000,
+        ltip: 459000,
+        pensionBenefits: 71000,
+        totalCompensation: 1536000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Alistair Elliott",
+        role: "Chair",
+        totalFees: 159000
+      }
+    ]
+  },
+  "lloyds-banking-group": {
+    id: "lloyds-banking-group",
+    company: "Lloyds Banking Group plc",
+    index: "FTSE100",
+    sector: "Banks",
+    marketCap: null,
+    sayOnPayPct: 92.7,
+    sourceUrl: "https://www.lloydsbankinggroup.com/assets/pdfs/investors/annual-report/2024/2024-lbg-annual-review.pdf",
+    directors: [
+      {
+        name: "Charlie Nunn",
+        role: "Group Chief Executive",
+        baseSalary: 1170000,
+        annualBonus: 1127000,
+        ltip: 2008000,
+        pensionBenefits: 1310000,
+        totalCompensation: 5615000,
+        payRatio: null
+      },
+      {
+        name: "William Chalmers",
+        role: "Chief Financial Officer",
+        baseSalary: 844000,
+        annualBonus: 812000,
+        ltip: 1448000,
+        pensionBenefits: 709000,
+        totalCompensation: 3813000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sir Robin Budenberg",
+        role: "Chair",
+        totalFees: 656000
+      }
+    ],
+    manualNote: "Lloyds fixed pay includes Fixed Share Award value; Remi places salary in baseSalary and includes Fixed Share Award, benefits and pension in pensionBenefits to preserve audited total compensation."
+  },
+  mandg: {
+    id: "mandg",
+    company: "M&G plc",
+    index: "FTSE100",
+    sector: "Life Insurance",
+    marketCap: null,
+    sayOnPayPct: 96.8,
+    sourceUrl: "https://group.mandg.com/~/media/Files/M/mandg-corp/corp/documents/investors/results-and-announcements/annual-report-2024/mgplc-annual-report-and-accounts-2024-navigable.pdf",
+    directors: [
+      {
+        name: "Andrea Rossi",
+        role: "Group Chief Executive Officer",
+        baseSalary: 901000,
+        annualBonus: 1549000,
+        ltip: 0,
+        pensionBenefits: 136000,
+        totalCompensation: 2586000,
+        payRatio: 24
+      },
+      {
+        name: "Kathryn McLeland",
+        role: "Chief Financial Officer",
+        baseSalary: 597000,
+        annualBonus: 924000,
+        ltip: 999000,
+        pensionBenefits: 88000,
+        totalCompensation: 2608000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sir Edward Braham",
+        role: "Chair",
+        totalFees: 525300
+      }
+    ]
+  },
   tesco: {
     id: "tesco",
     company: "Tesco PLC",
