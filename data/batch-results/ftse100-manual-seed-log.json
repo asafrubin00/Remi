@@ -576,11 +576,49 @@
           "note": "Updated the earlier Tesco seed to the audited 2023/24 single total figure table; Imran Nawaz's LTIP field includes the PSP value plus compensation for forfeited income to preserve the statutory total."
         }
       ]
+    },
+    {
+      "batch": 10,
+      "committedIn": null,
+      "companiesReviewed": [
+        "Unilever PLC",
+        "United Utilities Group PLC",
+        "Vodafone Group PLC",
+        "The Weir Group PLC",
+        "Whitbread PLC"
+      ],
+      "verifiedExecutiveSeeds": [
+        "Unilever PLC",
+        "United Utilities Group PLC",
+        "Vodafone Group PLC",
+        "The Weir Group PLC",
+        "Whitbread PLC"
+      ],
+      "verifiedNedOnlySeeds": [],
+      "manualSeedAlsoFailed": [],
+      "notes": [
+        {
+          "company": "Unilever PLC",
+          "note": "Unilever reports audited director remuneration in euros; values are preserved in EUR from the 2024 Directors' Remuneration Report."
+        },
+        {
+          "company": "Vodafone Group PLC",
+          "note": "Updated the earlier Vodafone seed to the audited 2024 single figure table."
+        },
+        {
+          "company": "The Weir Group PLC",
+          "note": "Brian Puffer's LTIP field includes audited buy-out awards because Remi does not yet have a separate buy-out column."
+        },
+        {
+          "company": "Whitbread PLC",
+          "note": "Seeded from the 2023/24 annual report for the financial year ended 29 February 2024."
+        }
+      ]
     }
   ],
   "runningTotals": {
-    "companiesReviewed": 90,
-    "verifiedExecutiveSeeds": 80,
+    "companiesReviewed": 95,
+    "verifiedExecutiveSeeds": 85,
     "verifiedNedOnlySeeds": 6,
     "manualSeedAlsoFailed": 19
   }

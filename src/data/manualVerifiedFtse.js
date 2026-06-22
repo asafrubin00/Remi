@@ -3445,32 +3445,198 @@ export const manualVerifiedFtse = {
       }
     ]
   },
+  unilever: {
+    id: "unilever",
+    company: "Unilever PLC",
+    index: "FTSE100",
+    sector: "Consumer Staples",
+    marketCap: null,
+    currency: "EUR",
+    sayOnPayPct: 97.96,
+    sourceUrl: "https://www.unilever.com/files/unilever-directors-remuneration-report-2024.pdf",
+    directors: [
+      {
+        name: "Hein Schumacher",
+        role: "Chief Executive Officer",
+        baseSalary: 1850000,
+        annualBonus: 3386000,
+        ltip: 0,
+        pensionBenefits: 316000,
+        totalCompensation: 5552000,
+        payRatio: 71
+      },
+      {
+        name: "Fernando Fernandez",
+        role: "Chief Financial Officer",
+        baseSalary: 1175000,
+        annualBonus: 1720000,
+        ltip: 1478000,
+        pensionBenefits: 751000,
+        totalCompensation: 5124000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Ian Meakins",
+        role: "Chair",
+        totalFees: 778000
+      }
+    ],
+    manualNote: "Unilever reports audited director remuneration in euros; values are preserved in EUR from the 2024 Directors' Remuneration Report."
+  },
+  "united-utilities": {
+    id: "united-utilities",
+    company: "United Utilities Group PLC",
+    index: "FTSE100",
+    sector: "Utilities",
+    marketCap: null,
+    sayOnPayPct: 98.74,
+    sourceUrl: "https://www.unitedutilities.com/globalassets/documents/corporate-documents/31404-united-utilities-ar-2024.pdf",
+    directors: [
+      {
+        name: "Louise Beardmore",
+        role: "Chief Executive Officer",
+        baseSalary: 690000,
+        annualBonus: 420000,
+        ltip: 186000,
+        pensionBenefits: 115000,
+        totalCompensation: 1411000,
+        payRatio: 27
+      },
+      {
+        name: "Phil Aspin",
+        role: "Chief Financial Officer",
+        baseSalary: 438000,
+        annualBonus: 266000,
+        ltip: 494000,
+        pensionBenefits: 74000,
+        totalCompensation: 1272000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sir David Higgins",
+        role: "Chair",
+        totalFees: 321000
+      }
+    ]
+  },
   vodafone: {
     id: "vodafone",
     company: "Vodafone Group PLC",
     index: "FTSE100",
     sector: "Telecommunications",
     marketCap: 19000,
+    sayOnPayPct: 90.75,
+    sourceUrl: "https://climindstorage123.blob.core.windows.net/climind/upload/2025-01-26/f6ae988b-565d-473e-b42f-8951d8a5cac4.pdf",
     directors: [
       {
         name: "Margherita Della Valle",
-        role: "CEO",
-        baseSalary: 1150000,
-        annualBonus: 920000,
-        ltip: 2800000,
-        pensionBenefits: 115000,
-        totalCompensation: 4985000,
-        payRatio: 127
+        role: "Group Chief Executive",
+        baseSalary: 1238000,
+        annualBonus: 1780000,
+        ltip: 1198000,
+        pensionBenefits: 164000,
+        totalCompensation: 4380000,
+        payRatio: 69
       },
       {
         name: "Luka Mucic",
-        role: "CFO",
-        baseSalary: 850000,
-        annualBonus: 680000,
-        ltip: 1900000,
-        pensionBenefits: 85000,
-        totalCompensation: 3515000,
+        role: "Group Chief Financial Officer",
+        baseSalary: 443000,
+        annualBonus: 631000,
+        ltip: 0,
+        pensionBenefits: 159000,
+        totalCompensation: 1233000,
         payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Jean-Francois van Boxmeer",
+        role: "Chair",
+        totalFees: 689000
+      }
+    ],
+    manualNote: "Updated the earlier Vodafone seed to the audited 2024 single figure table."
+  },
+  "weir-group": {
+    id: "weir-group",
+    company: "The Weir Group PLC",
+    index: "FTSE100",
+    sector: "Industrial Engineering",
+    marketCap: null,
+    sayOnPayPct: 98.74,
+    sourceUrl: "https://www.global.weir/globalassets/investors/reporting-centre/2025/annual-report/weir-2024-annual-report.pdf",
+    directors: [
+      {
+        name: "Jon Stanton",
+        role: "Chief Executive Officer",
+        baseSalary: 821000,
+        annualBonus: 1064190,
+        ltip: 1290209,
+        pensionBenefits: 134750,
+        totalCompensation: 3310149,
+        payRatio: 61
+      },
+      {
+        name: "Brian Puffer",
+        role: "Chief Financial Officer",
+        baseSalary: 416667,
+        annualBonus: 445730,
+        ltip: 1466253,
+        pensionBenefits: 66634,
+        totalCompensation: 2395284,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Barbara Jeremiah",
+        role: "Chair",
+        totalFees: 376364
+      }
+    ],
+    manualNote: "Brian Puffer's LTIP field includes audited buy-out awards because Remi does not yet have a separate buy-out column."
+  },
+  whitbread: {
+    id: "whitbread",
+    company: "Whitbread PLC",
+    index: "FTSE100",
+    sector: "Travel & Leisure",
+    marketCap: null,
+    year: 2024,
+    sayOnPayPct: 94,
+    sourceUrl: "https://cdn.whitbread.co.uk/media/2024/05/Whitbread-PLC-Annual-Report-and-Accounts-2023_Single_pages-1.pdf",
+    directors: [
+      {
+        name: "Dominic Paul",
+        role: "Chief Executive",
+        baseSalary: 900000,
+        annualBonus: 1453000,
+        ltip: 0,
+        pensionBenefits: 112000,
+        totalCompensation: 2465000,
+        payRatio: 105
+      },
+      {
+        name: "Hemant Patel",
+        role: "Chief Financial Officer",
+        baseSalary: 528000,
+        annualBonus: 865000,
+        ltip: 146000,
+        pensionBenefits: 75000,
+        totalCompensation: 1614000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Adam Crozier",
+        role: "Chair",
+        totalFees: 433000
       }
     ]
   },
