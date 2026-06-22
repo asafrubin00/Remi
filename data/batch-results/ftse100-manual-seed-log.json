@@ -503,7 +503,7 @@
     },
     {
       "batch": 9,
-      "committedIn": null,
+      "committedIn": "ee2a550",
       "companiesReviewed": [
         "Shell plc",
         "Smith & Nephew plc",
