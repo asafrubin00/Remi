@@ -2590,6 +2590,383 @@ export const manualVerifiedFtse = {
     ],
     manualNote: "Shannon Eisenhardt's LTIP field includes buy-out awards because Remi does not yet have a separate buy-out column."
   },
+  relx: {
+    id: "relx",
+    company: "RELX PLC",
+    index: "FTSE100",
+    sector: "Media",
+    marketCap: null,
+    sayOnPayPct: 96.05,
+    sourceUrl: "https://www.relx.com/~/media/Files/R/RELX-Group/documents/reports/annual-reports/relx-2024-annual-report.pdf",
+    directors: [
+      {
+        name: "Erik Engstrom",
+        role: "Chief Executive Officer",
+        baseSalary: 1413000,
+        annualBonus: 2250000,
+        ltip: 9607000,
+        pensionBenefits: 251000,
+        totalCompensation: 13521000,
+        payRatio: null
+      },
+      {
+        name: "Nick Luff",
+        role: "Chief Financial Officer",
+        baseSalary: 832000,
+        annualBonus: 1326000,
+        ltip: 4715000,
+        pensionBenefits: 107000,
+        totalCompensation: 6979000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Paul Walker",
+        role: "Chair",
+        totalFees: 726017
+      }
+    ],
+    manualNote: "Annual bonus combines cash and deferred-share annual incentive columns from the audited single figure table."
+  },
+  "rentokil-initial": {
+    id: "rentokil-initial",
+    company: "Rentokil Initial plc",
+    index: "FTSE100",
+    sector: "Support Services",
+    marketCap: null,
+    sayOnPayPct: null,
+    sourceUrl: "https://www.rentokil-initial.com/~/media/Files/R/Rentokil/documents/annual-reports/250317_RIAR24_FINAL.pdf",
+    directors: [
+      {
+        name: "Andy Ransom",
+        role: "Chief Executive",
+        baseSalary: 984100,
+        annualBonus: 0,
+        ltip: 877100,
+        pensionBenefits: 48700,
+        totalCompensation: 1909900,
+        payRatio: 70
+      },
+      {
+        name: "Stuart Ingall-Tombs",
+        role: "Chief Financial Officer",
+        baseSalary: 600800,
+        annualBonus: 0,
+        ltip: 441000,
+        pensionBenefits: 32600,
+        totalCompensation: 1074400,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Richard Solomons",
+        role: "Chair",
+        totalFees: 433500
+      }
+    ]
+  },
+  "rio-tinto": {
+    id: "rio-tinto",
+    company: "Rio Tinto plc",
+    index: "FTSE100",
+    sector: "Mining",
+    marketCap: null,
+    sayOnPayPct: 97,
+    sourceUrl: "https://company-announcements.afr.com/asx/rio/368b5372-ef01-11ef-bad1-e21e95c6ff03.pdf",
+    directors: [
+      {
+        name: "Jakob Stausholm",
+        role: "Chief Executive",
+        baseSalary: 1277000,
+        annualBonus: 1272000,
+        ltip: 668000,
+        pensionBenefits: 347000,
+        totalCompensation: 3564000,
+        payRatio: 39
+      },
+      {
+        name: "Peter Cunningham",
+        role: "Chief Financial Officer",
+        baseSalary: 756000,
+        annualBonus: 753000,
+        ltip: 66000,
+        pensionBenefits: 150000,
+        totalCompensation: 1725000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Dominic Barton",
+        role: "Chair",
+        totalFees: 800000
+      }
+    ],
+    manualNote: "Annual bonus combines cash STIP and deferred-share STIP; LTIP combines face value and share price appreciation columns. Chair fees use the disclosed 2024 annual Chair fee."
+  },
+  "rolls-royce-holdings": {
+    id: "rolls-royce-holdings",
+    company: "Rolls-Royce Holdings plc",
+    index: "FTSE100",
+    sector: "Aerospace & Defence",
+    marketCap: null,
+    sayOnPayPct: 94.3,
+    sourceUrl: "https://www.rolls-royce.com/~/media/Files/R/Rolls-Royce/documents/annual-report/2025/2024-annual-report.pdf",
+    directors: [
+      {
+        name: "Tufan Erginbilgic",
+        role: "Chief Executive",
+        baseSalary: 1296000,
+        annualBonus: 2556000,
+        ltip: 0,
+        pensionBenefits: 261000,
+        totalCompensation: 4113000,
+        payRatio: 64
+      },
+      {
+        name: "Helen McCabe",
+        role: "Chief Financial Officer",
+        baseSalary: 752000,
+        annualBonus: 1483000,
+        ltip: 0,
+        pensionBenefits: 119000,
+        totalCompensation: 2354000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Dame Anita Frew",
+        role: "Chair",
+        totalFees: 579000
+      }
+    ],
+    manualNote: "BaseSalary combines cash salary and salary deferred into shares from the audited single figure table."
+  },
+  "sage-group": {
+    id: "sage-group",
+    company: "The Sage Group plc",
+    index: "FTSE100",
+    sector: "Software & Computer Services",
+    marketCap: null,
+    year: 2023,
+    sayOnPayPct: 98.77,
+    sourceUrl: "https://www.annualreports.com/HostedData/AnnualReportArchive/s/LSE_SGE_2023.pdf",
+    directors: [
+      {
+        name: "Steve Hare",
+        role: "Chief Executive Officer",
+        baseSalary: 833000,
+        annualBonus: 993000,
+        ltip: 2021000,
+        pensionBenefits: 153000,
+        totalCompensation: 4000000,
+        payRatio: 68
+      },
+      {
+        name: "Jonathan Howell",
+        role: "Chief Financial Officer",
+        baseSalary: 571000,
+        annualBonus: 691000,
+        ltip: 1403000,
+        pensionBenefits: 57000,
+        totalCompensation: 2722000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Andrew Duff",
+        role: "Chair",
+        totalFees: 400000
+      }
+    ],
+    manualNote: "Seeded from the accessible 2023 audited annual report because the official Sage 2024 PDF returned a Cloudflare block page from the local fetch environment."
+  },
+  "sainsbury-s": {
+    id: "sainsbury-s",
+    company: "J Sainsbury plc",
+    index: "FTSE100",
+    sector: "Food & Drug Retailing",
+    marketCap: null,
+    sayOnPayPct: 98.84,
+    sourceUrl: "https://corporate.sainsburys.co.uk/media/n3bdgevz/sainsbury-annual-report-and-financial-statements-2024.pdf",
+    directors: [
+      {
+        name: "Simon Roberts",
+        role: "Chief Executive Officer",
+        baseSalary: 933000,
+        annualBonus: 2054000,
+        ltip: 1836000,
+        pensionBenefits: 89000,
+        totalCompensation: 4912000,
+        payRatio: 212
+      },
+      {
+        name: "Blathnaid Bergin",
+        role: "Chief Financial Officer",
+        baseSalary: 650000,
+        annualBonus: 1147000,
+        ltip: 518000,
+        pensionBenefits: 68000,
+        totalCompensation: 2383000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Martin Scicluna",
+        role: "Chair",
+        totalFees: 513000
+      }
+    ]
+  },
+  schroders: {
+    id: "schroders",
+    company: "Schroders plc",
+    index: "FTSE100",
+    sector: "Financial Services",
+    marketCap: null,
+    sayOnPayPct: null,
+    sourceUrl: "https://data.fca.org.uk/artefacts/NSM/Portal/NI-000115743/NI-000115743.pdf",
+    directors: [
+      {
+        name: "Richard Oldfield",
+        role: "Group Chief Executive",
+        baseSalary: 375000,
+        annualBonus: 1390000,
+        ltip: 0,
+        pensionBenefits: 47000,
+        totalCompensation: 1812000,
+        payRatio: 44
+      },
+      {
+        name: "Peter Harrison",
+        role: "Former Group Chief Executive",
+        baseSalary: 429000,
+        annualBonus: 4003000,
+        ltip: 0,
+        pensionBenefits: 52000,
+        totalCompensation: 4484000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Dame Elizabeth Corley",
+        role: "Chair",
+        totalFees: 627000
+      }
+    ],
+    manualNote: "The 2024 executive directors waived the 2021 LTIP that would otherwise have vested during the year; no exact 2024 AGM remuneration-report vote percentage was located in this batch."
+  },
+  "scottish-mortgage-investment-trust": {
+    id: "scottish-mortgage-investment-trust",
+    company: "Scottish Mortgage Investment Trust PLC",
+    index: "FTSE100",
+    sector: "Investment Trusts",
+    marketCap: null,
+    sayOnPayPct: null,
+    sourceUrl: "https://media.bailliegifford.com/mws/jhkjrkq4/20240603113752_scottish-mortgage-annual-report-310324.pdf",
+    directors: [],
+    nonExecutiveDirectors: [
+      {
+        name: "Justin Dowley",
+        role: "Chair",
+        totalFees: 69918
+      }
+    ],
+    manualNote: "Investment trust with a wholly non-executive board; audited remuneration consists of director fees and taxable travel/subsistence benefits."
+  },
+  segro: {
+    id: "segro",
+    company: "SEGRO plc",
+    index: "FTSE100",
+    sector: "Real Estate Investment Trusts",
+    marketCap: null,
+    sayOnPayPct: 97.98,
+    sourceUrl: "https://www.segro.com/media/1h4c1331/segro_ar24_interactive.pdf",
+    directors: [
+      {
+        name: "David Sleath",
+        role: "Chief Executive",
+        baseSalary: 794000,
+        annualBonus: 678000,
+        ltip: 0,
+        pensionBenefits: 121000,
+        totalCompensation: 1593000,
+        payRatio: 13
+      },
+      {
+        name: "Soumen Das",
+        role: "Chief Financial Officer",
+        baseSalary: 591000,
+        annualBonus: 504000,
+        ltip: 0,
+        pensionBenefits: 96000,
+        totalCompensation: 1191000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Andy Harrison",
+        role: "Chair",
+        totalFees: 375000
+      }
+    ],
+    manualNote: "Annual bonus maps the audited single-year variable bonus including DSBP; pensionBenefits includes benefits, pension and SIP/Sharesave value to preserve the audited total. LTIP was zero in the 2024 single figure."
+  },
+  "severn-trent": {
+    id: "severn-trent",
+    company: "Severn Trent Plc",
+    index: "FTSE100",
+    sector: "Utilities",
+    marketCap: null,
+    sayOnPayPct: 95.4,
+    sourceUrl: "https://www.severntrent.com/content/dam/stw-plc/shareholder-resources/2024-reports/severn-trent-ara-2024-bookmarked-web-full-report.pdf",
+    directors: [
+      {
+        name: "Liv Garfield",
+        role: "Chief Executive",
+        baseSalary: 793800,
+        annualBonus: 584000,
+        ltip: 1662900,
+        pensionBenefits: 142000,
+        totalCompensation: 3182700,
+        payRatio: 66.6
+      },
+      {
+        name: "Helen Miles",
+        role: "Chief Financial Officer",
+        baseSalary: 480000,
+        annualBonus: 379400,
+        ltip: 322000,
+        pensionBenefits: 96300,
+        totalCompensation: 1277700,
+        payRatio: null
+      },
+      {
+        name: "James Bowling",
+        role: "Former Chief Financial Officer",
+        baseSalary: 124900,
+        annualBonus: 100900,
+        ltip: 259400,
+        pensionBenefits: 23400,
+        totalCompensation: 508600,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Christine Hodgson",
+        role: "Chair",
+        totalFees: 321100
+      }
+    ]
+  },
   tesco: {
     id: "tesco",
     company: "Tesco PLC",

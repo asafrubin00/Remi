@@ -420,12 +420,92 @@
           "note": "Shannon Eisenhardt's LTIP field includes buy-out awards because Remi does not yet have a separate buy-out column."
         }
       ]
+    },
+    {
+      "batch": 8,
+      "committedIn": null,
+      "companiesReviewed": [
+        "RELX PLC",
+        "Rentokil Initial plc",
+        "Rio Tinto plc",
+        "Rolls-Royce Holdings plc",
+        "The Sage Group plc",
+        "J Sainsbury plc",
+        "Schroders plc",
+        "Scottish Mortgage Investment Trust PLC",
+        "SEGRO plc",
+        "Severn Trent Plc"
+      ],
+      "verifiedExecutiveSeeds": [
+        "RELX PLC",
+        "Rentokil Initial plc",
+        "Rio Tinto plc",
+        "Rolls-Royce Holdings plc",
+        "The Sage Group plc",
+        "J Sainsbury plc",
+        "Schroders plc",
+        "SEGRO plc",
+        "Severn Trent Plc"
+      ],
+      "verifiedNedOnlySeeds": [
+        {
+          "company": "Scottish Mortgage Investment Trust PLC",
+          "reason": "Investment trust annual report states the company has no executive directors or employees; audited remuneration consists of non-executive director fees and taxable travel/subsistence benefits.",
+          "sourceUrl": "https://media.bailliegifford.com/mws/jhkjrkq4/20240603113752_scottish-mortgage-annual-report-310324.pdf"
+        }
+      ],
+      "manualSeedAlsoFailed": [
+        {
+          "company": "Rentokil Initial plc",
+          "field": "sayOnPayPct",
+          "reason": "The 2024 annual report extract provided audited remuneration and pay-ratio data, but no exact AGM remuneration vote percentage was located during this batch.",
+          "sourceUrl": "https://www.rentokil-initial.com/~/media/Files/R/Rentokil/documents/annual-reports/250317_RIAR24_FINAL.pdf"
+        },
+        {
+          "company": "Schroders plc",
+          "field": "sayOnPayPct",
+          "reason": "The 2024 annual report extract provided audited remuneration and pay-ratio data, but no exact AGM remuneration vote percentage was located during this batch.",
+          "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/Portal/NI-000115743/NI-000115743.pdf"
+        },
+        {
+          "company": "Scottish Mortgage Investment Trust PLC",
+          "field": "sayOnPayPct",
+          "reason": "The annual report exposed audited non-executive fee data and a 2023 remuneration policy vote, but no exact 2024 remuneration-report vote percentage was located during this batch.",
+          "sourceUrl": "https://media.bailliegifford.com/mws/jhkjrkq4/20240603113752_scottish-mortgage-annual-report-310324.pdf"
+        }
+      ],
+      "notes": [
+        {
+          "company": "RELX PLC",
+          "note": "Annual bonus combines cash and deferred-share annual incentive columns from the audited single figure table."
+        },
+        {
+          "company": "Rio Tinto plc",
+          "note": "Annual bonus combines cash STIP and deferred-share STIP; LTIP combines face value and share price appreciation columns."
+        },
+        {
+          "company": "Rolls-Royce Holdings plc",
+          "note": "BaseSalary combines cash salary and salary deferred into shares from the audited single figure table."
+        },
+        {
+          "company": "The Sage Group plc",
+          "note": "Seeded from the accessible 2023 audited annual report because the official Sage 2024 PDF returned a Cloudflare block page from the local fetch environment."
+        },
+        {
+          "company": "Schroders plc",
+          "note": "The 2024 executive directors waived the 2021 LTIP that would otherwise have vested during the year."
+        },
+        {
+          "company": "SEGRO plc",
+          "note": "PensionBenefits includes benefits, pension and SIP/Sharesave value to preserve the audited single total figure."
+        }
+      ]
     }
   ],
   "runningTotals": {
-    "companiesReviewed": 70,
-    "verifiedExecutiveSeeds": 62,
-    "verifiedNedOnlySeeds": 4,
-    "manualSeedAlsoFailed": 15
+    "companiesReviewed": 80,
+    "verifiedExecutiveSeeds": 71,
+    "verifiedNedOnlySeeds": 5,
+    "manualSeedAlsoFailed": 18
   }
 }
