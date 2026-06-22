@@ -579,7 +579,7 @@
     },
     {
       "batch": 10,
-      "committedIn": null,
+      "committedIn": "ca43562",
       "companiesReviewed": [
         "Unilever PLC",
         "United Utilities Group PLC",
