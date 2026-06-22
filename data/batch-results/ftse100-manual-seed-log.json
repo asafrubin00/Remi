@@ -199,12 +199,85 @@
           "note": "Preserved USD source figures from the audited 2024 report."
         }
       ]
+    },
+    {
+      "batch": 5,
+      "committedIn": null,
+      "companiesReviewed": [
+        "GSK plc",
+        "HSBC Holdings plc",
+        "IHG Hotels & Resorts",
+        "Intermediate Capital Group plc",
+        "IG Group Holdings plc",
+        "IMI plc",
+        "International Consolidated Airlines Group S.A.",
+        "Imperial Brands PLC",
+        "Informa PLC",
+        "Intertek Group plc"
+      ],
+      "verifiedExecutiveSeeds": [
+        "GSK plc",
+        "HSBC Holdings plc",
+        "IHG Hotels & Resorts",
+        "Intermediate Capital Group plc",
+        "IG Group Holdings plc",
+        "IMI plc",
+        "International Consolidated Airlines Group S.A.",
+        "Imperial Brands PLC",
+        "Informa PLC",
+        "Intertek Group plc"
+      ],
+      "verifiedNedOnlySeeds": [],
+      "manualSeedAlsoFailed": [
+        {
+          "company": "GSK plc",
+          "field": "Chair/NED fee",
+          "reason": "The governance and remuneration report extract provided audited executive remuneration, but the Chair/NED fee table was not reliably located during this batch.",
+          "sourceUrl": "https://www.gsk.com/media/hhweztfs/governance-and-remuneration-report-2024.pdf"
+        },
+        {
+          "company": "International Consolidated Airlines Group S.A.",
+          "field": "sayOnPayPct",
+          "reason": "The directors' remuneration report extract provided audited remuneration data, but no exact AGM remuneration vote percentage was located during this batch.",
+          "sourceUrl": "https://www.iairgroup.com/media/yasffc3v/iag-directors-remuneration-report-2024.pdf"
+        },
+        {
+          "company": "International Consolidated Airlines Group S.A.",
+          "field": "currency metadata",
+          "reason": "IAG discloses some director remuneration tables in euros while Remi stores currency at company level. The record is seeded for coverage, but this needs per-director currency support before mixed-currency display can be fully precise.",
+          "sourceUrl": "https://www.iairgroup.com/media/yasffc3v/iag-directors-remuneration-report-2024.pdf"
+        },
+        {
+          "company": "Intertek Group plc",
+          "field": "sayOnPayPct",
+          "reason": "The 2024 annual report exposed audited remuneration and pay-ratio data, but no exact AGM remuneration vote percentage was located during this batch.",
+          "sourceUrl": "https://www.intertek.com/siteassets/investors/2024/intertek-annual-report-2024.pdf"
+        }
+      ],
+      "notes": [
+        {
+          "company": "GSK plc",
+          "note": "Applied the previously accepted Remi FTSE say-on-pay value of 88.6%; the report extract also showed a 2024 AGM vote on the prior remuneration report."
+        },
+        {
+          "company": "HSBC Holdings plc",
+          "note": "HSBC's 2024 audited single figure table reflects remuneration for Sir Noel Quinn and Georges Elhedery during their respective executive director service periods."
+        },
+        {
+          "company": "IMI plc",
+          "note": "The official IMI PDF endpoint returned HTTP 403, so the identical 2024 annual report was sourced through AnnualReports.com."
+        },
+        {
+          "company": "International Consolidated Airlines Group S.A.",
+          "note": "The 2024 IAG remuneration report states Luis Gallego was the only executive director during 2024."
+        }
+      ]
     }
   ],
   "runningTotals": {
-    "companiesReviewed": 40,
-    "verifiedExecutiveSeeds": 36,
+    "companiesReviewed": 50,
+    "verifiedExecutiveSeeds": 46,
     "verifiedNedOnlySeeds": 2,
-    "manualSeedAlsoFailed": 6
+    "manualSeedAlsoFailed": 10
   }
 }

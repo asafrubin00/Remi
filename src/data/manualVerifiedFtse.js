@@ -1482,6 +1482,394 @@ export const manualVerifiedFtse = {
       }
     ]
   },
+  gsk: {
+    id: "gsk",
+    company: "GSK plc",
+    index: "FTSE100",
+    sector: "Healthcare",
+    marketCap: null,
+    sayOnPayPct: 88.6,
+    sourceUrl: "https://www.gsk.com/media/hhweztfs/governance-and-remuneration-report-2024.pdf",
+    directors: [
+      {
+        name: "Emma Walmsley",
+        role: "Chief Executive Officer",
+        baseSalary: 1363000,
+        annualBonus: 2855000,
+        ltip: 6063000,
+        pensionBenefits: 278000,
+        totalCompensation: 10559000,
+        payRatio: 123
+      },
+      {
+        name: "Julie Brown",
+        role: "Chief Financial Officer",
+        baseSalary: 990000,
+        annualBonus: 1955000,
+        ltip: 0,
+        pensionBenefits: 1221000,
+        totalCompensation: 4166000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: []
+  },
+  hsbc: {
+    id: "hsbc",
+    company: "HSBC Holdings plc",
+    index: "FTSE100",
+    sector: "Banks",
+    marketCap: null,
+    sayOnPayPct: 78.4,
+    sourceUrl: "https://www.hsbc.com/-/files/hsbc/investors/hsbc-results/2024/annual/pdfs/hsbc-holdings-plc/250219-annual-report-and-accounts-2024.pdf",
+    directors: [
+      {
+        name: "Sir Noel Quinn",
+        role: "Former Group Chief Executive Officer",
+        baseSalary: 914000,
+        annualBonus: 1540000,
+        ltip: 5298000,
+        pensionBenefits: 1355000,
+        totalCompensation: 9164000,
+        payRatio: 165
+      },
+      {
+        name: "Georges Elhedery",
+        role: "Group Chief Executive Officer",
+        baseSalary: 989000,
+        annualBonus: 1677000,
+        ltip: 1207000,
+        pensionBenefits: 1485000,
+        totalCompensation: 5364000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Sir Mark Tucker",
+        role: "Group Chairman",
+        totalFees: 1645000
+      }
+    ],
+    manualNote: "HSBC's 2024 audited single figure table reflects remuneration for Sir Noel Quinn and Georges Elhedery during their respective 2024 executive director service periods."
+  },
+  "ihg-hotels-and-resorts": {
+    id: "ihg-hotels-and-resorts",
+    company: "IHG Hotels & Resorts",
+    index: "FTSE100",
+    sector: "Travel & Leisure",
+    marketCap: null,
+    sayOnPayPct: 94.49,
+    sourceUrl: "https://www.ihgplc.com/~/media/Files/I/Ihg-Plc/investors/annual-report/2024/directors-remuneration-report_p138166.pdf",
+    directors: [
+      {
+        name: "Elie Maalouf",
+        role: "Chief Executive Officer",
+        baseSalary: 1010000,
+        annualBonus: 1298000,
+        ltip: 4670000,
+        pensionBenefits: 548000,
+        totalCompensation: 7525000,
+        payRatio: 160
+      },
+      {
+        name: "Michael Glover",
+        role: "Chief Financial Officer",
+        baseSalary: 639000,
+        annualBonus: 813000,
+        ltip: 1614000,
+        pensionBenefits: 163000,
+        totalCompensation: 3377000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Deanna Oppenheimer",
+        role: "Chair",
+        totalFees: 785000
+      }
+    ]
+  },
+  icg: {
+    id: "icg",
+    company: "Intermediate Capital Group plc",
+    index: "FTSE100",
+    sector: "Financial Services",
+    marketCap: null,
+    sayOnPayPct: 83.96,
+    sourceUrl: "https://www.icgam.com/wp-content/uploads/2024/06/icg-annual-report-and-accounts-2024.pdf",
+    directors: [
+      {
+        name: "Benoit Durteste",
+        role: "Chief Executive Officer and Chief Investment Officer",
+        baseSalary: 500000,
+        annualBonus: 1171200,
+        ltip: 4865100,
+        pensionBenefits: 72200,
+        totalCompensation: 6608500,
+        payRatio: 29
+      },
+      {
+        name: "David Bicarregui",
+        role: "Chief Financial Officer",
+        baseSalary: 417700,
+        annualBonus: 488200,
+        ltip: 1139100,
+        pensionBenefits: 58200,
+        totalCompensation: 2103300,
+        payRatio: null
+      },
+      {
+        name: "Antje Hensel-Roth",
+        role: "Chief People and External Affairs Officer",
+        baseSalary: 467500,
+        annualBonus: 479100,
+        ltip: 1117900,
+        pensionBenefits: 71100,
+        totalCompensation: 2135600,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "William Rucker",
+        role: "Board Chair",
+        totalFees: 375000
+      }
+    ]
+  },
+  "ig-group": {
+    id: "ig-group",
+    company: "IG Group Holdings plc",
+    index: "FTSE100",
+    sector: "Financial Services",
+    marketCap: null,
+    sayOnPayPct: 94.7,
+    sourceUrl: "https://www.iggroup.com/~/media/Files/I/IG-Group/documents/investors/financial-results/results-reports-and-presentations/2024/ig-group-annual-report-2024.pdf",
+    directors: [
+      {
+        name: "Breon Corcoran",
+        role: "Chief Executive Officer",
+        baseSalary: 276000,
+        annualBonus: 736000,
+        ltip: 0,
+        pensionBenefits: 33000,
+        totalCompensation: 1086000,
+        payRatio: 25
+      },
+      {
+        name: "June Felix",
+        role: "Former Chief Executive Officer",
+        baseSalary: 158000,
+        annualBonus: 354000,
+        ltip: 0,
+        pensionBenefits: 30000,
+        totalCompensation: 542000,
+        payRatio: null
+      },
+      {
+        name: "Charlie Rozes",
+        role: "Chief Financial Officer",
+        baseSalary: 606000,
+        annualBonus: 777000,
+        ltip: 0,
+        pensionBenefits: 149000,
+        totalCompensation: 1532000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Mike McTighe",
+        role: "Chair",
+        totalFees: 316000
+      }
+    ]
+  },
+  imi: {
+    id: "imi",
+    company: "IMI plc",
+    index: "FTSE100",
+    sector: "Industrial Engineering",
+    marketCap: null,
+    sayOnPayPct: 96.43,
+    sourceUrl: "https://www.annualreports.com/Click/12643",
+    directors: [
+      {
+        name: "Roy Twite",
+        role: "Chief Executive Officer",
+        baseSalary: 830000,
+        annualBonus: 1620000,
+        ltip: 1859000,
+        pensionBenefits: 120000,
+        totalCompensation: 4435000,
+        payRatio: 98
+      },
+      {
+        name: "Daniel Shook",
+        role: "Chief Financial Officer",
+        baseSalary: 577000,
+        annualBonus: 851000,
+        ltip: 743000,
+        pensionBenefits: 116000,
+        totalCompensation: 2291000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Lord Smith of Kelvin",
+        role: "Chair",
+        totalFees: 392000
+      }
+    ],
+    manualNote: "Official IMI PDF endpoint returned HTTP 403, so the identical 2024 annual report was sourced through AnnualReports.com."
+  },
+  "international-airlines-group": {
+    id: "international-airlines-group",
+    company: "International Consolidated Airlines Group S.A.",
+    index: "FTSE100",
+    sector: "Travel & Leisure",
+    marketCap: null,
+    sayOnPayPct: null,
+    sourceUrl: "https://www.iairgroup.com/media/yasffc3v/iag-directors-remuneration-report-2024.pdf",
+    directors: [
+      {
+        name: "Luis Gallego",
+        role: "Chief Executive Officer",
+        baseSalary: 887000,
+        annualBonus: 1520000,
+        ltip: 2119000,
+        pensionBenefits: 152000,
+        totalCompensation: 4678000,
+        payRatio: 74
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Javier Ferran",
+        role: "Chairman",
+        totalFees: 668000
+      }
+    ],
+    manualNote: "The 2024 IAG remuneration report states Luis Gallego was the only executive director during 2024. NED Chair fee is disclosed in EUR, but Remi's company-level currency remains GBP pending per-director currency support."
+  },
+  "imperial-brands": {
+    id: "imperial-brands",
+    company: "Imperial Brands PLC",
+    index: "FTSE100",
+    sector: "Tobacco",
+    marketCap: null,
+    sayOnPayPct: 95.51,
+    sourceUrl: "https://www.imperialbrandsplc.com/content/dam/imperialbrands/corporate/documents/investors/reports/oar-2024/imperial-brands-2024-annual-report-governance.pdf",
+    directors: [
+      {
+        name: "Stefan Bomhard",
+        role: "Chief Executive Officer",
+        baseSalary: 1400000,
+        annualBonus: 2346000,
+        ltip: 5117000,
+        pensionBenefits: 213000,
+        totalCompensation: 9082000,
+        payRatio: null
+      },
+      {
+        name: "Lukas Paravicini",
+        role: "Chief Financial Officer",
+        baseSalary: 790000,
+        annualBonus: 1323000,
+        ltip: 2051000,
+        pensionBenefits: 113000,
+        totalCompensation: 4277000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Therese Esperdy",
+        role: "Chair",
+        totalFees: 725000
+      }
+    ]
+  },
+  informa: {
+    id: "informa",
+    company: "Informa PLC",
+    index: "FTSE100",
+    sector: "Media",
+    marketCap: null,
+    sayOnPayPct: 96.65,
+    sourceUrl: "https://www.informa.com/globalassets/documents/investor-relations/2025/2024-informa-annual-report.pdf",
+    directors: [
+      {
+        name: "Stephen A. Carter",
+        role: "Group Chief Executive",
+        baseSalary: 931625,
+        annualBonus: 1877000,
+        ltip: 2535285,
+        pensionBenefits: 143988,
+        totalCompensation: 5487898,
+        payRatio: 96.4
+      },
+      {
+        name: "Gareth Wright",
+        role: "Group Finance Director",
+        baseSalary: 541500,
+        annualBonus: 818250,
+        ltip: 975767,
+        pensionBenefits: 70445,
+        totalCompensation: 2405962,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "John Rishton",
+        role: "Chair",
+        totalFees: 427053
+      }
+    ]
+  },
+  intertek: {
+    id: "intertek",
+    company: "Intertek Group plc",
+    index: "FTSE100",
+    sector: "Support Services",
+    marketCap: null,
+    sayOnPayPct: null,
+    sourceUrl: "https://www.intertek.com/siteassets/investors/2024/intertek-annual-report-2024.pdf",
+    directors: [
+      {
+        name: "Andre Lacroix",
+        role: "Chief Executive Officer",
+        baseSalary: 1051000,
+        annualBonus: 2025000,
+        ltip: 3123000,
+        pensionBenefits: 265000,
+        totalCompensation: 6464000,
+        payRatio: 168
+      },
+      {
+        name: "Colm Deasy",
+        role: "Chief Financial Officer",
+        baseSalary: 481000,
+        annualBonus: 956000,
+        ltip: 0,
+        pensionBenefits: 47000,
+        totalCompensation: 1484000,
+        payRatio: null
+      }
+    ],
+    nonExecutiveDirectors: [
+      {
+        name: "Andrew Martin",
+        role: "Chair",
+        totalFees: 361000
+      }
+    ],
+    manualNote: "Intertek's 2024 annual report exposed audited remuneration and pay-ratio data, but no exact AGM remuneration vote percentage was located during this batch."
+  },
   tesco: {
     id: "tesco",
     company: "Tesco PLC",
