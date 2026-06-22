@@ -2,6 +2,17 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "functions": {
+    "api/cron/refresh-sp500.js": {
+      "maxDuration": 300
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/refresh-sp500",
+      "schedule": "0 2 1 * *"
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",

@@ -393,6 +393,13 @@ export function formatCompactMoney(value, currency) {
   return `${symbol}${value.toLocaleString()}`;
 }
 
+export function formatVintageDate(value) {
+  if (!value) return "n/a";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "n/a";
+  return date.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+}
+
 export function formatCompactMarketCap(value, currency) {
   if (value == null || Number.isNaN(Number(value))) return "n/a";
   const symbol = currency === "USD" ? "$" : currency === "GBP" ? "£" : currency === "EUR" ? "€" : currency === "MIXED" ? "£/$" : "";

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import AnalysisPanel from "../components/AnalysisPanel.jsx";
 import { DataValue, Panel, SectionHeader } from "../components/ui.jsx";
-import { allDirectors, flattenDirectorYear, formatMoney } from "../data/mockRemuneration.js";
+import { allDirectors, flattenDirectorYear, formatMoney, formatVintageDate } from "../data/mockRemuneration.js";
 
 function matchesQuery(value, query) {
   return value.toLowerCase().includes(query.trim().toLowerCase());
@@ -245,6 +245,13 @@ export default function FindScreen({ dataset, setDataset, directorType, initialS
               ))}
             </div>
 
+            <div className="mt-4 text-[11px] text-remi-muted">
+              <span>Data: </span>
+              <span className="remi-data">FY{selectedYearData.reportingYear || "n/a"}</span>
+              <span> · Last updated </span>
+              <span className="remi-data">{formatVintageDate(selectedYearData.lastUpdated)}</span>
+            </div>
+
             <div className="mt-6 grid grid-cols-2 gap-4">
               <div className="remi-panel-inner p-4">
                 <SectionHeader>Pay Ratio</SectionHeader>
@@ -261,8 +268,7 @@ export default function FindScreen({ dataset, setDataset, directorType, initialS
             </div>
 
             <div className="mt-auto flex items-center gap-1 border-t border-remi-border pt-4 text-[11px] text-remi-muted">
-              <span>Last updated</span>
-              <span className="remi-data">{new Date(selectedYearData.lastUpdated).toLocaleDateString("en-GB")}</span>
+              <span>Source</span>
               <span>·</span>
               {selectedYearData.sourceUrl ? (
                 <a href={selectedYearData.sourceUrl} target="_blank" rel="noreferrer">

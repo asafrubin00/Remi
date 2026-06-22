@@ -209,6 +209,7 @@ export default function CompareScreen({ dataset, directorType }) {
         point[director.id] = director.years[String(year)]?.[metric] ?? null;
         point[`${director.id}Currency`] = director.currency;
         point[`${director.id}Label`] = director.type === "average" ? `${director.company} — Average (${director.averageCounts?.[String(year)]?.[metric] ?? 0} ${director.directorType === "non-executive" ? "NEDs" : "executives"})` : identityLabel(director);
+        point[`${director.id}Year`] = year;
       });
       return point;
     });
@@ -387,6 +388,7 @@ function ValueTooltip({ active, payload, metric, mode = "block" }) {
       name: entry.payload?.personName,
       role: entry.payload?.role,
       company: entry.payload?.company,
+      reportingYear: entry.payload?.reportingYear || entry.payload?.[`${entry.dataKey}Year`],
       value: Object.prototype.hasOwnProperty.call(entry.payload || {}, "displayValue") ? entry.payload.displayValue : entry.value,
       currency: entry.payload?.currency || entry.payload?.[`${entry.dataKey}Currency`],
       note: entry.payload?.note
@@ -398,7 +400,7 @@ function ValueTooltip({ active, payload, metric, mode = "block" }) {
       {rows.map((row, index) =>
         mode === "line" ? (
           <div key={`${row.label}-${index}`} className={index ? "mt-1" : ""}>
-            {row.label}: <DataValue>{formatChartValue(row.value, row.currency, metric)}</DataValue>
+            {row.label} {row.reportingYear ? `FY${row.reportingYear}` : ""}: <DataValue>{formatChartValue(row.value, row.currency, metric)}</DataValue>
             {row.note ? <div className="mt-1 text-[11px] text-remi-muted">{row.note}</div> : null}
           </div>
         ) : (
@@ -430,7 +432,10 @@ function TooltipIdentity({ row }) {
   if (!row.name || !row.role || !row.company) return <div className="remi-data text-remi-gold-light">{row.label || row.fullLabel}</div>;
   return (
     <div className="space-y-0.5">
-      <div className="remi-data text-remi-gold-light">{row.name}</div>
+      <div className="remi-data text-remi-gold-light">
+        {row.name}
+        {row.reportingYear ? ` · FY${row.reportingYear}` : ""}
+      </div>
       <div className="max-w-[280px] text-remi-text-secondary">{row.role}</div>
       <div className="text-remi-muted">{row.company}</div>
     </div>
@@ -446,6 +451,7 @@ function BarComparison({ data, metric }) {
       personName: parts.name,
       role: parts.role,
       company: parts.company,
+      reportingYear: row.reportingYear,
       value: numericMetricValue(row, metric) ?? 0,
       displayValue: numericMetricValue(row, metric),
       currency: row.currency,
@@ -508,6 +514,7 @@ function BubbleComparison({ data, metric, logScale }) {
       personName: parts.name,
       role: parts.role,
       company: parts.company,
+      reportingYear: row.reportingYear,
       currency: row.currency,
       value,
       yValue: Math.max(value ?? 0, 1),
@@ -554,7 +561,7 @@ function ComparisonTable({ data, metric }) {
                 <span className="remi-name-popover-trigger">
                   {row.name}
                   <span className="remi-name-popover">
-                    <TooltipIdentity row={{ ...identityParts(row), label: identityLabel(row) }} />
+                    <TooltipIdentity row={{ ...identityParts(row), label: identityLabel(row), reportingYear: row.reportingYear }} />
                   </span>
                 </span>
               </td>

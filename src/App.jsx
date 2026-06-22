@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { TabButton } from "./components/ui.jsx";
-import { companies as seededCompanies } from "./data/mockRemuneration.js";
+import { companies as seededCompanies, formatVintageDate } from "./data/mockRemuneration.js";
 import CompareScreen from "./screens/CompareScreen.jsx";
 import FindScreen from "./screens/FindScreen.jsx";
 import LandingScreen from "./screens/LandingScreen.jsx";
@@ -22,6 +22,7 @@ export default function App() {
   const [activeView, setActiveView] = useState(viewFromPath);
   const [focusedDirectorId, setFocusedDirectorId] = useState(null);
   const [dataset, setDataset] = useState(seededCompanies);
+  const [sp500CronStatus, setSp500CronStatus] = useState(null);
   const [directorType, setDirectorType] = useState(() => {
     return window.localStorage.getItem("remi.directorType") || "executive";
   });
@@ -63,6 +64,27 @@ export default function App() {
     }
 
     hydrateDataset();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!import.meta.env.PROD) return undefined;
+    let cancelled = false;
+
+    async function loadCronStatus() {
+      try {
+        const response = await fetch("/api/cron/sp500-status");
+        if (!response.ok) return;
+        const status = await response.json();
+        if (!cancelled && status?.timestamp) setSp500CronStatus(status);
+      } catch {
+        // Footer status is informational only.
+      }
+    }
+
+    loadCronStatus();
     return () => {
       cancelled = true;
     };
@@ -139,8 +161,13 @@ export default function App() {
         )}
       </section>
 
-      <footer className="mt-8 border-t border-remi-border pt-4 text-center text-[11px] text-remi-muted">
-        © 2026 Asaf Rubin. All rights reserved.
+      <footer className="mt-8 flex justify-center gap-3 border-t border-remi-border pt-4 text-center text-[11px] text-remi-muted">
+        <span>© 2026 Asaf Rubin. All rights reserved.</span>
+        {sp500CronStatus?.timestamp ? (
+          <span>
+            S&P 500 data last refreshed: <span className="remi-data">{formatVintageDate(sp500CronStatus.timestamp)}</span>
+          </span>
+        ) : null}
       </footer>
     </main>
   );

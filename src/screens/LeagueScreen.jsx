@@ -21,6 +21,7 @@ const columns = [
   ["sector", "Sector"],
   ["metricValue", "Selected Component Value"],
   ["totalCompensation", "Total Comp"],
+  ["reportingYear", "Reporting Year"],
   ["sayOnPayPct", "Say-on-Pay %"]
 ];
 
@@ -136,6 +137,9 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
                       </td>
                       <td className="px-3 py-3">
                         <DataValue>{formatMoney(row.totalCompensation, row.currency)}</DataValue>
+                      </td>
+                      <td className="px-3 py-3">
+                        <DataValue>FY{row.reportingYear || "n/a"}</DataValue>
                       </td>
                       <td className="px-3 py-3">
                         <DataValue className={sayOnPayClass(row.sayOnPayPct)}>{row.sayOnPayPct ? `${row.sayOnPayPct}%` : "n/a"}</DataValue>
