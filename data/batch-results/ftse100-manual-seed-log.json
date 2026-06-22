@@ -423,7 +423,7 @@
     },
     {
       "batch": 8,
-      "committedIn": null,
+      "committedIn": "9ba8068",
       "companiesReviewed": [
         "RELX PLC",
         "Rentokil Initial plc",
