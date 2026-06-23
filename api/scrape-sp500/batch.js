@@ -13,6 +13,7 @@ export default async function handler(request, response) {
     return;
   }
 
-  const results = await scrapeSp500Batch(tickers);
+  const skipCache = request.query.fresh === "1" || request.query.skipCache === "1" || body.fresh === true || body.fresh === 1 || body.fresh === "1";
+  const results = await scrapeSp500Batch(tickers, { skipCache });
   response.status(200).json({ results });
 }
