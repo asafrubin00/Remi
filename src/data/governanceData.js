@@ -38,7 +38,15 @@ export function enrichGovernanceData(company) {
 
   for (const feeRecord of nonExecutiveFees[company.id] || []) {
     const director = buildNonExecutiveDirector(company, feeRecord, sayOnPayPct);
-    if (!existingIds.has(director.id)) directors.push(director);
+    const existingIndex = directors.findIndex((item) => item.id === director.id);
+    const sameNameIndex = directors.findIndex((item) => item.type === "non-executive" && slugify(item.name) === slugify(director.name));
+    if (existingIndex >= 0) {
+      directors[existingIndex] = director;
+    } else if (sameNameIndex >= 0) {
+      directors[sameNameIndex] = director;
+    } else if (!existingIds.has(director.id)) {
+      directors.push(director);
+    }
   }
 
   return {

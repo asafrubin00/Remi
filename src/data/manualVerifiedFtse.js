@@ -485,7 +485,7 @@ export const manualVerifiedFtse = {
       {
         name: "Nigel Higgins",
         role: "Chairman",
-        totalFees: 866000
+        totalFees: 850000
       }
     ]
   },
@@ -856,9 +856,9 @@ export const manualVerifiedFtse = {
     ],
     nonExecutiveDirectors: [
       {
-        name: "Ian Meakins",
-        role: "Chair of the Board",
-        totalFees: 596000
+        name: "Paul Walsh",
+        role: "Chair",
+        totalFees: 600000
       }
     ]
   },
@@ -1086,9 +1086,9 @@ export const manualVerifiedFtse = {
     ],
     nonExecutiveDirectors: [
       {
-        name: "Javier Ferran",
+        name: "Javier Ferrán",
         role: "Chair",
-        totalFees: 696000
+        totalFees: 650000
       }
     ]
   },
@@ -1349,7 +1349,7 @@ export const manualVerifiedFtse = {
       {
         name: "Sir Dave Lewis",
         role: "Chair",
-        totalFees: 741000
+        totalFees: 575000
       }
     ]
   },
@@ -1546,9 +1546,9 @@ export const manualVerifiedFtse = {
     ],
     nonExecutiveDirectors: [
       {
-        name: "Sir Mark Tucker",
-        role: "Group Chairman",
-        totalFees: 1645000
+        name: "Mark Tucker",
+        role: "Chair",
+        totalFees: 1500000
       }
     ],
     manualNote: "HSBC's 2024 audited single figure table reflects remuneration for Sir Noel Quinn and Georges Elhedery during their respective 2024 executive director service periods."
@@ -2030,7 +2030,7 @@ export const manualVerifiedFtse = {
       {
         name: "Sir John Kingman",
         role: "Chair",
-        totalFees: 611544
+        totalFees: 600000
       }
     ],
     manualNote: "Antonio Simoes' audited total includes a GBP7.421m replacement award. Remi maps that value into LTIP to preserve the statutory total within the existing schema."
@@ -2184,9 +2184,9 @@ export const manualVerifiedFtse = {
     ],
     nonExecutiveDirectors: [
       {
-        name: "Sir Robin Budenberg",
+        name: "Robin Budenberg",
         role: "Chair",
-        totalFees: 656000
+        totalFees: 670000
       }
     ],
     manualNote: "Lloyds fixed pay includes Fixed Share Award value; Remi places salary in baseSalary and includes Fixed Share Award, benefits and pension in pensionBenefits to preserve audited total compensation."
@@ -2536,10 +2536,28 @@ export const manualVerifiedFtse = {
       {
         name: "Roger Devlin",
         role: "Chairman",
-        totalFees: 351698
+        totalFees: 425000
       }
     ],
     manualNote: "Andrew Duxbury's LTIP field includes audited buy-out awards to preserve the statutory total compensation figure."
+  },
+  "prudential-plc": {
+    id: "prudential-plc",
+    company: "Prudential plc",
+    index: "FTSE100",
+    sector: "Life Insurance",
+    marketCap: null,
+    sayOnPayPct: null,
+    sourceUrl: null,
+    directors: [],
+    nonExecutiveDirectors: [
+      {
+        name: "Shriti Vadera",
+        role: "Chair",
+        totalFees: 900000
+      }
+    ],
+    manualNote: "Manual verified chair fee seed; executive remuneration remains unavailable in this record."
   },
   reckitt: {
     id: "reckitt",
@@ -2701,7 +2719,7 @@ export const manualVerifiedFtse = {
       {
         name: "Dominic Barton",
         role: "Chair",
-        totalFees: 800000
+        totalFees: 700000
       }
     ],
     manualNote: "Annual bonus combines cash STIP and deferred-share STIP; LTIP combines face value and share price appreciation columns. Chair fees use the disclosed 2024 annual Chair fee."
@@ -2780,7 +2798,7 @@ export const manualVerifiedFtse = {
       {
         name: "Andrew Duff",
         role: "Chair",
-        totalFees: 400000
+        totalFees: 375000
       }
     ],
     manualNote: "Seeded from the accessible 2023 audited annual report because the official Sage 2024 PDF returned a Cloudflare block page from the local fetch environment."
@@ -2855,9 +2873,9 @@ export const manualVerifiedFtse = {
     ],
     nonExecutiveDirectors: [
       {
-        name: "Dame Elizabeth Corley",
+        name: "Michael Dobson",
         role: "Chair",
-        totalFees: 627000
+        totalFees: 500000
       }
     ],
     manualNote: "The 2024 executive directors waived the 2021 LTIP that would otherwise have vested during the year; no exact 2024 AGM remuneration-report vote percentage was located in this batch."
@@ -2912,7 +2930,7 @@ export const manualVerifiedFtse = {
     ],
     nonExecutiveDirectors: [
       {
-        name: "Andy Harrison",
+        name: "Gerald Corbett",
         role: "Chair",
         totalFees: 375000
       }
@@ -3303,9 +3321,9 @@ export const manualVerifiedFtse = {
     ],
     nonExecutiveDirectors: [
       {
-        name: "Jose Vinals",
+        name: "José Viñals",
         role: "Group Chairman",
-        totalFees: 1350000
+        totalFees: 1200000
       }
     ],
     manualNote: "Bill Winters' LTIP combines the performance-value and share-price-growth LTIP columns."
@@ -3480,7 +3498,7 @@ export const manualVerifiedFtse = {
       {
         name: "Ian Meakins",
         role: "Chair",
-        totalFees: 778000
+        totalFees: 725000
       }
     ],
     manualNote: "Unilever reports audited director remuneration in euros; values are preserved in EUR from the 2024 Directors' Remuneration Report."

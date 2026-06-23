@@ -136,11 +136,12 @@ export async function scrapeFtseCompany(input, options = {}) {
     }
 
     const remuneration = parseDirectorsRemuneration(text, company, filing.url);
+    const nedFees = extractNedFeeTable(text, company, filing.url);
     const payRatio = parsePayRatio(text, company);
     const sayOnPayPct = parseSayOnPayPct(text, company);
     const primaryCeoId = findPrimaryCeoId(remuneration.directors);
 
-    const directors = remuneration.directors.map((director) => ({
+    const executiveDirectors = remuneration.directors.map((director) => ({
       ...director,
       payRatio: director.id === primaryCeoId ? payRatio : null,
       sayOnPayPct,
@@ -158,8 +159,30 @@ export async function scrapeFtseCompany(input, options = {}) {
       lastUpdated: new Date().toISOString()
     }));
 
+    const nonExecutiveDirectors = nedFees.directors.map((director) => ({
+      ...director,
+      sourceUrl: filing.url,
+      lastUpdated: new Date().toISOString(),
+      years: Object.fromEntries(
+        Object.entries(director.years).map(([year, record]) => [
+          year,
+          {
+            ...record,
+            payRatio: null,
+            sayOnPayPct,
+            source: "annual report",
+            sourceUrl: filing.url,
+            lastUpdated: new Date().toISOString()
+          }
+        ]),
+      )
+    }));
+
+    const directors = [...executiveDirectors, ...nonExecutiveDirectors];
+
     const warnings = [
       ...remuneration.warnings,
+      ...nedFees.warnings,
       ...(payRatio == null ? ["CEO pay ratio not parsed from annual report."] : []),
       ...(sayOnPayPct == null ? ["Say-on-pay vote result not parsed from annual report or AGM text."] : [])
     ];
@@ -194,7 +217,7 @@ export async function scrapeFtseCompany(input, options = {}) {
   }
 }
 
-export async function scrapeFtseBatch(inputs) {
+export async function scrapeFtseBatch(inputs, options = {}) {
   const queries = [...new Set((inputs || []).map((item) => String(item || "").trim()).filter(Boolean))];
   const results = new Array(queries.length);
   let nextIndex = 0;
@@ -204,7 +227,7 @@ export async function scrapeFtseBatch(inputs) {
       const index = nextIndex;
       nextIndex += 1;
       if (index > 0) await sleep(500 * index);
-      results[index] = await scrapeFtseCompany(queries[index]);
+      results[index] = await scrapeFtseCompany(queries[index], options);
     }
   }
 
@@ -399,6 +422,154 @@ function parseDirectorsRemuneration(text, company, sourceUrl) {
   warnings.push(table.warning || `Single figure executive remuneration table not parsed for ${company.company}.`);
   console.error("[scrape-ftse] " + warnings[0], { company: company.company, diagnostics: table.diagnostics, sample: section.slice(0, 1500) });
   return { directors: [], warnings };
+}
+
+function extractNedFeeTable(text, company, sourceUrl) {
+  const warnings = [];
+  const section = nedFeeSection(text);
+  const diagnostics = { strategy: null, detectedRows: 0, parsedRows: 0, dropped: [] };
+  if (!section) {
+    const warning = `Non-executive director fee section not found for ${company.company}.`;
+    console.error("[scrape-ftse] " + warning);
+    return { directors: [], warnings: [warning], diagnostics };
+  }
+
+  const parsedRows = parseNedFeeRows(section, company, sourceUrl, diagnostics);
+  const directors = buildNedDirectors(parsedRows, company, sourceUrl);
+  if (!directors.length) {
+    const fallbackRows = parseChairFeeFallback(section, company, sourceUrl, diagnostics);
+    directors.push(...buildNedDirectors(fallbackRows, company, sourceUrl));
+  }
+
+  if (!directors.length) {
+    const warning = `Non-executive director fee table not parsed for ${company.company}.`;
+    warnings.push(warning);
+    console.error("[scrape-ftse] " + warning, { company: company.company, diagnostics, sample: section.slice(0, 1500) });
+  } else {
+    console.error("[scrape-ftse] NED fee parser matched", { company: company.company, directors: directors.length, diagnostics });
+  }
+
+  return { directors, warnings, diagnostics };
+}
+
+function nedFeeSection(text) {
+  const patterns = [
+    /non-executive directors['’] fees/gi,
+    /fees paid to non-executive directors/gi,
+    /non-executive director remuneration/gi,
+    /chairman and non-executive director fees/gi,
+    /chair and non-executive director fees/gi,
+    /non-executive directors['’] remuneration/gi,
+    /non-executive directors/gi
+  ];
+  let best = null;
+  for (const pattern of patterns) {
+    for (const match of text.matchAll(pattern)) {
+      const start = Math.max(0, match.index - 700);
+      const section = text.slice(start, start + 25000);
+      let score = 0;
+      if (/fees paid to non-executive|non-executive directors['’] fees|chair(?:man)? and non-executive director fees/i.test(section.slice(0, 1800))) score += 12;
+      if (/\bChair(?:man)?\b|\bSID\b|Senior Independent Director/i.test(section.slice(0, 3500))) score += 4;
+      if (/audit|remuneration|nomination|committee/i.test(section.slice(0, 3500))) score += 3;
+      if (/\btotal fees?\b|\btotal\b/i.test(section.slice(0, 3500))) score += 3;
+      if (/single total figure|executive directors|salary|annual bonus/i.test(section.slice(0, 2000))) score -= 7;
+      if (!best || score > best.score) best = { section, score };
+    }
+  }
+  return best?.score > 0 ? best.section : null;
+}
+
+function parseNedFeeRows(section, company, sourceUrl, diagnostics) {
+  const rows = [];
+  const lines = section.split(/\n+/).map(cleanCell).filter(Boolean);
+  diagnostics.strategy = "line-table";
+
+  for (const line of lines) {
+    if (!/\d/.test(line) || !/(chair|director|sid|committee|non-executive|senior independent)/i.test(line)) continue;
+    if (/^(base fee|additional fee|committee|annual fee|fees payable|total fees|notes?|role)\b/i.test(line)) continue;
+    const row = parseNedFeeLine(line, sourceUrl);
+    if (!row) {
+      diagnostics.dropped.push({ line: line.slice(0, 220), reason: "Line looked like NED fee row but did not parse." });
+      continue;
+    }
+    diagnostics.detectedRows += 1;
+    rows.push(row);
+  }
+
+  const unique = dedupeNedRows(rows);
+  diagnostics.parsedRows = unique.length;
+  return unique;
+}
+
+function parseNedFeeLine(line, sourceUrl) {
+  const moneyMatches = [...line.matchAll(/(?:£|\$)?\(?\d[\d,.]*\)?/g)]
+    .map((match) => ({ raw: match[0], index: match.index, value: parseMoney(match[0]) }))
+    .filter((item) => !/^20\d{2}$/.test(String(item.raw).replace(/[£$,()\s]/g, "")))
+    .filter((item) => item.value != null);
+  if (!moneyMatches.length) return null;
+
+  const namePart = cleanCell(line.slice(0, moneyMatches[0].index));
+  const name = extractNedName(namePart);
+  if (!name) return null;
+
+  const role = inferNedRole(line, name);
+  const totalFees = moneyMatches.at(-1)?.value ?? null;
+  if (totalFees == null) return null;
+  const years = [...extractYears(line), ...extractYears(line.slice(0, 120))];
+  const year = years.length ? Math.max(...years) : inferReportYear(line);
+  return { name, role, totalFees, year: year || 2024, sourceUrl };
+}
+
+function parseChairFeeFallback(section, company, sourceUrl, diagnostics) {
+  diagnostics.strategy = "chair-fallback";
+  const rows = [];
+  const lines = section.split(/\n+/).map(cleanCell).filter(Boolean);
+  for (const line of lines) {
+    if (!/(chair|chairman|senior independent director|\bSID\b)/i.test(line) || !/\d/.test(line)) continue;
+    const row = parseNedFeeLine(line, sourceUrl);
+    if (row) rows.push(row);
+  }
+  return dedupeNedRows(rows).slice(0, 2);
+}
+
+function buildNedDirectors(rows, company, sourceUrl) {
+  return rows.map((row) => {
+    const year = row.year || 2024;
+    return {
+      id: `${company.id}-${slugify(row.name)}`,
+      name: row.name,
+      role: row.role,
+      type: "non-executive",
+      source: "annual report",
+      sourceUrl,
+      payRatio: null,
+      sayOnPayPct: null,
+      years: {
+        [year]: {
+          baseSalary: null,
+          annualBonus: null,
+          ltip: null,
+          pensionBenefits: null,
+          nedFees: row.totalFees,
+          totalCompensation: row.totalFees,
+          payRatio: null,
+          sayOnPayPct: null,
+          source: "annual report",
+          sourceUrl
+        }
+      }
+    };
+  });
+}
+
+function dedupeNedRows(rows) {
+  const byName = new Map();
+  for (const row of rows) {
+    const key = normalize(row.name);
+    const existing = byName.get(key);
+    if (!existing || (row.totalFees || 0) > (existing.totalFees || 0)) byName.set(key, row);
+  }
+  return [...byName.values()];
 }
 
 function detectDirectorNameCandidates(section) {
@@ -927,6 +1098,33 @@ function isLikelyExecutiveName(name) {
   if (!name || name.split(/\s+/).length < 2) return false;
   if (/Directors?|Executive|Report|Corporate|Governance|Financial|Strategic|Annual|Committee|Total|Shareholder|Fixed|Variable|Remuneration|Policy|Current|Proposed/i.test(name)) return false;
   return /^[A-Z]/.test(name);
+}
+
+function extractNedName(value) {
+  const text = cleanCell(value)
+    .replace(/\b(SID|Chairman|Chair|Senior Independent Director|Independent Non-Executive Director|Non-Executive Director|Director|Committee|Audit|Remuneration|Nomination|Sustainability|Risk)\b.*$/i, "")
+    .replace(/\d+$/g, "")
+    .trim();
+  const match = text.match(/\b((?:Sir|Dame|Dr|Lord|Baroness|José)?\s*[A-Z][A-Za-zÀ-ÖØ-öø-ÿ'.-]+(?:\s+[A-Z][A-Za-zÀ-ÖØ-öø-ÿ'.-]+){1,4})\b/);
+  if (!match) return null;
+  const name = normalizePersonName(match[1]);
+  if (!name || name.split(/\s+/).length < 2) return null;
+  if (/Non Executive|Director|Committee|Chair Fee|Base Fee|Total|Pricewaterhouse|Deloitte|KPMG|Ernst|Auditor|LLP|Limited/i.test(name)) return null;
+  return name;
+}
+
+function inferNedRole(line, name) {
+  const afterName = cleanCell(line.slice(line.indexOf(name) + name.length));
+  if (/senior independent director|\bSID\b/i.test(line)) return "Senior Independent Director";
+  if (/chairman|chair of the board|^chair\b|\bchair\b/i.test(afterName) || /\bchairman\b|\bchair\b/i.test(line)) return "Chair";
+  const committee = line.match(/\b(Audit|Remuneration|Nomination|Risk|Sustainability|ESG)\s+Committee\s+Chair/i);
+  if (committee) return `${committee[1]} Committee Chair`;
+  return "Non-Executive Director";
+}
+
+function inferReportYear(text) {
+  const years = extractYears(text);
+  return years.length ? Math.max(...years) : 2024;
 }
 
 function parsePayRatio(text, company) {
