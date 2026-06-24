@@ -168,6 +168,42 @@ a:hover {
     @apply truncate text-[11px] text-remi-muted;
   }
 
+  .remi-directory {
+    @apply overflow-hidden rounded-md border border-remi-border bg-remi-navy;
+  }
+
+  .remi-directory-expanded {
+    @apply border-remi-gold/60;
+  }
+
+  .remi-directory-toggle {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply flex min-h-10 w-full items-center justify-between gap-2 px-3 py-2 text-left text-[10px] leading-4 text-remi-text-secondary transition hover:bg-remi-surface hover:text-remi-gold-light;
+  }
+
+  .remi-directory-list {
+    @apply max-h-52 overflow-y-auto border-t border-remi-border;
+  }
+
+  .remi-directory-list button {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply block w-full border-b border-remi-border px-3 py-2 text-left text-[11px] text-remi-text-secondary transition last:border-b-0 hover:bg-remi-surface hover:text-remi-gold-light;
+  }
+
+  .remi-download-button {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply inline-flex h-8 items-center gap-1.5 rounded-md border border-remi-border bg-remi-navy px-2.5 text-[11px] text-remi-text-secondary transition hover:border-remi-gold hover:text-remi-gold-light;
+  }
+
+  .remi-download-menu {
+    @apply absolute right-0 top-[calc(100%+4px)] z-30 min-w-36 overflow-hidden rounded-md border border-remi-border bg-remi-navy shadow-xl shadow-black/30;
+  }
+
+  .remi-download-menu button {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    @apply block w-full border-b border-remi-border px-3 py-2 text-left text-[11px] text-remi-text-secondary transition last:border-b-0 hover:bg-remi-surface hover:text-remi-gold-light;
+  }
+
   .remi-result-tag {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     @apply rounded border border-remi-border px-1.5 py-0.5 text-[10px] uppercase tracking-[0.12em] text-remi-gold-light;

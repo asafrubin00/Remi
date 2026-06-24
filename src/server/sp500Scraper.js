@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio";
-import { enrichGovernanceData } from "../data/governanceData.js";
+import { dedupeCompanyDirectors, enrichGovernanceData } from "../data/governanceData.js";
 
 const SEC_USER_AGENT = process.env.SEC_USER_AGENT || "Remi remuneration dashboard contact@remi.local";
 const CACHE_TTL_SECONDS = 60 * 60 * 24;
@@ -92,7 +92,7 @@ export async function scrapeSp500Company(input, options = {}) {
       )
     }));
 
-    const directors = [...executiveDirectors, ...nonExecutiveDirectors];
+    const directors = dedupeCompanyDirectors([...executiveDirectors, ...nonExecutiveDirectors], company.id);
 
     const result = enrichGovernanceData({
       id: company.id,

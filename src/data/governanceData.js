@@ -34,7 +34,6 @@ export function enrichGovernanceData(company) {
 
   const sayOnPayPct = ftseSayOnPayPct[company.id] ?? null;
   const directors = (company.directors || []).map((director) => sanitizeDirectorCompensation(applySayOnPay(director, sayOnPayPct)));
-  const existingIds = new Set(directors.map((director) => director.id));
 
   for (const feeRecord of nonExecutiveFees[company.id] || []) {
     const director = buildNonExecutiveDirector(company, feeRecord, sayOnPayPct);
@@ -44,16 +43,50 @@ export function enrichGovernanceData(company) {
       directors[existingIndex] = director;
     } else if (sameNameIndex >= 0) {
       directors[sameNameIndex] = director;
-    } else if (!existingIds.has(director.id)) {
+    } else {
       directors.push(director);
     }
   }
 
   return {
     ...company,
-    directors,
+    directors: dedupeCompanyDirectors(directors, company.id),
     sayOnPayPct: sayOnPayPct ?? company.sayOnPayPct ?? null
   };
+}
+
+export function dedupeCompanyDirectors(directors, companyId = "") {
+  const byName = new Map();
+
+  for (const director of directors || []) {
+    const nameKey = normalizeDirectorNameKey(director.name);
+    if (!nameKey) continue;
+
+    const existing = byName.get(nameKey);
+    if (!existing) {
+      byName.set(nameKey, director);
+      continue;
+    }
+
+    const preferred = directorPriority(director) > directorPriority(existing) ? director : existing;
+    const secondary = preferred === director ? existing : director;
+    const years = { ...(secondary.years || {}) };
+
+    for (const [year, record] of Object.entries(preferred.years || {})) {
+      const current = years[year];
+      years[year] = !current || compensationRecordPriority(record) >= compensationRecordPriority(current) ? record : current;
+    }
+
+    byName.set(nameKey, {
+      ...secondary,
+      ...preferred,
+      id: preferred.id || secondary.id || `${companyId}-${slugify(preferred.name || secondary.name)}`,
+      role: preferredRole(preferred.role, secondary.role),
+      years
+    });
+  }
+
+  return [...byName.values()];
 }
 
 function sanitizeDirectorCompensation(director) {
@@ -108,6 +141,38 @@ function normalizeCompensationValue(value) {
   if (value > 1000000000 && value % 1000000 === 0) return Math.round(value / 1000000);
   if (value > 1000000000) return null;
   return value;
+}
+
+function normalizeDirectorNameKey(value) {
+  return String(value || "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/\b(?:sir|dame|dr|lord|baroness)\b/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function directorPriority(director) {
+  const source = String(director.source || "").toLowerCase();
+  const role = String(director.role || "");
+  const years = Object.values(director.years || {});
+  const sourceScore = source === "manual" ? 100 : source.includes("sec") || source.includes("annual report") ? 50 : 0;
+  const roleScore = /named executive officer|executive director|non-employee director/i.test(role) ? 0 : 10;
+  return sourceScore + roleScore + years.reduce((total, record) => total + compensationRecordPriority(record), 0);
+}
+
+function compensationRecordPriority(record) {
+  const fields = ["baseSalary", "annualBonus", "ltip", "pensionBenefits", "nedFees", "totalCompensation", "payRatio", "sayOnPayPct"];
+  const populated = fields.filter((field) => record?.[field] != null).length;
+  const sourceScore = String(record?.source || "").toLowerCase() === "manual" ? 20 : 0;
+  return populated + sourceScore;
+}
+
+function preferredRole(primary, secondary) {
+  const generic = /^(?:named executive officer|executive director|non-employee director|non-executive director)$/i;
+  if (primary && !generic.test(primary)) return primary;
+  return secondary || primary || "Director";
 }
 
 function applySayOnPay(director, sayOnPayPct) {

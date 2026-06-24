@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import AnalysisPanel from "../components/AnalysisPanel.jsx";
 import { DataValue, Panel, SectionHeader } from "../components/ui.jsx";
+import { ftse100Constituents, sp500Constituents } from "../data/constituents.generated.js";
 import { allDirectors, flattenDirectorYear, formatMoney, formatVintageDate } from "../data/mockRemuneration.js";
 
 function matchesQuery(value, query) {
@@ -28,6 +29,29 @@ export default function FindScreen({ dataset, setDataset, directorType, initialS
   const [selectedId, setSelectedId] = useState(null);
   const [year, setYear] = useState(null);
   const [loadingCompanyId, setLoadingCompanyId] = useState(null);
+  const [openDirectory, setOpenDirectory] = useState(null);
+
+  const companyDirectory = useMemo(() => {
+    const byTicker = new Map(dataset.filter((company) => company.ticker).map((company) => [company.ticker, company]));
+    const byId = new Map(dataset.map((company) => [company.id, company]));
+    const byName = new Map(dataset.map((company) => [company.company.toLowerCase(), company]));
+    const resolve = (constituent) =>
+      byTicker.get(constituent.ticker) ||
+      byId.get(constituent.id) ||
+      byName.get(constituent.company.toLowerCase()) ||
+      null;
+    const available = (constituents) =>
+      constituents
+        .map(resolve)
+        .filter(Boolean)
+        .filter((company, index, list) => list.findIndex((item) => item.id === company.id) === index)
+        .sort((a, b) => a.company.localeCompare(b.company));
+
+    return {
+      FTSE100: available(ftse100Constituents),
+      SP500: available(sp500Constituents)
+    };
+  }, [dataset]);
 
   useEffect(() => {
     if (selectedId && !visibleDirectors.some((director) => director.id === selectedId)) {
@@ -178,6 +202,25 @@ export default function FindScreen({ dataset, setDataset, directorType, initialS
               ) : null}
             </div>
           </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            <CompanyDirectory
+              index="FTSE100"
+              label="FTSE 100"
+              companies={companyDirectory.FTSE100}
+              expanded={openDirectory === "FTSE100"}
+              onToggle={() => setOpenDirectory((current) => (current === "FTSE100" ? null : "FTSE100"))}
+              onSelect={selectCompany}
+            />
+            <CompanyDirectory
+              index="SP500"
+              label="S&P 500"
+              companies={companyDirectory.SP500}
+              expanded={openDirectory === "SP500"}
+              onToggle={() => setOpenDirectory((current) => (current === "SP500" ? null : "SP500"))}
+              onSelect={selectCompany}
+            />
+          </div>
         </div>
 
         <div className="border-b border-remi-border px-6 py-4">
@@ -294,6 +337,26 @@ export default function FindScreen({ dataset, setDataset, directorType, initialS
       <div className="h-[690px]">
         <AnalysisPanel currentViewData={selectedYearData} />
       </div>
+    </div>
+  );
+}
+
+function CompanyDirectory({ index, label, companies, expanded, onToggle, onSelect }) {
+  return (
+    <div className={`remi-directory ${expanded ? "remi-directory-expanded" : ""}`}>
+      <button className="remi-directory-toggle" type="button" onClick={onToggle} aria-expanded={expanded} aria-controls={`directory-${index}`}>
+        <span>Browse {label} companies ({companies.length})</span>
+        <span aria-hidden="true">{expanded ? "↑" : "↓"}</span>
+      </button>
+      {expanded ? (
+        <div className="remi-directory-list" id={`directory-${index}`}>
+          {companies.map((company) => (
+            <button key={company.id} type="button" onClick={() => onSelect(company)}>
+              {company.company}
+            </button>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }

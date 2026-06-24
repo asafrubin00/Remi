@@ -1,5 +1,5 @@
 import pdfParse from "pdf-parse/lib/pdf-parse.js";
-import { enrichGovernanceData } from "../data/governanceData.js";
+import { dedupeCompanyDirectors, enrichGovernanceData } from "../data/governanceData.js";
 import { getVerifiedFtseRecord } from "../data/manualVerifiedFtse.js";
 
 const CACHE_TTL_SECONDS = 60 * 60 * 24;
@@ -178,7 +178,7 @@ export async function scrapeFtseCompany(input, options = {}) {
       )
     }));
 
-    const directors = [...executiveDirectors, ...nonExecutiveDirectors];
+    const directors = dedupeCompanyDirectors([...executiveDirectors, ...nonExecutiveDirectors], company.id);
 
     const warnings = [
       ...remuneration.warnings,

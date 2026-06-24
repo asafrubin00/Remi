@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "constituents:update": "node scripts/update-constituents.mjs",
-    "scrape:batch": "node scripts/run-batch-scrape.mjs"
+    "scrape:batch": "node scripts/run-batch-scrape.mjs",
+    "data:dedupe-cache": "node scripts/dedupe-cached-directors.mjs"
   },
   "dependencies": {
     "@vercel/kv": "^3.0.0",
@@ -21,7 +22,8 @@
     "react-dom": "^19.2.0",
     "recharts": "^3.4.1",
     "typescript": "^5.9.3",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.22",

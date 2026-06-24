@@ -358,6 +358,7 @@ export function allDirectors(dataset = companies) {
       currency: company.currency,
       marketCap: company.marketCap,
       fxRate: company.fxRate,
+      dataSource: director.source || company.scrape?.source || company.scrape?.status || "unknown",
       lastUpdated: director.lastUpdated || company.lastUpdated || now
     })),
   );
