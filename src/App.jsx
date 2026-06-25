@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { TabButton } from "./components/ui.jsx";
+import RotationPrompt from "./components/RotationPrompt.jsx";
 import { companies as seededCompanies, formatVintageDate } from "./data/mockRemuneration.js";
 import CompareScreen from "./screens/CompareScreen.jsx";
 import FindScreen from "./screens/FindScreen.jsx";
@@ -109,17 +110,18 @@ export default function App() {
 
   return (
     <main className="remi-shell">
+      <RotationPrompt />
       <header className="remi-global-header">
-        <button className="text-left" onClick={() => navigate("landing")} aria-label="Go to landing screen">
-          <div className="flex items-center gap-3">
-            <img src="/icons/remi-mark.svg" alt="" className="h-9 w-9" />
+        <button className="remi-brand-button text-left" onClick={() => navigate("landing")} aria-label="Go to landing screen">
+          <div className="remi-brand-lockup flex items-center gap-3">
+            <img src="/icons/remi-mark.svg" alt="" className="remi-brand-mark h-9 w-9" />
             <h1 className="remi-wordmark">remi</h1>
           </div>
-          <p className="remi-kicker mt-2">Remuneration Intelligence</p>
+          <p className="remi-brand-tagline remi-kicker mt-2">Remuneration Intelligence</p>
         </button>
 
-        <div className="flex flex-col items-end gap-3">
-          <div className="flex rounded-lg border border-remi-border bg-remi-secondary p-1">
+        <div className="remi-nav-controls flex flex-col items-end gap-3">
+          <div className="remi-mode-toggle flex rounded-lg border border-remi-border bg-remi-secondary p-1">
             <TabButton active={directorType === "executive"} onClick={() => setDirectorType("executive")}>
               Executive
             </TabButton>
@@ -127,7 +129,7 @@ export default function App() {
               Non-Executive
             </TabButton>
           </div>
-          <nav className="flex gap-2" aria-label="Primary navigation">
+          <nav className="remi-primary-nav flex gap-2" aria-label="Primary navigation">
             {VIEWS.filter((view) => view.id !== "landing").map((view) => (
               <TabButton key={view.id} active={activeView === view.id} onClick={() => navigate(view.id)}>
                 {view.label}
@@ -139,7 +141,7 @@ export default function App() {
 
       <section className="flex-1">
         {activeView !== "landing" ? (
-          <div className="mb-4 flex items-end justify-between">
+          <div className="remi-screen-heading mb-4 flex items-end justify-between">
             <h2 className="remi-title">{screenTitle}</h2>
             <p className="remi-kicker">
               Viewing {directorType === "executive" ? "Executive" : "Non-Executive"} data · {dataset.some((company) => company.scrape?.status === "live-metadata") ? "Live metadata" : "Seeded data"}

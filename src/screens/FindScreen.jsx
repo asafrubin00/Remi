@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import AnalysisPanel from "../components/AnalysisPanel.jsx";
 import CompanyDirectory from "../components/CompanyDirectory.jsx";
+import ResponsiveAnalysis from "../components/ResponsiveAnalysis.jsx";
 import { DataValue, Panel, SectionHeader } from "../components/ui.jsx";
 import { allDirectors, flattenDirectorYear, formatMoney, formatVintageDate } from "../data/mockRemuneration.js";
 
@@ -132,9 +132,9 @@ export default function FindScreen({ dataset, setDataset, directorType, initialS
         ];
 
   return (
-    <div className="grid grid-cols-[30%_calc(50%-16px)_20%] gap-4">
-      <Panel className="flex h-[690px] flex-col overflow-hidden">
-        <div className="border-b border-remi-border p-6">
+    <div className="remi-find-layout grid grid-cols-[30%_calc(50%-16px)_20%] gap-4">
+      <Panel className="remi-find-roster flex h-[690px] flex-col overflow-hidden">
+        <div className="remi-find-search border-b border-remi-border p-6">
           <div className="grid gap-3">
             <div className="relative">
               <input
@@ -192,7 +192,7 @@ export default function FindScreen({ dataset, setDataset, directorType, initialS
           </p>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto p-4">
+        <div className="remi-find-results min-h-0 flex-1 overflow-y-auto p-4">
           <SectionHeader className="mb-3">{directorType === "executive" ? "Executive Team" : "Non-Executive Directors"}</SectionHeader>
           <div className="space-y-1">
             {results.map((director, index) => (
@@ -217,7 +217,7 @@ export default function FindScreen({ dataset, setDataset, directorType, initialS
         </div>
       </Panel>
 
-      <Panel className="h-[690px] overflow-hidden p-6">
+      <Panel className="remi-find-detail h-[690px] overflow-hidden p-6">
         {selectedYearData ? (
           <div className="flex h-full flex-col">
             <div className="flex items-start justify-between border-b border-remi-border pb-5">
@@ -294,9 +294,7 @@ export default function FindScreen({ dataset, setDataset, directorType, initialS
         )}
       </Panel>
 
-      <div className="h-[690px]">
-        <AnalysisPanel currentViewData={selectedYearData} />
-      </div>
+      <ResponsiveAnalysis currentViewData={selectedYearData} className="h-[690px]" />
     </div>
   );
 }

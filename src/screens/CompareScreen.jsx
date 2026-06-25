@@ -15,8 +15,8 @@ import {
   YAxis,
   ZAxis
 } from "recharts";
-import AnalysisPanel from "../components/AnalysisPanel.jsx";
 import CompanyDirectory from "../components/CompanyDirectory.jsx";
+import ResponsiveAnalysis from "../components/ResponsiveAnalysis.jsx";
 import { DataValue, Panel, SectionHeader, TabButton } from "../components/ui.jsx";
 import { allDirectors, flattenDirectorYear, formatCompactMoney, formatMoney } from "../data/mockRemuneration.js";
 
@@ -260,9 +260,9 @@ export default function CompareScreen({ dataset, directorType }) {
 
   return (
     <div className="space-y-4">
-      <Panel className="p-5">
+      <Panel className="remi-compare-search-panel p-5">
         <SectionHeader>Add Comparison</SectionHeader>
-        <div className="mt-3 flex items-center gap-4">
+        <div className="remi-compare-search-row mt-3 flex items-center gap-4">
           <div ref={searchRef} className="relative w-full max-w-[520px]">
             <input
               className={`remi-input ${query ? "pr-16" : ""}`}
@@ -309,7 +309,7 @@ export default function CompareScreen({ dataset, directorType }) {
         <CompanyDirectory dataset={dataset} onSelect={browseCompany} className="mt-4 max-w-[520px]" />
       </Panel>
 
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="remi-compare-chips flex flex-wrap items-center gap-2">
         {chips.map((chip) => (
           <span key={chipId(chip)} className={`remi-chip ${chip.type === "average" ? "remi-chip-average" : ""}`}>
             {chip.type === "average" ? `Ø ${chip.label}` : chip.type === "individual" ? `${chip.label} · ${chip.company}` : chip.label}
@@ -321,7 +321,7 @@ export default function CompareScreen({ dataset, directorType }) {
         {!chips.length ? <span className="text-sm text-remi-text-secondary">No comparison chips selected.</span> : null}
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="remi-component-tabs flex items-center gap-2">
         {components.map(([key, label]) => (
           <TabButton key={key} active={metric === key} onClick={() => setMetric(key)}>
             {label}
@@ -329,13 +329,13 @@ export default function CompareScreen({ dataset, directorType }) {
         ))}
       </div>
 
-      <div className="grid grid-cols-[calc(80%-8px)_20%] gap-4">
-        <Panel className="h-[560px] p-6">
-          <div className="mb-3 flex items-center justify-between gap-4">
+      <div className="remi-compare-layout grid grid-cols-[calc(80%-8px)_20%] gap-4">
+        <Panel className="remi-compare-chart h-[560px] p-6">
+          <div className="remi-chart-header mb-3 flex items-center justify-between gap-4">
             <SectionHeader>{metricLabel(metric)} Comparison</SectionHeader>
             <div className="flex items-center gap-3">
               {chartType === "Bubble" ? <LogScaleToggle checked={logScale} onChange={setLogScale} /> : null}
-              <div className="flex gap-1 rounded-lg border border-remi-border bg-remi-navy p-1">
+              <div className="remi-chart-tabs flex gap-1 rounded-lg border border-remi-border bg-remi-navy p-1">
                 {chartTypes.map((type) => (
                   <TabButton key={type} active={chartType === type} className="px-3 py-1.5 text-[12px]" onClick={() => setChartType(type)}>
                     {type}
@@ -369,9 +369,7 @@ export default function CompareScreen({ dataset, directorType }) {
             )}
           </div>
         </Panel>
-        <div className="h-[560px]">
-          <AnalysisPanel currentViewData={analysisData} />
-        </div>
+        <ResponsiveAnalysis currentViewData={analysisData} className="h-[560px]" />
       </div>
     </div>
   );
@@ -567,7 +565,7 @@ function ComparisonTable({ data, metric }) {
           {data.map((row, index) => (
             <tr key={row.id} className={index % 2 ? "bg-remi-secondary" : "bg-remi-navy"}>
               <td className="px-3 py-3">
-                <span className="remi-name-popover-trigger">
+                <span className="remi-name-popover-trigger" tabIndex={0}>
                   {row.name}
                   <span className="remi-name-popover">
                     <TooltipIdentity row={{ ...identityParts(row), label: identityLabel(row), reportingYear: row.reportingYear }} />

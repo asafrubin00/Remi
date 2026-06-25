@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Panel, SectionHeader } from "./ui.jsx";
 
-export default function AnalysisPanel({ currentViewData }) {
+export default function AnalysisPanel({ currentViewData, onStatusChange }) {
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -15,10 +15,12 @@ export default function AnalysisPanel({ currentViewData }) {
       if (!currentViewData) {
         setAnalysis("");
         setLoading(false);
+        onStatusChange?.("idle");
         return;
       }
 
       setLoading(true);
+      onStatusChange?.("loading");
       try {
         const response = await fetch("/api/analyze", {
           method: "POST",
@@ -46,6 +48,7 @@ export default function AnalysisPanel({ currentViewData }) {
           receivedText = true;
           setLoading(false);
           setAnalysis(streamedAnalysis);
+          onStatusChange?.("streaming");
         }
 
         const finalChunk = decoder.decode();
@@ -55,9 +58,17 @@ export default function AnalysisPanel({ currentViewData }) {
           setAnalysis(streamedAnalysis);
         }
 
-        if (!receivedText) setAnalysis("Analysis unavailable.");
+        if (!receivedText) {
+          setAnalysis("Analysis unavailable.");
+          onStatusChange?.("error");
+        } else {
+          onStatusChange?.("complete");
+        }
       } catch {
-        if (!controller.signal.aborted) setAnalysis("Analysis unavailable.");
+        if (!controller.signal.aborted) {
+          setAnalysis("Analysis unavailable.");
+          onStatusChange?.("error");
+        }
       } finally {
         if (!controller.signal.aborted) setLoading(false);
       }
@@ -67,7 +78,7 @@ export default function AnalysisPanel({ currentViewData }) {
     return () => {
       controller.abort();
     };
-  }, [payload]);
+  }, [payload, onStatusChange]);
 
   return (
     <Panel className="flex h-full max-h-full flex-col overflow-hidden p-6">

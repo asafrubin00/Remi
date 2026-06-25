@@ -52,13 +52,13 @@ function DirectoryPanel({ index, label, companies, expanded, onToggle, onSelect 
 }
 
 function buildDirectories(dataset) {
-  const byTicker = new Map(dataset.filter((company) => company.ticker).map((company) => [company.ticker, company]));
+  const byIndexTicker = new Map(dataset.filter((company) => company.ticker).map((company) => [`${company.index}:${company.ticker}`, company]));
   const byId = new Map(dataset.map((company) => [company.id, company]));
-  const byName = new Map(dataset.map((company) => [company.company.toLowerCase(), company]));
+  const byIndexName = new Map(dataset.map((company) => [`${company.index}:${company.company.toLowerCase()}`, company]));
   const resolve = (constituent) =>
-    byTicker.get(constituent.ticker) ||
+    byIndexTicker.get(`${constituent.index}:${constituent.ticker}`) ||
     byId.get(constituent.id) ||
-    byName.get(constituent.company.toLowerCase()) ||
+    byIndexName.get(`${constituent.index}:${constituent.company.toLowerCase()}`) ||
     null;
   const available = (constituents) =>
     constituents

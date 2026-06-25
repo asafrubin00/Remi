@@ -31,17 +31,18 @@ export default function LandingScreen({ dataset, onEnter }) {
   }, [dataset]);
 
   return (
-    <button className="group block min-h-[680px] w-full text-left" onClick={onEnter} aria-label="Enter Remi Find screen">
-      <div className="grid min-h-[620px] grid-cols-[36%_64%] items-center gap-8">
-        <div>
-          <h2 className="font-serif text-[92px] font-normal leading-none text-remi-text">remi</h2>
+    <button className="remi-landing group block min-h-[680px] w-full text-left" onClick={onEnter} aria-label="Enter Remi Find screen">
+      <div className="remi-landing-grid grid min-h-[620px] grid-cols-[36%_64%] items-center gap-8">
+        <div className="remi-landing-copy">
+          <h2 className="remi-landing-wordmark font-serif text-[92px] font-normal leading-none text-remi-text">remi</h2>
           <p className="remi-kicker mt-4">Remuneration Intelligence</p>
           <p className="mt-8 max-w-[430px] text-[18px] leading-8 text-remi-text-secondary">
             Explore and compare executive and non-executive remuneration data for FTSE 350 and S&P 500 companies.
           </p>
+          <span className="remi-landing-cta mt-8 text-remi-gold-light">Explore remuneration data →</span>
         </div>
 
-        <div className="relative h-[520px] overflow-hidden rounded-lg border border-remi-border bg-remi-secondary">
+        <div className="remi-landing-chart relative h-[520px] overflow-hidden rounded-lg border border-remi-border bg-remi-secondary">
           <div className="absolute left-6 top-6 z-10">
             <p className="remi-kicker">CEO Pay By Market Cap</p>
             <p className="mt-2 text-xs text-remi-muted">Bubble size indicates say-on-pay approval.</p>
@@ -61,7 +62,7 @@ export default function LandingScreen({ dataset, onEnter }) {
         </div>
       </div>
 
-      <div className="flex justify-center pb-5 text-remi-gold-light transition group-hover:translate-y-1 group-hover:text-remi-gold">
+      <div className="remi-landing-chevron flex justify-center pb-5 text-remi-gold-light transition group-hover:translate-y-1 group-hover:text-remi-gold">
         <ChevronDown size={32} strokeWidth={1.5} />
       </div>
     </button>

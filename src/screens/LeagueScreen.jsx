@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown, Download } from "lucide-react";
-import AnalysisPanel from "../components/AnalysisPanel.jsx";
+import ResponsiveAnalysis from "../components/ResponsiveAnalysis.jsx";
 import { DataValue, Panel, SectionHeader } from "../components/ui.jsx";
 import { allDirectors, flattenDirectorYear, formatMoney } from "../data/mockRemuneration.js";
 
@@ -147,7 +147,7 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
 
   return (
     <div className="space-y-4">
-      <Panel className="grid grid-cols-6 gap-4 p-5">
+      <Panel className="remi-league-filters grid grid-cols-6 gap-4 p-5">
         <FilterSelect label="Index" value={indexFilter} onChange={setIndexFilter} options={["All", "FTSE100", "FTSE250", "SP500"]} />
         <FilterSelect label="Sector / Industry" value={sectorFilter} onChange={setSectorFilter} options={["All", ...sectors]} />
         <FilterSelect label="Role" value={roleFilter} onChange={setRoleFilter} options={roleOptions} />
@@ -156,9 +156,9 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
         <FilterSelect label="Sort" value={sortDirection} onChange={setSortDirection} options={[["desc", "Highest first"], ["asc", "Lowest first"]]} />
       </Panel>
 
-      <div className="grid grid-cols-[calc(80%-8px)_20%] gap-4">
-        <Panel className="h-[620px] overflow-hidden p-5">
-          <div className="mb-4 flex items-center justify-between">
+      <div className="remi-league-layout grid grid-cols-[calc(80%-8px)_20%] gap-4">
+        <Panel className="remi-league-panel h-[620px] overflow-hidden p-5">
+          <div className="remi-league-toolbar mb-4 flex items-center justify-between">
             <SectionHeader>Ranked Remuneration Data</SectionHeader>
             <div className="flex items-center gap-3">
               <span className="text-xs text-remi-muted">
@@ -179,12 +179,12 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
               </div>
             </div>
           </div>
-          <div className="h-[520px] overflow-auto">
-            <table className="w-full border-collapse text-left text-[13px]">
+          <div className="remi-league-table-wrap h-[520px] overflow-auto">
+            <table className="remi-league-table w-full border-collapse text-left text-[13px]">
               <thead className="remi-kicker sticky top-0 z-10 bg-remi-secondary">
                 <tr>
                   {columns.map(([key, label]) => (
-                    <th key={key} className="border-b border-remi-border px-3 py-3">
+                    <th key={key} className={`${key === "name" ? "remi-league-name" : ""} border-b border-remi-border px-3 py-3`}>
                       <button className="text-left hover:text-remi-gold-light" onClick={() => updateSort(key)}>
                         {label}
                       </button>
@@ -203,7 +203,7 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
                       <td className="px-3 py-3">
                         <DataValue className="text-remi-gold-light">{row.rank}</DataValue>
                       </td>
-                      <td className="px-3 py-3 font-medium text-remi-text">{row.name}</td>
+                      <td className="remi-league-name px-3 py-3 font-medium text-remi-text">{row.name}</td>
                       <td className="px-3 py-3 text-remi-text-secondary">{row.role}</td>
                       <td className="px-3 py-3 text-remi-text-secondary">{row.company}</td>
                       <td className="px-3 py-3 text-remi-text-secondary">{row.index}</td>
@@ -241,9 +241,10 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
             </button>
           </div>
         </Panel>
-        <div className="h-[620px]">
-          <AnalysisPanel currentViewData={{ directorType, filters: { indexFilter, sectorFilter, roleFilter, metric, year, sortDirection }, rows: rows.slice(0, 20) }} />
-        </div>
+        <ResponsiveAnalysis
+          currentViewData={{ directorType, filters: { indexFilter, sectorFilter, roleFilter, metric, year, sortDirection }, rows: rows.slice(0, 20) }}
+          className="h-[620px]"
+        />
       </div>
     </div>
   );
