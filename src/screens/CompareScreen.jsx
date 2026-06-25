@@ -16,6 +16,7 @@ import {
   ZAxis
 } from "recharts";
 import AnalysisPanel from "../components/AnalysisPanel.jsx";
+import CompanyDirectory from "../components/CompanyDirectory.jsx";
 import { DataValue, Panel, SectionHeader, TabButton } from "../components/ui.jsx";
 import { allDirectors, flattenDirectorYear, formatCompactMoney, formatMoney } from "../data/mockRemuneration.js";
 
@@ -250,6 +251,13 @@ export default function CompareScreen({ dataset, directorType }) {
     setChips((current) => current.filter((chip) => chipId(chip) !== chipId(item)));
   };
 
+  const browseCompany = (company) => {
+    if (chips.length >= maxChips) return;
+    setQuery(company.company);
+    setSearchOpen(true);
+    window.requestAnimationFrame(() => searchRef.current?.querySelector("input")?.focus());
+  };
+
   return (
     <div className="space-y-4">
       <Panel className="p-5">
@@ -298,6 +306,7 @@ export default function CompareScreen({ dataset, directorType }) {
             {chips.length >= maxChips ? "Maximum reached (6/6) — remove one to add another" : "Maximum 6 comparisons"}
           </p>
         </div>
+        <CompanyDirectory dataset={dataset} onSelect={browseCompany} className="mt-4 max-w-[520px]" />
       </Panel>
 
       <div className="flex flex-wrap items-center gap-2">
