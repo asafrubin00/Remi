@@ -1,5 +1,5 @@
 import { ChevronDown } from "lucide-react";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Scatter, ScatterChart, ResponsiveContainer, Tooltip, XAxis, YAxis, ZAxis } from "recharts";
 import { DataValue } from "../components/ui.jsx";
 import { allDirectors, flattenDirectorYear, formatCompactMarketCap, formatCompactMoney } from "../data/mockRemuneration.js";
@@ -12,6 +12,8 @@ const sectorY = {
 };
 
 export default function LandingScreen({ dataset, onEnter }) {
+  const touchStartY = useRef(null);
+  const hasEntered = useRef(false);
   const data = useMemo(() => {
     return allDirectors(dataset)
       .filter((director) => director.type === "executive")
@@ -30,8 +32,48 @@ export default function LandingScreen({ dataset, onEnter }) {
       });
   }, [dataset]);
 
+  const enterOnce = () => {
+    if (hasEntered.current) return;
+    hasEntered.current = true;
+    onEnter();
+  };
+
+  const handleWheel = (event) => {
+    if (event.deltaY <= 32) return;
+    event.preventDefault();
+    enterOnce();
+  };
+
+  const handleTouchStart = (event) => {
+    touchStartY.current = event.touches[0]?.clientY ?? null;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (touchStartY.current == null) return;
+    const endY = event.changedTouches[0]?.clientY ?? touchStartY.current;
+    if (touchStartY.current - endY > 40) enterOnce();
+    touchStartY.current = null;
+  };
+
+  useEffect(() => {
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  });
+
   return (
-    <button className="remi-landing group block min-h-[680px] w-full text-left" onClick={onEnter} aria-label="Enter Remi Find screen">
+    <section
+      className="remi-landing group min-h-[680px] w-full"
+      onWheel={handleWheel}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      aria-label="Remi landing screen"
+    >
       <div className="remi-landing-grid grid min-h-[620px] grid-cols-[36%_64%] items-center gap-8">
         <div className="remi-landing-copy">
           <h2 className="remi-landing-wordmark font-serif text-[92px] font-normal leading-none text-remi-text">remi</h2>
@@ -39,7 +81,9 @@ export default function LandingScreen({ dataset, onEnter }) {
           <p className="mt-8 max-w-[430px] text-[18px] leading-8 text-remi-text-secondary">
             Explore and compare executive and non-executive remuneration data for FTSE 350 and S&P 500 companies.
           </p>
-          <span className="remi-landing-cta mt-8 text-remi-gold-light">Explore remuneration data →</span>
+          <button type="button" className="remi-landing-cta mt-8 text-remi-gold-light" onClick={enterOnce}>
+            Explore remuneration data →
+          </button>
         </div>
 
         <div className="remi-landing-chart relative h-[520px] overflow-hidden rounded-lg border border-remi-border bg-remi-secondary">
@@ -62,10 +106,15 @@ export default function LandingScreen({ dataset, onEnter }) {
         </div>
       </div>
 
-      <div className="remi-landing-chevron flex justify-center pb-5 text-remi-gold-light transition group-hover:translate-y-1 group-hover:text-remi-gold">
+      <button
+        type="button"
+        className="remi-landing-chevron flex w-full justify-center pb-5 text-remi-gold-light transition hover:text-remi-gold"
+        onClick={enterOnce}
+        aria-label="Continue to Find screen"
+      >
         <ChevronDown size={32} strokeWidth={1.5} />
-      </div>
-    </button>
+      </button>
+    </section>
   );
 }
 

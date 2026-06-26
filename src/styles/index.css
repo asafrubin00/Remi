@@ -283,6 +283,10 @@ a:hover {
     @apply hidden;
   }
 
+  .remi-landing-chevron svg {
+    animation: remi-chevron-bounce 2.2s ease-in-out infinite;
+  }
+
   .remi-analysis-shell,
   .remi-analysis-drawer {
     @apply h-full;
@@ -313,6 +317,24 @@ a:hover {
   }
   50% {
     transform: translateY(-10px);
+  }
+}
+
+@keyframes remi-chevron-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.86;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .remi-landing-chevron svg {
+    animation: none;
   }
 }
 

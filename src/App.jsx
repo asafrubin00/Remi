@@ -164,7 +164,18 @@ export default function App() {
       </section>
 
       <footer className="mt-8 flex justify-center gap-3 border-t border-remi-border pt-4 text-center text-[11px] text-remi-muted">
-        <span>© 2026 Asaf Rubin. All rights reserved.</span>
+        <span>
+          © 2026{" "}
+          <a
+            href="https://asafrubin00.github.io/asaf-rubin-website/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-remi-muted underline-offset-2 transition hover:text-remi-gold-light hover:underline"
+          >
+            Asaf Rubin
+          </a>
+          . All rights reserved.
+        </span>
         {sp500CronStatus?.timestamp ? (
           <span>
             S&P 500 data last refreshed: <span className="remi-data">{formatVintageDate(sp500CronStatus.timestamp)}</span>
