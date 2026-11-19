@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { findLatestDef14a } from "../src/server/sp500Scraper.js";
+import { findLatestDef14a, parseStructuredCompensationValues } from "../src/server/sp500Scraper.js";
 import { parseIssuerTables } from "../src/server/ukReportTables.js";
 import { mergeCompanyRecords } from "../src/data/publishedData.js";
 import { validatePublishedResult } from "../scripts/refresh-published-data.mjs";
@@ -14,6 +14,15 @@ test("picks the newest definitive proxy even outside the old cutoff", () => {
   } } });
   assert.equal(filing.filingDate, "2027-05-11");
   assert.match(filing.url, /new\.htm$/);
+});
+
+test("ignores a standalone footnote number when disclosed dollar columns reconcile", () => {
+  const parsed = parseStructuredCompensationValues(
+    ["James Dimon", "2025", "1,500,000", "5,000,000", "32,500,000", "44,872", "1,587,852", "6", "40,632,724"],
+    { year: 1, salary: 2, bonus: 3, stockAwards: 4, pension: 5, allOther: 6, total: 7 }, 2025,
+  );
+  assert.equal(parsed.pensionBenefits, 1632724);
+  assert.equal(parsed.totalCompensation, 40632724);
 });
 
 test("keeps a sourced manual year and adds newer years without duplicating the director", () => {

@@ -52,7 +52,7 @@ export async function scrapeSp500Company(input, options = {}) {
     }
     if (!proxy) return errorResult(query, `No DEF 14A filing found for ${company.name}.`, company);
     const votes = votingFilings(submissions, proxy.filingDate);
-    const revision = [proxy.accessionNumber, ...votes.map((vote) => vote.accessionNumber)].join(":");
+    const revision = ["v2", proxy.accessionNumber, ...votes.map((vote) => vote.accessionNumber)].join(":");
     if (revision === options.knownRevision) return { unchanged: true };
 
     const proxyHtml = await fetchSecDocument(company.cik, proxy);
@@ -266,6 +266,7 @@ function parseSummaryCompensationTable(html, company) {
     stockAwards: findHeader(headers, ["stock awards", "stock award", "stockawards"]),
     optionAwards: findHeader(headers, ["option awards", "option award", "optionawards"]),
     nonEquity: findHeader(headers, ["non-equity incentive", "non equity incentive", "non-equityincentive", "nonequityincentive", "incentive plan", "incentiveplan"]),
+    pension: findHeader(headers, ["change in pension", "pension value", "deferred compensation earnings"]),
     allOther: findHeader(headers, ["all other", "all othercompensation", "allothercompensation"]),
     total: findHeader(headers, ["total"])
   };
@@ -802,10 +803,25 @@ function detectRowYear(row, headerYearIndex) {
   return parseYear(row[headerYearIndex]) || row.map(parseYear).find((year) => year != null) || null;
 }
 
-function parseStructuredCompensationValues(row, headerMap, year, company) {
+export function parseStructuredCompensationValues(row, headerMap, year) {
   const yearIndex = row.findIndex((cell) => cleanText(cell) === String(year));
   const valueCells = row.slice(yearIndex >= 0 ? yearIndex + 1 : 0);
   const moneyCells = valueCells.map(parseMoney).filter((value) => value != null);
+  const columnNames = ["salary", "bonus", "stockAwards", "optionAwards", "nonEquity", "pension", "allOther", "total"]
+    .filter((field) => headerMap[field] >= 0).sort((a, b) => headerMap[a] - headerMap[b]);
+  const reconciled = reconcileDollars(moneyCells, columnNames.length);
+  if (reconciled && columnNames.at(-1) === "total") {
+    const values = Object.fromEntries(columnNames.map((key, index) => [key, reconciled[index]]));
+    return {
+      baseSalary: values.salary ?? null,
+      annualBonus: sumNullable(values.bonus, values.nonEquity),
+      ltip: sumNullable(values.stockAwards, values.optionAwards),
+      pensionBenefits: sumNullable(values.pension, values.allOther),
+      totalCompensation: values.total,
+      payRatio: null,
+      sayOnPayPct: null
+    };
+  }
   const expectedMoneyColumns = [
     headerMap.salary,
     headerMap.bonus,
@@ -847,11 +863,19 @@ function parseStructuredCompensationValues(row, headerMap, year, company) {
     baseSalary: moneyAtHeader(headerMap.salary),
     annualBonus: sumNullable(moneyAtHeader(headerMap.bonus), moneyAtHeader(headerMap.nonEquity)),
     ltip: sumNullable(moneyAtHeader(headerMap.stockAwards), moneyAtHeader(headerMap.optionAwards)),
-    pensionBenefits: moneyAtHeader(headerMap.allOther),
+    pensionBenefits: sumNullable(moneyAtHeader(headerMap.pension), moneyAtHeader(headerMap.allOther)),
     totalCompensation: moneyAtHeader(headerMap.total),
     payRatio: null,
     sayOnPayPct: null
   };
+}
+
+function reconcileDollars(cells, expected) {
+  const agrees = (values) => Math.abs(values.slice(0, -1).reduce((total, value) => total + value, 0) - values.at(-1)) <= 2;
+  if (cells.length === expected && agrees(cells)) return cells;
+  if (cells.length !== expected + 1 || cells.at(-2) > 100 || cells.at(-2) < 0) return null;
+  const withoutMarker = [...cells.slice(0, -2), cells.at(-1)];
+  return agrees(withoutMarker) ? withoutMarker : null;
 }
 
 function parseMoney(value) {

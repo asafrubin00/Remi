@@ -19,7 +19,11 @@ export default function FindScreen({ dataset, directorType, selection, loading, 
   const roster = directors.filter((person) => person.companyId === company?.id)
     .sort((a, b) => {
       const year = (person) => Math.max(...Object.keys(person.years).map(Number));
-      const primary = (person) => /chief executive|\bceo\b|^chair(?:man|person)?$/i.test(person.role) ? 1 : 0;
+      const primary = (person) => {
+        if (/^former\b/i.test(person.role)) return 0;
+        if (/^(?:(?:group|interim)\s+)?(?:ceo|chief executive(?: officer)?|chair(?:man|person)?)$|^chair(?:man|person)? and (?:ceo|chief executive officer)$/i.test(person.role)) return 2;
+        return /chief executive|\bceo\b/i.test(person.role) ? 1 : 0;
+      };
       return year(b) - year(a) || primary(b) - primary(a) || a.name.localeCompare(b.name);
     });
   const person = roster.find((item) => item.id === selection.directorId) || roster[0];
