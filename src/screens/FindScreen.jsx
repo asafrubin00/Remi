@@ -122,7 +122,7 @@ function Profile({ company, record, onYear }) {
 
       {(!isNed || record.sayOnPayPct != null) ? (
         <dl className="research-profile-context">
-          {!isNed ? <div><dt>CEO pay ratio</dt><dd className="remi-data">{record.payRatio != null ? `${record.payRatio}:1` : "n/a"}</dd></div> : null}
+          {!isNed ? <div><dt>CEO pay ratio</dt><dd className="remi-data">{record.payRatio != null ? `${record.payRatio}:1` : "n/a"}</dd>{record.payRatioNote ? <p className="text-xs">{record.payRatioNote}</p> : null}</div> : null}
           <div><dt>Say-on-pay</dt><dd className={`remi-data ${record.sayOnPayPct == null ? "" : record.sayOnPayPct >= 90 ? "vote-high" : record.sayOnPayPct >= 70 ? "vote-mid" : "vote-low"}`}>{record.sayOnPayPct != null ? `${record.sayOnPayPct}%` : "n/a"}</dd></div>
         </dl>
       ) : null}

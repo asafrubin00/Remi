@@ -43,8 +43,13 @@ export async function scrapeSp500Company(input, options = {}) {
     const company = await lookupCompany(query);
     if (!company) return errorResult(query, `No SEC company match found for "${query}".`);
 
-    const submissions = await fetchSubmissions(company.cikPadded);
-    const proxy = findLatestDef14a(submissions);
+    let submissions = await fetchSubmissions(company.cikPadded);
+    let proxy = findLatestDef14a(submissions);
+    // The new ExxonMobil holding company succeeds the original proxy registrant.
+    if (!proxy && company.ticker === "XOM" && company.cikPadded === "0002115436") {
+      submissions = await fetchSubmissions("0000034088");
+      proxy = findLatestDef14a(submissions);
+    }
     if (!proxy) return errorResult(query, `No DEF 14A filing found for ${company.name}.`, company);
     const votes = votingFilings(submissions, proxy.filingDate);
     const revision = [proxy.accessionNumber, ...votes.map((vote) => vote.accessionNumber)].join(":");

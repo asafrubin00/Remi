@@ -370,7 +370,8 @@ export function flattenDirectorYear(director, year = null) {
     reportingYear: Number(selectedYear),
     yearsAvailable: years.map(Number),
     ...(year && !director.years[selectedYear] ? { payRatio: null, sayOnPayPct: null } : {}),
-    ...director.years[selectedYear]
+    ...director.years[selectedYear],
+    dataSource: director.years[selectedYear]?.source || director.dataSource
   };
 }
 

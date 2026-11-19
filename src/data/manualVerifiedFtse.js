@@ -3,6 +3,36 @@ const VERIFIED_LAST_UPDATED = "2026-06-08T00:00:00.000Z";
 const FX_RATE = "GBP/USD 1.27";
 
 export const manualVerifiedFtse = {
+  bp: {
+    id: "bp",
+    company: "BP plc",
+    index: "FTSE100",
+    sector: "Energy",
+    year: 2025,
+    lastUpdated: "2026-11-19T00:00:00.000Z",
+    sourceUrl: "https://www.sec.gov/Archives/edgar/data/313807/000031380726000006/bp-20251231.htm",
+    manualNote: "BP Annual Report and Form 20-F 2025, audited directors' remuneration tables.",
+    directors: [
+      { name: "Carol Howle", role: "Interim Chief Executive Officer", baseSalary: 57000, annualBonus: 83000, ltip: 733000, pensionBenefits: 13000, totalCompensation: 886000, payRatio: 79, payRatioNote: "Reported on the combined pay of both CEOs serving in FY2025." },
+      { name: "Murray Auchincloss", role: "Former Chief Executive Officer", baseSalary: 1434000, annualBonus: 2594000, ltip: 854000, pensionBenefits: 425000, totalCompensation: 5307000, payRatio: null },
+      { name: "Kate Thomson", role: "Chief Financial Officer", baseSalary: 845000, annualBonus: 1545000, ltip: 387000, pensionBenefits: 251000, totalCompensation: 3029000, payRatio: null }
+    ],
+    nonExecutiveDirectors: [
+      { name: "Albert Manifold", role: "Chair", totalFees: 333000, totalCompensation: 384000, pensionBenefits: 50000 },
+      { name: "Helge Lund", role: "Former Chair", totalFees: 658000, totalCompensation: 686000, pensionBenefits: 28000 },
+      { name: "Dame Amanda Blanc", role: "Non-Executive Director", totalFees: 220000, totalCompensation: 220000 },
+      { name: "Pamela Daley", role: "Non-Executive Director", totalFees: 87000, totalCompensation: 93000, pensionBenefits: 5000 },
+      { name: "Dave Hager", role: "Non-Executive Director", totalFees: 78000, totalCompensation: 114000, pensionBenefits: 37000 },
+      { name: "Simon Henry", role: "Non-Executive Director", totalFees: 44000, totalCompensation: 44000, pensionBenefits: 1000 },
+      { name: "Melody Meyer", role: "Non-Executive Director", totalFees: 184000, totalCompensation: 240000, pensionBenefits: 56000 },
+      { name: "Tushar Morzaria", role: "Non-Executive Director", totalFees: 189000, totalCompensation: 221000, pensionBenefits: 32000 },
+      { name: "Hina Nagarajan", role: "Non-Executive Director", totalFees: 169000, totalCompensation: 208000, pensionBenefits: 39000 },
+      { name: "Satish Pai", role: "Non-Executive Director", totalFees: 149000, totalCompensation: 154000, pensionBenefits: 5000 },
+      { name: "Karen Richardson", role: "Non-Executive Director", totalFees: 194000, totalCompensation: 209000, pensionBenefits: 15000 },
+      { name: "Dr Johannes Teyssen", role: "Non-Executive Director", totalFees: 169000, totalCompensation: 175000, pensionBenefits: 6000 },
+      { name: "Ian Tyler", role: "Non-Executive Director", totalFees: 135000, totalCompensation: 169000, pensionBenefits: 34000 }
+    ]
+  },
   "3i": {
     id: "3i",
     company: "3i plc",
@@ -3720,6 +3750,7 @@ export const manualVerifiedFtse = {
 
 export function buildVerifiedFtseRecord(seed) {
   const year = seed.year || VERIFIED_YEAR;
+  const lastUpdated = seed.lastUpdated || VERIFIED_LAST_UPDATED;
   const currency = seed.currency || "GBP";
   const sayOnPayPct = seed.sayOnPayPct ?? null;
   const executiveDirectors = (seed.directors || []).map((director) => ({
@@ -3731,7 +3762,7 @@ export function buildVerifiedFtseRecord(seed) {
     sourceUrl: director.sourceUrl || seed.sourceUrl || null,
     payRatio: director.payRatio,
     sayOnPayPct,
-    lastUpdated: VERIFIED_LAST_UPDATED,
+    lastUpdated,
     years: {
       [year]: {
         baseSalary: director.baseSalary,
@@ -3740,10 +3771,11 @@ export function buildVerifiedFtseRecord(seed) {
         pensionBenefits: director.pensionBenefits,
         totalCompensation: director.totalCompensation,
         payRatio: director.payRatio,
+        payRatioNote: director.payRatioNote || null,
         sayOnPayPct,
         source: "manual",
         sourceUrl: director.sourceUrl || seed.sourceUrl || null,
-        lastUpdated: VERIFIED_LAST_UPDATED
+        lastUpdated
       }
     }
   }));
@@ -3759,20 +3791,20 @@ export function buildVerifiedFtseRecord(seed) {
       sourceUrl: director.sourceUrl || seed.sourceUrl || null,
       payRatio: null,
       sayOnPayPct,
-      lastUpdated: VERIFIED_LAST_UPDATED,
+      lastUpdated,
       years: {
         [year]: {
           baseSalary: null,
           annualBonus: null,
           ltip: null,
-          pensionBenefits: null,
+          pensionBenefits: director.pensionBenefits ?? null,
           nedFees: totalFees,
-          totalCompensation: totalFees,
+          totalCompensation: director.totalCompensation ?? totalFees,
           payRatio: null,
           sayOnPayPct,
           source: "manual",
           sourceUrl: director.sourceUrl || seed.sourceUrl || null,
-          lastUpdated: VERIFIED_LAST_UPDATED
+          lastUpdated
         }
       }
     };
@@ -3792,10 +3824,10 @@ export function buildVerifiedFtseRecord(seed) {
       status: "verified",
       source: "manual",
       jurisdiction: "UK",
-      message: seed.manualNote || "Manual verified remuneration data from the 2024 published annual report."
+      message: seed.manualNote || `Manual verified remuneration data from the ${year} published annual report.`
     },
     cacheTtlHours: 24,
-    lastUpdated: VERIFIED_LAST_UPDATED
+    lastUpdated
   };
 }
 
