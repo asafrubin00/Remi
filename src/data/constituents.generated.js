@@ -5,7 +5,7 @@ export const ftse100Constituents = [
     "company": "3i",
     "ticker": "III",
     "index": "FTSE100",
-    "sector": "Financial services",
+    "sector": "GB00B1YW4409",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -14,7 +14,7 @@ export const ftse100Constituents = [
     "company": "Aberdeen Group",
     "ticker": "ABDN",
     "index": "FTSE100",
-    "sector": "Financial Services",
+    "sector": "GB00BF8Q6K64",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -23,7 +23,7 @@ export const ftse100Constituents = [
     "company": "Admiral Group",
     "ticker": "ADM",
     "index": "FTSE100",
-    "sector": "Insurance",
+    "sector": "GB00B02J6398",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -32,7 +32,7 @@ export const ftse100Constituents = [
     "company": "Airtel Africa",
     "ticker": "AAF",
     "index": "FTSE100",
-    "sector": "Telecommunications services",
+    "sector": "GB00BKDRYJ47",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -41,7 +41,7 @@ export const ftse100Constituents = [
     "company": "Alliance Witan",
     "ticker": "ALW",
     "index": "FTSE100",
-    "sector": "Investment Trusts",
+    "sector": "GB00B11V7W98",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -50,7 +50,7 @@ export const ftse100Constituents = [
     "company": "Anglo American plc",
     "ticker": "AAL",
     "index": "FTSE100",
-    "sector": "Mining",
+    "sector": "GB00BTK05J60",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -59,7 +59,7 @@ export const ftse100Constituents = [
     "company": "Antofagasta plc",
     "ticker": "ANTO",
     "index": "FTSE100",
-    "sector": "Mining",
+    "sector": "GB0000456144",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -68,7 +68,7 @@ export const ftse100Constituents = [
     "company": "Associated British Foods",
     "ticker": "ABF",
     "index": "FTSE100",
-    "sector": "Food & tobacco",
+    "sector": "GB0006731235",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -77,7 +77,7 @@ export const ftse100Constituents = [
     "company": "AstraZeneca",
     "ticker": "AZN",
     "index": "FTSE100",
-    "sector": "Pharmaceuticals & biotechnology",
+    "sector": "GB0009895292",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -86,7 +86,7 @@ export const ftse100Constituents = [
     "company": "Autotrader Group",
     "ticker": "AUTO",
     "index": "FTSE100",
-    "sector": "Media",
+    "sector": "GB00BVYVFW23",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -95,7 +95,7 @@ export const ftse100Constituents = [
     "company": "Aviva",
     "ticker": "AV",
     "index": "FTSE100",
-    "sector": "Life insurance",
+    "sector": "GB00BPQY8M80",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -104,7 +104,7 @@ export const ftse100Constituents = [
     "company": "Babcock International",
     "ticker": "BAB",
     "index": "FTSE100",
-    "sector": "Aerospace & defence",
+    "sector": "GB0009697037",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -113,7 +113,16 @@ export const ftse100Constituents = [
     "company": "BAE Systems",
     "ticker": "BA",
     "index": "FTSE100",
-    "sector": "Aerospace & defence",
+    "sector": "GB0002634946",
+    "currency": "GBP",
+    "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+  },
+  {
+    "id": "balfour-beatty",
+    "company": "Balfour Beatty",
+    "ticker": "BBY",
+    "index": "FTSE100",
+    "sector": "GB0000961622",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -122,7 +131,7 @@ export const ftse100Constituents = [
     "company": "Barclays",
     "ticker": "BARC",
     "index": "FTSE100",
-    "sector": "Banks",
+    "sector": "GB0031348658",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -131,16 +140,7 @@ export const ftse100Constituents = [
     "company": "Barratt Redrow",
     "ticker": "BTRW",
     "index": "FTSE100",
-    "sector": "Household goods & home construction",
-    "currency": "GBP",
-    "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
-  },
-  {
-    "id": "beazley",
-    "company": "Beazley",
-    "ticker": "BEZ",
-    "index": "FTSE100",
-    "sector": "Insurance",
+    "sector": "GB0000811801",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -149,7 +149,7 @@ export const ftse100Constituents = [
     "company": "BP",
     "ticker": "BP",
     "index": "FTSE100",
-    "sector": "Oil & gas producers",
+    "sector": "GB0007980591",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -158,7 +158,7 @@ export const ftse100Constituents = [
     "company": "British American Tobacco",
     "ticker": "BATS",
     "index": "FTSE100",
-    "sector": "Tobacco",
+    "sector": "GB0002875804",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -167,7 +167,7 @@ export const ftse100Constituents = [
     "company": "British Land",
     "ticker": "BLND",
     "index": "FTSE100",
-    "sector": "Real estate",
+    "sector": "GB0001367019",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -176,7 +176,7 @@ export const ftse100Constituents = [
     "company": "BT Group",
     "ticker": "BTA",
     "index": "FTSE100",
-    "sector": "Telecommunications services",
+    "sector": "GB0030913577",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -185,7 +185,7 @@ export const ftse100Constituents = [
     "company": "Bunzl",
     "ticker": "BNZL",
     "index": "FTSE100",
-    "sector": "Support services",
+    "sector": "GB00B0744B38",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -194,7 +194,7 @@ export const ftse100Constituents = [
     "company": "Burberry Group",
     "ticker": "BRBY",
     "index": "FTSE100",
-    "sector": "Personal goods",
+    "sector": "GB0031743007",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -203,7 +203,7 @@ export const ftse100Constituents = [
     "company": "Centrica",
     "ticker": "CNA",
     "index": "FTSE100",
-    "sector": "Multiline utilities",
+    "sector": "GB00B033F229",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -212,7 +212,7 @@ export const ftse100Constituents = [
     "company": "Coca-Cola Europacific Partners",
     "ticker": "CCEP",
     "index": "FTSE100",
-    "sector": "Beverages",
+    "sector": "GB00BDCPN049",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -221,7 +221,7 @@ export const ftse100Constituents = [
     "company": "Coca-Cola HBC",
     "ticker": "CCH",
     "index": "FTSE100",
-    "sector": "Beverages",
+    "sector": "CH0198251305",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -230,7 +230,7 @@ export const ftse100Constituents = [
     "company": "Compass Group",
     "ticker": "CPG",
     "index": "FTSE100",
-    "sector": "Support services",
+    "sector": "GB00BD6K4575",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -239,7 +239,7 @@ export const ftse100Constituents = [
     "company": "Computacenter",
     "ticker": "CCC",
     "index": "FTSE100",
-    "sector": "Software & Computer Services",
+    "sector": "GB00BV9FP302",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -248,7 +248,7 @@ export const ftse100Constituents = [
     "company": "Convatec",
     "ticker": "CTEC",
     "index": "FTSE100",
-    "sector": "Health care equipment & supplies",
+    "sector": "GB00BD3VFW73",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -257,16 +257,16 @@ export const ftse100Constituents = [
     "company": "Croda International",
     "ticker": "CRDA",
     "index": "FTSE100",
-    "sector": "Chemicals",
+    "sector": "GB00BJFFLV09",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
   {
-    "id": "dcc-plc",
-    "company": "DCC plc",
+    "id": "dcc-energy",
+    "company": "DCC Energy",
     "ticker": "DCC",
     "index": "FTSE100",
-    "sector": "Support services",
+    "sector": "IE0002424939",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -275,7 +275,7 @@ export const ftse100Constituents = [
     "company": "Diageo",
     "ticker": "DGE",
     "index": "FTSE100",
-    "sector": "Beverages",
+    "sector": "GB0002374006",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -284,7 +284,16 @@ export const ftse100Constituents = [
     "company": "Diploma",
     "ticker": "DPLM",
     "index": "FTSE100",
-    "sector": "Industrial Support services",
+    "sector": "GB0001826634",
+    "currency": "GBP",
+    "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+  },
+  {
+    "id": "easyjet",
+    "company": "EasyJet",
+    "ticker": "EZJ",
+    "index": "FTSE100",
+    "sector": "GB00B7KR2P84",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -293,16 +302,7 @@ export const ftse100Constituents = [
     "company": "Endeavour Mining",
     "ticker": "EDV",
     "index": "FTSE100",
-    "sector": "Mining",
-    "currency": "GBP",
-    "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
-  },
-  {
-    "id": "entain",
-    "company": "Entain",
-    "ticker": "ENT",
-    "index": "FTSE100",
-    "sector": "Travel & leisure",
+    "sector": "GB00BL6K5J42",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -311,7 +311,7 @@ export const ftse100Constituents = [
     "company": "Experian",
     "ticker": "EXPN",
     "index": "FTSE100",
-    "sector": "Support services",
+    "sector": "GB00B19NLV48",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -320,7 +320,7 @@ export const ftse100Constituents = [
     "company": "F & C Investment Trust",
     "ticker": "FCIT",
     "index": "FTSE100",
-    "sector": "Collective investments",
+    "sector": "GB00BS88V647",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -329,7 +329,7 @@ export const ftse100Constituents = [
     "company": "Fresnillo plc",
     "ticker": "FRES",
     "index": "FTSE100",
-    "sector": "Mining",
+    "sector": "GB00B2QPKJ12",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -338,7 +338,7 @@ export const ftse100Constituents = [
     "company": "Games Workshop",
     "ticker": "GAW",
     "index": "FTSE100",
-    "sector": "Leisure Goods",
+    "sector": "GB0003718474",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -347,7 +347,7 @@ export const ftse100Constituents = [
     "company": "Glencore",
     "ticker": "GLEN",
     "index": "FTSE100",
-    "sector": "Mining",
+    "sector": "JE00B4T3BW64",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -356,7 +356,7 @@ export const ftse100Constituents = [
     "company": "GSK plc",
     "ticker": "GSK",
     "index": "FTSE100",
-    "sector": "Pharmaceuticals & biotechnology",
+    "sector": "GB00BN7SWP63",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -365,7 +365,7 @@ export const ftse100Constituents = [
     "company": "Haleon",
     "ticker": "HLN",
     "index": "FTSE100",
-    "sector": "Pharmaceuticals & biotechnology",
+    "sector": "GB00BMX86B70",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -374,7 +374,7 @@ export const ftse100Constituents = [
     "company": "Halma plc",
     "ticker": "HLMA",
     "index": "FTSE100",
-    "sector": "Electronic equipment & parts",
+    "sector": "GB0004052071",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -383,7 +383,7 @@ export const ftse100Constituents = [
     "company": "Hiscox",
     "ticker": "HSX",
     "index": "FTSE100",
-    "sector": "Non-life Insurance",
+    "sector": "BMG4593F1389",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -392,7 +392,7 @@ export const ftse100Constituents = [
     "company": "Howdens Joinery",
     "ticker": "HWDN",
     "index": "FTSE100",
-    "sector": "Homebuilding & construction supplies",
+    "sector": "GB0005576813",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -401,7 +401,7 @@ export const ftse100Constituents = [
     "company": "HSBC",
     "ticker": "HSBA",
     "index": "FTSE100",
-    "sector": "Banks",
+    "sector": "GB0005405286",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -410,7 +410,7 @@ export const ftse100Constituents = [
     "company": "ICG",
     "ticker": "ICG",
     "index": "FTSE100",
-    "sector": "Financial services",
+    "sector": "GB00BYT1DJ19",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -419,7 +419,7 @@ export const ftse100Constituents = [
     "company": "IG Group",
     "ticker": "IGG",
     "index": "FTSE100",
-    "sector": "Financial services",
+    "sector": "GB00B06QFB75",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -428,7 +428,7 @@ export const ftse100Constituents = [
     "company": "IHG Hotels & Resorts",
     "ticker": "IHG",
     "index": "FTSE100",
-    "sector": "Travel & leisure",
+    "sector": "GB00BHJYC057",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -437,7 +437,7 @@ export const ftse100Constituents = [
     "company": "IMI",
     "ticker": "IMI",
     "index": "FTSE100",
-    "sector": "Industrial engineering",
+    "sector": "GB00BGLP8L22",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -446,7 +446,7 @@ export const ftse100Constituents = [
     "company": "Imperial Brands",
     "ticker": "IMB",
     "index": "FTSE100",
-    "sector": "Tobacco",
+    "sector": "GB0004544929",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -455,7 +455,7 @@ export const ftse100Constituents = [
     "company": "Informa",
     "ticker": "INF",
     "index": "FTSE100",
-    "sector": "Media",
+    "sector": "GB00BMJ6DW54",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -464,7 +464,7 @@ export const ftse100Constituents = [
     "company": "International Airlines Group",
     "ticker": "IAG",
     "index": "FTSE100",
-    "sector": "Travel & leisure",
+    "sector": "ES0177542018",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -473,7 +473,7 @@ export const ftse100Constituents = [
     "company": "Intertek",
     "ticker": "ITRK",
     "index": "FTSE100",
-    "sector": "Support services",
+    "sector": "GB0031638363",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -482,7 +482,16 @@ export const ftse100Constituents = [
     "company": "Investec",
     "ticker": "INVP",
     "index": "FTSE100",
-    "sector": "Financial Services",
+    "sector": "GB00B17BBQ50",
+    "currency": "GBP",
+    "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+  },
+  {
+    "id": "ithaca-energy",
+    "company": "Ithaca Energy",
+    "ticker": "ITH",
+    "index": "FTSE100",
+    "sector": "GB00BPJHV584",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -491,7 +500,7 @@ export const ftse100Constituents = [
     "company": "JD Sports",
     "ticker": "JD",
     "index": "FTSE100",
-    "sector": "General retailers",
+    "sector": "GB00BM8Q5M07",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -500,7 +509,7 @@ export const ftse100Constituents = [
     "company": "Kingfisher plc",
     "ticker": "KGF",
     "index": "FTSE100",
-    "sector": "Retailers",
+    "sector": "GB0033195214",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -509,7 +518,7 @@ export const ftse100Constituents = [
     "company": "Land Securities",
     "ticker": "LAND",
     "index": "FTSE100",
-    "sector": "Real estate investment trusts",
+    "sector": "GB00BYW0PQ60",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -518,7 +527,7 @@ export const ftse100Constituents = [
     "company": "Legal & General",
     "ticker": "LGEN",
     "index": "FTSE100",
-    "sector": "Life insurance",
+    "sector": "GB0005603997",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -527,7 +536,7 @@ export const ftse100Constituents = [
     "company": "Lion Finance Group",
     "ticker": "BGEO",
     "index": "FTSE100",
-    "sector": "Banking Services",
+    "sector": "GB00BF4HYT85",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -536,7 +545,7 @@ export const ftse100Constituents = [
     "company": "Lloyds Banking Group",
     "ticker": "LLOY",
     "index": "FTSE100",
-    "sector": "Banks",
+    "sector": "GB0008706128",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -545,7 +554,7 @@ export const ftse100Constituents = [
     "company": "London Stock Exchange Group",
     "ticker": "LSEG",
     "index": "FTSE100",
-    "sector": "Financial services",
+    "sector": "GB00B0SWJX34",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -554,7 +563,7 @@ export const ftse100Constituents = [
     "company": "LondonMetric Property",
     "ticker": "LMP",
     "index": "FTSE100",
-    "sector": "Real Estate Investment Trusts",
+    "sector": "GB00B4WFW713",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -563,7 +572,7 @@ export const ftse100Constituents = [
     "company": "M&G",
     "ticker": "MNG",
     "index": "FTSE100",
-    "sector": "Financial services",
+    "sector": "GB00BKFB1C65",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -572,7 +581,7 @@ export const ftse100Constituents = [
     "company": "Marks & Spencer",
     "ticker": "MKS",
     "index": "FTSE100",
-    "sector": "Food & drug retailing",
+    "sector": "GB0031274896",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -581,7 +590,7 @@ export const ftse100Constituents = [
     "company": "Melrose Industries",
     "ticker": "MRO",
     "index": "FTSE100",
-    "sector": "Aerospace & defence",
+    "sector": "GB00BNGDN821",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -590,7 +599,7 @@ export const ftse100Constituents = [
     "company": "Metlen Energy & Metals",
     "ticker": "MTLN",
     "index": "FTSE100",
-    "sector": "Multiline utilities",
+    "sector": "GB00BTQGS779",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -599,7 +608,7 @@ export const ftse100Constituents = [
     "company": "National Grid plc",
     "ticker": "NG",
     "index": "FTSE100",
-    "sector": "Multiline utilities",
+    "sector": "GB00BDR05C01",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -608,7 +617,7 @@ export const ftse100Constituents = [
     "company": "NatWest Group",
     "ticker": "NWG",
     "index": "FTSE100",
-    "sector": "Banks",
+    "sector": "GB00BM8PJY71",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -617,7 +626,7 @@ export const ftse100Constituents = [
     "company": "Next plc",
     "ticker": "NXT",
     "index": "FTSE100",
-    "sector": "General retailers",
+    "sector": "GB0032089863",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -626,7 +635,7 @@ export const ftse100Constituents = [
     "company": "Pearson plc",
     "ticker": "PSON",
     "index": "FTSE100",
-    "sector": "Media",
+    "sector": "GB0006776081",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -635,16 +644,7 @@ export const ftse100Constituents = [
     "company": "Pershing Square Holdings",
     "ticker": "PSH",
     "index": "FTSE100",
-    "sector": "Financial services",
-    "currency": "GBP",
-    "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
-  },
-  {
-    "id": "persimmon",
-    "company": "Persimmon",
-    "ticker": "PSN",
-    "index": "FTSE100",
-    "sector": "Household goods & home construction",
+    "sector": "GG00BPFJTF46",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -653,7 +653,7 @@ export const ftse100Constituents = [
     "company": "Polar Capital Technology Trust",
     "ticker": "PCT",
     "index": "FTSE100",
-    "sector": "Investment trusts",
+    "sector": "GB00BR3YV268",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -662,7 +662,7 @@ export const ftse100Constituents = [
     "company": "Prudential plc",
     "ticker": "PRU",
     "index": "FTSE100",
-    "sector": "Life insurance",
+    "sector": "GB0007099541",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -671,7 +671,7 @@ export const ftse100Constituents = [
     "company": "Reckitt",
     "ticker": "RKT",
     "index": "FTSE100",
-    "sector": "Household goods & home construction",
+    "sector": "GB00BSZBP530",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -680,7 +680,7 @@ export const ftse100Constituents = [
     "company": "RELX",
     "ticker": "REL",
     "index": "FTSE100",
-    "sector": "Media",
+    "sector": "GB00B2B0DG97",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -689,7 +689,7 @@ export const ftse100Constituents = [
     "company": "Rentokil Initial",
     "ticker": "RTO",
     "index": "FTSE100",
-    "sector": "Support services",
+    "sector": "GB00B082RF11",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -698,7 +698,7 @@ export const ftse100Constituents = [
     "company": "Rio Tinto",
     "ticker": "RIO",
     "index": "FTSE100",
-    "sector": "Mining",
+    "sector": "GB0007188757",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -707,7 +707,7 @@ export const ftse100Constituents = [
     "company": "Rolls-Royce Holdings",
     "ticker": "RR",
     "index": "FTSE100",
-    "sector": "Aerospace & defence",
+    "sector": "GB00B63H8491",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -716,7 +716,7 @@ export const ftse100Constituents = [
     "company": "Sage Group",
     "ticker": "SGE",
     "index": "FTSE100",
-    "sector": "Software & computer services",
+    "sector": "GB00B8C3BL03",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -725,16 +725,7 @@ export const ftse100Constituents = [
     "company": "Sainsbury's",
     "ticker": "SBRY",
     "index": "FTSE100",
-    "sector": "Food & drug retailing",
-    "currency": "GBP",
-    "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
-  },
-  {
-    "id": "schroders",
-    "company": "Schroders",
-    "ticker": "SDR",
-    "index": "FTSE100",
-    "sector": "Financial services",
+    "sector": "GB00B019KW72",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -743,7 +734,7 @@ export const ftse100Constituents = [
     "company": "Scottish Mortgage Investment Trust",
     "ticker": "SMT",
     "index": "FTSE100",
-    "sector": "Collective investments",
+    "sector": "GB00BLDYK618",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -752,7 +743,7 @@ export const ftse100Constituents = [
     "company": "Segro",
     "ticker": "SGRO",
     "index": "FTSE100",
-    "sector": "Real estate investment trusts",
+    "sector": "GB00B5ZN1N88",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -761,7 +752,7 @@ export const ftse100Constituents = [
     "company": "Severn Trent",
     "ticker": "SVT",
     "index": "FTSE100",
-    "sector": "Multiline utilities",
+    "sector": "GB00B1FH8J72",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -770,7 +761,7 @@ export const ftse100Constituents = [
     "company": "Shell plc",
     "ticker": "SHEL",
     "index": "FTSE100",
-    "sector": "Oil & gas producers",
+    "sector": "GB00BP6MXD84",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -779,7 +770,7 @@ export const ftse100Constituents = [
     "company": "Smith & Nephew",
     "ticker": "SN",
     "index": "FTSE100",
-    "sector": "Health care equipment & supplies",
+    "sector": "GB0009223206",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -788,7 +779,7 @@ export const ftse100Constituents = [
     "company": "Smiths Group",
     "ticker": "SMIN",
     "index": "FTSE100",
-    "sector": "General industrials",
+    "sector": "GB00B1WY2338",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -797,7 +788,7 @@ export const ftse100Constituents = [
     "company": "Spirax Group",
     "ticker": "SPX",
     "index": "FTSE100",
-    "sector": "Industrial engineering",
+    "sector": "GB00BWFGQN14",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -806,7 +797,7 @@ export const ftse100Constituents = [
     "company": "SSE plc",
     "ticker": "SSE",
     "index": "FTSE100",
-    "sector": "Electrical utilities & independent power producers",
+    "sector": "GB0007908733",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -815,7 +806,7 @@ export const ftse100Constituents = [
     "company": "St. James's Place",
     "ticker": "STJ",
     "index": "FTSE100",
-    "sector": "Financial services",
+    "sector": "GB0007669376",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -824,7 +815,7 @@ export const ftse100Constituents = [
     "company": "Standard Chartered",
     "ticker": "STAN",
     "index": "FTSE100",
-    "sector": "Banks",
+    "sector": "GB0004082847",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -833,7 +824,7 @@ export const ftse100Constituents = [
     "company": "Standard Life",
     "ticker": "SDLF",
     "index": "FTSE100",
-    "sector": "Life insurance",
+    "sector": "GB00BGXQNP29",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -842,7 +833,7 @@ export const ftse100Constituents = [
     "company": "Tesco",
     "ticker": "TSCO",
     "index": "FTSE100",
-    "sector": "Food & drug retailing",
+    "sector": "GB00BLGZ9862",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -851,7 +842,7 @@ export const ftse100Constituents = [
     "company": "Tritax Big Box REIT",
     "ticker": "BBOX",
     "index": "FTSE100",
-    "sector": "Real Estate Investment Trusts",
+    "sector": "GB00BG49KP99",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -860,7 +851,7 @@ export const ftse100Constituents = [
     "company": "Unilever",
     "ticker": "ULVR",
     "index": "FTSE100",
-    "sector": "Personal goods",
+    "sector": "GB00BVZK7T90",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -869,7 +860,7 @@ export const ftse100Constituents = [
     "company": "United Utilities",
     "ticker": "UU",
     "index": "FTSE100",
-    "sector": "Multiline utilities",
+    "sector": "GB00B39J2M42",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -878,16 +869,16 @@ export const ftse100Constituents = [
     "company": "Vodafone Group",
     "ticker": "VOD",
     "index": "FTSE100",
-    "sector": "Mobile telecommunications",
+    "sector": "GB00BH4HKS39",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
   {
-    "id": "weir-group",
-    "company": "Weir Group",
+    "id": "weir",
+    "company": "Weir",
     "ticker": "WEIR",
     "index": "FTSE100",
-    "sector": "Industrial goods and services",
+    "sector": "GB0009465807",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   },
@@ -896,7 +887,16 @@ export const ftse100Constituents = [
     "company": "Whitbread",
     "ticker": "WTB",
     "index": "FTSE100",
-    "sector": "Retail hospitality",
+    "sector": "GB00B1KJJ408",
+    "currency": "GBP",
+    "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+  },
+  {
+    "id": "wpp",
+    "company": "WPP",
+    "ticker": "WPP",
+    "index": "FTSE100",
+    "sector": "JE00B8KF9B49",
     "currency": "GBP",
     "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
   }
@@ -1469,8 +1469,8 @@ export const sp500Constituents = [
     "ticker": "APP",
     "cik": "0001751008",
     "index": "SP500",
-    "sector": "Information Technology",
-    "subIndustry": "Application Software",
+    "sector": "Communication Services",
+    "subIndustry": "Advertising",
     "headquarters": "Palo Alto, California",
     "dateAdded": "2025-09-22",
     "founded": "2012",
@@ -1642,20 +1642,6 @@ export const sp500Constituents = [
     "headquarters": "Memphis, Tennessee",
     "dateAdded": "1997-01-02",
     "founded": "1979",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
-    "id": "avalonbay-communities",
-    "company": "AvalonBay Communities",
-    "ticker": "AVB",
-    "cik": "0000915912",
-    "index": "SP500",
-    "sector": "Real Estate",
-    "subIndustry": "Multi-Family Residential REITs",
-    "headquarters": "Arlington, Virginia",
-    "dateAdded": "2007-01-10",
-    "founded": "1978",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -1856,6 +1842,20 @@ export const sp500Constituents = [
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
   {
+    "id": "bloom-energy",
+    "company": "Bloom Energy",
+    "ticker": "BE",
+    "cik": "0001664703",
+    "index": "SP500",
+    "sector": "Industrials",
+    "subIndustry": "Electrical Components & Equipment",
+    "headquarters": "San Jose, California",
+    "dateAdded": "2026-09-21",
+    "founded": "2001",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
     "id": "bny-mellon",
     "company": "BNY Mellon",
     "ticker": "BNY",
@@ -1865,7 +1865,7 @@ export const sp500Constituents = [
     "subIndustry": "Asset Management & Custody Banks",
     "headquarters": "New York City, New York",
     "dateAdded": "1995-03-31",
-    "founded": "1784",
+    "founded": "2007 (1784)",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -1978,20 +1978,6 @@ export const sp500Constituents = [
     "headquarters": "Louisville, Kentucky",
     "dateAdded": "1982-10-31",
     "founded": "1870",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
-    "id": "builders-firstsource",
-    "company": "Builders FirstSource",
-    "ticker": "BLDR",
-    "cik": "0001316835",
-    "index": "SP500",
-    "sector": "Industrials",
-    "subIndustry": "Building Products",
-    "headquarters": "Irving, Texas",
-    "dateAdded": "2023-12-18",
-    "founded": "1998",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -2598,20 +2584,6 @@ export const sp500Constituents = [
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
   {
-    "id": "conagra-brands",
-    "company": "Conagra Brands",
-    "ticker": "CAG",
-    "cik": "0000023217",
-    "index": "SP500",
-    "sector": "Consumer Staples",
-    "subIndustry": "Packaged Foods & Meats",
-    "headquarters": "Chicago, Illinois",
-    "dateAdded": "1983-08-31",
-    "founded": "1919",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
     "id": "conocophillips",
     "company": "ConocoPhillips",
     "ticker": "COP",
@@ -2720,20 +2692,6 @@ export const sp500Constituents = [
     "headquarters": "Atlanta, Georgia",
     "dateAdded": "2018-06-20",
     "founded": "2000",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
-    "id": "corteva",
-    "company": "Corteva",
-    "ticker": "CTVA",
-    "cik": "0001755672",
-    "index": "SP500",
-    "sector": "Materials",
-    "subIndustry": "Fertilizers & Agricultural Chemicals",
-    "headquarters": "Indianapolis, Indiana",
-    "dateAdded": "2019-06-03",
-    "founded": "2019",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -3163,8 +3121,8 @@ export const sp500Constituents = [
     "ticker": "DD",
     "cik": "0001666700",
     "index": "SP500",
-    "sector": "Materials",
-    "subIndustry": "Specialty Chemicals",
+    "sector": "Industrials",
+    "subIndustry": "Industrial Conglomerates",
     "headquarters": "Wilmington, Delaware",
     "dateAdded": "2019-06-03",
     "founded": "2017 (1802)",
@@ -3202,7 +3160,7 @@ export const sp500Constituents = [
   {
     "id": "echostar",
     "company": "EchoStar",
-    "ticker": "SATS",
+    "ticker": "ECHO",
     "cik": "0001415404",
     "index": "SP500",
     "sector": "Communication Services",
@@ -3252,20 +3210,6 @@ export const sp500Constituents = [
     "headquarters": "Irvine, California",
     "dateAdded": "2011-04-01",
     "founded": "1958",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
-    "id": "electronic-arts",
-    "company": "Electronic Arts",
-    "ticker": "EA",
-    "cik": "0000712515",
-    "index": "SP500",
-    "sector": "Communication Services",
-    "subIndustry": "Interactive Home Entertainment",
-    "headquarters": "Redwood City, California",
-    "dateAdded": "2002-07-22",
-    "founded": "1982",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -3382,20 +3326,6 @@ export const sp500Constituents = [
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
   {
-    "id": "equity-residential",
-    "company": "Equity Residential",
-    "ticker": "EQR",
-    "cik": "0000906107",
-    "index": "SP500",
-    "sector": "Real Estate",
-    "subIndustry": "Multi-Family Residential REITs",
-    "headquarters": "Chicago, Illinois",
-    "dateAdded": "2001-12-03",
-    "founded": "1969",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
     "id": "erie-indemnity",
     "company": "Erie Indemnity",
     "ticker": "ERIE",
@@ -3462,6 +3392,20 @@ export const sp500Constituents = [
     "headquarters": "Kansas City, Missouri",
     "dateAdded": "2018-06-05",
     "founded": "1909",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
+    "id": "everpure",
+    "company": "Everpure",
+    "ticker": "P",
+    "cik": "0001474432",
+    "index": "SP500",
+    "sector": "Information Technology",
+    "subIndustry": "Technology Hardware, Storage & Peripherals",
+    "headquarters": "Santa Clara, California",
+    "dateAdded": "2026-09-21",
+    "founded": "2009",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -3553,7 +3497,7 @@ export const sp500Constituents = [
     "id": "exxonmobil",
     "company": "ExxonMobil",
     "ticker": "XOM",
-    "cik": "0000034088",
+    "cik": "0002115436",
     "index": "SP500",
     "sector": "Energy",
     "subIndustry": "Integrated Oil & Gas",
@@ -3658,6 +3602,20 @@ export const sp500Constituents = [
     "headquarters": "Memphis, Tennessee",
     "dateAdded": "2026-06-01",
     "founded": "1982",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
+    "id": "ferguson-enterprises",
+    "company": "Ferguson Enterprises",
+    "ticker": "FERG",
+    "cik": "0002011641",
+    "index": "SP500",
+    "sector": "Industrials",
+    "subIndustry": "Trading Companies & Distributors",
+    "headquarters": "Newport News, Virginia",
+    "dateAdded": "2026-08-05",
+    "founded": "1953",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -3934,7 +3892,7 @@ export const sp500Constituents = [
     "cik": "0001474735",
     "index": "SP500",
     "sector": "Industrials",
-    "subIndustry": "Electrical Components & Equipment",
+    "subIndustry": "Heavy Electrical Equipment",
     "headquarters": "Waukesha, Wisconsin",
     "dateAdded": "2021-03-22",
     "founded": "1959",
@@ -4208,8 +4166,22 @@ export const sp500Constituents = [
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
   {
-    "id": "honeywell",
-    "company": "Honeywell",
+    "id": "honeywell-aerospace",
+    "company": "Honeywell Aerospace",
+    "ticker": "HONA",
+    "cik": "0002089271",
+    "index": "SP500",
+    "sector": "Industrials",
+    "subIndustry": "Aerospace & Defense",
+    "headquarters": "Phoenix, Arizona",
+    "dateAdded": "2026-06-29",
+    "founded": "1914",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
+    "id": "honeywell-technologies",
+    "company": "Honeywell Technologies",
     "ticker": "HON",
     "cik": "0000773840",
     "index": "SP500",
@@ -4386,6 +4358,20 @@ export const sp500Constituents = [
     "headquarters": "Glenview, Illinois",
     "dateAdded": "1986-02-28",
     "founded": "1912",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
+    "id": "illumina-inc",
+    "company": "Illumina, Inc.",
+    "ticker": "ILMN",
+    "cik": "0001110803",
+    "index": "SP500",
+    "sector": "Health Care",
+    "subIndustry": "Life Sciences Tools & Services",
+    "headquarters": "San Diego, California",
+    "dateAdded": "2026-09-21",
+    "founded": "1998",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -4694,20 +4680,6 @@ export const sp500Constituents = [
     "headquarters": "New York City, New York",
     "dateAdded": "1975-06-30",
     "founded": "2000 (1799 / 1871)",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
-    "id": "kenvue",
-    "company": "Kenvue",
-    "ticker": "KVUE",
-    "cik": "0001944048",
-    "index": "SP500",
-    "sector": "Consumer Staples",
-    "subIndustry": "Personal Care Products",
-    "headquarters": "Skillman, New Jersey",
-    "dateAdded": "2023-08-25",
-    "founded": "2022 (Johnson & Johnson spinoff)",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -5216,8 +5188,8 @@ export const sp500Constituents = [
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
   {
-    "id": "mckesson-corporation",
-    "company": "McKesson Corporation",
+    "id": "mckesson",
+    "company": "McKesson",
     "ticker": "MCK",
     "cik": "0000927653",
     "index": "SP500",
@@ -5384,20 +5356,6 @@ export const sp500Constituents = [
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
   {
-    "id": "molson-coors-beverage-company",
-    "company": "Molson Coors Beverage Company",
-    "ticker": "TAP",
-    "cik": "0000024545",
-    "index": "SP500",
-    "sector": "Consumer Staples",
-    "subIndustry": "Brewers",
-    "headquarters": "Chicago, Illinois",
-    "dateAdded": "1976-06-30",
-    "founded": "2005 (Molson 1786, Coors 1873)",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
     "id": "mondelez-international",
     "company": "Mondelez International",
     "ticker": "MDLZ",
@@ -5496,8 +5454,8 @@ export const sp500Constituents = [
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
   {
-    "id": "msci-inc",
-    "company": "MSCI Inc.",
+    "id": "msci",
+    "company": "MSCI",
     "ticker": "MSCI",
     "cik": "0001408198",
     "index": "SP500",
@@ -5777,7 +5735,7 @@ export const sp500Constituents = [
   },
   {
     "id": "o-reilly-automotive",
-    "company": "O’Reilly Automotive",
+    "company": "O'Reilly Automotive",
     "ticker": "ORLY",
     "cik": "0000898173",
     "index": "SP500",
@@ -5800,6 +5758,20 @@ export const sp500Constituents = [
     "headquarters": "Houston, Texas",
     "dateAdded": "1957-03-04",
     "founded": "1920",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
+    "id": "okta-inc",
+    "company": "Okta, Inc.",
+    "ticker": "OKTA",
+    "cik": "0001660134",
+    "index": "SP500",
+    "sector": "Information Technology",
+    "subIndustry": "Application Software",
+    "headquarters": "San Francisco, California",
+    "dateAdded": "2026-11-04",
+    "founded": "2009",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -5940,20 +5912,6 @@ export const sp500Constituents = [
     "headquarters": "Santa Clara, California",
     "dateAdded": "2023-06-20",
     "founded": "2005",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
-    "id": "paramount-skydance-corporation",
-    "company": "Paramount Skydance Corporation",
-    "ticker": "PSKY",
-    "cik": "0002041610",
-    "index": "SP500",
-    "sector": "Communication Services",
-    "subIndustry": "Movies & Entertainment",
-    "headquarters": "Los Angeles, California",
-    "dateAdded": "1994-09-30",
-    "founded": "2025 (Paramount Pictures 1912)",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -6364,6 +6322,20 @@ export const sp500Constituents = [
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
   {
+    "id": "reddit",
+    "company": "Reddit",
+    "ticker": "RDDT",
+    "cik": "0001713445",
+    "index": "SP500",
+    "sector": "Communication Services",
+    "subIndustry": "Interactive Media & Services",
+    "headquarters": "San Francisco, California",
+    "dateAdded": "2026-08-18",
+    "founded": "2005",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
     "id": "regency-centers",
     "company": "Regency Centers",
     "ticker": "REG",
@@ -6682,6 +6654,20 @@ export const sp500Constituents = [
     "headquarters": "Indianapolis, Indiana",
     "dateAdded": "2002-06-26",
     "founded": "2003",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
+    "id": "skydance",
+    "company": "Skydance",
+    "ticker": "SKYD",
+    "cik": "0002041610",
+    "index": "SP500",
+    "sector": "Communication Services",
+    "subIndustry": "Movies & Entertainment",
+    "headquarters": "New York City, New York",
+    "dateAdded": "1994-09-30",
+    "founded": "2025 (Paramount Pictures 1912)",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -7148,20 +7134,6 @@ export const sp500Constituents = [
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
   {
-    "id": "trade-desk-the",
-    "company": "Trade Desk (The)",
-    "ticker": "TTD",
-    "cik": "0001671933",
-    "index": "SP500",
-    "sector": "Communication Services",
-    "subIndustry": "Advertising",
-    "headquarters": "Ventura, California",
-    "dateAdded": "2025-07-18",
-    "founded": "2009",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
     "id": "trane-technologies",
     "company": "Trane Technologies",
     "ticker": "TT",
@@ -7228,6 +7200,20 @@ export const sp500Constituents = [
     "headquarters": "Charlotte, North Carolina",
     "dateAdded": "1997-12-04",
     "founded": "1872",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
+    "id": "twilio",
+    "company": "Twilio",
+    "ticker": "TWLO",
+    "cik": "0001447669",
+    "index": "SP500",
+    "sector": "Information Technology",
+    "subIndustry": "Systems Software",
+    "headquarters": "San Francisco, California",
+    "dateAdded": "2026-10-06",
+    "founded": "2008",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -7582,6 +7568,20 @@ export const sp500Constituents = [
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
   {
+    "id": "vivmark-residential",
+    "company": "Vivmark Residential",
+    "ticker": "VMRK",
+    "cik": "0000906107",
+    "index": "SP500",
+    "sector": "Real Estate",
+    "subIndustry": "Multi-Family Residential REITs",
+    "headquarters": "Chicago, Illinois",
+    "dateAdded": "2001-12-03",
+    "founded": "1969",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
     "id": "vulcan-materials-company",
     "company": "Vulcan Materials Company",
     "ticker": "VMC",
@@ -7592,6 +7592,20 @@ export const sp500Constituents = [
     "headquarters": "Birmingham, Alabama",
     "dateAdded": "1999-06-30",
     "founded": "1909",
+    "currency": "USD",
+    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  },
+  {
+    "id": "vylor",
+    "company": "Vylor",
+    "ticker": "VYLR",
+    "cik": "0002128626",
+    "index": "SP500",
+    "sector": "Consumer Staples",
+    "subIndustry": "Agricultural Products & Services",
+    "headquarters": "Johnston, Iowa",
+    "dateAdded": "2026-10-01",
+    "founded": "2026",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },
@@ -7662,20 +7676,6 @@ export const sp500Constituents = [
     "headquarters": "Burbank, California",
     "dateAdded": "1976-06-30",
     "founded": "1923",
-    "currency": "USD",
-    "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  },
-  {
-    "id": "warner-bros-discovery",
-    "company": "Warner Bros. Discovery",
-    "ticker": "WBD",
-    "cik": "0001437107",
-    "index": "SP500",
-    "sector": "Communication Services",
-    "subIndustry": "Broadcasting",
-    "headquarters": "New York City, New York",
-    "dateAdded": "2022-04-11",
-    "founded": "2022 (Warner Bros. 1923)",
     "currency": "USD",
     "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   },

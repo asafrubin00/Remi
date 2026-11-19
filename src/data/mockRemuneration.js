@@ -2,8 +2,6 @@ import { enrichGovernanceData } from "./governanceData.js";
 import { getVerifiedFtseRecord } from "./manualVerifiedFtse.js";
 import { ftse100Constituents, sp500Constituents } from "./constituents.generated.js";
 
-const now = "2026-05-24T08:00:00.000Z";
-
 const baseCompanies = [
   {
     id: "bp",
@@ -280,7 +278,7 @@ const baseCompanies = [
   }
 ];
 
-function normaliseConstituentId(item) {
+export function normaliseConstituentId(item) {
   const ftseTickerIds = {
     AZN: "astrazeneca",
     BARC: "barclays",
@@ -344,7 +342,7 @@ for (const company of baseCompanies) companiesById.set(company.id, { ...companie
 
 export const companies = [...companiesById.values()].map((company) => {
   const verified = getVerifiedFtseRecord(company.id);
-  return enrichGovernanceData(verified ? { ...company, ...verified, ticker: company.ticker } : company);
+  return enrichGovernanceData(verified?.id === company.id ? { ...company, ...verified, ticker: company.ticker } : company);
 });
 
 export function allDirectors(dataset = companies) {
@@ -359,7 +357,7 @@ export function allDirectors(dataset = companies) {
       marketCap: company.marketCap,
       fxRate: company.fxRate,
       dataSource: director.source || company.scrape?.source || company.scrape?.status || "unknown",
-      lastUpdated: director.lastUpdated || company.lastUpdated || now
+      lastUpdated: director.lastUpdated || company.lastUpdated || null
     })),
   );
 }
@@ -371,6 +369,7 @@ export function flattenDirectorYear(director, year = null) {
     ...director,
     reportingYear: Number(selectedYear),
     yearsAvailable: years.map(Number),
+    ...(year && !director.years[selectedYear] ? { payRatio: null, sayOnPayPct: null } : {}),
     ...director.years[selectedYear]
   };
 }

@@ -1,10 +1,9 @@
 import * as cheerio from "cheerio";
 import { dedupeCompanyDirectors, enrichGovernanceData } from "../data/governanceData.js";
+import { sp500Constituents } from "../data/constituents.generated.js";
 
 const SEC_USER_AGENT = process.env.SEC_USER_AGENT || "Remi remuneration dashboard contact@remi.local";
 const CACHE_TTL_SECONDS = 60 * 60 * 24;
-const DATE_START = "2024-01-01";
-const DATE_END = "2025-12-31";
 
 const metadataByTicker = {
   AAPL: { id: "apple", company: "Apple Inc.", sector: "Technology", marketCap: 2900000 },
@@ -46,14 +45,18 @@ export async function scrapeSp500Company(input, options = {}) {
 
     const submissions = await fetchSubmissions(company.cikPadded);
     const proxy = findLatestDef14a(submissions);
-    if (!proxy) return errorResult(query, `No DEF 14A filing found for ${company.name} between ${DATE_START} and ${DATE_END}.`, company);
+    if (!proxy) return errorResult(query, `No DEF 14A filing found for ${company.name}.`, company);
+    const votes = votingFilings(submissions, proxy.filingDate);
+    const revision = [proxy.accessionNumber, ...votes.map((vote) => vote.accessionNumber)].join(":");
+    if (revision === options.knownRevision) return { unchanged: true };
 
     const proxyHtml = await fetchSecDocument(company.cik, proxy);
     const compensation = parseSummaryCompensationTable(proxyHtml, company);
     const directorCompensation = extractDirectorCompensationTable(proxyHtml, company, proxy.filingDate);
     const payRatio = parsePayRatio(proxyHtml, company);
-    const sayOnPayPct = await parseLatestSayOnPayPct(submissions, company);
+    const sayOnPayPct = await parseLatestSayOnPayPct(votes, company);
     const primaryCeoId = findPrimaryCeoId(compensation.directors);
+    const latestYear = String(Math.max(...compensation.directors.flatMap((director) => Object.keys(director.years).map(Number))));
 
     const executiveDirectors = compensation.directors.map((director) => ({
       ...director,
@@ -64,8 +67,11 @@ export async function scrapeSp500Company(input, options = {}) {
           year,
           {
             ...record,
-            payRatio: director.id === primaryCeoId ? payRatio : null,
-            sayOnPayPct
+            payRatio: year === latestYear && director.id === primaryCeoId ? payRatio : null,
+            sayOnPayPct: year === latestYear ? sayOnPayPct : null,
+            source: "SEC EDGAR",
+            sourceUrl: proxy.url,
+            lastUpdated: new Date().toISOString()
           }
         ]),
       ),
@@ -110,6 +116,7 @@ export async function scrapeSp500Company(input, options = {}) {
         jurisdiction: "US",
         source: "SEC EDGAR",
         filingDate: proxy.filingDate,
+        revision,
         accessionNumber: proxy.accessionNumber,
         filingUrl: proxy.url,
         parseWarnings: [
@@ -150,10 +157,19 @@ export async function scrapeSp500Batch(inputs, options = {}) {
 }
 
 async function lookupCompany(query) {
-  const tickers = await fetchCompanyTickers();
   const upper = query.toUpperCase();
   const normalizedQuery = normalize(query);
   const aliasTicker = aliases[normalizedQuery];
+  const constituent = sp500Constituents.find((item) => item.ticker === upper || item.ticker === aliasTicker || normalize(item.company) === normalizedQuery);
+  if (constituent && Number(constituent.cik)) {
+    const metadata = metadataByTicker[constituent.ticker] || {};
+    return {
+      id: metadata.id || constituent.id, name: metadata.company || constituent.company, ticker: constituent.ticker,
+      cik: String(Number(constituent.cik)), cikPadded: constituent.cik,
+      sector: metadata.sector || constituent.sector, marketCap: metadata.marketCap || null
+    };
+  }
+  const tickers = await fetchCompanyTickers();
 
   const exactTicker = tickers.find((item) => item.ticker === upper || item.ticker === aliasTicker);
   const exactName = tickers.find((item) => normalize(item.name) === normalizedQuery);
@@ -185,18 +201,14 @@ async function fetchSubmissions(cikPadded) {
   return res.json();
 }
 
-function findLatestDef14a(submissions) {
+export function findLatestDef14a(submissions) {
   const recent = submissions?.filings?.recent || {};
-  const forms = recent.form || [];
-  let latestOutsideWindow = null;
-  for (let index = 0; index < forms.length; index += 1) {
-    if (forms[index] !== "DEF 14A") continue;
-    const filingDate = recent.filingDate?.[index];
-    if (!latestOutsideWindow) latestOutsideWindow = buildFiling(submissions.cik, recent, index);
-    if (filingDate < DATE_START || filingDate > DATE_END) continue;
-    return buildFiling(submissions.cik, recent, index);
-  }
-  return latestOutsideWindow;
+  const indices = (recent.form || []).flatMap((form, index) =>
+    form === "DEF 14A" && recent.filingDate?.[index] &&
+    recent.accessionNumber?.[index] && recent.primaryDocument?.[index] ? [index] : [],
+  );
+  const index = indices.sort((a, b) => recent.filingDate[b].localeCompare(recent.filingDate[a]))[0];
+  return index == null ? null : buildFiling(submissions.cik, recent, index);
 }
 
 async function fetchSecDocument(cik, filing) {
@@ -680,7 +692,7 @@ function parsePayRatio(html, company) {
   return null;
 }
 
-async function parseLatestSayOnPayPct(submissions, company) {
+function votingFilings(submissions, proxyDate) {
   const recent = submissions?.filings?.recent || {};
   const forms = recent.form || [];
   const candidates = [];
@@ -689,10 +701,13 @@ async function parseLatestSayOnPayPct(submissions, company) {
     const form = forms[index];
     const filingDate = recent.filingDate?.[index];
     const items = recent.items?.[index] || "";
-    if (filingDate < DATE_START || filingDate > "2026-12-31") continue;
+    if (!filingDate || filingDate < proxyDate) continue;
     if (form === "8-K" && items.includes("5.07")) candidates.push(buildFiling(submissions.cik, recent, index));
   }
+  return candidates.sort((a, b) => b.filingDate.localeCompare(a.filingDate)).slice(0, 4);
+}
 
+async function parseLatestSayOnPayPct(candidates, company) {
   for (const filing of candidates) {
     try {
       const html = await fetchSecDocument(company.cik, filing);
@@ -904,6 +919,7 @@ function findPrimaryCeoId(directors) {
 
 async function secFetch(url) {
   const res = await fetch(url, {
+    signal: AbortSignal.timeout(16000),
     headers: {
       "User-Agent": SEC_USER_AGENT,
       Accept: "application/json,text/html,application/xhtml+xml"

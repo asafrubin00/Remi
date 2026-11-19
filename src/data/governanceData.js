@@ -37,13 +37,7 @@ export function enrichGovernanceData(company) {
 
   for (const feeRecord of nonExecutiveFees[company.id] || []) {
     const director = buildNonExecutiveDirector(company, feeRecord, sayOnPayPct);
-    const existingIndex = directors.findIndex((item) => item.id === director.id);
-    const sameNameIndex = directors.findIndex((item) => item.type === "non-executive" && slugify(item.name) === slugify(director.name));
-    if (existingIndex >= 0) {
-      directors[existingIndex] = director;
-    } else if (sameNameIndex >= 0) {
-      directors[sameNameIndex] = director;
-    } else {
+    if (!directors.some((item) => item.type === "non-executive" && normalizeDirectorNameKey(item.name) === normalizeDirectorNameKey(director.name))) {
       directors.push(director);
     }
   }
@@ -51,7 +45,7 @@ export function enrichGovernanceData(company) {
   return {
     ...company,
     directors: dedupeCompanyDirectors(directors, company.id),
-    sayOnPayPct: sayOnPayPct ?? company.sayOnPayPct ?? null
+    sayOnPayPct: company.sayOnPayPct ?? sayOnPayPct ?? null
   };
 }
 
@@ -143,7 +137,7 @@ function normalizeCompensationValue(value) {
   return value;
 }
 
-function normalizeDirectorNameKey(value) {
+export function normalizeDirectorNameKey(value) {
   return String(value || "")
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -179,13 +173,13 @@ function applySayOnPay(director, sayOnPayPct) {
   if (sayOnPayPct == null) return director;
   return {
     ...director,
-    sayOnPayPct,
+    sayOnPayPct: director.sayOnPayPct ?? null,
     years: Object.fromEntries(
       Object.entries(director.years || {}).map(([year, record]) => [
         year,
         {
           ...record,
-          sayOnPayPct
+          sayOnPayPct: record.sayOnPayPct ?? (Number(year) === GOVERNANCE_YEAR && !record.sourceUrl ? sayOnPayPct : null)
         }
       ]),
     )

@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { ftse100Constituents, sp500Constituents } from "../data/constituents.generated.js";
 
 export default function CompanyDirectory({ dataset, onSelect, className = "" }) {
   const [openDirectory, setOpenDirectory] = useState(null);
@@ -52,23 +51,12 @@ function DirectoryPanel({ index, label, companies, expanded, onToggle, onSelect 
 }
 
 function buildDirectories(dataset) {
-  const byIndexTicker = new Map(dataset.filter((company) => company.ticker).map((company) => [`${company.index}:${company.ticker}`, company]));
-  const byId = new Map(dataset.map((company) => [company.id, company]));
-  const byIndexName = new Map(dataset.map((company) => [`${company.index}:${company.company.toLowerCase()}`, company]));
-  const resolve = (constituent) =>
-    byIndexTicker.get(`${constituent.index}:${constituent.ticker}`) ||
-    byId.get(constituent.id) ||
-    byIndexName.get(`${constituent.index}:${constituent.company.toLowerCase()}`) ||
-    null;
-  const available = (constituents) =>
-    constituents
-      .map(resolve)
-      .filter(Boolean)
-      .filter((company, index, list) => list.findIndex((item) => item.id === company.id) === index)
+  const available = (index) =>
+    dataset.filter((company) => company.index === index && !company.archived)
       .sort((a, b) => a.company.localeCompare(b.company));
 
   return {
-    FTSE100: available(ftse100Constituents),
-    SP500: available(sp500Constituents)
+    FTSE100: available("FTSE100"),
+    SP500: available("SP500")
   };
 }

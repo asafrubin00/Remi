@@ -1,6 +1,6 @@
 {
   "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
-  "fetchedAt": "2026-06-21T17:40:53.995Z",
+  "fetchedAt": "2026-11-19T07:02:41.803Z",
   "count": 503,
   "constituents": [
     {
@@ -569,8 +569,8 @@
       "ticker": "APP",
       "cik": "0001751008",
       "index": "SP500",
-      "sector": "Information Technology",
-      "subIndustry": "Application Software",
+      "sector": "Communication Services",
+      "subIndustry": "Advertising",
       "headquarters": "Palo Alto, California",
       "dateAdded": "2025-09-22",
       "founded": "2012",
@@ -742,20 +742,6 @@
       "headquarters": "Memphis, Tennessee",
       "dateAdded": "1997-01-02",
       "founded": "1979",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
-      "id": "avalonbay-communities",
-      "company": "AvalonBay Communities",
-      "ticker": "AVB",
-      "cik": "0000915912",
-      "index": "SP500",
-      "sector": "Real Estate",
-      "subIndustry": "Multi-Family Residential REITs",
-      "headquarters": "Arlington, Virginia",
-      "dateAdded": "2007-01-10",
-      "founded": "1978",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -956,6 +942,20 @@
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
     {
+      "id": "bloom-energy",
+      "company": "Bloom Energy",
+      "ticker": "BE",
+      "cik": "0001664703",
+      "index": "SP500",
+      "sector": "Industrials",
+      "subIndustry": "Electrical Components & Equipment",
+      "headquarters": "San Jose, California",
+      "dateAdded": "2026-09-21",
+      "founded": "2001",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
       "id": "bny-mellon",
       "company": "BNY Mellon",
       "ticker": "BNY",
@@ -965,7 +965,7 @@
       "subIndustry": "Asset Management & Custody Banks",
       "headquarters": "New York City, New York",
       "dateAdded": "1995-03-31",
-      "founded": "1784",
+      "founded": "2007 (1784)",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -1078,20 +1078,6 @@
       "headquarters": "Louisville, Kentucky",
       "dateAdded": "1982-10-31",
       "founded": "1870",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
-      "id": "builders-firstsource",
-      "company": "Builders FirstSource",
-      "ticker": "BLDR",
-      "cik": "0001316835",
-      "index": "SP500",
-      "sector": "Industrials",
-      "subIndustry": "Building Products",
-      "headquarters": "Irving, Texas",
-      "dateAdded": "2023-12-18",
-      "founded": "1998",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -1698,20 +1684,6 @@
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
     {
-      "id": "conagra-brands",
-      "company": "Conagra Brands",
-      "ticker": "CAG",
-      "cik": "0000023217",
-      "index": "SP500",
-      "sector": "Consumer Staples",
-      "subIndustry": "Packaged Foods & Meats",
-      "headquarters": "Chicago, Illinois",
-      "dateAdded": "1983-08-31",
-      "founded": "1919",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
       "id": "conocophillips",
       "company": "ConocoPhillips",
       "ticker": "COP",
@@ -1820,20 +1792,6 @@
       "headquarters": "Atlanta, Georgia",
       "dateAdded": "2018-06-20",
       "founded": "2000",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
-      "id": "corteva",
-      "company": "Corteva",
-      "ticker": "CTVA",
-      "cik": "0001755672",
-      "index": "SP500",
-      "sector": "Materials",
-      "subIndustry": "Fertilizers & Agricultural Chemicals",
-      "headquarters": "Indianapolis, Indiana",
-      "dateAdded": "2019-06-03",
-      "founded": "2019",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -2263,8 +2221,8 @@
       "ticker": "DD",
       "cik": "0001666700",
       "index": "SP500",
-      "sector": "Materials",
-      "subIndustry": "Specialty Chemicals",
+      "sector": "Industrials",
+      "subIndustry": "Industrial Conglomerates",
       "headquarters": "Wilmington, Delaware",
       "dateAdded": "2019-06-03",
       "founded": "2017 (1802)",
@@ -2302,7 +2260,7 @@
     {
       "id": "echostar",
       "company": "EchoStar",
-      "ticker": "SATS",
+      "ticker": "ECHO",
       "cik": "0001415404",
       "index": "SP500",
       "sector": "Communication Services",
@@ -2352,20 +2310,6 @@
       "headquarters": "Irvine, California",
       "dateAdded": "2011-04-01",
       "founded": "1958",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
-      "id": "electronic-arts",
-      "company": "Electronic Arts",
-      "ticker": "EA",
-      "cik": "0000712515",
-      "index": "SP500",
-      "sector": "Communication Services",
-      "subIndustry": "Interactive Home Entertainment",
-      "headquarters": "Redwood City, California",
-      "dateAdded": "2002-07-22",
-      "founded": "1982",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -2482,20 +2426,6 @@
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
     {
-      "id": "equity-residential",
-      "company": "Equity Residential",
-      "ticker": "EQR",
-      "cik": "0000906107",
-      "index": "SP500",
-      "sector": "Real Estate",
-      "subIndustry": "Multi-Family Residential REITs",
-      "headquarters": "Chicago, Illinois",
-      "dateAdded": "2001-12-03",
-      "founded": "1969",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
       "id": "erie-indemnity",
       "company": "Erie Indemnity",
       "ticker": "ERIE",
@@ -2562,6 +2492,20 @@
       "headquarters": "Kansas City, Missouri",
       "dateAdded": "2018-06-05",
       "founded": "1909",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
+      "id": "everpure",
+      "company": "Everpure",
+      "ticker": "P",
+      "cik": "0001474432",
+      "index": "SP500",
+      "sector": "Information Technology",
+      "subIndustry": "Technology Hardware, Storage & Peripherals",
+      "headquarters": "Santa Clara, California",
+      "dateAdded": "2026-09-21",
+      "founded": "2009",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -2653,7 +2597,7 @@
       "id": "exxonmobil",
       "company": "ExxonMobil",
       "ticker": "XOM",
-      "cik": "0000034088",
+      "cik": "0002115436",
       "index": "SP500",
       "sector": "Energy",
       "subIndustry": "Integrated Oil & Gas",
@@ -2758,6 +2702,20 @@
       "headquarters": "Memphis, Tennessee",
       "dateAdded": "2026-06-01",
       "founded": "1982",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
+      "id": "ferguson-enterprises",
+      "company": "Ferguson Enterprises",
+      "ticker": "FERG",
+      "cik": "0002011641",
+      "index": "SP500",
+      "sector": "Industrials",
+      "subIndustry": "Trading Companies & Distributors",
+      "headquarters": "Newport News, Virginia",
+      "dateAdded": "2026-08-05",
+      "founded": "1953",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -3034,7 +2992,7 @@
       "cik": "0001474735",
       "index": "SP500",
       "sector": "Industrials",
-      "subIndustry": "Electrical Components & Equipment",
+      "subIndustry": "Heavy Electrical Equipment",
       "headquarters": "Waukesha, Wisconsin",
       "dateAdded": "2021-03-22",
       "founded": "1959",
@@ -3308,8 +3266,22 @@
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
     {
-      "id": "honeywell",
-      "company": "Honeywell",
+      "id": "honeywell-aerospace",
+      "company": "Honeywell Aerospace",
+      "ticker": "HONA",
+      "cik": "0002089271",
+      "index": "SP500",
+      "sector": "Industrials",
+      "subIndustry": "Aerospace & Defense",
+      "headquarters": "Phoenix, Arizona",
+      "dateAdded": "2026-06-29",
+      "founded": "1914",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
+      "id": "honeywell-technologies",
+      "company": "Honeywell Technologies",
       "ticker": "HON",
       "cik": "0000773840",
       "index": "SP500",
@@ -3486,6 +3458,20 @@
       "headquarters": "Glenview, Illinois",
       "dateAdded": "1986-02-28",
       "founded": "1912",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
+      "id": "illumina-inc",
+      "company": "Illumina, Inc.",
+      "ticker": "ILMN",
+      "cik": "0001110803",
+      "index": "SP500",
+      "sector": "Health Care",
+      "subIndustry": "Life Sciences Tools & Services",
+      "headquarters": "San Diego, California",
+      "dateAdded": "2026-09-21",
+      "founded": "1998",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -3794,20 +3780,6 @@
       "headquarters": "New York City, New York",
       "dateAdded": "1975-06-30",
       "founded": "2000 (1799 / 1871)",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
-      "id": "kenvue",
-      "company": "Kenvue",
-      "ticker": "KVUE",
-      "cik": "0001944048",
-      "index": "SP500",
-      "sector": "Consumer Staples",
-      "subIndustry": "Personal Care Products",
-      "headquarters": "Skillman, New Jersey",
-      "dateAdded": "2023-08-25",
-      "founded": "2022 (Johnson & Johnson spinoff)",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -4316,8 +4288,8 @@
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
     {
-      "id": "mckesson-corporation",
-      "company": "McKesson Corporation",
+      "id": "mckesson",
+      "company": "McKesson",
       "ticker": "MCK",
       "cik": "0000927653",
       "index": "SP500",
@@ -4484,20 +4456,6 @@
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
     {
-      "id": "molson-coors-beverage-company",
-      "company": "Molson Coors Beverage Company",
-      "ticker": "TAP",
-      "cik": "0000024545",
-      "index": "SP500",
-      "sector": "Consumer Staples",
-      "subIndustry": "Brewers",
-      "headquarters": "Chicago, Illinois",
-      "dateAdded": "1976-06-30",
-      "founded": "2005 (Molson 1786, Coors 1873)",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
       "id": "mondelez-international",
       "company": "Mondelez International",
       "ticker": "MDLZ",
@@ -4596,8 +4554,8 @@
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
     {
-      "id": "msci-inc",
-      "company": "MSCI Inc.",
+      "id": "msci",
+      "company": "MSCI",
       "ticker": "MSCI",
       "cik": "0001408198",
       "index": "SP500",
@@ -4877,7 +4835,7 @@
     },
     {
       "id": "o-reilly-automotive",
-      "company": "O’Reilly Automotive",
+      "company": "O'Reilly Automotive",
       "ticker": "ORLY",
       "cik": "0000898173",
       "index": "SP500",
@@ -4900,6 +4858,20 @@
       "headquarters": "Houston, Texas",
       "dateAdded": "1957-03-04",
       "founded": "1920",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
+      "id": "okta-inc",
+      "company": "Okta, Inc.",
+      "ticker": "OKTA",
+      "cik": "0001660134",
+      "index": "SP500",
+      "sector": "Information Technology",
+      "subIndustry": "Application Software",
+      "headquarters": "San Francisco, California",
+      "dateAdded": "2026-11-04",
+      "founded": "2009",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -5040,20 +5012,6 @@
       "headquarters": "Santa Clara, California",
       "dateAdded": "2023-06-20",
       "founded": "2005",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
-      "id": "paramount-skydance-corporation",
-      "company": "Paramount Skydance Corporation",
-      "ticker": "PSKY",
-      "cik": "0002041610",
-      "index": "SP500",
-      "sector": "Communication Services",
-      "subIndustry": "Movies & Entertainment",
-      "headquarters": "Los Angeles, California",
-      "dateAdded": "1994-09-30",
-      "founded": "2025 (Paramount Pictures 1912)",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -5464,6 +5422,20 @@
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
     {
+      "id": "reddit",
+      "company": "Reddit",
+      "ticker": "RDDT",
+      "cik": "0001713445",
+      "index": "SP500",
+      "sector": "Communication Services",
+      "subIndustry": "Interactive Media & Services",
+      "headquarters": "San Francisco, California",
+      "dateAdded": "2026-08-18",
+      "founded": "2005",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
       "id": "regency-centers",
       "company": "Regency Centers",
       "ticker": "REG",
@@ -5782,6 +5754,20 @@
       "headquarters": "Indianapolis, Indiana",
       "dateAdded": "2002-06-26",
       "founded": "2003",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
+      "id": "skydance",
+      "company": "Skydance",
+      "ticker": "SKYD",
+      "cik": "0002041610",
+      "index": "SP500",
+      "sector": "Communication Services",
+      "subIndustry": "Movies & Entertainment",
+      "headquarters": "New York City, New York",
+      "dateAdded": "1994-09-30",
+      "founded": "2025 (Paramount Pictures 1912)",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -6248,20 +6234,6 @@
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
     {
-      "id": "trade-desk-the",
-      "company": "Trade Desk (The)",
-      "ticker": "TTD",
-      "cik": "0001671933",
-      "index": "SP500",
-      "sector": "Communication Services",
-      "subIndustry": "Advertising",
-      "headquarters": "Ventura, California",
-      "dateAdded": "2025-07-18",
-      "founded": "2009",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
       "id": "trane-technologies",
       "company": "Trane Technologies",
       "ticker": "TT",
@@ -6328,6 +6300,20 @@
       "headquarters": "Charlotte, North Carolina",
       "dateAdded": "1997-12-04",
       "founded": "1872",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
+      "id": "twilio",
+      "company": "Twilio",
+      "ticker": "TWLO",
+      "cik": "0001447669",
+      "index": "SP500",
+      "sector": "Information Technology",
+      "subIndustry": "Systems Software",
+      "headquarters": "San Francisco, California",
+      "dateAdded": "2026-10-06",
+      "founded": "2008",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -6682,6 +6668,20 @@
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
     {
+      "id": "vivmark-residential",
+      "company": "Vivmark Residential",
+      "ticker": "VMRK",
+      "cik": "0000906107",
+      "index": "SP500",
+      "sector": "Real Estate",
+      "subIndustry": "Multi-Family Residential REITs",
+      "headquarters": "Chicago, Illinois",
+      "dateAdded": "2001-12-03",
+      "founded": "1969",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
       "id": "vulcan-materials-company",
       "company": "Vulcan Materials Company",
       "ticker": "VMC",
@@ -6692,6 +6692,20 @@
       "headquarters": "Birmingham, Alabama",
       "dateAdded": "1999-06-30",
       "founded": "1909",
+      "currency": "USD",
+      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    },
+    {
+      "id": "vylor",
+      "company": "Vylor",
+      "ticker": "VYLR",
+      "cik": "0002128626",
+      "index": "SP500",
+      "sector": "Consumer Staples",
+      "subIndustry": "Agricultural Products & Services",
+      "headquarters": "Johnston, Iowa",
+      "dateAdded": "2026-10-01",
+      "founded": "2026",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },
@@ -6762,20 +6776,6 @@
       "headquarters": "Burbank, California",
       "dateAdded": "1976-06-30",
       "founded": "1923",
-      "currency": "USD",
-      "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    },
-    {
-      "id": "warner-bros-discovery",
-      "company": "Warner Bros. Discovery",
-      "ticker": "WBD",
-      "cik": "0001437107",
-      "index": "SP500",
-      "sector": "Communication Services",
-      "subIndustry": "Broadcasting",
-      "headquarters": "New York City, New York",
-      "dateAdded": "2022-04-11",
-      "founded": "2022 (Warner Bros. 1923)",
       "currency": "USD",
       "source": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     },

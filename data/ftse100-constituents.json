@@ -1,6 +1,6 @@
 {
   "source": "https://en.wikipedia.org/wiki/FTSE_100_Index",
-  "fetchedAt": "2026-06-21T17:40:53.990Z",
+  "fetchedAt": "2026-11-19T07:02:41.801Z",
   "count": 100,
   "constituents": [
     {
@@ -8,7 +8,7 @@
       "company": "3i",
       "ticker": "III",
       "index": "FTSE100",
-      "sector": "Financial services",
+      "sector": "GB00B1YW4409",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -17,7 +17,7 @@
       "company": "Aberdeen Group",
       "ticker": "ABDN",
       "index": "FTSE100",
-      "sector": "Financial Services",
+      "sector": "GB00BF8Q6K64",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -26,7 +26,7 @@
       "company": "Admiral Group",
       "ticker": "ADM",
       "index": "FTSE100",
-      "sector": "Insurance",
+      "sector": "GB00B02J6398",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -35,7 +35,7 @@
       "company": "Airtel Africa",
       "ticker": "AAF",
       "index": "FTSE100",
-      "sector": "Telecommunications services",
+      "sector": "GB00BKDRYJ47",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -44,7 +44,7 @@
       "company": "Alliance Witan",
       "ticker": "ALW",
       "index": "FTSE100",
-      "sector": "Investment Trusts",
+      "sector": "GB00B11V7W98",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -53,7 +53,7 @@
       "company": "Anglo American plc",
       "ticker": "AAL",
       "index": "FTSE100",
-      "sector": "Mining",
+      "sector": "GB00BTK05J60",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -62,7 +62,7 @@
       "company": "Antofagasta plc",
       "ticker": "ANTO",
       "index": "FTSE100",
-      "sector": "Mining",
+      "sector": "GB0000456144",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -71,7 +71,7 @@
       "company": "Associated British Foods",
       "ticker": "ABF",
       "index": "FTSE100",
-      "sector": "Food & tobacco",
+      "sector": "GB0006731235",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -80,7 +80,7 @@
       "company": "AstraZeneca",
       "ticker": "AZN",
       "index": "FTSE100",
-      "sector": "Pharmaceuticals & biotechnology",
+      "sector": "GB0009895292",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -89,7 +89,7 @@
       "company": "Autotrader Group",
       "ticker": "AUTO",
       "index": "FTSE100",
-      "sector": "Media",
+      "sector": "GB00BVYVFW23",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -98,7 +98,7 @@
       "company": "Aviva",
       "ticker": "AV",
       "index": "FTSE100",
-      "sector": "Life insurance",
+      "sector": "GB00BPQY8M80",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -107,7 +107,7 @@
       "company": "Babcock International",
       "ticker": "BAB",
       "index": "FTSE100",
-      "sector": "Aerospace & defence",
+      "sector": "GB0009697037",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -116,7 +116,16 @@
       "company": "BAE Systems",
       "ticker": "BA",
       "index": "FTSE100",
-      "sector": "Aerospace & defence",
+      "sector": "GB0002634946",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "balfour-beatty",
+      "company": "Balfour Beatty",
+      "ticker": "BBY",
+      "index": "FTSE100",
+      "sector": "GB0000961622",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -125,7 +134,7 @@
       "company": "Barclays",
       "ticker": "BARC",
       "index": "FTSE100",
-      "sector": "Banks",
+      "sector": "GB0031348658",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -134,16 +143,7 @@
       "company": "Barratt Redrow",
       "ticker": "BTRW",
       "index": "FTSE100",
-      "sector": "Household goods & home construction",
-      "currency": "GBP",
-      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
-    },
-    {
-      "id": "beazley",
-      "company": "Beazley",
-      "ticker": "BEZ",
-      "index": "FTSE100",
-      "sector": "Insurance",
+      "sector": "GB0000811801",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -152,7 +152,7 @@
       "company": "BP",
       "ticker": "BP",
       "index": "FTSE100",
-      "sector": "Oil & gas producers",
+      "sector": "GB0007980591",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -161,7 +161,7 @@
       "company": "British American Tobacco",
       "ticker": "BATS",
       "index": "FTSE100",
-      "sector": "Tobacco",
+      "sector": "GB0002875804",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -170,7 +170,7 @@
       "company": "British Land",
       "ticker": "BLND",
       "index": "FTSE100",
-      "sector": "Real estate",
+      "sector": "GB0001367019",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -179,7 +179,7 @@
       "company": "BT Group",
       "ticker": "BTA",
       "index": "FTSE100",
-      "sector": "Telecommunications services",
+      "sector": "GB0030913577",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -188,7 +188,7 @@
       "company": "Bunzl",
       "ticker": "BNZL",
       "index": "FTSE100",
-      "sector": "Support services",
+      "sector": "GB00B0744B38",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -197,7 +197,7 @@
       "company": "Burberry Group",
       "ticker": "BRBY",
       "index": "FTSE100",
-      "sector": "Personal goods",
+      "sector": "GB0031743007",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -206,7 +206,7 @@
       "company": "Centrica",
       "ticker": "CNA",
       "index": "FTSE100",
-      "sector": "Multiline utilities",
+      "sector": "GB00B033F229",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -215,7 +215,7 @@
       "company": "Coca-Cola Europacific Partners",
       "ticker": "CCEP",
       "index": "FTSE100",
-      "sector": "Beverages",
+      "sector": "GB00BDCPN049",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -224,7 +224,7 @@
       "company": "Coca-Cola HBC",
       "ticker": "CCH",
       "index": "FTSE100",
-      "sector": "Beverages",
+      "sector": "CH0198251305",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -233,7 +233,7 @@
       "company": "Compass Group",
       "ticker": "CPG",
       "index": "FTSE100",
-      "sector": "Support services",
+      "sector": "GB00BD6K4575",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -242,7 +242,7 @@
       "company": "Computacenter",
       "ticker": "CCC",
       "index": "FTSE100",
-      "sector": "Software & Computer Services",
+      "sector": "GB00BV9FP302",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -251,7 +251,7 @@
       "company": "Convatec",
       "ticker": "CTEC",
       "index": "FTSE100",
-      "sector": "Health care equipment & supplies",
+      "sector": "GB00BD3VFW73",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -260,16 +260,16 @@
       "company": "Croda International",
       "ticker": "CRDA",
       "index": "FTSE100",
-      "sector": "Chemicals",
+      "sector": "GB00BJFFLV09",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
     {
-      "id": "dcc-plc",
-      "company": "DCC plc",
+      "id": "dcc-energy",
+      "company": "DCC Energy",
       "ticker": "DCC",
       "index": "FTSE100",
-      "sector": "Support services",
+      "sector": "IE0002424939",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -278,7 +278,7 @@
       "company": "Diageo",
       "ticker": "DGE",
       "index": "FTSE100",
-      "sector": "Beverages",
+      "sector": "GB0002374006",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -287,7 +287,16 @@
       "company": "Diploma",
       "ticker": "DPLM",
       "index": "FTSE100",
-      "sector": "Industrial Support services",
+      "sector": "GB0001826634",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "easyjet",
+      "company": "EasyJet",
+      "ticker": "EZJ",
+      "index": "FTSE100",
+      "sector": "GB00B7KR2P84",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -296,16 +305,7 @@
       "company": "Endeavour Mining",
       "ticker": "EDV",
       "index": "FTSE100",
-      "sector": "Mining",
-      "currency": "GBP",
-      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
-    },
-    {
-      "id": "entain",
-      "company": "Entain",
-      "ticker": "ENT",
-      "index": "FTSE100",
-      "sector": "Travel & leisure",
+      "sector": "GB00BL6K5J42",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -314,7 +314,7 @@
       "company": "Experian",
       "ticker": "EXPN",
       "index": "FTSE100",
-      "sector": "Support services",
+      "sector": "GB00B19NLV48",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -323,7 +323,7 @@
       "company": "F & C Investment Trust",
       "ticker": "FCIT",
       "index": "FTSE100",
-      "sector": "Collective investments",
+      "sector": "GB00BS88V647",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -332,7 +332,7 @@
       "company": "Fresnillo plc",
       "ticker": "FRES",
       "index": "FTSE100",
-      "sector": "Mining",
+      "sector": "GB00B2QPKJ12",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -341,7 +341,7 @@
       "company": "Games Workshop",
       "ticker": "GAW",
       "index": "FTSE100",
-      "sector": "Leisure Goods",
+      "sector": "GB0003718474",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -350,7 +350,7 @@
       "company": "Glencore",
       "ticker": "GLEN",
       "index": "FTSE100",
-      "sector": "Mining",
+      "sector": "JE00B4T3BW64",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -359,7 +359,7 @@
       "company": "GSK plc",
       "ticker": "GSK",
       "index": "FTSE100",
-      "sector": "Pharmaceuticals & biotechnology",
+      "sector": "GB00BN7SWP63",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -368,7 +368,7 @@
       "company": "Haleon",
       "ticker": "HLN",
       "index": "FTSE100",
-      "sector": "Pharmaceuticals & biotechnology",
+      "sector": "GB00BMX86B70",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -377,7 +377,7 @@
       "company": "Halma plc",
       "ticker": "HLMA",
       "index": "FTSE100",
-      "sector": "Electronic equipment & parts",
+      "sector": "GB0004052071",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -386,7 +386,7 @@
       "company": "Hiscox",
       "ticker": "HSX",
       "index": "FTSE100",
-      "sector": "Non-life Insurance",
+      "sector": "BMG4593F1389",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -395,7 +395,7 @@
       "company": "Howdens Joinery",
       "ticker": "HWDN",
       "index": "FTSE100",
-      "sector": "Homebuilding & construction supplies",
+      "sector": "GB0005576813",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -404,7 +404,7 @@
       "company": "HSBC",
       "ticker": "HSBA",
       "index": "FTSE100",
-      "sector": "Banks",
+      "sector": "GB0005405286",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -413,7 +413,7 @@
       "company": "ICG",
       "ticker": "ICG",
       "index": "FTSE100",
-      "sector": "Financial services",
+      "sector": "GB00BYT1DJ19",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -422,7 +422,7 @@
       "company": "IG Group",
       "ticker": "IGG",
       "index": "FTSE100",
-      "sector": "Financial services",
+      "sector": "GB00B06QFB75",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -431,7 +431,7 @@
       "company": "IHG Hotels & Resorts",
       "ticker": "IHG",
       "index": "FTSE100",
-      "sector": "Travel & leisure",
+      "sector": "GB00BHJYC057",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -440,7 +440,7 @@
       "company": "IMI",
       "ticker": "IMI",
       "index": "FTSE100",
-      "sector": "Industrial engineering",
+      "sector": "GB00BGLP8L22",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -449,7 +449,7 @@
       "company": "Imperial Brands",
       "ticker": "IMB",
       "index": "FTSE100",
-      "sector": "Tobacco",
+      "sector": "GB0004544929",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -458,7 +458,7 @@
       "company": "Informa",
       "ticker": "INF",
       "index": "FTSE100",
-      "sector": "Media",
+      "sector": "GB00BMJ6DW54",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -467,7 +467,7 @@
       "company": "International Airlines Group",
       "ticker": "IAG",
       "index": "FTSE100",
-      "sector": "Travel & leisure",
+      "sector": "ES0177542018",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -476,7 +476,7 @@
       "company": "Intertek",
       "ticker": "ITRK",
       "index": "FTSE100",
-      "sector": "Support services",
+      "sector": "GB0031638363",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -485,7 +485,16 @@
       "company": "Investec",
       "ticker": "INVP",
       "index": "FTSE100",
-      "sector": "Financial Services",
+      "sector": "GB00B17BBQ50",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "ithaca-energy",
+      "company": "Ithaca Energy",
+      "ticker": "ITH",
+      "index": "FTSE100",
+      "sector": "GB00BPJHV584",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -494,7 +503,7 @@
       "company": "JD Sports",
       "ticker": "JD",
       "index": "FTSE100",
-      "sector": "General retailers",
+      "sector": "GB00BM8Q5M07",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -503,7 +512,7 @@
       "company": "Kingfisher plc",
       "ticker": "KGF",
       "index": "FTSE100",
-      "sector": "Retailers",
+      "sector": "GB0033195214",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -512,7 +521,7 @@
       "company": "Land Securities",
       "ticker": "LAND",
       "index": "FTSE100",
-      "sector": "Real estate investment trusts",
+      "sector": "GB00BYW0PQ60",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -521,7 +530,7 @@
       "company": "Legal & General",
       "ticker": "LGEN",
       "index": "FTSE100",
-      "sector": "Life insurance",
+      "sector": "GB0005603997",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -530,7 +539,7 @@
       "company": "Lion Finance Group",
       "ticker": "BGEO",
       "index": "FTSE100",
-      "sector": "Banking Services",
+      "sector": "GB00BF4HYT85",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -539,7 +548,7 @@
       "company": "Lloyds Banking Group",
       "ticker": "LLOY",
       "index": "FTSE100",
-      "sector": "Banks",
+      "sector": "GB0008706128",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -548,7 +557,7 @@
       "company": "London Stock Exchange Group",
       "ticker": "LSEG",
       "index": "FTSE100",
-      "sector": "Financial services",
+      "sector": "GB00B0SWJX34",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -557,7 +566,7 @@
       "company": "LondonMetric Property",
       "ticker": "LMP",
       "index": "FTSE100",
-      "sector": "Real Estate Investment Trusts",
+      "sector": "GB00B4WFW713",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -566,7 +575,7 @@
       "company": "M&G",
       "ticker": "MNG",
       "index": "FTSE100",
-      "sector": "Financial services",
+      "sector": "GB00BKFB1C65",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -575,7 +584,7 @@
       "company": "Marks & Spencer",
       "ticker": "MKS",
       "index": "FTSE100",
-      "sector": "Food & drug retailing",
+      "sector": "GB0031274896",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -584,7 +593,7 @@
       "company": "Melrose Industries",
       "ticker": "MRO",
       "index": "FTSE100",
-      "sector": "Aerospace & defence",
+      "sector": "GB00BNGDN821",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -593,7 +602,7 @@
       "company": "Metlen Energy & Metals",
       "ticker": "MTLN",
       "index": "FTSE100",
-      "sector": "Multiline utilities",
+      "sector": "GB00BTQGS779",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -602,7 +611,7 @@
       "company": "National Grid plc",
       "ticker": "NG",
       "index": "FTSE100",
-      "sector": "Multiline utilities",
+      "sector": "GB00BDR05C01",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -611,7 +620,7 @@
       "company": "NatWest Group",
       "ticker": "NWG",
       "index": "FTSE100",
-      "sector": "Banks",
+      "sector": "GB00BM8PJY71",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -620,7 +629,7 @@
       "company": "Next plc",
       "ticker": "NXT",
       "index": "FTSE100",
-      "sector": "General retailers",
+      "sector": "GB0032089863",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -629,7 +638,7 @@
       "company": "Pearson plc",
       "ticker": "PSON",
       "index": "FTSE100",
-      "sector": "Media",
+      "sector": "GB0006776081",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -638,16 +647,7 @@
       "company": "Pershing Square Holdings",
       "ticker": "PSH",
       "index": "FTSE100",
-      "sector": "Financial services",
-      "currency": "GBP",
-      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
-    },
-    {
-      "id": "persimmon",
-      "company": "Persimmon",
-      "ticker": "PSN",
-      "index": "FTSE100",
-      "sector": "Household goods & home construction",
+      "sector": "GG00BPFJTF46",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -656,7 +656,7 @@
       "company": "Polar Capital Technology Trust",
       "ticker": "PCT",
       "index": "FTSE100",
-      "sector": "Investment trusts",
+      "sector": "GB00BR3YV268",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -665,7 +665,7 @@
       "company": "Prudential plc",
       "ticker": "PRU",
       "index": "FTSE100",
-      "sector": "Life insurance",
+      "sector": "GB0007099541",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -674,7 +674,7 @@
       "company": "Reckitt",
       "ticker": "RKT",
       "index": "FTSE100",
-      "sector": "Household goods & home construction",
+      "sector": "GB00BSZBP530",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -683,7 +683,7 @@
       "company": "RELX",
       "ticker": "REL",
       "index": "FTSE100",
-      "sector": "Media",
+      "sector": "GB00B2B0DG97",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -692,7 +692,7 @@
       "company": "Rentokil Initial",
       "ticker": "RTO",
       "index": "FTSE100",
-      "sector": "Support services",
+      "sector": "GB00B082RF11",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -701,7 +701,7 @@
       "company": "Rio Tinto",
       "ticker": "RIO",
       "index": "FTSE100",
-      "sector": "Mining",
+      "sector": "GB0007188757",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -710,7 +710,7 @@
       "company": "Rolls-Royce Holdings",
       "ticker": "RR",
       "index": "FTSE100",
-      "sector": "Aerospace & defence",
+      "sector": "GB00B63H8491",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -719,7 +719,7 @@
       "company": "Sage Group",
       "ticker": "SGE",
       "index": "FTSE100",
-      "sector": "Software & computer services",
+      "sector": "GB00B8C3BL03",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -728,16 +728,7 @@
       "company": "Sainsbury's",
       "ticker": "SBRY",
       "index": "FTSE100",
-      "sector": "Food & drug retailing",
-      "currency": "GBP",
-      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
-    },
-    {
-      "id": "schroders",
-      "company": "Schroders",
-      "ticker": "SDR",
-      "index": "FTSE100",
-      "sector": "Financial services",
+      "sector": "GB00B019KW72",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -746,7 +737,7 @@
       "company": "Scottish Mortgage Investment Trust",
       "ticker": "SMT",
       "index": "FTSE100",
-      "sector": "Collective investments",
+      "sector": "GB00BLDYK618",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -755,7 +746,7 @@
       "company": "Segro",
       "ticker": "SGRO",
       "index": "FTSE100",
-      "sector": "Real estate investment trusts",
+      "sector": "GB00B5ZN1N88",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -764,7 +755,7 @@
       "company": "Severn Trent",
       "ticker": "SVT",
       "index": "FTSE100",
-      "sector": "Multiline utilities",
+      "sector": "GB00B1FH8J72",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -773,7 +764,7 @@
       "company": "Shell plc",
       "ticker": "SHEL",
       "index": "FTSE100",
-      "sector": "Oil & gas producers",
+      "sector": "GB00BP6MXD84",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -782,7 +773,7 @@
       "company": "Smith & Nephew",
       "ticker": "SN",
       "index": "FTSE100",
-      "sector": "Health care equipment & supplies",
+      "sector": "GB0009223206",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -791,7 +782,7 @@
       "company": "Smiths Group",
       "ticker": "SMIN",
       "index": "FTSE100",
-      "sector": "General industrials",
+      "sector": "GB00B1WY2338",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -800,7 +791,7 @@
       "company": "Spirax Group",
       "ticker": "SPX",
       "index": "FTSE100",
-      "sector": "Industrial engineering",
+      "sector": "GB00BWFGQN14",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -809,7 +800,7 @@
       "company": "SSE plc",
       "ticker": "SSE",
       "index": "FTSE100",
-      "sector": "Electrical utilities & independent power producers",
+      "sector": "GB0007908733",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -818,7 +809,7 @@
       "company": "St. James's Place",
       "ticker": "STJ",
       "index": "FTSE100",
-      "sector": "Financial services",
+      "sector": "GB0007669376",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -827,7 +818,7 @@
       "company": "Standard Chartered",
       "ticker": "STAN",
       "index": "FTSE100",
-      "sector": "Banks",
+      "sector": "GB0004082847",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -836,7 +827,7 @@
       "company": "Standard Life",
       "ticker": "SDLF",
       "index": "FTSE100",
-      "sector": "Life insurance",
+      "sector": "GB00BGXQNP29",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -845,7 +836,7 @@
       "company": "Tesco",
       "ticker": "TSCO",
       "index": "FTSE100",
-      "sector": "Food & drug retailing",
+      "sector": "GB00BLGZ9862",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -854,7 +845,7 @@
       "company": "Tritax Big Box REIT",
       "ticker": "BBOX",
       "index": "FTSE100",
-      "sector": "Real Estate Investment Trusts",
+      "sector": "GB00BG49KP99",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -863,7 +854,7 @@
       "company": "Unilever",
       "ticker": "ULVR",
       "index": "FTSE100",
-      "sector": "Personal goods",
+      "sector": "GB00BVZK7T90",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -872,7 +863,7 @@
       "company": "United Utilities",
       "ticker": "UU",
       "index": "FTSE100",
-      "sector": "Multiline utilities",
+      "sector": "GB00B39J2M42",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -881,16 +872,16 @@
       "company": "Vodafone Group",
       "ticker": "VOD",
       "index": "FTSE100",
-      "sector": "Mobile telecommunications",
+      "sector": "GB00BH4HKS39",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
     {
-      "id": "weir-group",
-      "company": "Weir Group",
+      "id": "weir",
+      "company": "Weir",
       "ticker": "WEIR",
       "index": "FTSE100",
-      "sector": "Industrial goods and services",
+      "sector": "GB0009465807",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     },
@@ -899,7 +890,16 @@
       "company": "Whitbread",
       "ticker": "WTB",
       "index": "FTSE100",
-      "sector": "Retail hospitality",
+      "sector": "GB00B1KJJ408",
+      "currency": "GBP",
+      "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
+    },
+    {
+      "id": "wpp",
+      "company": "WPP",
+      "ticker": "WPP",
+      "index": "FTSE100",
+      "sector": "JE00B8KF9B49",
       "currency": "GBP",
       "source": "https://en.wikipedia.org/wiki/FTSE_100_Index"
     }

@@ -17,7 +17,7 @@ const ftseMetadata = {
     companyNumber: "00102498",
     annualReportUrl:
       "https://www.bp.com/content/dam/bp/business-sites/en/global/corporate/pdfs/investors/bp-annual-report-and-form-20f-2024.pdf?dm_i=1PGC%2C8VK6J%2C46ED6U%2C10Z50K%2C1",
-    annualReportPageUrl: "https://www.bp.com/en/global/corporate/investors/results-reporting-and-presentations/annual-report.html"
+    annualReportPageUrl: "https://www.bp.com/en-GB/investors/results-reporting-and-presentations/annual-report/directors-remuneration-report"
   },
   shell: {
     id: "shell",
@@ -28,7 +28,7 @@ const ftseMetadata = {
     companyNumber: "04366849",
     annualReportUrl:
       "https://www.shell.com/investors/results-and-reporting/annual-report-archive/_jcr_content/root/main/section_812377294/tabs/tab_copy/text.multi.stream/1752580693041/6c20b8111738b9a590ba145f0d1c4fa0e530dae0/shell-annual-report-2024.pdf",
-    annualReportPageUrl: "https://www.shell.com/investors/results-and-reporting/annual-report-archive.html"
+    annualReportPageUrl: "https://www.shell.com/investors/results-and-reporting/annual-report"
   },
   hsbc: {
     id: "hsbc",
@@ -37,6 +37,7 @@ const ftseMetadata = {
     sector: "Financial Services",
     marketCap: 142000,
     companyNumber: "00617987",
+    annualReportPageUrl: "https://www.hsbc.com/investors/results-and-announcements/annual-report",
     annualReportUrl: "https://www.hsbc.com/-/files/hsbc/investors/hsbc-results/2024/annual/pdfs/hsbc-holdings-plc/250219-annual-report-and-accounts-2024.pdf"
   },
   barclays: {
@@ -111,7 +112,7 @@ export async function scrapeFtseCompany(input, options = {}) {
   if (!query) return errorResult(query, "Missing company query.");
 
   const verifiedRecord = getVerifiedFtseRecord(query);
-  if (verifiedRecord) return enrichGovernanceData(verifiedRecord);
+  if (verifiedRecord && !options.skipCache) return enrichGovernanceData(verifiedRecord);
 
   const cacheKey = `remi:ftse:${slugify(query)}`;
   if (!options.skipCache) {
@@ -123,23 +124,42 @@ export async function scrapeFtseCompany(input, options = {}) {
     const company = await resolveCompany(query);
     if (!company) return errorResult(query, `No FTSE company match found for "${query}".`);
 
-    const filing = await findAnnualReport(company);
+    const filings = await findAnnualReports(company);
+    let filing = null;
+    let remuneration = { directors: [], warnings: [] };
+    let nedFees = { directors: [], warnings: [] };
+    let text = "";
+    const reportWarnings = [];
+    for (const candidate of filings) {
+      try {
+        const extracted = await extractReportText(candidate);
+        if (!extracted || extracted.length < 1000) throw new Error("Insufficient extracted text");
+        const executives = parseDirectorsRemuneration(extracted, company, candidate.url, candidate.fiscalYear);
+        const neds = extractNedFeeTable(extracted, company, candidate.url, candidate.fiscalYear);
+        if (!executives.directors.length && !neds.directors.length) throw new Error("No parseable remuneration rows");
+        if (candidate.fiscalYear && ![...executives.directors, ...neds.directors].some((director) => director.years[candidate.fiscalYear])) {
+          throw new Error(`No rows for fiscal year ${candidate.fiscalYear}`);
+        }
+        filing = candidate;
+        remuneration = executives;
+        nedFees = neds;
+        text = extracted;
+        break;
+      } catch (error) {
+        console.warn("[scrape-ftse] Report rejected", company.company, candidate.url, error.message);
+        reportWarnings.push(error.message);
+      }
+    }
     if (!filing?.url) {
-      return fallbackResult(company, "Annual report PDF not found through Companies House or configured investor relations fallback.", {
-        companiesHouse: filing?.companiesHouse || null
+      return fallbackResult(company, reportWarnings.join("; ") || "Annual report PDF not found.", {
+        companiesHouse: company.companiesHouse || null
       });
     }
 
-    const text = await extractReportText(filing);
-    if (!text || text.length < 1000) {
-      return fallbackResult(company, `Annual report text extraction returned insufficient text from ${filing.url}.`, { filing });
-    }
-
-    const remuneration = parseDirectorsRemuneration(text, company, filing.url);
-    const nedFees = extractNedFeeTable(text, company, filing.url);
     const payRatio = parsePayRatio(text, company);
     const sayOnPayPct = parseSayOnPayPct(text, company);
     const primaryCeoId = findPrimaryCeoId(remuneration.directors);
+    const latestYear = String(filing.fiscalYear || Math.max(...remuneration.directors.flatMap((director) => Object.keys(director.years).map(Number))));
 
     const executiveDirectors = remuneration.directors.map((director) => ({
       ...director,
@@ -150,8 +170,11 @@ export async function scrapeFtseCompany(input, options = {}) {
           year,
           {
             ...record,
-            payRatio: director.id === primaryCeoId ? payRatio : null,
-            sayOnPayPct
+            payRatio: year === latestYear && director.id === primaryCeoId ? payRatio : null,
+            sayOnPayPct: year === latestYear ? sayOnPayPct : null,
+            source: "annual report",
+            sourceUrl: filing.url,
+            lastUpdated: new Date().toISOString()
           }
         ]),
       ),
@@ -169,7 +192,7 @@ export async function scrapeFtseCompany(input, options = {}) {
           {
             ...record,
             payRatio: null,
-            sayOnPayPct,
+            sayOnPayPct: year === latestYear ? sayOnPayPct : null,
             source: "annual report",
             sourceUrl: filing.url,
             lastUpdated: new Date().toISOString()
@@ -181,6 +204,7 @@ export async function scrapeFtseCompany(input, options = {}) {
     const directors = dedupeCompanyDirectors([...executiveDirectors, ...nonExecutiveDirectors], company.id);
 
     const warnings = [
+      ...reportWarnings,
       ...remuneration.warnings,
       ...nedFees.warnings,
       ...(payRatio == null ? ["CEO pay ratio not parsed from annual report."] : []),
@@ -202,6 +226,8 @@ export async function scrapeFtseCompany(input, options = {}) {
         jurisdiction: "UK",
         source: filing.source,
         filingDate: filing.filingDate || null,
+        fiscalYear: filing.fiscalYear || null,
+        latestFiscalYear: filings[0]?.fiscalYear || null,
         filingUrl: filing.url,
         parseWarnings: warnings
       },
@@ -242,7 +268,7 @@ export async function debugFtseCompany(input) {
   const company = await resolveCompany(query);
   if (!company) return { error: `No FTSE company match found for "${query}".` };
 
-  const filing = await findAnnualReport(company);
+  const [filing] = await findAnnualReports(company);
   if (!filing?.url) {
     return {
       company: company.company,
@@ -274,7 +300,7 @@ export async function debugFtseCompany(input) {
 async function resolveCompany(query) {
   const normalized = normalize(query);
   const metadata = ftseMetadata[companyAliases[normalized] || slugify(query)];
-  const companiesHouse = await lookupCompaniesHouse(query);
+  const companiesHouse = metadata?.companyNumber ? null : await lookupCompaniesHouse(query);
   const selected = metadata || buildMetadataFromCompaniesHouse(companiesHouse, query);
   if (!selected) return null;
 
@@ -295,11 +321,14 @@ async function lookupCompaniesHouse(companyName) {
   const data = await companiesHouseFetch(url);
   const items = data.items || [];
   return (
-    items.find((item) => /plc|public limited company/i.test(item.company_type || item.title || "")) ||
-    items.find((item) => /plc/i.test(item.title || "")) ||
-    items[0] ||
+    items.find((item) => item.company_status === "active" && /plc|public limited company/i.test(item.company_type || item.title || "") &&
+      stripLegalName(item.title) === stripLegalName(companyName)) ||
     null
   );
+}
+
+function stripLegalName(value) {
+  return normalize(value).replace(/\b(public limited company|plc|limited|ltd)\b/g, "").trim();
 }
 
 function buildMetadataFromCompaniesHouse(hit, query) {
@@ -314,34 +343,40 @@ function buildMetadataFromCompaniesHouse(hit, query) {
   };
 }
 
-async function findAnnualReport(company) {
-  if (company.annualReportUrl) {
-    return {
-      source: "Investor relations annual report PDF",
-      url: company.annualReportUrl,
-      pageUrl: company.annualReportPageUrl || null,
-      filingDate: null,
-      companyNumber: company.companyNumber || null
-    };
-  }
-
+async function findAnnualReports(company) {
+  const filings = [];
   const fromCompaniesHouse = await findCompaniesHouseAnnualReport(company);
-  if (fromCompaniesHouse) return fromCompaniesHouse;
+  if (fromCompaniesHouse) filings.push(fromCompaniesHouse);
 
   if (company.annualReportPageUrl) {
     const discovered = await discoverPdfFromInvestorPage(company.annualReportPageUrl);
     if (discovered) {
-      return {
+      filings.push({
         source: "Investor relations annual report PDF",
         url: discovered,
+        fiscalYear: reportUrlYear(discovered),
         pageUrl: company.annualReportPageUrl,
         filingDate: null,
         companyNumber: company.companyNumber || null
-      };
+      });
     }
   }
 
-  return { companiesHouse: company.companiesHouse || null };
+  if (company.annualReportUrl) filings.push({
+    source: "Investor relations annual report PDF",
+    url: company.annualReportUrl,
+    fiscalYear: 2024,
+    pageUrl: company.annualReportPageUrl || null
+  });
+  return [...new Map(filings.map((filing) => [filing.url, filing])).values()]
+    .sort((a, b) => (b.fiscalYear || 0) - (a.fiscalYear || 0));
+}
+
+function reportUrlYear(url) {
+  const pathname = new URL(url).pathname;
+  const year = pathname.match(/(?:annual|remuneration|governance)[^/]*?(20\d{2})\.pdf$/i)?.[1]
+    || pathname.match(/\/(20\d{2})\/annual\//i)?.[1];
+  return year ? Number(year) : null;
 }
 
 async function findCompaniesHouseAnnualReport(company) {
@@ -363,6 +398,7 @@ async function findCompaniesHouseAnnualReport(company) {
       source: "Companies House filing history",
       url: pdfUrl,
       filingDate: filing.date || null,
+      fiscalYear: Number(filing.description_values?.made_up_date?.slice(0, 4)) || null,
       companyNumber: company.companyNumber,
       requiresCompaniesHouseAuth: true
     };
@@ -374,11 +410,12 @@ async function findCompaniesHouseAnnualReport(company) {
 
 async function discoverPdfFromInvestorPage(pageUrl) {
   try {
-    const res = await fetch(pageUrl, { headers: webHeaders("text/html,*/*") });
+    const res = await fetch(pageUrl, { headers: webHeaders("text/html,*/*"), signal: AbortSignal.timeout(10000) });
     if (!res.ok) throw new Error(`Investor page request failed ${res.status}`);
     const html = await res.text();
     const pdfs = [...html.matchAll(/href=["']([^"']+\.pdf[^"']*)["']/gi)].map((match) => new URL(match[1], pageUrl).toString());
-    return pdfs.find((url) => /annual|report|remuneration/i.test(url)) || pdfs[0] || null;
+    return pdfs.filter((url) => /annual.report|directors.remuneration.report/i.test(new URL(url).pathname.split("/").at(-1)))
+      .sort((a, b) => (reportUrlYear(b) || 0) - (reportUrlYear(a) || 0) || Number(/remuneration/i.test(b)) - Number(/remuneration/i.test(a)))[0] || null;
   } catch (error) {
     console.error("[scrape-ftse] Investor page PDF discovery failed", { pageUrl, error });
     return null;
@@ -392,7 +429,8 @@ async function extractReportText(filing) {
       ? companiesHouseHeaders("application/pdf,*/*")
       : webHeaders("application/pdf,text/html,*/*", filing.pageUrl);
   const res = await fetch(filing.url, {
-    headers
+    headers,
+    signal: AbortSignal.timeout(16000)
   });
   if (!res.ok) throw new Error(`Annual report request failed ${res.status} for ${filing.url}`);
 
@@ -408,11 +446,11 @@ async function extractPdfText(buffer) {
   return cleanText(result.text || "");
 }
 
-function parseDirectorsRemuneration(text, company, sourceUrl) {
+function parseDirectorsRemuneration(text, company, sourceUrl, fiscalYear) {
   const warnings = [];
   const section = remunerationSection(text);
   const detectedNames = detectDirectorNameCandidates(section);
-  const table = parseSingleFigureTable(section, company, sourceUrl);
+  const table = parseSingleFigureTable(section, company, sourceUrl, fiscalYear);
   logFtseDirectorDiagnostics(company, detectedNames, table);
   if (table.directors.length) {
     console.error("[scrape-ftse] Remuneration parser matched", { company: company.company, strategy: table.strategy, directors: table.directors.length, diagnostics: table.diagnostics });
@@ -424,7 +462,7 @@ function parseDirectorsRemuneration(text, company, sourceUrl) {
   return { directors: [], warnings };
 }
 
-function extractNedFeeTable(text, company, sourceUrl) {
+function extractNedFeeTable(text, company, sourceUrl, fiscalYear) {
   const warnings = [];
   const section = nedFeeSection(text);
   const diagnostics = { strategy: null, detectedRows: 0, parsedRows: 0, dropped: [] };
@@ -435,10 +473,10 @@ function extractNedFeeTable(text, company, sourceUrl) {
   }
 
   const parsedRows = parseNedFeeRows(section, company, sourceUrl, diagnostics);
-  const directors = buildNedDirectors(parsedRows, company, sourceUrl);
+  const directors = buildNedDirectors(parsedRows, company, sourceUrl, fiscalYear);
   if (!directors.length) {
     const fallbackRows = parseChairFeeFallback(section, company, sourceUrl, diagnostics);
-    directors.push(...buildNedDirectors(fallbackRows, company, sourceUrl));
+    directors.push(...buildNedDirectors(fallbackRows, company, sourceUrl, fiscalYear));
   }
 
   if (!directors.length) {
@@ -516,8 +554,8 @@ function parseNedFeeLine(line, sourceUrl) {
   const totalFees = moneyMatches.at(-1)?.value ?? null;
   if (totalFees == null) return null;
   const years = [...extractYears(line), ...extractYears(line.slice(0, 120))];
-  const year = years.length ? Math.max(...years) : inferReportYear(line);
-  return { name, role, totalFees, year: year || 2024, sourceUrl };
+  const year = years.length ? Math.max(...years) : null;
+  return { name, role, totalFees, year, sourceUrl };
 }
 
 function parseChairFeeFallback(section, company, sourceUrl, diagnostics) {
@@ -532,9 +570,9 @@ function parseChairFeeFallback(section, company, sourceUrl, diagnostics) {
   return dedupeNedRows(rows).slice(0, 2);
 }
 
-function buildNedDirectors(rows, company, sourceUrl) {
-  return rows.map((row) => {
-    const year = row.year || 2024;
+function buildNedDirectors(rows, company, sourceUrl, fiscalYear) {
+  return rows.filter((row) => row.year || fiscalYear).map((row) => {
+    const year = row.year || fiscalYear;
     return {
       id: `${company.id}-${slugify(row.name)}`,
       name: row.name,
@@ -662,11 +700,14 @@ function scoreRemunerationSection(section, index) {
   return score;
 }
 
-function parseSingleFigureTable(section, company, sourceUrl) {
-  const strategies = [
+function parseSingleFigureTable(section, company, sourceUrl, fiscalYear) {
+  const legacyStrategies = fiscalYear === 2024 ? [
     ["bp-single-figure", parseBpSingleFigure],
     ["barclays-compact-single-figure", parseBarclaysCompactSingleFigure],
-    ["unilever-compact-single-figure", parseUnileverCompactSingleFigure],
+    ["unilever-compact-single-figure", parseUnileverCompactSingleFigure]
+  ] : [];
+  const strategies = [
+    ...legacyStrategies,
     ["named-row-single-figure", parseNamedRowSingleFigure],
     ["column-single-figure", parseColumnSingleFigure]
   ];
@@ -1122,11 +1163,6 @@ function inferNedRole(line, name) {
   return "Non-Executive Director";
 }
 
-function inferReportYear(text) {
-  const years = extractYears(text);
-  return years.length ? Math.max(...years) : 2024;
-}
-
 function parsePayRatio(text, company) {
   const tableRows = [...text.matchAll(/\b(20\d{2})(?:\s*[a-z])?\s+Option\s+[A-Z]\s+(\d{1,4})\s*:\s*1\s*(\d{1,4})\s*:\s*1\s*(\d{1,4})\s*:\s*1/gi)];
   const latestTableRow = tableRows.sort((a, b) => Number(b[1]) - Number(a[1]))[0];
@@ -1177,7 +1213,7 @@ function findPrimaryCeoId(directors) {
 }
 
 async function companiesHouseFetch(url) {
-  const res = await fetch(url, { headers: companiesHouseHeaders("application/json") });
+  const res = await fetch(url, { headers: companiesHouseHeaders("application/json"), signal: AbortSignal.timeout(10000) });
   if (!res.ok) throw new Error(`Companies House request failed ${res.status} for ${url}`);
   return res.json();
 }

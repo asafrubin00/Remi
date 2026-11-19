@@ -3,16 +3,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
-    "api/cron/refresh-sp500.js": {
-      "maxDuration": 300
-    }
+    "api/scrape-ftse.js": { "maxDuration": 60 },
+    "api/scrape-sp500.js": { "maxDuration": 60 }
   },
-  "crons": [
-    {
-      "path": "/api/cron/refresh-sp500",
-      "schedule": "0 2 1 * *"
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/(.*)",

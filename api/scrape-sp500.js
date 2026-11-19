@@ -8,6 +8,7 @@ export default async function handler(request, response) {
 
   const query = request.query.company || request.query.ticker || request.query.q;
   const skipCache = request.query.fresh === "1" || request.query.skipCache === "1";
-  const result = await scrapeSp500Company(query, { skipCache });
+  const knownRevision = typeof request.query.revision === "string" ? request.query.revision : null;
+  const result = await scrapeSp500Company(query, { skipCache, knownRevision });
   response.status(result.error ? 404 : 200).json(result);
 }
