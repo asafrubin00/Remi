@@ -5,17 +5,17 @@ export default {
     extend: {
       colors: {
         remi: {
-          navy: "#0D1F35",
-          secondary: "#132B45",
-          surface: "#1A3A5C",
-          gold: "#C8960C",
-          "gold-light": "#E8B84B",
-          text: "#F0F4F8",
-          "text-secondary": "#8CA8C0",
-          muted: "#4A6278",
-          border: "#1E3A52",
-          positive: "#2ECC71",
-          negative: "#E74C3C",
+          navy: "#101C2A",
+          secondary: "#152334",
+          surface: "#1E3043",
+          gold: "#C5A469",
+          "gold-light": "#DDC394",
+          text: "#F4F1EB",
+          "text-secondary": "#B0BDCA",
+          muted: "#8C9EAF",
+          border: "#304052",
+          positive: "#77C3A3",
+          negative: "#E69086",
           blue: "#3498DB",
           purple: "#9B59B6"
         }

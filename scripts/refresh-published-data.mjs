@@ -2,6 +2,7 @@ import { readFile, writeFile, rename } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { normaliseConstituentId } from "../src/data/mockRemuneration.js";
 import { mergeCompanyRecords } from "../src/data/publishedData.js";
+import { isDirectorName } from "../src/server/ukReportTables.js";
 
 const dataDir = new URL("../data/", import.meta.url);
 const baseUrl = process.env.REMI_BASE_URL || "https://remi-ashen.vercel.app";
@@ -36,7 +37,9 @@ export function validatePublishedResult(item, result, now = new Date()) {
   const latestPossibleYear = now.getUTCFullYear();
   const isUk = item.index === "FTSE100";
   const directors = (result.directors || []).flatMap((person) => {
-    if (person.source === "manual" || !/\p{L}.*\s.*\p{L}/u.test(person.name || "")) return [];
+    const name = cleanName(person.name);
+    if (person.source === "manual" || !isDirectorName(name.replace(/\s*\([\p{L}. -]+\)/gu, "").replace(/, /g, " "))) return [];
+    if (isUk && person.type === "non-executive" && result.scrape.tableMethod !== "reconciled") return [];
     const years = Object.fromEntries(Object.entries(person.years || {}).filter(([year, row]) => {
       const total = row.totalCompensation;
       const components = [row.baseSalary, row.annualBonus, row.ltip, row.pensionBenefits, row.nedFees].filter(Number.isFinite);
@@ -44,16 +47,25 @@ export function validatePublishedResult(item, result, now = new Date()) {
       if (!(Number(year) >= 2022 && Number(year) <= latestPossibleYear) || !Number.isFinite(total) || total < 0) return false;
       if (result.scrape.fiscalYear && Number(year) > result.scrape.fiscalYear) return false;
       if (isUk && (total < 1000 || (person.type === "non-executive" && total > 3_000_000))) return false;
+      if (isUk && result.scrape.tableMethod !== "reconciled" &&
+        (!Number.isFinite(row.baseSalary) || components.length < 3 || Math.abs(total - sum) > Math.max(2000, total * .025))) return false;
       if (person.type === "executive" && total + Math.max(100, total * .04) < sum) return false;
       return true;
     }));
-    return Object.keys(years).length ? [{ ...person, id: `${item.id}:${person.id}`, years }] : [];
+    const id = person.id.startsWith(`${item.id}:`) ? person.id : `${item.id}:${person.id}`;
+    return Object.keys(years).length ? [{ ...person, name, id, years }] : [];
   });
   if (!directors.length) throw new Error("No compensation rows passed validation");
   if (isUk && result.scrape.fiscalYear && !directors.some((person) => person.years[result.scrape.fiscalYear])) {
     throw new Error(`No valid rows for FY${result.scrape.fiscalYear}`);
   }
   return { ...result, id: item.id, ticker: item.ticker, index: item.index, directors };
+}
+
+function cleanName(value = "") {
+  return value.replace(/\((?:\d+|[a-z])\)|\*+/g, "")
+    .replace(/\s*(?:[:;,]|\.{2,}|\d+)+\s*$/g, "")
+    .replace(/\s*Former$/i, "").replace(/\bLeon Musk\b/, "Elon Musk").trim();
 }
 
 async function checkCompany(item, previous) {
@@ -77,7 +89,16 @@ async function refresh(index) {
     version: 1,
     index: index === "sp500" ? "SP500" : "FTSE100",
     constituents,
-    records: Object.fromEntries(constituents.flatMap(({ id }) => previous.records[id] ? [[id, previous.records[id]]] : [])),
+    records: Object.fromEntries(constituents.flatMap((item) => {
+      const record = previous.records[item.id];
+      if (!record) return [];
+      try {
+        return [[item.id, validatePublishedResult(item, record)]];
+      } catch (error) {
+        console.warn(`[${index}] Removed invalid stored record: ${item.company}: ${error.message}`);
+        return [];
+      }
+    })),
     checks: { ...previous.checks }
   };
   const selected = process.env.REMI_TICKERS

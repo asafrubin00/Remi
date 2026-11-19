@@ -1,6 +1,7 @@
 import pdfParse from "pdf-parse/lib/pdf-parse.js";
 import { dedupeCompanyDirectors, enrichGovernanceData } from "../data/governanceData.js";
 import { getVerifiedFtseRecord } from "../data/manualVerifiedFtse.js";
+import { isDirectorName, parseIssuerTables, renderSpacedPdfPage } from "./ukReportTables.js";
 
 const CACHE_TTL_SECONDS = 60 * 60 * 24;
 const USER_AGENT =
@@ -28,6 +29,10 @@ const ftseMetadata = {
     companyNumber: "04366849",
     annualReportUrl:
       "https://www.shell.com/investors/results-and-reporting/annual-report-archive/_jcr_content/root/main/section_812377294/tabs/tab_copy/text.multi.stream/1752580693041/6c20b8111738b9a590ba145f0d1c4fa0e530dae0/shell-annual-report-2024.pdf",
+    recentReport: {
+      fiscalYear: 2025,
+      url: "https://www.shell.com/investors/results-and-reporting/annual-report/_jcr_content/root/main/section_2113846431/link_list/links/item3.stream/1773292260473/1b4dd6bdb826c61b809e3c94988fa45581183869/governance-ar25.pdf"
+    },
     annualReportPageUrl: "https://www.shell.com/investors/results-and-reporting/annual-report"
   },
   hsbc: {
@@ -38,6 +43,10 @@ const ftseMetadata = {
     marketCap: 142000,
     companyNumber: "00617987",
     annualReportPageUrl: "https://www.hsbc.com/investors/results-and-announcements/annual-report",
+    recentReport: {
+      fiscalYear: 2025,
+      url: "https://www.hsbc.com/-/files/hsbc/investors/hsbc-results/2025/annual/pdfs/hsbc-holdings-plc/260225-annual-report-and-accounts-2025.pdf"
+    },
     annualReportUrl: "https://www.hsbc.com/-/files/hsbc/investors/hsbc-results/2024/annual/pdfs/hsbc-holdings-plc/250219-annual-report-and-accounts-2024.pdf"
   },
   barclays: {
@@ -132,10 +141,14 @@ export async function scrapeFtseCompany(input, options = {}) {
     const reportWarnings = [];
     for (const candidate of filings) {
       try {
-        const extracted = await extractReportText(candidate);
+        const useIssuerTable = candidate.fiscalYear >= 2025 && ["bp", "shell", "hsbc"].includes(company.id);
+        const extracted = await extractReportText(candidate, useIssuerTable);
         if (!extracted || extracted.length < 1000) throw new Error("Insufficient extracted text");
-        const executives = parseDirectorsRemuneration(extracted, company, candidate.url, candidate.fiscalYear);
-        const neds = extractNedFeeTable(extracted, company, candidate.url, candidate.fiscalYear);
+        const structured = useIssuerTable ? parseIssuerTables(extracted, company.id, candidate.fiscalYear) : null;
+        const executives = structured ? fromIssuerTable(structured.directors, "executive", company.id)
+          : parseDirectorsRemuneration(extracted, company, candidate.url, candidate.fiscalYear);
+        const neds = structured ? fromIssuerTable(structured.nonExecutives, "non-executive", company.id)
+          : extractNedFeeTable(extracted, company, candidate.url, candidate.fiscalYear);
         if (!executives.directors.length && !neds.directors.length) throw new Error("No parseable remuneration rows");
         if (candidate.fiscalYear && ![...executives.directors, ...neds.directors].some((director) => director.years[candidate.fiscalYear])) {
           throw new Error(`No rows for fiscal year ${candidate.fiscalYear}`);
@@ -228,6 +241,7 @@ export async function scrapeFtseCompany(input, options = {}) {
         filingDate: filing.filingDate || null,
         fiscalYear: filing.fiscalYear || null,
         latestFiscalYear: filings[0]?.fiscalYear || null,
+        tableMethod: remuneration.tableMethod || neds.tableMethod || "heuristic",
         filingUrl: filing.url,
         parseWarnings: warnings
       },
@@ -241,6 +255,14 @@ export async function scrapeFtseCompany(input, options = {}) {
     console.error("[scrape-ftse] Company scrape failed", { query, error });
     return errorResult(query, error.message || "FTSE scrape failed.");
   }
+}
+
+function fromIssuerTable(people, type, companyId) {
+  return {
+    directors: people.map(({ name, role, records }) => ({ id: `${companyId}-${slugify(name)}`, name, role, type, years: records })),
+    tableMethod: people.length ? "reconciled" : null,
+    warnings: people.length ? [] : [`No validated ${type} rows in the issuer table.`]
+  };
 }
 
 export async function scrapeFtseBatch(inputs, options = {}) {
@@ -347,6 +369,7 @@ async function findAnnualReports(company) {
   const filings = [];
   const fromCompaniesHouse = await findCompaniesHouseAnnualReport(company);
   if (fromCompaniesHouse) filings.push(fromCompaniesHouse);
+  if (company.recentReport) filings.push({ ...company.recentReport, source: "Investor relations annual report PDF" });
 
   if (company.annualReportPageUrl) {
     const discovered = await discoverPdfFromInvestorPage(company.annualReportPageUrl);
@@ -422,7 +445,7 @@ async function discoverPdfFromInvestorPage(pageUrl) {
   }
 }
 
-async function extractReportText(filing) {
+async function extractReportText(filing, spaced = false) {
   const headers = filing.url.includes("sec.gov")
     ? secHeaders("text/html,application/xhtml+xml,*/*")
     : filing.requiresCompaniesHouseAuth
@@ -436,13 +459,16 @@ async function extractReportText(filing) {
 
   const contentType = res.headers.get("content-type") || "";
   const buffer = Buffer.from(await res.arrayBuffer());
-  if (contentType.includes("pdf") || (filing.url.toLowerCase().includes(".pdf") && !filing.url.includes("r.jina.ai/"))) return extractPdfText(buffer);
+  if (contentType.includes("pdf") || (filing.url.toLowerCase().includes(".pdf") && !filing.url.includes("r.jina.ai/"))) {
+    const options = spaced ? { pagerender: renderSpacedPdfPage } : undefined;
+    return extractPdfText(buffer, options);
+  }
 
   return cleanHtmlText(buffer.toString("utf8"));
 }
 
-async function extractPdfText(buffer) {
-  const result = await pdfParse(buffer);
+async function extractPdfText(buffer, options) {
+  const result = await pdfParse(buffer, options);
   return cleanText(result.text || "");
 }
 
@@ -1136,9 +1162,7 @@ function extractYears(line) {
 }
 
 function isLikelyExecutiveName(name) {
-  if (!name || name.split(/\s+/).length < 2) return false;
-  if (/Directors?|Executive|Report|Corporate|Governance|Financial|Strategic|Annual|Committee|Total|Shareholder|Fixed|Variable|Remuneration|Policy|Current|Proposed/i.test(name)) return false;
-  return /^[A-Z]/.test(name);
+  return Boolean(name && isDirectorName(name));
 }
 
 function extractNedName(value) {

@@ -1,6 +1,6 @@
 # Remi
 
-**Remuneration Intelligence. Executive and NED pay, for FTSE 350 and S&P 500.**
+**Remuneration Intelligence. Executive and non-executive pay for the FTSE 100 and S&P 500.**
 
 💰 [View dashboard →](https://remi-ashen.vercel.app)
 
@@ -10,7 +10,7 @@ Executive pay is one of the most scrutinised — and least navigable — corners
 
 ## What It Does
 
-Remi aggregates, normalises, and presents publicly available remuneration data for executive and non-executive directors at **FTSE 350** and **S&P 500** companies — searchable, comparable, and ranked.
+Remi aggregates publicly disclosed remuneration for executive and non-executive directors at **FTSE 100** and **S&P 500** companies.
 
 **Three core views:**
 - **Find** — look up any director's full pay breakdown
@@ -26,17 +26,23 @@ Remi aggregates, normalises, and presents publicly available remuneration data f
 - Say-on-pay vote outcome
 - Total compensation
 
-Every record carries a **Live / Verified / Mock** badge so users always know the provenance of the data they're looking at. A contextual AI analysis panel (Claude Haiku, streaming) sits alongside the charts, generating commentary specific to whatever view is on screen.
+Profiles show the reporting year, record update date, and original filing where available. Manually sourced figures and historical seeds are distinguished from automated filing extractions.
 
 ---
 
 ## Data Sources
 
 - **UK:** Companies House filings, annual report PDF parsing
-- **US:** SEC EDGAR proxy filings (DEF 14A) — live scraping
+- **US:** SEC EDGAR proxy filings (DEF 14A), with vote results where available
 - **Vote outcomes:** AGM disclosures and regulatory announcements
 
-Currency is normalised at display time — FTSE companies in GBP, S&P 500 in USD — with cross-index comparisons converted at a consistent, visible FX rate.
+Amounts are displayed without cross-currency conversion.
+
+## Refresh and Coverage
+
+The [Refresh remuneration filings workflow](https://github.com/asafrubin00/Remi/actions/workflows/refresh-filings.yml) checks both indices daily at 03:17 UTC. It can also be dispatched from GitHub Actions. It checks index membership, reads public filings through Remi's production scraper endpoints, and publishes snapshots to `data/published-*.json`. The app reads those snapshots on startup without a redeploy. This workflow replaces the old monthly Vercel cron and does not need KV.
+
+Each snapshot lists companies checked, records published, and failures by company. A failed scrape does not overwrite a previously published record. UK report formats still limit automated coverage; older records are retained with their original reporting year and source. A successful check date is not a claim that new compensation was disclosed on that date.
 
 ---
 
@@ -71,3 +77,5 @@ cd Remi
 npm install
 npm run dev
 ```
+
+Run the data tests with `npm test`.

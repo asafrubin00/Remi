@@ -1,300 +1,137 @@
-import { useEffect, useMemo, useState } from "react";
+import { ArrowUpRight, Building2, ChevronRight, FileText } from "lucide-react";
+import { useMemo, useRef } from "react";
 import CompanyDirectory from "../components/CompanyDirectory.jsx";
+import ResearchSearch, { indexLabel } from "../components/ResearchSearch.jsx";
 import ResponsiveAnalysis from "../components/ResponsiveAnalysis.jsx";
-import { DataValue, Panel, SectionHeader } from "../components/ui.jsx";
-import { allDirectors, flattenDirectorYear, formatMoney, formatVintageDate } from "../data/mockRemuneration.js";
+import { allDirectors, flattenDirectorYear, formatCompactMoney, formatVintageDate } from "../data/mockRemuneration.js";
 
-function matchesQuery(value, query) {
-  return value.toLowerCase().includes(query.trim().toLowerCase());
-}
+const executiveComponents = [
+  ["Base salary", "baseSalary"],
+  ["Annual bonus", "annualBonus"],
+  ["Long-term incentives", "ltip"],
+  ["Pension & benefits", "pensionBenefits"]
+];
 
-function sourceBadge(status) {
-  if (status === "live") return { label: "Live data", tone: "live" };
-  if (status === "verified") return { label: "Verified", tone: "verified" };
-  return { label: "Mock data", tone: "fallback" };
-}
-
-function sayOnPayClass(value) {
-  if (value == null) return "text-remi-gold-light";
-  if (value >= 90) return "text-remi-positive";
-  if (value >= 70) return "text-remi-gold-light";
-  return "text-remi-negative";
-}
-
-export default function FindScreen({ dataset, setDataset, directorType, initialSelectedId }) {
-  const directors = useMemo(() => allDirectors(dataset), [dataset]);
-  const visibleDirectors = useMemo(() => directors.filter((director) => director.type === directorType), [directors, directorType]);
-  const [companyQuery, setCompanyQuery] = useState("");
-  const [personQuery, setPersonQuery] = useState("");
-  const [selectedId, setSelectedId] = useState(null);
-  const [year, setYear] = useState(null);
-  const [loadingCompanyId, setLoadingCompanyId] = useState(null);
-
-  useEffect(() => {
-    if (selectedId && !visibleDirectors.some((director) => director.id === selectedId)) {
-      setSelectedId(null);
-      setYear(null);
-    }
-  }, [selectedId, visibleDirectors]);
-
-  useEffect(() => {
-    if (initialSelectedId && visibleDirectors.some((director) => director.id === initialSelectedId)) {
-      setSelectedId(initialSelectedId);
-      setYear(null);
-    }
-  }, [initialSelectedId, visibleDirectors]);
-
-  const hasActiveSearch = companyQuery.trim().length >= 2 || personQuery.trim().length >= 2;
-
-  const results = useMemo(() => {
-    if (!hasActiveSearch && !selectedId) return [];
-    return visibleDirectors.filter((director) => {
-      const companyMatch = !companyQuery || matchesQuery(director.company, companyQuery);
-      const personMatch = !personQuery || matchesQuery(director.name, personQuery);
-      return companyMatch && personMatch;
+export default function FindScreen({ dataset, directorType, selection, loading, onSelect }) {
+  const detail = useRef(null);
+  const directors = useMemo(() => allDirectors(dataset).filter((person) => person.type === directorType), [dataset, directorType]);
+  const company = dataset.find((item) => item.id === selection.companyId);
+  const roster = directors.filter((person) => person.companyId === company?.id)
+    .sort((a, b) => {
+      const year = (person) => Math.max(...Object.keys(person.years).map(Number));
+      const primary = (person) => /chief executive|\bceo\b|^chair(?:man|person)?$/i.test(person.role) ? 1 : 0;
+      return year(b) - year(a) || primary(b) - primary(a) || a.name.localeCompare(b.name);
     });
-  }, [companyQuery, hasActiveSearch, personQuery, selectedId, visibleDirectors]);
+  const person = roster.find((item) => item.id === selection.directorId) || roster[0];
+  const year = selection.year && person?.years[selection.year] ? selection.year : null;
+  const record = person ? flattenDirectorYear(person, year) : null;
+  const examples = ["JPM", "MSFT", "AAPL", "HSBA", "SHEL"].map((ticker) => dataset.find((item) => item.ticker === ticker && item.directors.some((director) => director.type === directorType))).filter(Boolean);
 
-  const companySuggestions = useMemo(() => {
-    if (companyQuery.trim().length < 2) return [];
-    return dataset.filter((company) => matchesQuery(company.company, companyQuery)).slice(0, 6);
-  }, [companyQuery, dataset]);
-
-  const personSuggestions = useMemo(() => {
-    if (personQuery.trim().length < 2) return [];
-    return visibleDirectors.filter((director) => matchesQuery(director.name, personQuery)).slice(0, 6);
-  }, [personQuery, visibleDirectors]);
-
-  const selectedDirector = useMemo(() => {
-    return visibleDirectors.find((director) => director.id === selectedId) || null;
-  }, [selectedId, visibleDirectors]);
-
-  const selectedYearData = selectedDirector ? flattenDirectorYear(selectedDirector, year) : null;
-  const selectedCompany = dataset.find((company) => company.id === selectedDirector?.companyId);
-  const badge = sourceBadge(selectedCompany?.scrape?.status);
-
-  const selectDirector = (director) => {
-    setSelectedId(director.id);
-    setCompanyQuery(director.company);
-    setPersonQuery(director.name);
-    setYear(null);
-  };
-
-  const selectCompany = async (company) => {
-    setCompanyQuery(company.company);
-    setPersonQuery("");
-    setYear(null);
-
-    const director = visibleDirectors.find((item) => item.companyId === company.id);
-    if (director) {
-      setSelectedId(director.id);
-      return;
+  function choose(item, reveal = true) {
+    onSelect(item);
+    if (reveal && window.matchMedia("(max-width: 767px)").matches) {
+      requestAnimationFrame(() => detail.current?.scrollIntoView({ block: "start" }));
     }
-
-    setSelectedId(null);
-    setLoadingCompanyId(company.id);
-    try {
-      const response = await fetch(`/api/scrape-company?companyId=${company.id}`);
-      if (!response.ok) throw new Error("Scrape route unavailable");
-      const hydrated = await response.json();
-      setDataset((current) => current.map((item) => (item.id === hydrated.id ? hydrated : item)));
-      const hydratedDirector = (hydrated.directors || []).find((item) => item.type === directorType);
-      setSelectedId(hydratedDirector?.id || null);
-    } catch (error) {
-      setDataset((current) =>
-        current.map((item) =>
-          item.id === company.id
-            ? {
-                ...item,
-                scrape: {
-                  ...(item.scrape || {}),
-                  status: "fallback",
-                  message: error.message || "Scrape unavailable."
-                }
-              }
-            : item,
-        ),
-      );
-    } finally {
-      setLoadingCompanyId(null);
-    }
-  };
-
-  const breakdownRows =
-    selectedYearData?.type === "non-executive"
-      ? [["NED / Chair Fees", selectedYearData.nedFees]]
-      : [
-          ["Base Salary", selectedYearData?.baseSalary],
-          ["Annual Bonus", selectedYearData?.annualBonus],
-          ["LTIP", selectedYearData?.ltip],
-          ["Pension & Benefits", selectedYearData?.pensionBenefits],
-          ["Total Compensation", selectedYearData?.totalCompensation]
-        ];
+  }
 
   return (
-    <div className="remi-find-layout grid grid-cols-[30%_calc(50%-16px)_20%] gap-4">
-      <Panel className="remi-find-roster flex h-[690px] flex-col overflow-hidden">
-        <div className="remi-find-search border-b border-remi-border p-6">
-          <div className="grid gap-3">
-            <div className="relative">
-              <input
-                className="remi-input"
-                placeholder="Search company"
-                value={companyQuery}
-                onChange={(event) => {
-                  setCompanyQuery(event.target.value);
-                  setSelectedId(null);
-                }}
-              />
-              {!dataset.some((company) => company.company === companyQuery) && companySuggestions.length ? (
-                <div className="remi-autocomplete-list">
-                  {companySuggestions.map((company) => (
-                    <button key={company.id} className="remi-autocomplete-item" onClick={() => selectCompany(company)}>
-                      <span>{company.company}</span>
-                      <span>{company.index}</span>
-                    </button>
-                  ))}
-                </div>
-              ) : null}
-            </div>
-            <div className="relative">
-              <input
-                className="remi-input"
-                placeholder="Search individual"
-                value={personQuery}
-                onChange={(event) => {
-                  setPersonQuery(event.target.value);
-                  setSelectedId(null);
-                }}
-              />
-              {!visibleDirectors.some((director) => director.name === personQuery) && personSuggestions.length ? (
-                <div className="remi-autocomplete-list">
-                  {personSuggestions.map((director) => (
-                    <button key={director.id} className="remi-autocomplete-item" onClick={() => selectDirector(director)}>
-                      <span>{director.name}</span>
-                      <span>{director.company}</span>
-                    </button>
-                  ))}
-                </div>
-              ) : null}
-            </div>
-          </div>
-
-          <CompanyDirectory dataset={dataset} onSelect={selectCompany} className="mt-4" />
+    <div className="research-find remi-find-layout">
+      <aside className="research-find-sidebar">
+        <div className="research-find-search">
+          <h2>Find a profile</h2>
+          <ResearchSearch dataset={dataset} directors={directors} onSelect={choose} />
+          <CompanyDirectory dataset={dataset} onSelect={(item) => choose({ companyId: item.id }, false)} className="research-directories" />
         </div>
 
-        <div className="border-b border-remi-border px-6 py-4">
-          <h3 className="text-sm font-medium text-remi-text">
-            Search results: <span className="text-remi-gold-light">{hasActiveSearch ? companyQuery || personQuery : "Start typing"}</span>
-          </h3>
-          <p className="mt-1 text-xs text-remi-text-secondary">
-            {loadingCompanyId ? "Fetching live remuneration data..." : "Select a director to see remuneration data."}
-          </p>
-        </div>
-
-        <div className="remi-find-results min-h-0 flex-1 overflow-y-auto p-4">
-          <SectionHeader className="mb-3">{directorType === "executive" ? "Executive Team" : "Non-Executive Directors"}</SectionHeader>
-          <div className="space-y-1">
-            {results.map((director, index) => (
-              <button
-                key={director.id}
-                className={`w-full border-l-2 px-3 py-3 text-left transition ${
-                  selectedDirector?.id === director.id
-                    ? "border-remi-gold bg-remi-surface"
-                    : `border-transparent ${index % 2 ? "bg-remi-secondary" : "bg-remi-navy"} hover:border-remi-gold hover:bg-remi-surface`
-                }`}
-                onClick={() => {
-                  selectDirector(director);
-                }}
-              >
-                <div className="text-sm font-medium text-remi-text">{director.name}</div>
-                <div className="mt-1 text-xs text-remi-text-secondary">{director.role}</div>
-                <div className="mt-1 text-[11px] text-remi-muted">{director.company}</div>
-              </button>
-            ))}
-            {!results.length ? <p className="px-3 py-8 text-center text-sm text-remi-text-secondary">Search for a company or individual to begin.</p> : null}
-          </div>
-        </div>
-      </Panel>
-
-      <Panel className="remi-find-detail h-[690px] overflow-hidden p-6">
-        {selectedYearData ? (
-          <div className="flex h-full flex-col">
-            <div className="flex items-start justify-between border-b border-remi-border pb-5">
-              <div>
-                <h3 className="remi-title text-[30px]">{selectedYearData.name}</h3>
-                <p className="mt-2 text-sm text-remi-text-secondary">{selectedYearData.role}</p>
-                <p className="mt-1 text-xs text-remi-muted">
-                  {selectedYearData.company} · {selectedYearData.index} · {selectedYearData.sector}
-                </p>
-              </div>
-              <select className="remi-select" value={selectedYearData.reportingYear} onChange={(event) => setYear(event.target.value)}>
-                {selectedYearData.yearsAvailable.map((availableYear) => (
-                  <option key={availableYear} value={availableYear}>
-                    {availableYear}
-                  </option>
-                ))}
-              </select>
+        {company ? (
+          <section className="research-roster">
+            <div className="research-roster-head">
+              <p className="research-eyebrow">{indexLabel(company.index)}{company.ticker ? ` · ${company.ticker}` : ""}</p>
+              <h2>{company.company}</h2>
+              <p>{directorType === "executive" ? "Executives" : "Non-executive directors"} <span className="remi-data">{roster.length}</span></p>
             </div>
-
-            <div className="mt-6 remi-panel-inner overflow-hidden">
-              {breakdownRows.map(([label, value]) => (
-                <div className="remi-value-row" key={label}>
-                  <span className="text-sm text-remi-text-secondary">{label}</span>
-                  <DataValue className={label === "Total Compensation" ? "text-xl text-remi-gold-light" : "text-base text-remi-text"}>
-                    {formatMoney(value, selectedYearData.currency)}
-                  </DataValue>
-                </div>
+            <div className="research-roster-list">
+              {roster.map((item) => (
+                <button type="button" key={item.id} aria-pressed={person?.id === item.id} onClick={() => choose({ companyId: company.id, directorId: item.id })}>
+                  <span><strong>{item.name}</strong><small>{item.role}</small></span>
+                  <ChevronRight size={16} aria-hidden="true" />
+                </button>
               ))}
             </div>
-
-            <div className="mt-4 text-[11px] text-remi-muted">
-              <span>Data: </span>
-              <span className="remi-data">FY{selectedYearData.reportingYear || "n/a"}</span>
-              <span> · Last updated </span>
-              <span className="remi-data">{formatVintageDate(selectedYearData.lastUpdated)}</span>
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-4">
-              <div className="remi-panel-inner p-4">
-                <SectionHeader>Pay Ratio</SectionHeader>
-                <DataValue className="mt-3 block text-3xl text-remi-text">
-                  {selectedYearData.payRatio ? `${selectedYearData.payRatio}:1` : "n/a"}
-                </DataValue>
-              </div>
-              <div className="remi-panel-inner p-4">
-                <SectionHeader>Say-on-Pay</SectionHeader>
-                <DataValue className={`mt-3 block text-3xl ${sayOnPayClass(selectedYearData.sayOnPayPct)}`}>
-                  {selectedYearData.sayOnPayPct ? `${selectedYearData.sayOnPayPct}%` : "n/a"}
-                </DataValue>
-              </div>
-            </div>
-
-            <div className="mt-auto flex items-center gap-1 border-t border-remi-border pt-4 text-[11px] text-remi-muted">
-              <span>Source</span>
-              <span>·</span>
-              {selectedYearData.sourceUrl ? (
-                <a href={selectedYearData.sourceUrl} target="_blank" rel="noreferrer">
-                  Original filing
-                </a>
-              ) : (
-                <span>Manual source</span>
-              )}
-              <span>·</span>
-              <span className={`remi-source-badge remi-source-badge-${badge.tone}`}>
-                <span className="remi-source-dot" />
-                {badge.label}
-              </span>
-            </div>
-          </div>
+          </section>
         ) : (
-          <div className="flex h-full items-center justify-center text-center text-sm text-remi-text-secondary">
-            Search for a company or individual to begin
+          <div className="research-suggestions">
+            {examples.length ? <p className="research-eyebrow">Company profiles</p> : null}
+            {examples.map((item) => <button key={item.id} onClick={() => choose({ companyId: item.id })}>{item.company}<ArrowUpRight size={14} /></button>)}
           </div>
         )}
-      </Panel>
+      </aside>
 
-      <ResponsiveAnalysis currentViewData={selectedYearData} className="h-[690px]" />
+      <section className="research-profile" ref={detail} aria-label="Compensation profile">
+        {record ? (
+          <Profile company={company} record={record} onYear={(reportingYear) => choose({ companyId: company.id, directorId: person.id, year: reportingYear }, false)} />
+        ) : (
+          <div className="research-profile-empty">
+            <Building2 size={26} strokeWidth={1.2} />
+            <h2>{company?.company || "Company and director profiles"}</h2>
+            <p>{company && loading ? "Loading filing coverage…" : company ? "No published compensation records in this view." : "Search by company, ticker or director, or browse either index."}</p>
+            {company?.refresh?.outcome === "unavailable" ? <p className="research-profile-note">The latest filing check could not produce a usable record.</p> : null}
+          </div>
+        )}
+      </section>
+
+      <ResponsiveAnalysis currentViewData={record} className="research-profile-analysis" />
     </div>
+  );
+}
+
+function Profile({ company, record, onYear }) {
+  const isNed = record.type === "non-executive";
+  const breakdown = isNed
+    ? [["Cash fees", "nedFees"], ["Equity awards", "ltip"], ["Option awards", "optionAwards"], ["Other compensation", "pensionBenefits"]].filter(([, field]) => record[field] != null)
+    : executiveComponents;
+  const filing = record.index === "SP500" ? "SEC proxy statement" : "Annual report";
+  const provenance = record.source === "manual"
+    ? record.sourceUrl ? "Manually sourced" : "Historical seed · no filing link"
+    : record.sourceUrl ? "Filing extraction" : "Source unavailable";
+  return (
+    <>
+      <header className="research-profile-heading">
+        <div>
+          <p className="research-eyebrow">{[company.company, indexLabel(company.index)].filter(Boolean).join(" · ")}</p>
+          <h2>{record.name}</h2>
+          <p>{record.role}</p>
+        </div>
+        <label className="research-year">
+          <span className="research-eyebrow">Fiscal year</span>
+          <select value={record.reportingYear} onChange={(event) => onYear(Number(event.target.value))}>
+            {record.yearsAvailable.map((value) => <option key={value} value={value}>FY{value}</option>)}
+          </select>
+        </label>
+      </header>
+
+      <div className="research-profile-total">
+        <p className="research-eyebrow">{isNed ? "Total director compensation" : "Total compensation"}</p>
+        <strong className="remi-data">{formatCompactMoney(record.totalCompensation, record.currency)}</strong>
+        <span className="remi-data">{record.currency}</span>
+      </div>
+
+      <dl className="research-profile-components">
+        {breakdown.map(([label, field]) => <div key={field}><dt>{label}</dt><dd className="remi-data">{formatCompactMoney(record[field], record.currency)}</dd></div>)}
+      </dl>
+
+      {(!isNed || record.sayOnPayPct != null) ? (
+        <dl className="research-profile-context">
+          {!isNed ? <div><dt>CEO pay ratio</dt><dd className="remi-data">{record.payRatio != null ? `${record.payRatio}:1` : "n/a"}</dd></div> : null}
+          <div><dt>Say-on-pay</dt><dd className={`remi-data ${record.sayOnPayPct == null ? "" : record.sayOnPayPct >= 90 ? "vote-high" : record.sayOnPayPct >= 70 ? "vote-mid" : "vote-low"}`}>{record.sayOnPayPct != null ? `${record.sayOnPayPct}%` : "n/a"}</dd></div>
+        </dl>
+      ) : null}
+
+      <footer className="research-profile-source">
+        <div><span>{provenance}</span>{record.lastUpdated ? <span>Record updated {formatVintageDate(record.lastUpdated)}</span> : null}</div>
+        {record.sourceUrl ? <a href={record.sourceUrl} target="_blank" rel="noreferrer"><FileText size={15} />{filing}<ArrowUpRight size={13} /></a> : null}
+        {company.refresh?.outcome === "unavailable" ? <p>Latest check unavailable · showing the last published record.</p> : null}
+      </footer>
+    </>
   );
 }

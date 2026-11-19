@@ -49,7 +49,7 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
   const [sectorFilter, setSectorFilter] = useState("All");
   const [roleFilter, setRoleFilter] = useState("All");
   const [metric, setMetric] = useState("totalCompensation");
-  const [year, setYear] = useState(2025);
+  const [year, setYear] = useState(null);
   const [sortDirection, setSortDirection] = useState("desc");
   const [sortKey, setSortKey] = useState("metricValue");
   const [page, setPage] = useState(1);
@@ -59,12 +59,9 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
   const sectors = [...new Set(directors.map((director) => director.sector))].sort();
   const years = [...new Set(directors.flatMap((director) => director.yearsAvailable))].sort((a, b) => b - a);
 
-  useEffect(() => {
-    if (years.length && !years.includes(year)) setYear(years[0]);
-  }, [year, years]);
-
   const rows = useMemo(() => {
     const filtered = directors
+      .filter((director) => !year || director.yearsAvailable.includes(year))
       .map((director) => flattenDirectorYear(director, year))
       .filter((director) => {
         const indexMatch = indexFilter === "All" || director.index === indexFilter;
@@ -86,6 +83,7 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
 
   const pageRows = rows.slice((page - 1) * 50, page * 50);
   const pageCount = Math.max(1, Math.ceil(rows.length / 50));
+  const mixedCurrencies = !["payRatio", "sayOnPayPct"].includes(metric) && new Set(rows.map((row) => row.currency)).size > 1;
 
   useEffect(() => {
     setPage(1);
@@ -116,6 +114,7 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
       Company: row.company,
       Index: row.index,
       Sector: row.sector,
+      Currency: row.currency,
       "Reporting Year": row.reportingYear,
       "Base Salary": numberOrBlank(row.baseSalary),
       "Annual Bonus": numberOrBlank(row.annualBonus),
@@ -152,7 +151,7 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
         <FilterSelect label="Sector / Industry" value={sectorFilter} onChange={setSectorFilter} options={["All", ...sectors]} />
         <FilterSelect label="Role" value={roleFilter} onChange={setRoleFilter} options={roleOptions} />
         <FilterSelect label="Pay component" value={metric} onChange={setMetric} options={metricOptions} />
-        <FilterSelect label="Year" value={year} onChange={(value) => setYear(Number(value))} options={years.map(String)} />
+        <FilterSelect label="Year" value={year || "latest"} onChange={(value) => setYear(Number(value) || null)} options={[["latest", "Latest per director"], ...years.map(String)]} />
         <FilterSelect label="Sort" value={sortDirection} onChange={setSortDirection} options={[["desc", "Highest first"], ["asc", "Lowest first"]]} />
       </Panel>
 
@@ -179,7 +178,8 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
               </div>
             </div>
           </div>
-          <div className="remi-league-table-wrap h-[520px] overflow-auto">
+          {mixedCurrencies ? <p className="mb-3 text-xs text-remi-text-secondary">Amounts are ranked as reported, without currency conversion.</p> : null}
+          <div className={`remi-league-table-wrap ${mixedCurrencies ? "h-[460px]" : "h-[485px]"} overflow-auto`}>
             <table className="remi-league-table w-full border-collapse text-left text-[13px]">
               <thead className="remi-kicker sticky top-0 z-10 bg-remi-secondary">
                 <tr>
@@ -198,7 +198,7 @@ export default function LeagueScreen({ dataset, directorType, onOpenDirector }) 
                     <tr
                       key={`${row.id}-${row.reportingYear}`}
                       className={`${index % 2 ? "bg-remi-secondary" : "bg-remi-navy"} cursor-pointer hover:bg-remi-surface`}
-                      onClick={() => onOpenDirector(row.id)}
+                      onClick={() => onOpenDirector(row)}
                     >
                       <td className="px-3 py-3">
                         <DataValue className="text-remi-gold-light">{row.rank}</DataValue>

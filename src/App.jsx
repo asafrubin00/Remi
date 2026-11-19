@@ -2,186 +2,121 @@ import { useEffect, useMemo, useState } from "react";
 import { TabButton } from "./components/ui.jsx";
 import RotationPrompt from "./components/RotationPrompt.jsx";
 import { companies as seededCompanies, formatVintageDate } from "./data/mockRemuneration.js";
+import { applyPublishedData, loadPublishedData } from "./data/publishedData.js";
 import CompareScreen from "./screens/CompareScreen.jsx";
 import FindScreen from "./screens/FindScreen.jsx";
 import LandingScreen from "./screens/LandingScreen.jsx";
 import LeagueScreen from "./screens/LeagueScreen.jsx";
 
-const VIEWS = [
-  { id: "landing", label: "Landing", path: "/" },
-  { id: "find", label: "Find", path: "/find" },
-  { id: "compare", label: "Compare", path: "/compare" },
-  { id: "league", label: "League", path: "/league" },
-];
+const views = {
+  landing: { path: "/" },
+  find: { path: "/find", label: "Find", title: "Compensation profiles" },
+  compare: { path: "/compare", label: "Compare", title: "Peer comparisons" },
+  league: { path: "/league", label: "Rankings", title: "Pay rankings" }
+};
 
-function viewFromPath() {
-  const match = VIEWS.find((view) => view.path === window.location.pathname);
-  return match?.id ?? "landing";
+function readLocation() {
+  const query = new URLSearchParams(window.location.search);
+  return {
+    view: Object.keys(views).find((key) => views[key].path === window.location.pathname) || "landing",
+    companyId: query.get("company"),
+    directorId: query.get("director"),
+    year: Number(query.get("year")) || null
+  };
 }
 
 export default function App() {
-  const [activeView, setActiveView] = useState(viewFromPath);
-  const [focusedDirectorId, setFocusedDirectorId] = useState(null);
-  const [dataset, setDataset] = useState(seededCompanies);
-  const [sp500CronStatus, setSp500CronStatus] = useState(null);
-  const [directorType, setDirectorType] = useState(() => {
-    return window.localStorage.getItem("remi.directorType") || "executive";
-  });
+  const [location, setLocation] = useState(readLocation);
+  const [snapshots, setSnapshots] = useState([]);
+  const [datasetLoading, setDatasetLoading] = useState(true);
+  const [directorType, setDirectorType] = useState(() => window.localStorage.getItem("remi.directorType") || "executive");
+  const { view } = location;
+  const dataset = useMemo(() => applyPublishedData(seededCompanies, snapshots), [snapshots]);
 
   useEffect(() => {
     window.localStorage.setItem("remi.directorType", directorType);
   }, [directorType]);
 
   useEffect(() => {
-    const onPopState = () => setActiveView(viewFromPath());
+    const onPopState = () => setLocation(readLocation());
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
   useEffect(() => {
-    let cancelled = false;
-
-    async function hydrateDataset() {
-      const eagerCompanies = seededCompanies.filter((company) => company.eagerHydrate);
-      const hydrated = await Promise.all(
-        eagerCompanies.map(async (company) => {
-          try {
-            const response = await fetch(`/api/scrape-company?companyId=${company.id}`);
-            if (!response.ok) throw new Error("Scrape route unavailable");
-            return await response.json();
-          } catch {
-            return {
-              ...company,
-              scrape: company.scrape || { status: "fallback", message: "Using seeded remuneration data." },
-              lastUpdated: new Date().toISOString()
-            };
-          }
-        }),
-      );
-      if (!cancelled) {
-        const hydratedById = new Map(hydrated.map((company) => [company.id, company]));
-        setDataset(seededCompanies.map((company) => hydratedById.get(company.id) || company));
-      }
-    }
-
-    hydrateDataset();
-    return () => {
-      cancelled = true;
-    };
+    const controller = new AbortController();
+    const signal = AbortSignal.any([controller.signal, AbortSignal.timeout(12000)]);
+    Promise.allSettled(["ftse100", "sp500"].map(async (index) => {
+      const snapshot = await loadPublishedData(index, signal);
+      if (!controller.signal.aborted) setSnapshots((current) => [...current, snapshot]);
+    })).then(() => {
+      if (!controller.signal.aborted) setDatasetLoading(false);
+    });
+    return () => controller.abort();
   }, []);
 
-  useEffect(() => {
-    if (!import.meta.env.PROD) return undefined;
-    let cancelled = false;
+  function navigate(next, { companyId, directorId, year } = {}, replace = false) {
+    const query = new URLSearchParams();
+    if (companyId) query.set("company", companyId);
+    if (directorId) query.set("director", directorId);
+    if (year) query.set("year", year);
+    const path = views[next].path + (query.size ? `?${query}` : "");
+    const method = replace ? "replaceState" : "pushState";
+    if (path !== window.location.pathname + window.location.search) window.history[method]({}, "", path);
+    setLocation(readLocation());
+    if (!replace) window.scrollTo(0, 0);
+  }
 
-    async function loadCronStatus() {
-      try {
-        const response = await fetch("/api/cron/sp500-status");
-        if (!response.ok) return;
-        const status = await response.json();
-        if (!cancelled && status?.timestamp) setSp500CronStatus(status);
-      } catch {
-        // Footer status is informational only.
-      }
-    }
-
-    loadCronStatus();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  const screenTitle = useMemo(() => {
-    if (activeView === "landing") return "Remuneration Intelligence";
-    return VIEWS.find((view) => view.id === activeView)?.label ?? "Find";
-  }, [activeView]);
-
-  const navigate = (viewId) => {
-    const view = VIEWS.find((item) => item.id === viewId);
-    if (!view) return;
-    window.history.pushState({}, "", view.path);
-    setActiveView(viewId);
-  };
-
-  const openDirector = (directorId) => {
-    setFocusedDirectorId(directorId);
-    navigate("find");
-  };
+  function navLink(event, next) {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    navigate(next);
+  }
 
   return (
-    <main className="remi-shell">
+    <div className={`remi-shell research-shell ${view === "landing" ? "research-shell-home" : ""}`}>
       <RotationPrompt />
-      <header className="remi-global-header">
-        <button className="remi-brand-button text-left" onClick={() => navigate("landing")} aria-label="Go to landing screen">
-          <div className="remi-brand-lockup flex items-center gap-3">
-            <img src="/icons/remi-mark.svg" alt="" className="remi-brand-mark h-9 w-9" />
-            <h1 className="remi-wordmark">remi</h1>
-          </div>
-          <p className="remi-brand-tagline remi-kicker mt-2">Remuneration Intelligence</p>
-        </button>
-
-        <div className="remi-nav-controls flex flex-col items-end gap-3">
-          <div className="remi-mode-toggle flex rounded-lg border border-remi-border bg-remi-secondary p-1">
-            <TabButton active={directorType === "executive"} onClick={() => setDirectorType("executive")}>
-              Executive
-            </TabButton>
-            <TabButton active={directorType === "non-executive"} onClick={() => setDirectorType("non-executive")}>
-              Non-Executive
-            </TabButton>
-          </div>
-          <nav className="remi-primary-nav flex gap-2" aria-label="Primary navigation">
-            {VIEWS.filter((view) => view.id !== "landing").map((view) => (
-              <TabButton key={view.id} active={activeView === view.id} onClick={() => navigate(view.id)}>
-                {view.label}
-              </TabButton>
-            ))}
-          </nav>
+      <header className="remi-global-header research-header">
+        <a className="remi-brand-button research-brand" href="/" onClick={(event) => navLink(event, "landing")} aria-label="Remi home">
+          <span className="remi-wordmark">remi<span>.</span></span>
+          <span className="research-brand-line">Remuneration<br />intelligence</span>
+        </a>
+        <nav className="research-nav" aria-label="Primary navigation">
+          {["find", "compare", "league"].map((id) => (
+            <a key={id} aria-current={view === id ? "page" : undefined} href={views[id].path} onClick={(event) => navLink(event, id)}>{views[id].label}</a>
+          ))}
+        </nav>
+        <div className="remi-mode-toggle research-mode" role="group" aria-label="Director type">
+          <TabButton aria-pressed={directorType === "executive"} active={directorType === "executive"} onClick={() => setDirectorType("executive")}>Executive</TabButton>
+          <TabButton aria-pressed={directorType === "non-executive"} active={directorType === "non-executive"} onClick={() => setDirectorType("non-executive")}>Non-Executive</TabButton>
         </div>
       </header>
 
-      <section className="flex-1">
-        {activeView !== "landing" ? (
-          <div className="remi-screen-heading mb-4 flex items-end justify-between">
-            <h2 className="remi-title">{screenTitle}</h2>
-            <p className="remi-kicker">
-              Viewing {directorType === "executive" ? "Executive" : "Non-Executive"} data · {dataset.some((company) => company.scrape?.status === "live-metadata") ? "Live metadata" : "Seeded data"}
-            </p>
+      <main className="flex-1">
+        {view !== "landing" ? (
+          <div className="research-page-heading">
+            <h1 className="remi-title">{views[view].title}</h1>
           </div>
         ) : null}
-        {activeView === "landing" ? (
-          <LandingScreen dataset={dataset} onEnter={() => navigate("find")} />
-        ) : activeView === "find" ? (
-          <FindScreen dataset={dataset} setDataset={setDataset} directorType={directorType} initialSelectedId={focusedDirectorId} />
-        ) : activeView === "compare" ? (
+        {view === "landing" ? (
+          <LandingScreen dataset={dataset} directorType={directorType} snapshots={snapshots} onNavigate={navigate} onSelect={(item) => navigate("find", item)} />
+        ) : view === "find" ? (
+          <FindScreen dataset={dataset} directorType={directorType} selection={location} loading={datasetLoading} onSelect={(item) => navigate("find", item, true)} />
+        ) : view === "compare" ? (
           <CompareScreen dataset={dataset} directorType={directorType} />
-        ) : activeView === "league" ? (
-          <LeagueScreen dataset={dataset} directorType={directorType} onOpenDirector={openDirector} />
         ) : (
-          <div className="remi-panel p-6">
-            <p className="text-sm text-remi-text-secondary">Screen scaffold ready for {screenTitle}.</p>
-          </div>
+          <LeagueScreen dataset={dataset} directorType={directorType} onOpenDirector={(row) => navigate("find", { companyId: row.companyId, directorId: row.id, year: row.reportingYear })} />
         )}
-      </section>
+      </main>
 
-      <footer className="mt-8 flex justify-center gap-3 border-t border-remi-border pt-4 text-center text-[11px] text-remi-muted">
-        <span>
-          © 2026{" "}
-          <a
-            href="https://asafrubin00.github.io/asaf-rubin-website/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-remi-muted underline-offset-2 transition hover:text-remi-gold-light hover:underline"
-          >
-            Asaf Rubin
-          </a>
-          . All rights reserved.
-        </span>
-        {sp500CronStatus?.timestamp ? (
-          <span>
-            S&P 500 data last refreshed: <span className="remi-data">{formatVintageDate(sp500CronStatus.timestamp)}</span>
-          </span>
-        ) : null}
+      <footer className="research-footer">
+        <span>© 2026 <a href="https://asafrubin00.github.io/asaf-rubin-website/" target="_blank" rel="noreferrer">Asaf Rubin</a>. All rights reserved.</span>
+        <div>
+          {[...snapshots].sort((a, b) => a.index.localeCompare(b.index)).map((snapshot) => snapshot.lastRun?.timestamp ? (
+            <span key={snapshot.index}>{snapshot.index === "SP500" ? "S&P 500" : "FTSE 100"} checked {formatVintageDate(snapshot.lastRun.timestamp)}</span>
+          ) : null)}
+        </div>
       </footer>
-    </main>
+    </div>
   );
 }

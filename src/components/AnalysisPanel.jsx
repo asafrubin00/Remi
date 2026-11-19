@@ -88,9 +88,15 @@ export default function AnalysisPanel({ currentViewData, onStatusChange }) {
       </div>
       <div className="mt-4 min-h-0 flex-1 overflow-y-auto pr-1">
         {analysis ? (
-          <p className={`text-[13px] italic leading-6 transition-opacity duration-300 ${loading ? "opacity-40" : "opacity-100"} text-remi-text-secondary`}>
-            {analysis}
-          </p>
+          <div className={`research-analysis-text ${loading ? "opacity-40" : "opacity-100"}`}>
+            {analysis.split(/\n+/).filter(Boolean).map((line, index) => {
+              const heading = line.match(/^#{1,6}\s+(.+)/);
+              if (heading) return <h3 key={index}>{heading[1]}</h3>;
+              return <p key={index}>{line.split(/(\*\*[^*]+\*\*)/).map((part, partIndex) =>
+                part.startsWith("**") && part.endsWith("**") ? <strong key={partIndex}>{part.slice(2, -2)}</strong> : part,
+              )}</p>;
+            })}
+          </div>
         ) : null}
       </div>
     </Panel>
